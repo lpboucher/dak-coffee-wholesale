@@ -6,7 +6,7 @@ import { AlertService } from "@core/alerts/alert.service";
 @Injectable({
   providedIn: "root"
 })
-export class GlobalErrorHandlerService implements ErrorHandler {
+export class ErrorHandlerService implements ErrorHandler {
 
     constructor(private alertService: AlertService) { }
 
