@@ -1,14 +1,18 @@
-import { NgModule } from "@angular/core";
+import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
+import { ToastrModule } from "ngx-toastr";
+
 import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor";
+import { throwIfAlreadyLoaded } from "@utils/module-import.guard";
 
 @NgModule({
     declarations: [],
     imports: [
         CommonModule,
-        HttpClientModule
+        HttpClientModule,
+        ToastrModule.forRoot(),
     ],
     providers: [
         {
@@ -18,4 +22,8 @@ import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor"
         },
     ],
 })
-export class CoreModule { }
+export class CoreModule {
+    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+      throwIfAlreadyLoaded(parentModule, "CoreModule");
+    }
+  }

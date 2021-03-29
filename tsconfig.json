@@ -7,6 +7,7 @@
       "@env": ["environments/environment"],
       "@app/*": ["app/*"],
       "@core/*": ["app/core/*"],
+      "@utils/*": ["app/utils/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
