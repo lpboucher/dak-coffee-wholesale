@@ -8,7 +8,7 @@ export const routes: Routes = [
         component: AppComponent,
     },
     {
-        path: "session",
+        path: "auth",
         loadChildren: () => import("@modules/login/login.module").then(m => m.LoginModule)
     },
 ];
