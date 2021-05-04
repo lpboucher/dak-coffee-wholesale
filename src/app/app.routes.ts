@@ -8,6 +8,10 @@ export const routes: Routes = [
         component: AppComponent,
     },
     {
+        path: "",
+        loadChildren: () => import("@modules/backbone/backbone.module").then(m => m.BackboneModule)
+    },
+    {
         path: "auth",
         loadChildren: () => import("@modules/login/login.module").then(m => m.LoginModule)
     },
