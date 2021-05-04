@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BackbonePage } from './pages/backbone/backbone.page';
+import { BackbonePageComponent } from './pages/backbone/backbone.page';
+import { BackboneComponent } from './components/backbone/backbone.component';
 
 
 
 @NgModule({
-  declarations: [BackbonePage],
+  declarations: [BackbonePageComponent, BackboneComponent],
   imports: [
     CommonModule
   ]

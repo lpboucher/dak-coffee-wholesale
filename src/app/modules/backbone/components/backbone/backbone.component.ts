@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-backbone',
-  templateUrl: './backbone.page.html',
-  styleUrls: ['./backbone.page.scss']
+  templateUrl: './backbone.component.html',
+  styleUrls: ['./backbone.component.scss']
 })
-export class BackbonePageComponent implements OnInit {
+export class BackboneComponent implements OnInit {
 
   constructor() { }
 
