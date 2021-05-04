@@ -3,13 +3,15 @@ import { Routes } from "@angular/router";
 import { AppComponent } from "@app/app.component";
 import { BackbonePageComponent } from "@modules/backbone/pages/backbone/backbone.page";
 import { BackboneComponent } from "@modules/backbone/components/backbone/backbone.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
 ];
 
 export const componentDeclarations: any[] = [
-    BackboneComponent
+    BackboneComponent,
+    FooterComponent
 ];
 
 export const providerDeclarations: any[] = [
