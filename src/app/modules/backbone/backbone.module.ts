@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BackbonePageComponent } from './pages/backbone/backbone.page';
-import { BackboneComponent } from './components/backbone/backbone.component';
+import { BackboneRoutingModule } from './backbone-routing.module';
+
+import { componentDeclarations, pageDeclarations } from '../backbone/backbone.common';
 
 @NgModule({
-  declarations: [BackbonePageComponent, BackboneComponent],
+  declarations: [
+      ...pageDeclarations,
+      ...componentDeclarations
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    BackboneRoutingModule
   ]
 })
 export class BackboneModule { }
