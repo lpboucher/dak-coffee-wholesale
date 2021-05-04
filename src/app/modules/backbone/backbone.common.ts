@@ -9,7 +9,6 @@ export const pageDeclarations: any[] = [
 ];
 
 export const componentDeclarations: any[] = [
-    BackboneComponent
 ];
 
 export const providerDeclarations: any[] = [
