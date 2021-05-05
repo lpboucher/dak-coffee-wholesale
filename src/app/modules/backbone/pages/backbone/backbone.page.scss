@@ -1,0 +1,11 @@
+.backbone-container {
+    @apply flex;
+}
+
+.sidebar {
+    @apply flex-none;
+}
+
+.content {
+    @apply flex-1;
+}
