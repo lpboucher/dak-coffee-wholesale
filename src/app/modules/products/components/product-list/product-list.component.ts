@@ -18,6 +18,18 @@ export class ProductListComponent implements OnInit {
         {name: "Nuna", price: "$15.00", category: "coffee"},
         {name: "Terraza", price: "$20.00", category: "coffee"},
         {name: "Vargem", price: "$17.00", category: "coffee"},
+        {name: "Nuna", price: "$15.00", category: "coffee"},
+        {name: "Terraza", price: "$20.00", category: "coffee"},
+        {name: "Vargem", price: "$17.00", category: "coffee"},
+        {name: "Nuna", price: "$15.00", category: "coffee"},
+        {name: "Terraza", price: "$20.00", category: "coffee"},
+        {name: "Vargem", price: "$17.00", category: "coffee"},
+        {name: "Nuna", price: "$15.00", category: "coffee"},
+        {name: "Terraza", price: "$20.00", category: "coffee"},
+        {name: "Vargem", price: "$17.00", category: "coffee"},
+        {name: "Nuna", price: "$15.00", category: "coffee"},
+        {name: "Terraza", price: "$20.00", category: "coffee"},
+        {name: "Vargem", price: "$17.00", category: "coffee"},
     ];
 
   constructor() { }
