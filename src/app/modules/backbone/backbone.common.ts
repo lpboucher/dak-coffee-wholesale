@@ -16,6 +16,11 @@ export const routes: Routes = [
     {
         path: "",
         component: BackbonePageComponent,
-        children: []
+        children: [
+            {
+                path: "products",
+                loadChildren: () => import("@modules/products/products.module").then(m => m.ProductsModule)
+            },
+        ]
     },
 ];
