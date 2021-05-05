@@ -1,5 +1,5 @@
 .product-card {
-    @apply block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden;
+    @apply block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden text-left;
 }
 
 .product-card-image-container {
@@ -27,11 +27,15 @@
 }
 
 .product-card-body-price-container {
-    @apply mt-3 flex items-center;
+    @apply mt-3 flex justify-between;
 }
 
 .product-card-body-price {
     @apply font-bold text-xl;
+}
+
+.product-card-body-add-to-cart {
+    @apply inline-block px-3 py-2 bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
 }
 
 .product-card-details-container {
