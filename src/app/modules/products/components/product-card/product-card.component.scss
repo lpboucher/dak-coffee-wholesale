@@ -1,0 +1,71 @@
+.product-card-container {
+    @apply w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4;
+}
+
+.product-card {
+    @apply block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden;
+}
+
+.product-card-image-container {
+    @apply relative pb-48 overflow-hidden;
+}
+
+.product-card-image {
+    @apply absolute inset-0 h-full w-full object-cover;
+}
+
+.product-card-body {
+    @apply p-4;
+}
+
+.product-card-body-highlight {
+    @apply inline-block px-2 py-1 leading-none bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
+}
+
+.product-card-body-title {
+    @apply mt-2 mb-2 font-bold;
+}
+
+.product-card-body-description {
+    @apply text-sm;
+}
+
+.product-card-body-price-container {
+    @apply mt-3 flex items-center;
+}
+
+.product-card-body-price {
+    @apply font-bold text-xl;
+}
+
+.product-card-details-container {
+    @apply p-4 border-t border-b text-xs text-gray-700;
+}
+
+.product-card-details {
+    @apply flex items-center mb-1;
+}
+
+.product-card-details-text {
+    @apply mr-2 text-gray-900;
+}
+
+.product-card-footer {
+    @apply p-4 flex items-center text-sm text-gray-600;
+}
+
+.product-card-footer-star {
+    @apply h-4 w-4 fill-current;
+}
+
+.product-card-footer-star-full {
+    @apply product-card-footer-star text-yellow-500;
+}
+
+.product-card-footer-star-empty {
+    @apply product-card-footer-star text-gray-400;
+}
+
+.product-card-footer-votes {
+    @apply ml-2;
+}
