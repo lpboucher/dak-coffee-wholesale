@@ -1,15 +1,15 @@
 .product-list-container {
-    @apply text-gray-600;
+    @apply antialiased bg-gray-200 text-gray-900 font-sans p-6;
 }
 
 .product-list {
-    @apply container px-5 py-24 mx-auto;
+    @apply container mx-auto;
 }
 
 .product-list-items-container {
     @apply flex flex-wrap -m-4;
 }
 
-.product-list-item {
-    @apply lg:w-1/4 md:w-1/2 p-4 w-full;
+.product-card-container {
+    @apply w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4;
 }
