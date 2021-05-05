@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from "rxjs";
 
-interface Product {
-    name: string;
-    origin: string;
-    price: string;
-    description: string;
-    tastingNotes: string;
-}
+import { Product } from "@modules/products/product.interface";
 
 @Component({
   selector: 'app-product-list',
