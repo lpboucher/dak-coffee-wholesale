@@ -1,9 +1,9 @@
 .sidebar-container {
-    @apply w-72 fixed flex flex-col sm:flex-row sm:justify-around;
+    @apply w-72 flex flex-col sm:flex-row sm:justify-around;
 }
 
 .sidebar {
-    @apply flex-1 h-screen;
+    @apply flex-1 fixed h-screen;
 }
 
 .sidebar-title {

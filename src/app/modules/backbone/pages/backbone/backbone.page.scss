@@ -6,6 +6,14 @@
     @apply flex-none;
 }
 
+.main-page-container {
+    @apply flex-1 flex-col;
+}
+
 .content {
     @apply flex-1;
+}
+
+.footer {
+    @apply flex-auto;
 }
