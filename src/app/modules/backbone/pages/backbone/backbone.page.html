@@ -1,7 +1,11 @@
-<div class="backbone-container">
-    <app-sidebar class="sidebar"></app-sidebar>
-    <div class="main-page-container">
-        <router-outlet class="content"></router-outlet>
-        <app-footer class="footer"></app-footer>
-    </div>
-</div>
+<section class="backbone-container">
+    <header class="sidebar">
+        <app-sidebar></app-sidebar>
+    </header>
+    <main class="page-container">
+        <router-outlet></router-outlet>
+        <footer class="footer">
+            <app-footer></app-footer>
+        </footer>
+    </main>
+</section>
