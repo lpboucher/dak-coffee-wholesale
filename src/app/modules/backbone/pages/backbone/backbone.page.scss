@@ -6,7 +6,8 @@
 }
 
 .sidebar {
-    @apply md:col-span-3 md:h-screen;
+    @apply md:col-span-3 md:sticky md:top-0;
+    @apply md:h-screen;
 }
 
 .page-container {
