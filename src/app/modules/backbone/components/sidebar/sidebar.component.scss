@@ -1,0 +1,35 @@
+.main-nav {
+    @apply flex flex-row items-center content-between;
+    @apply w-full p-2;
+
+    @apply md:p-5 md:flex-col md:h-screen;
+}
+
+.brand {
+    @apply flex flex-none items-center;
+
+    @apply md:mb-10;
+}
+
+.nav-item-list {
+    @apply flex flex-row flex-1 justify-around;
+
+    @apply md:w-full md:flex-col md:justify-start;
+}
+
+.nav-item {
+    @apply p-2 rounded-lg;
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+
+    @apply md:p-4 md:flex md:items-center md:justify-start;
+}
+
+.nav-item-icon {
+    @apply hidden;
+
+    @apply md:block md:h-6 md:px-3;
+}
+
+.nav-footer {
+    @apply flex-none;
+}

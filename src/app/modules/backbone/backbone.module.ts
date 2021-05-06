@@ -8,7 +8,7 @@ import { componentDeclarations, pageDeclarations } from '../backbone/backbone.co
 @NgModule({
   declarations: [
       ...pageDeclarations,
-      ...componentDeclarations
+      ...componentDeclarations,
   ],
   imports: [
     CommonModule,

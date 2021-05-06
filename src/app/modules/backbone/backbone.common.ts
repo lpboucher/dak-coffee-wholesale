@@ -1,15 +1,16 @@
 import { Routes } from "@angular/router";
 
 import { BackbonePageComponent } from "@modules/backbone/pages/backbone/backbone.page";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
 ];
 
 export const componentDeclarations: any[] = [
-];
-
-export const providerDeclarations: any[] = [
+    SidebarComponent,
+    FooterComponent
 ];
 
 export const routes: Routes = [

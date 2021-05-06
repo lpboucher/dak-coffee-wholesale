@@ -1,0 +1,17 @@
+.backbone-container {
+    @apply grid;
+    @apply w-full;
+
+    @apply md:grid-cols-12;
+}
+
+.sidebar {
+    @apply fixed w-full;
+
+    @apply md:col-span-3 md:sticky md:top-0;
+    @apply md:h-screen;
+}
+
+.page-container {
+    @apply md:col-span-9;
+}
