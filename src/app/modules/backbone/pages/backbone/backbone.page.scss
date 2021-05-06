@@ -6,6 +6,8 @@
 }
 
 .sidebar {
+    @apply fixed w-full;
+
     @apply md:col-span-3 md:sticky md:top-0;
     @apply md:h-screen;
 }
