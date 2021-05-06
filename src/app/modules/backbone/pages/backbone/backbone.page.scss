@@ -1,19 +1,14 @@
 .backbone-container {
-    @apply flex;
+    @apply grid;
+    @apply w-full;
+
+    @apply md:grid-cols-12;
 }
 
 .sidebar {
-    @apply flex-none;
+    @apply md:col-span-3 md:h-screen;
 }
 
-.main-page-container {
-    @apply flex-1 flex-col;
-}
-
-.content {
-    @apply flex-1;
-}
-
-.footer {
-    @apply flex-auto;
+.page-container {
+    @apply md:col-span-9;
 }
