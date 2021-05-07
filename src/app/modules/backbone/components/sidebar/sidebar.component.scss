@@ -1,18 +1,18 @@
 .main-nav {
-    @apply flex flex-row items-center content-between;
+    @apply flex flex-row items-center justify-between;
     @apply w-full p-2;
 
     @apply md:p-5 md:flex-col md:h-screen;
 }
 
 .brand {
-    @apply flex flex-none items-center;
+    @apply flex flex-none items-center justify-around;
 
     @apply md:mb-10;
 }
 
 .nav-item-list {
-    @apply flex flex-row flex-1 justify-around;
+    @apply flex flex-row flex-1 space-x-2 justify-center;
 
     @apply md:w-full md:flex-col md:justify-start;
 }
