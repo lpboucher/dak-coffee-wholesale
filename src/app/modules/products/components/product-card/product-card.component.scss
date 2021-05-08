@@ -49,23 +49,3 @@
 .product-card-details-text {
     @apply mr-2 text-gray-900;
 }
-
-.product-card-footer {
-    @apply p-4 flex items-center text-sm text-gray-600;
-}
-
-.product-card-footer-star {
-    @apply h-4 w-4 fill-current;
-}
-
-.product-card-footer-star-full {
-    @apply product-card-footer-star text-yellow-500;
-}
-
-.product-card-footer-star-empty {
-    @apply product-card-footer-star text-gray-400;
-}
-
-.product-card-footer-votes {
-    @apply ml-2;
-}
