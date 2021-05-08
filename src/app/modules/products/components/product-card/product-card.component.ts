@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Product } from '../../product.interface';
+import { Coffee } from "@app/shared/models/classes/coffee.interface";
 
 @Component({
   selector: 'app-product-card',
@@ -8,7 +8,15 @@ import { Product } from '../../product.interface';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-    @Input() product!: Product;
+    @Input() product!: Coffee;
+
+    get displayedDescription(): string[] {
+        return this.product.type === "coffee" ? [this.product.process, this.product.varietal] : [this.product.description];
+    }
+
+    get displayedDetails(): string[] {
+        return this.product.type === "coffee" ? [this.product.origin, this.product.tastingNotes] : [this.product.description];
+    }
 
     constructor() { }
 
