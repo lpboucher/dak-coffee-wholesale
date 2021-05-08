@@ -1,0 +1,15 @@
+.product-list-container {
+    @apply antialiased bg-gray-200 text-gray-900 font-sans p-6;
+}
+
+.product-list {
+    @apply container mx-auto;
+}
+
+.product-list-items-container {
+    @apply flex flex-wrap -m-4;
+}
+
+.product-card-container {
+    @apply w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4;
+}
