@@ -13,5 +13,7 @@
 }
 
 .page-container {
-    @apply md:col-span-9;
+    @apply mt-14;
+
+    @apply md:mt-0 md:col-span-9;
 }
