@@ -1,8 +1,9 @@
+import { ProductType } from "../types/product-type.type";
+
 export interface Product {
     id: number;
     name: string;
-    origin: string;
     price: string;
     description: string;
-    tastingNotes: string;
+    type: ProductType;
 }
