@@ -1,13 +1,18 @@
 .product-card {
-    @apply block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden text-left;
+    @apply text-left;
+    @apply block h-full bg-white shadow-md rounded-lg overflow-hidden;
+    @apply hover:shadow-xl;
 }
 
 .product-card-image-container {
-    @apply relative pb-48 overflow-hidden;
+    @apply relative;
+    @apply pb-48;
+    @apply overflow-hidden;
 }
 
 .product-card-image {
-    @apply absolute inset-0 h-full w-full object-cover;
+    @apply absolute inset-0;
+    @apply h-full w-full object-cover;
 }
 
 .product-card-body {
@@ -15,11 +20,14 @@
 }
 
 .product-card-body-highlight {
-    @apply inline-block px-2 py-1 leading-none bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
+    @apply inline-block;
+    @apply px-2 py-1 leading-none;
+    @apply bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
 }
 
 .product-card-body-title {
-    @apply mt-2 mb-2 font-bold;
+    @apply mt-2 mb-2;
+    @apply font-bold;
 }
 
 .product-card-body-description {
@@ -27,7 +35,8 @@
 }
 
 .product-card-body-price-container {
-    @apply mt-3 flex justify-between;
+    @apply flex justify-between;
+    @apply mt-3;
 }
 
 .product-card-body-price {
@@ -35,17 +44,22 @@
 }
 
 .product-card-body-add-to-cart {
-    @apply inline-block px-3 py-2 bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
+    @apply inline-block;
+    @apply px-3 py-2;
+    @apply bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
 }
 
 .product-card-details-container {
-    @apply p-4 border-t border-b text-xs text-gray-700;
+    @apply p-4;
+    @apply border-t text-xs text-gray-700;
 }
 
 .product-card-details {
-    @apply flex items-center mb-1;
+    @apply flex items-center;
+    @apply mb-1;
 }
 
 .product-card-details-text {
-    @apply mr-2 text-gray-900;
+    @apply mr-2;
+    @apply text-gray-900;
 }
