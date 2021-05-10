@@ -10,8 +10,8 @@ import { Coffee } from "@app/shared/models/classes/coffee.interface";
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-    products$: Observable<(Coffee | Product)[]> = new Observable();
-    products: (Coffee | Product)[] = [
+    products$: Observable<Coffee[]> = new Observable();
+    products: Coffee[] = [
         {
             id: 0,
             name: "The Alchemist",
@@ -99,20 +99,6 @@ export class ProductListComponent implements OnInit {
             description: "Washed, Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
             type: "coffee"
-        },
-        {
-            id: 8,
-            name: "Espresso",
-            price: "$26.00",
-            description: "Dak Monthly Subscription",
-            type: "subscription"
-        },
-        {
-            id: 9,
-            name: "Filter",
-            price: "$26.00",
-            description: "Dak Monthly Subscription",
-            type: "subscription"
         },
     ];
 
