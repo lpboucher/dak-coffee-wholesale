@@ -7,8 +7,7 @@ import { Coffee } from "@app/shared/models/classes/coffee.interface";
     providedIn: 'root'
 })
 export class ProductService {
-    products$: Observable<Coffee[]> = new Observable();
-    products: Coffee[] = [
+    private products: Coffee[] = [
         {
             id: 0,
             name: "The Alchemist",
@@ -103,10 +102,9 @@ export class ProductService {
     constructor() { }
 
     ngOnInit() {
-        this.products$ = of(this.products);
     }
 
     getProducts(): Observable<Coffee[]> {
-        return this.products$;
+        return of(this.products);
     }
 }
