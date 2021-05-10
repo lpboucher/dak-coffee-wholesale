@@ -118,6 +118,7 @@ export class ProductService {
 
     getFeaturedProducts(): Observable<Coffee[]> {
         return of(this.products
-            .filter(p => p.collection === "featured"));
+            .filter(p => p.collection === "featured")
+            .slice(0, 2));
     }
 }
