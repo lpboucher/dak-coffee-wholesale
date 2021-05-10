@@ -115,4 +115,8 @@ export class ProductService {
     getProducts(): Observable<Coffee[]> {
         return of(this.products);
     }
+
+    getOne(slug: string): Observable<Coffee | undefined> {
+        return of(this.products.find(p => p.slug === slug));
+    }
 }
