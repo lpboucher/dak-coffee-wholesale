@@ -17,6 +17,7 @@ export class ProductService {
             varietal: "Bourbon",
             description: "",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -28,6 +29,7 @@ export class ProductService {
             varietal: "Geisha",
             description: "Honey, Geisha",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -39,6 +41,7 @@ export class ProductService {
             varietal: "Pacamara",
             description: "48hrs Anaerobic, Pacamara",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -50,6 +53,7 @@ export class ProductService {
             varietal: "Pink Bourbon",
             description: "Washed, Pink Bourbon",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -61,6 +65,7 @@ export class ProductService {
             varietal: "Red Bourbon",
             description: "Wet Natural Anaerobic, Red Bourbon",
             tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -72,6 +77,7 @@ export class ProductService {
             varietal: "Paraneima",
             description: "Natural, Paraneima",
             tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -83,6 +89,7 @@ export class ProductService {
             varietal: "Castillo",
             description: "Natural, Castillo",
             tastingNotes: "Black Cherry, Guava, Sugar",
+            collection: undefined,
             type: "coffee"
         },
         {
@@ -94,6 +101,7 @@ export class ProductService {
             varietal: "Caturra",
             description: "Washed, Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
+            collection: undefined,
             type: "coffee"
         },
     ];
