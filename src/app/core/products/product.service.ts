@@ -17,7 +17,7 @@ export class ProductService {
             varietal: "Bourbon",
             description: "",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
-            collection: undefined,
+            collection: "featured",
             type: "coffee"
         },
         {
@@ -29,7 +29,7 @@ export class ProductService {
             varietal: "Geisha",
             description: "Honey, Geisha",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
-            collection: undefined,
+            collection: "featured",
             type: "coffee"
         },
         {
@@ -41,7 +41,7 @@ export class ProductService {
             varietal: "Pacamara",
             description: "48hrs Anaerobic, Pacamara",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
-            collection: undefined,
+            collection: "upcoming",
             type: "coffee"
         },
         {
@@ -53,7 +53,7 @@ export class ProductService {
             varietal: "Pink Bourbon",
             description: "Washed, Pink Bourbon",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
-            collection: undefined,
+            collection: "upcoming",
             type: "coffee"
         },
         {
@@ -114,5 +114,10 @@ export class ProductService {
 
     getProducts(): Observable<Coffee[]> {
         return of(this.products);
+    }
+
+    getFeaturedProducts(): Observable<Coffee[]> {
+        return of(this.products
+            .filter(p => p.collection === "featured"));
     }
 }
