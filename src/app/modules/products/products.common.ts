@@ -19,7 +19,7 @@ export const providerDeclarations: any[] = [
 export const routes: Routes = [
     {
         path: "",
-        component: ProductListComponent,
+        component: ProductPage,
         children: []
     },
 ];
