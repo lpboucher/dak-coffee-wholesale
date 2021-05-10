@@ -10,14 +10,6 @@ import { Product } from "@app/shared/models/classes/product.class";
 export class ProductCardComponent implements OnInit {
     @Input() product!: Product;
 
-    get displayedDescription(): string[] {
-        return this.product.displayedDescription;
-    }
-
-    get displayedDetails(): string[] {
-        return this.product.displayedDetails;
-    }
-
     constructor() { }
 
     ngOnInit(): void {
