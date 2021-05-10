@@ -1,26 +1,34 @@
 export abstract class Product {
-    id: number;
-    name: string;
-    price: string;
-    description: string;
+    id: string | null = null;
+    name: string | null = null;
+    price: string | null = null;
+    description: string | null = null;
 
-    constructor(
-        id: number,
-        name: string,
-        price: string,
-        description: string,
-    ) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    constructor(productShape?: Partial<Product>) {
+        if (productShape != null) {
+            if (productShape.id != null) {
+                this.id = productShape.id;
+            }
+
+            if (productShape.name != null) {
+                this.name = productShape.name;
+            }
+
+            if (productShape.price != null) {
+                this.price = productShape.price;
+            }
+
+            if (productShape.description != null) {
+                this.description = productShape.description;
+            }
+        }
     }
 
     get displayedDescription(): string[] {
-        return [this.description];
+        return [this.description ?? ""];
     }
 
     get displayedDetails(): string[] {
-        return [this.description];
+        return [this.description ?? ""];
     }
 }

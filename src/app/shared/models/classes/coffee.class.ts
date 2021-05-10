@@ -1,35 +1,38 @@
-import { Product } from "./product.class"
+import { Product } from "./product.class";
 
 export class Coffee extends Product {
-    origin: string;
-    tastingNotes: string;
-    process: string;
-    varietal: string;
+    origin: string | null = null;
+    tastingNotes: string | null = null;
+    process: string | null = null;
+    varietal: string | null = null;
 
-    constructor(
-        id: number,
-        name: string,
-        price: string,
-        description: string,
+    constructor(coffeeShape?: Partial<Coffee>) {
+        super(coffeeShape);
 
-        origin: string,
-        tastingNotes: string,
-        process: string,
-        varietal: string,
-    ) {
-        super(id, name, price, description);
+        if (coffeeShape != null) {
+            if (coffeeShape.origin != null) {
+                this.origin = coffeeShape.origin;
+            }
 
-        this.origin = origin;
-        this.tastingNotes = tastingNotes;
-        this.process = process;
-        this.varietal = varietal;
+            if (coffeeShape.tastingNotes != null) {
+                this.tastingNotes = coffeeShape.tastingNotes;
+            }
+
+            if (coffeeShape.process != null) {
+                this.process = coffeeShape.process;
+            }
+
+            if (coffeeShape.varietal != null) {
+                this.varietal = coffeeShape.varietal;
+            }
+        }
     }
 
-    get displayedDescription() {
-        return [this.process, this.varietal];
+    get displayedDescription(): string[] {
+        return [this.process ?? "", this.varietal ?? ""];
     }
 
     get displayedDetails(): string[] {
-        return [this.origin, this.tastingNotes];
+        return [this.origin ?? "", this.tastingNotes ?? ""];
     }
 }
