@@ -17,7 +17,8 @@ export class ProductService {
             varietal: "Bourbon",
             description: "",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
-            type: "coffee"
+            type: "coffee",
+            slug: "alchemist",
         },
         {
             id: 1,
@@ -28,7 +29,8 @@ export class ProductService {
             varietal: "Geisha",
             description: "Honey, Geisha",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
-            type: "coffee"
+            type: "coffee",
+            slug: "terraza",
         },
         {
             id: 2,
@@ -39,7 +41,8 @@ export class ProductService {
             varietal: "Pacamara",
             description: "48hrs Anaerobic, Pacamara",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
-            type: "coffee"
+            type: "coffee",
+            slug: "dalia",
         },
         {
             id: 3,
@@ -50,7 +53,8 @@ export class ProductService {
             varietal: "Pink Bourbon",
             description: "Washed, Pink Bourbon",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
-            type: "coffee"
+            type: "coffee",
+            slug: "diviso",
         },
         {
             id: 4,
@@ -61,7 +65,8 @@ export class ProductService {
             varietal: "Red Bourbon",
             description: "Wet Natural Anaerobic, Red Bourbon",
             tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
-            type: "coffee"
+            type: "coffee",
+            slug: "rusatira",
         },
         {
             id: 5,
@@ -72,7 +77,8 @@ export class ProductService {
             varietal: "Paraneima",
             description: "Natural, Paraneima",
             tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
-            type: "coffee"
+            type: "coffee",
+            slug: "aurora",
         },
         {
             id: 6,
@@ -83,7 +89,8 @@ export class ProductService {
             varietal: "Castillo",
             description: "Natural, Castillo",
             tastingNotes: "Black Cherry, Guava, Sugar",
-            type: "coffee"
+            type: "coffee",
+            slug: "nuna-ii",
         },
         {
             id: 7,
@@ -94,7 +101,8 @@ export class ProductService {
             varietal: "Caturra",
             description: "Washed, Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
-            type: "coffee"
+            type: "coffee",
+            slug: "orange-cream",
         },
     ];
 
