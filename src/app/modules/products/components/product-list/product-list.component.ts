@@ -12,94 +12,83 @@ import { Coffee } from "@app/shared/models/classes/coffee.class";
 export class ProductListComponent implements OnInit {
     products$: Observable<Product[]> = new Observable();
     products: Product[] = [
-        new Coffee(
-            0,
-            "The Alchemist",
-            "$15.00",
-            "",
+        new Coffee({
+            id: "0",
+            name: "The Alchemist",
+            price: "$15.00",
+            description: "",
+            origin: "Rawanda",
+            tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
+            process: "Experimental Natural",
+            varietal: "Bourbon"
+        }),
+        new Coffee({
+            id: "1",
+            name: "La Terraza",
+            price: "$24.00",
+            origin: "Colombia",
+            tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
+            process: "Honey",
+            varietal: "Geisha",
+        }),
+        new Coffee({
+            id: "2",
+            name: "La Dalia",
+            price: "$15.00",
 
-            "Rawanda",
-            "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
-            "Experimental Natural",
-            "Bourbon"
-        ),
-        new Coffee(
-            1,
-            "La Terraza",
-            "$24.00",
-            "Honey, Geisha",
+            origin: "Salvador",
+            tastingNotes: "Green Apple, Red Currant, Strawberry",
+            process: "48hrs Anaerobic",
+            varietal: "Pacamara",
+        }),
+        new Coffee({
+            id: "3",
+            name: "El Diviso",
+            price: "$16.00",
+            origin: "Colombia",
+            tastingNotes: "Grapefruit, Orange, Peach, Sugar",
+            process: "Washed",
+            varietal: "Pink Bourbon",
+        }),
+        new Coffee({
+            id: "4",
+            name: "Rusatira",
+            price: "$15.90",
 
-            "Colombia",
-            "White Flower, Pomegranate, Honeycomb, Raspberry",
-            "Honey",
-            "Geisha",
-        ),
-        new Coffee(
-            2,
-            "La Dalia",
-            "$15.00",
-            "48hrs Anaerobic, Pacamara",
+            origin: "Rwanda",
+            tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
+            process: "Wet Natural Anaerobic",
+            varietal: "Red Bourbon",
+        }),
+        new Coffee({
+            id: "5",
+            name: "Aurora",
+            price: "$11.00",
+            origin: "Nicaragua",
+            tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
+            process: "Natural",
+            varietal: "Paraneima",
+        }),
+        new Coffee({
+            id: "6",
+            name: "Nuna II",
+            price: "$14.00",
 
-            "Salvador",
-            "Green Apple, Red Currant, Strawberry",
-            "48hrs Anaerobic",
-            "Pacamara",
-        ),
-        new Coffee(
-            3,
-            "El Diviso",
-            "$16.00",
-            "Washed, Pink Bourbon",
+            origin: "Colombia",
+            tastingNotes: "Black Cherry, Guava, Sugar",
+            process: "Natural",
+            varietal: "Castillo",
+        }),
+        new Coffee({
+            id: "7",
+            name: "Orange Cream",
+            price: "$11.75",
+            origin: "Colombia",
 
-            "Colombia",
-            "Grapefruit, Orange, Peach, Sugar",
-            "Washed",
-            "Pink Bourbon",
-        ),
-        new Coffee(
-            4,
-            "Rusatira",
-            "$15.90",
-            "Wet Natural Anaerobic, Red Bourbon",
-
-            "Rwanda",
-            "Red Grapes, Peach, Nougat, Green Tea",
-            "Wet Natural Anaerobic",
-            "Red Bourbon",
-        ),
-        new Coffee(
-            5,
-            "Aurora",
-            "$11.00",
-            "Natural, Paraneima",
-
-            "Nicaragua",
-            "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
-            "Natural",
-            "Paraneima",
-        ),
-        new Coffee(
-            6,
-            "Nuna II",
-            "$14.00",
-            "Natural, Castillo",
-
-            "Colombia",
-            "Black Cherry, Guava, Sugar",
-            "Natural",
-            "Castillo",
-        ),
-        new Coffee(
-            7,
-            "Orange Cream",
-            "$11.75",
-            "Colombia",
-
-            "Washed",
-            "Washed, Caturra",
-            "Caturra",
-            "Orange, Marshmallow, Pear, Cane Sugar",
-        ),
+            process: "Washed",
+            varietal: "Caturra",
+            tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
+        }),
     ];
 
   constructor() { }
