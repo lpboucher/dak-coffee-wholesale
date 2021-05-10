@@ -1,3 +1,4 @@
+import { CollectionType } from "../types/collection-type.type";
 import { ProductType } from "../types/product-type.type";
 
 export interface Product {
@@ -5,5 +6,6 @@ export interface Product {
     name: string;
     price: string;
     description: string;
+    collection: CollectionType;
     type: ProductType;
 }
