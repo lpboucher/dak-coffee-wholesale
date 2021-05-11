@@ -14,7 +14,6 @@ export class ProductService {
             name: "The Alchemist",
             price: "$15.00",
             collection: "featured",
-            description: "",
 
             origin: "Rawanda",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
@@ -26,8 +25,8 @@ export class ProductService {
             name: "La Terraza",
             price: "$24.00",
             collection: "featured",
-            origin: "Colombia",
 
+            origin: "Colombia",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
             process: "Honey",
             varietal: "Geisha",
@@ -48,8 +47,8 @@ export class ProductService {
             name: "El Diviso",
             price: "$16.00",
             collection: "upcoming",
-            origin: "Colombia",
 
+            origin: "Colombia",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
             process: "Washed",
             varietal: "Pink Bourbon",
@@ -88,8 +87,8 @@ export class ProductService {
             id: "7",
             name: "Orange Cream",
             price: "$11.75",
-            origin: "Colombia",
 
+            origin: "Colombia",
             process: "Washed",
             varietal: "Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
@@ -102,7 +101,7 @@ export class ProductService {
         return of(this.products);
     }
 
-    getFeaturedProducts(): Observable<Coffee[]> {
+    getFeaturedProducts(): Observable<Product[]> {
         return of(this.products
             .filter(p => p.collection === "featured")
             .slice(0, 2));
