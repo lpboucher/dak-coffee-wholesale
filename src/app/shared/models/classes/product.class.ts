@@ -6,6 +6,7 @@ export abstract class Product {
     price: string | null = null;
     collection: CollectionType | null = null;
     description: string | null = null;
+    slug: string | null = null;
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
@@ -27,6 +28,10 @@ export abstract class Product {
 
             if (productShape.description != null) {
                 this.description = productShape.description;
+            }
+
+            if (productShape.slug != null) {
+                this.slug = productShape.slug;
             }
         }
     }

@@ -14,8 +14,8 @@ export class ProductService {
             id: "0",
             name: "The Alchemist",
             price: "$15.00",
+            slug: "alchemist",
             collection: "featured",
-
             origin: "Rawanda",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
             process: "Experimental Natural",
@@ -25,8 +25,8 @@ export class ProductService {
             id: "1",
             name: "La Terraza",
             price: "$24.00",
+            slug: "terraza",
             collection: "featured",
-
             origin: "Colombia",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
             process: "Honey",
@@ -36,8 +36,8 @@ export class ProductService {
             id: "2",
             name: "La Dalia",
             price: "$15.00",
+            slug: "dalia",
             collection: "featured",
-
             origin: "Salvador",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
             process: "48hrs Anaerobic",
@@ -47,8 +47,8 @@ export class ProductService {
             id: "3",
             name: "El Diviso",
             price: "$16.00",
+            slug: "diviso",
             collection: "upcoming",
-
             origin: "Colombia",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
             process: "Washed",
@@ -58,7 +58,7 @@ export class ProductService {
             id: "4",
             name: "Rusatira",
             price: "$15.90",
-
+            slug: "rusatira",
             origin: "Rwanda",
             tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
             process: "Wet Natural Anaerobic",
@@ -68,7 +68,7 @@ export class ProductService {
             id: "5",
             name: "Aurora",
             price: "$11.00",
-
+            slug: "aurora",
             origin: "Nicaragua",
             tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
             process: "Natural",
@@ -78,7 +78,7 @@ export class ProductService {
             id: "6",
             name: "Nuna II",
             price: "$14.00",
-
+            slug: "nuna-ii",
             origin: "Colombia",
             tastingNotes: "Black Cherry, Guava, Sugar",
             process: "Natural",
@@ -88,7 +88,7 @@ export class ProductService {
             id: "7",
             name: "Orange Cream",
             price: "$11.75",
-
+            slug: "orange-cream",
             origin: "Colombia",
             process: "Washed",
             varietal: "Caturra",
@@ -100,6 +100,10 @@ export class ProductService {
 
     getProducts(): Observable<Product[]> {
         return of(this.products);
+    }
+
+    getOne(slug: string): Observable<Product | undefined> {
+        return of(this.products.find(p => p.slug === slug));
     }
 
     getFeaturedProducts(): Observable<Product[]> {
