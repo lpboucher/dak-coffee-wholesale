@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
+import { take, map } from "rxjs/operators";
 
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
@@ -35,7 +36,7 @@ export class ProductService {
             id: "2",
             name: "La Dalia",
             price: "$15.00",
-            collection: "upcoming",
+            collection: "featured",
 
             origin: "Salvador",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
@@ -102,8 +103,10 @@ export class ProductService {
     }
 
     getFeaturedProducts(): Observable<Product[]> {
-        return of(this.products
-            .filter(p => p.collection === "featured")
-            .slice(0, 2));
+        return this.getProducts()
+            .pipe(
+                map(arr => arr.filter(p => p.collection === "featured")),
+                take(2)
+            );
     }
 }
