@@ -101,9 +101,6 @@ export class ProductService {
 
     constructor() { }
 
-    ngOnInit() {
-    }
-
     getProducts(): Observable<Coffee[]> {
         return of(this.products);
     }
