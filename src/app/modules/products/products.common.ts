@@ -21,6 +21,11 @@ export const providerDeclarations: any[] = [
 
 export const routes: Routes = [
     {
+        path: ":slug",
+        component: SingleProductPageComponent,
+        children: []
+    },
+    {
         path: "",
         component: ProductPageComponent,
         children: []
