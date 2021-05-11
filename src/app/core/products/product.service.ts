@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
+import { take, map } from "rxjs/operators";
 
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
@@ -13,16 +14,19 @@ export class ProductService {
             id: "0",
             name: "The Alchemist",
             price: "$15.00",
-            description: "",
+            collection: "featured",
+
             origin: "Rawanda",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
             process: "Experimental Natural",
-            varietal: "Bourbon"
+            varietal: "Bourbon",
         }),
         new Coffee({
             id: "1",
             name: "La Terraza",
             price: "$24.00",
+            collection: "featured",
+
             origin: "Colombia",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
             process: "Honey",
@@ -32,6 +36,7 @@ export class ProductService {
             id: "2",
             name: "La Dalia",
             price: "$15.00",
+            collection: "featured",
 
             origin: "Salvador",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
@@ -42,6 +47,8 @@ export class ProductService {
             id: "3",
             name: "El Diviso",
             price: "$16.00",
+            collection: "upcoming",
+
             origin: "Colombia",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
             process: "Washed",
@@ -81,8 +88,8 @@ export class ProductService {
             id: "7",
             name: "Orange Cream",
             price: "$11.75",
-            origin: "Colombia",
 
+            origin: "Colombia",
             process: "Washed",
             varietal: "Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
@@ -93,5 +100,13 @@ export class ProductService {
 
     getProducts(): Observable<Product[]> {
         return of(this.products);
+    }
+
+    getFeaturedProducts(): Observable<Product[]> {
+        return this.getProducts()
+            .pipe(
+                map(arr => arr.filter(p => p.collection === "featured")),
+                take(2)
+            );
     }
 }
