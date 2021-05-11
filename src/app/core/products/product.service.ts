@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 
-import { Coffee } from "@app/shared/models/classes/coffee.interface";
+import { Coffee } from "@shared/models/classes/coffee.interface";
 
 @Injectable({
     providedIn: "root"
