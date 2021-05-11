@@ -5,7 +5,7 @@ import { SingleProductPageComponent } from "@modules/products/pages/single-produ
 
 import { ProductListComponent } from "@modules/products/components/product-list/product-list.component";
 import { ProductCardComponent } from "@modules/products/components/product-card/product-card.component";
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductDetailComponent } from '@modules/products/components/product-detail/product-detail.component';
 
 export const pageDeclarations: any[] = [
     ProductPageComponent,
