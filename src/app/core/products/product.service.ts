@@ -13,6 +13,7 @@ export class ProductService {
             id: "0",
             name: "The Alchemist",
             price: "$15.00",
+            slug: "alchemist",
 
             origin: "Rawanda",
             tastingNotes: "Mango, Pineapple, Kiwi, Honey, Dark Chocolate",
@@ -23,6 +24,7 @@ export class ProductService {
             id: "1",
             name: "La Terraza",
             price: "$24.00",
+            slug: "terraza",
 
             origin: "Colombia",
             tastingNotes: "White Flower, Pomegranate, Honeycomb, Raspberry",
@@ -33,6 +35,7 @@ export class ProductService {
             id: "2",
             name: "La Dalia",
             price: "$15.00",
+            slug: "dalia",
 
             origin: "Salvador",
             tastingNotes: "Green Apple, Red Currant, Strawberry",
@@ -43,6 +46,7 @@ export class ProductService {
             id: "3",
             name: "El Diviso",
             price: "$16.00",
+            slug: "diviso",
 
             origin: "Colombia",
             tastingNotes: "Grapefruit, Orange, Peach, Sugar",
@@ -53,6 +57,7 @@ export class ProductService {
             id: "4",
             name: "Rusatira",
             price: "$15.90",
+            slug: "rusatira",
 
             origin: "Rwanda",
             tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
@@ -63,6 +68,7 @@ export class ProductService {
             id: "5",
             name: "Aurora",
             price: "$11.00",
+            slug: "aurora",
 
             origin: "Nicaragua",
             tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
@@ -73,6 +79,7 @@ export class ProductService {
             id: "6",
             name: "Nuna II",
             price: "$14.00",
+            slug: "nuna-ii",
 
             origin: "Colombia",
             tastingNotes: "Black Cherry, Guava, Sugar",
@@ -83,6 +90,7 @@ export class ProductService {
             id: "7",
             name: "Orange Cream",
             price: "$11.75",
+            slug: "orange-cream",
 
             origin: "Colombia",
             process: "Washed",
