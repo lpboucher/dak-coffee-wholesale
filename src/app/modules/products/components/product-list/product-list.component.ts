@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 import { Coffee } from "@shared/models/classes/coffee.interface";
 
-import { ProductService } from "@app/core/products/product.service";
+import { ProductService } from "@core/products/product.service";
 
 @Component({
     selector: "app-product-list",
