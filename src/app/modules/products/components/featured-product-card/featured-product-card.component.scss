@@ -40,7 +40,7 @@
 
 .featured-product-card-body-price-container {
     @apply flex justify-between place-self-end;
-    @apply px-4 pt-36 mt-3 w-full;
+    @apply px-4 mt-3 w-full;
 }
 
 .featured-product-card-body-price {
@@ -51,18 +51,4 @@
     @apply inline-block;
     @apply px-3 py-2;
     @apply bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
-}
-
-.featured-product-card-details-container {
-    @apply flex-grow;
-    @apply mt-4 px-4 border-t ;
-    @apply text-xs text-gray-700;
-}
-
-.featured-product-card-details {
-    @apply py-1;
-}
-
-.featured-product-card-details-text {
-    @apply text-gray-900;
 }
