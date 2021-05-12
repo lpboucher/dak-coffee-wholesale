@@ -112,7 +112,9 @@ export class ProductService {
     getFeaturedProducts(): Observable<Product[]> {
         return this.getProducts()
             .pipe(
-                map(arr => arr.filter(p => p.collection === "featured")),
+                map(arr =>
+                    arr.filter(p => p.collection === "featured")
+                        .slice(0, 2)),
                 take(2)
             );
     }

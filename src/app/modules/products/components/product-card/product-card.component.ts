@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
-import { Product } from "@app/shared/models/classes/product.class";
+import { Product } from "@shared/models/classes/product.class";
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+    selector: "app-product-card",
+    templateUrl: "./product-card.component.html",
+    styleUrls: ["./product-card.component.scss"]
 })
 export class ProductCardComponent implements OnInit {
     @Input() product!: Product;

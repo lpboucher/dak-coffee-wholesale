@@ -1,6 +1,11 @@
 <section class="product-list-container">
     <div class="product-list">
         <div class="product-list-items-container">
+            <div class="product-card-featured-container" *ngFor="let product of featuredProducts$ | async">
+                <app-featured-product-card [product]="product"></app-featured-product-card>
+            </div>
+        </div>
+        <div class="product-list-items-container">
             <div class="product-card-container" *ngFor="let product of products$ | async">
                 <app-product-card [product]="product"></app-product-card>
             </div>

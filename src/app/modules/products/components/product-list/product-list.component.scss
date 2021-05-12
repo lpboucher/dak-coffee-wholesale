@@ -3,13 +3,23 @@
 }
 
 .product-list {
-    @apply container mx-auto;
+    @apply container;
+    @apply mx-auto;
 }
 
 .product-list-items-container {
-    @apply flex flex-wrap -m-4;
+    @apply flex flex-wrap;
+    @apply -m-4;
+}
+
+.product-card-featured-container {
+    @apply w-full;
+    @apply p-4;
+    @apply xl:w-1/2;
 }
 
 .product-card-container {
-    @apply w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4;
+    @apply w-full;
+    @apply p-4;
+    @apply sm:w-1/2 md:w-1/2 xl:w-1/4;
 }
