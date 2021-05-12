@@ -103,7 +103,10 @@ export class ProductService {
     }
 
     getOne(slug: string): Observable<Product | undefined> {
-        return of(this.products.find(p => p.slug === slug));
+        return of(this.products)
+            .pipe(
+                map(arr => arr.find(p => p.slug === slug))
+            );
     }
 
     getFeaturedProducts(): Observable<Product[]> {
