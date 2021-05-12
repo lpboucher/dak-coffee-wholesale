@@ -1,10 +1,10 @@
-<div *ngIf="product | async as c">
-    <h1>{{ c.name }}</h1>
-    <p>{{ c.price }}</p>
-    <div *ngFor="let description of c.displayedDescription">
+<div *ngIf="product$ | async as product">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.price }}</p>
+    <div *ngFor="let description of product.displayedDescription">
         <span>{{ description }}</span>
     </div>
-    <div *ngFor="let details of c.displayedDetails">
+    <div *ngFor="let details of product.displayedDetails">
         <span>{{ details }}</span>
     </div>
 </div>
