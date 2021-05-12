@@ -19,14 +19,11 @@ export class SingleProductPageComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.route.paramMap
-            .subscribe(params => {
-                const slug = params.get("slug");
-                if (slug === null) {
-                    return;
-                }
+        const slug = this.route.snapshot.paramMap.get("slug");
+        if (slug === null) {
+            return;
+        }
 
-                this.product$ = this.productService.getOne(slug);
-            });
+        this.product$ = this.productService.getOne(slug);
     }
 }
