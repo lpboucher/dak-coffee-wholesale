@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder } from "@angular/forms";
+import { AuthService } from "@core/authentication/authentication.service";
 
 @Component({
     selector: "app-login-page",
@@ -12,13 +13,21 @@ export class LoginPageComponent implements OnInit {
         password: ["", Validators.required],
     });
 
-    constructor(private fb: FormBuilder) { }
+    constructor(
+        private fb: FormBuilder,
+        private authService: AuthService,
+    ) {}
 
     ngOnInit(): void {
     }
 
     onSubmitLogin() {
-        console.log(this.loginForm.value);
-        console.log(this.loginForm.status);
+        const VALID_FORM_STATUS = "VALID";
+        if (this.loginForm.status !== VALID_FORM_STATUS) {
+            return;
+        }
+
+        const input = this.loginForm.value;
+        this.authService.login(input.email, input.password);
     }
 }
