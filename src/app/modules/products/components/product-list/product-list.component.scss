@@ -10,6 +10,10 @@
     @apply flex flex-wrap -m-4;
 }
 
+.product-card-featured-container {
+    @apply w-full xl:w-1/2 p-4;
+}
+
 .product-card-container {
     @apply w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4;
 }
