@@ -5,19 +5,16 @@
         <div class="login-card-container">
             <div class="login-card">
                 <h2 class="login-card-title">Login</h2>
-
-                <form class="login-card-inputs" method="POST">
-                    <!-- Email Input -->
-                    <label for="email" class="login-card-email-title">E-mail</label>
-                    <input id="email" type="email" name="email" placeholder="e-mail address" autocomplete="email" class="login-card-email-input" required />
-
-                    <!-- Password Input -->
-                    <label for="password" class="login-card-password-title">Password</label>
-                    <input id="password" type="password" name="password" placeholder="password" autocomplete="current-password" class="login-card-password-input" required />
-
-                    <!-- Auth Buttton -->
-                    <button type="submit" class="login-card-submit-button">Login</button>
-
+                <form class="login-card-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                    <label class="login-card-email-title">
+                        E-mail
+                        <input class="login-card-email-input" formControlName="email" type="text" placeholder="e-mail address"/>
+                    </label>
+                    <label class="login-card-password-title">
+                        Password
+                        <input class="login-card-password-input" formControlName="password" type="text" placeholder="password"/>
+                    </label>
+                    <button class="login-card-submit-button">Login</button>
                     <div class="login-card-extras">
                         <a href="forgot-password" class="login-card-forgot-password">Forgot password?</a>
                     </div>
