@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ToastrModule } from "ngx-toastr";
 
 import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor";
-import { throwIfAlreadyLoaded } from "@utils/module-import.guard";
+import { throwIfAlreadyLoaded } from "@core/guards/module-import.guard";
 
 @NgModule({
     declarations: [],
@@ -24,6 +24,6 @@ import { throwIfAlreadyLoaded } from "@utils/module-import.guard";
 })
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-      throwIfAlreadyLoaded(parentModule, "CoreModule");
+        throwIfAlreadyLoaded(parentModule, "CoreModule");
     }
-  }
+}
