@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 import { tap, shareReplay } from "rxjs/operators";
 
@@ -14,7 +15,7 @@ const DEV = {
 })
 export class AuthService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
     }
 
     login(email: string, password: string ): void {
@@ -24,6 +25,8 @@ export class AuthService {
             console.log("successfully logged in");
             this.setSession(DEV.token);
         }
+
+        this.router.navigate(["/"]);
 
         // TODO implement proper auth
         /*return this.http.post<User>('/api/login', {email, password}).pipe(
@@ -37,6 +40,7 @@ export class AuthService {
         localStorage.removeItem("id_token");
         // TODO need to also remove expiry
         // localStorage.removeItem("expires_at");
+        this.router.navigate(["auth", "login"]);
     }
 
     isLoggedIn(): boolean {
