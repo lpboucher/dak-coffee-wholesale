@@ -6,10 +6,14 @@ export abstract class BaseGuardService {
 
     /**
      * This function navigates the user back to the login and sets a return url
-     * @param returnUrl
+     * @optional returnUrl
      */
-    protected navigateToLogin(returnUrl: string): void {
-        this.navigateTo("/session/login", returnUrl);
+    protected navigateToLogin(returnUrl?: string): void {
+        if (returnUrl) {
+            this.navigateTo("/auth/login", returnUrl);
+        } else {
+            this.navigateTo("/auth/login");
+        }
     }
 
     /**
