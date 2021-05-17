@@ -6,9 +6,11 @@
             <div class="login-card">
                 <h2 class="login-card-title">Login</h2>
                 <form class="login-card-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
                     <label class="login-card-email-title">
                         E-mail
-                        <input class="login-card-email-input" (click)="formEntryTouched()" formControlName="email" type="text" placeholder="e-mail address" />
+                        <input class="login-card-email-input" (keydown)="onFormEntryModified()"
+                            formControlName="email" type="text" placeholder="e-mail address" />
                     </label>
                     <div class="login-card-submission-error-message">
                         <p *ngIf="shouldDisplayEmailMissing()">Please enter an email address.</p>
@@ -17,7 +19,8 @@
 
                     <label class="login-card-password-title">
                         Password
-                        <input class="login-card-password-input" (click)="formEntryTouched()" formControlName="password" type="password" placeholder="password" />
+                        <input class="login-card-password-input" (keydown)="onFormEntryModified()"
+                            formControlName="password" type="password" placeholder="password" />
                     </label>
                     <div class="login-card-submission-error-message">
                         <p *ngIf="shouldDisplayPasswordMissing()">Please enter a password.</p>
@@ -28,9 +31,11 @@
                     <div class="login-card-submission-failed-container" *ngIf="shouldDisplayLoginFailed()">
                         <p class="login-card-submission-failed">Incorrect e-mail or password.</p>
                     </div>
+
                     <div class="login-card-extras">
                         <a href="forgot-password" class="login-card-forgot-password">Forgot password?</a>
                     </div>
+
                 </form>
             </div>
         </div>
