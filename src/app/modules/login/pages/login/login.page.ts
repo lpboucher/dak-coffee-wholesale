@@ -63,7 +63,6 @@ export class LoginPageComponent implements OnInit {
 
     shouldDisplayLoginFailed(): boolean {
         return this.submissionAttempted
-            && this.loginForm.valid
             && !this.authService.isLoggedIn();
     }
 
