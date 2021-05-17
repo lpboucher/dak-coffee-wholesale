@@ -4,6 +4,7 @@ import { take, map } from "rxjs/operators";
 
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
+import { ProductType } from "@app/shared/models/types/product-type.type";
 
 @Injectable({
     providedIn: "root"
@@ -116,6 +117,17 @@ export class ProductService {
                     arr.filter(p => p.collection === "featured")
                         .slice(0, 2)),
                 take(2)
+            );
+    }
+
+    getProductsByType(productType?: ProductType | "all"): Observable<Product[]> {
+        if (productType === undefined || productType === "all") {
+            return this.getProducts();
+        }
+
+        return this.getProducts()
+            .pipe(
+                map(arr => arr.filter(p => p.productType === productType))
             );
     }
 }

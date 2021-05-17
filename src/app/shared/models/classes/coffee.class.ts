@@ -1,6 +1,8 @@
+import { ProductType } from "../types/product-type.type";
 import { Product } from "./product.class";
 
 export class Coffee extends Product {
+    productType: ProductType = "coffee";
     origin: string | null = null;
     tastingNotes: string | null = null;
     process: string | null = null;

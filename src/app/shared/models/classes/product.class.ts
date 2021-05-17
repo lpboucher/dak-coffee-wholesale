@@ -1,4 +1,5 @@
 import { CollectionType } from "@shared/models/types/collection-type.type";
+import { ProductType } from "../types/product-type.type";
 
 export abstract class Product {
     id: string | null = null;
@@ -7,6 +8,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
+    abstract productType: ProductType;
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
