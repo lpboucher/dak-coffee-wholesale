@@ -8,13 +8,26 @@
                 <form class="login-card-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
                     <label class="login-card-email-title">
                         E-mail
-                        <input class="form-input login-card-email-input" formControlName="email" type="text" placeholder="e-mail address"/>
+                        <input class="form-input login-card-email-input" (click)="formEntryTouched()" formControlName="email" type="text" placeholder="e-mail address" />
                     </label>
+                    <div class="login-card-submission-error-message">
+                        <p *ngIf="shouldDisplayEmailMissing()">Please enter an email address.</p>
+                        <p *ngIf="shouldDisplayEmailError()">Please enter a valid email address.</p>
+                    </div>
+
                     <label class="login-card-password-title">
                         Password
-                        <input class="form-input login-card-password-input" formControlName="password" type="password" placeholder="password"/>
+                        <input class="form-input  login-card-password-input" (click)="formEntryTouched()" formControlName="password" type="password" placeholder="password" />
                     </label>
+                    <div class="login-card-submission-error-message">
+                        <p *ngIf="shouldDisplayPasswordMissing()">Please enter a password.</p>
+                        <p *ngIf="shouldDisplayPasswordError()">Password must be at least {{ minPasswordCharacters }} characters.</p>
+                    </div>
+
                     <button class="login-card-submit-button">Login</button>
+                    <div class="login-card-submission-failed-container" *ngIf="shouldDisplayLoginFailed()">
+                        <p class="login-card-submission-failed">Incorrect e-mail or password.</p>
+                    </div>
                     <div class="login-card-extras">
                         <a href="forgot-password" class="login-card-forgot-password">Forgot password?</a>
                     </div>
@@ -23,5 +36,3 @@
         </div>
     </div>
 </div>
-
-
