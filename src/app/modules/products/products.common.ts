@@ -30,6 +30,12 @@ export const routes: Routes = [
         children: []
     },
     {
+        path: "coffee",
+        component: ProductPageComponent,
+        data: { productType: "coffee" },
+        children: []
+    },
+    {
         path: "",
         component: ProductPageComponent,
         children: []
