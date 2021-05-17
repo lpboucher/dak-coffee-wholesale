@@ -57,10 +57,11 @@ export class LoginPageComponent implements OnInit {
 
     shouldDisplayLoginFailed(): boolean {
         return this.submissionAttempted
+            && this.loginForm.valid
             && !this.authService.isLoggedIn();
     }
 
-    formEntryTouched(): void {
+    onFormEntryModified(): void {
         this.submissionAttempted = false;
     }
 
@@ -80,6 +81,6 @@ export class LoginPageComponent implements OnInit {
     }
 
     private controlIsEmpty(control: AbstractControl): boolean {
-        return control.pristine;
+        return control.value.length == 0;
     }
 }
