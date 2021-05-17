@@ -22,12 +22,16 @@ export class LoginPageComponent implements OnInit {
     }
 
     onSubmitLogin() {
-        const VALID_FORM_STATUS = "VALID";
-        if (this.loginForm.status !== VALID_FORM_STATUS) {
-            return;
+        if (this.loginForm.valid) {
+            this.authService.login(this.email, this.password);
         }
+    }
 
-        const input = this.loginForm.value;
-        this.authService.login(input.email, input.password);
+    get email(): string {
+        return this.loginForm.get("email")?.value;
+    }
+
+    get password(): string {
+        return this.loginForm.get("password")?.value;
     }
 }
