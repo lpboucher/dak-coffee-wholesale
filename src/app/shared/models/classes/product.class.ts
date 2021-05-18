@@ -1,6 +1,8 @@
 import { CollectionType } from "@shared/models/types/collection-type.type";
+import { ProductType } from "../types/product-type.type";
 
 export abstract class Product {
+    abstract productType: ProductType;
     id: string | null = null;
     name: string | null = null;
     price: string | null = null;
