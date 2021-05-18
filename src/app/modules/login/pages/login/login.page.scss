@@ -60,15 +60,6 @@
     @apply text-red-600 pt-2 text-sm italic;
 }
 
-.login-card-submission-failed-container {
-    @apply grid justify-items-center;
-}
-
-.login-card-submission-failed {
-    @apply text-center p-2 mt-4 rounded-md bg-red-200 border-2 border-red-700;
-    @apply text-red-700 font-medium;
-}
-
 .login-card-extras {
     @apply mt-8 text-sm text-center;
     @apply sm:flex sm:flex-wrap sm:mb-4 ;

@@ -35,52 +35,17 @@ export class LoginPageComponent implements OnInit {
         this.submissionAttempted = true;
 
         if (this.loginForm.valid) {
-                    this.authService.login(this.emailControl.value, this.passwordControl.value);
+            this.authService.login(this.emailControl.value, this.passwordControl.value);
         }
     }
 
-    shouldDisplayEmailError(): boolean {
-        return this.shouldDisplayError(this.emailControl);
-    }
-
-    shouldDisplayPasswordError(): boolean {
-        return this.shouldDisplayError(this.passwordControl);
-    }
-
-    shouldDisplayEmailMissing(): boolean {
-        return this.shouldDisplayMissing(this.emailControl);
-    }
-
-    shouldDisplayPasswordMissing(): boolean {
-        return this.shouldDisplayMissing(this.passwordControl);
-    }
-
-    shouldDisplayLoginFailed(): boolean {
-        return this.submissionAttempted
-            && this.loginForm.valid
-            && !this.authService.isLoggedIn();
-    }
-
-    onFormEntryModified(): void {
-        this.submissionAttempted = false;
+    hasErrors(controlName: string): boolean {
+        return (this.control(controlName)?.invalid
+        && (this.control(controlName)?.dirty || this.control(controlName)?.touched))
+        ?? false;
     }
 
     private control(name: string): AbstractControl | null {
         return this.loginForm.get(name);
-    }
-
-    private shouldDisplayError(control: AbstractControl): boolean {
-        return this.submissionAttempted
-            && control.invalid
-            && !this.controlIsEmpty(control);
-    }
-
-    private shouldDisplayMissing(control: AbstractControl): boolean {
-        return this.submissionAttempted
-            && this.controlIsEmpty(control);
-    }
-
-    private controlIsEmpty(control: AbstractControl): boolean {
-        return control.value.length == 0;
     }
 }
