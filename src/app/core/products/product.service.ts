@@ -121,7 +121,7 @@ export class ProductService {
     }
 
     getProductsByType(productType?: ProductType | "all"): Observable<Product[]> {
-        if (productType === undefined || productType === "all") {
+        if (!productType || productType === "all") {
             return this.getProducts();
         }
 
