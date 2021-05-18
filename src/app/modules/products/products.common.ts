@@ -5,7 +5,7 @@ import { SingleProductPageComponent } from "@modules/products/pages/single-produ
 
 import { ProductListComponent } from "@modules/products/components/product-list/product-list.component";
 import { ProductCardComponent } from "@modules/products/components/product-card/product-card.component";
-import { ProductDetailComponent } from '@modules/products/components/product-detail/product-detail.component';
+import { ProductDetailComponent } from "@modules/products/components/product-detail/product-detail.component";
 import { FeaturedProductCardComponent } from "@modules/products/components/featured-product-card/featured-product-card.component";
 
 export const pageDeclarations: any[] = [
@@ -25,11 +25,6 @@ export const providerDeclarations: any[] = [
 
 export const routes: Routes = [
     {
-        path: ":slug",
-        component: SingleProductPageComponent,
-        children: []
-    },
-    {
         path: "coffee",
         component: ProductPageComponent,
         data: { productType: "coffee" },
@@ -39,6 +34,11 @@ export const routes: Routes = [
         path: "merchandise",
         component: ProductPageComponent,
         data: { productType: "merchandise" },
+        children: []
+    },
+    {
+        path: ":slug",
+        component: SingleProductPageComponent,
         children: []
     },
     {
