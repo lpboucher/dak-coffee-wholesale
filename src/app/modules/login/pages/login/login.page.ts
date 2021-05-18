@@ -13,6 +13,14 @@ export class LoginPageComponent implements OnInit {
         password: ["", Validators.required],
     });
 
+    get email(): string {
+        return this.loginForm.get("email")?.value;
+    }
+
+    get password(): string {
+        return this.loginForm.get("password")?.value;
+    }
+
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
@@ -25,13 +33,5 @@ export class LoginPageComponent implements OnInit {
         if (this.loginForm.valid) {
             this.authService.login(this.email, this.password);
         }
-    }
-
-    get email(): string {
-        return this.loginForm.get("email")?.value;
-    }
-
-    get password(): string {
-        return this.loginForm.get("password")?.value;
     }
 }
