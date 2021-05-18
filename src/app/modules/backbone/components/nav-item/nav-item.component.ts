@@ -9,7 +9,7 @@ import { NavigationItemType } from "@utils/constants/navigation";
 })
 export class NavItemComponent implements OnInit {
     @Input() rawNavData!: NavigationItemType;
-    @Input() parentLink?: string;
+    @Input() parentLink: string = "";
 
     label: string = "";
     link: string = "";
@@ -20,17 +20,19 @@ export class NavItemComponent implements OnInit {
 
     ngOnInit(): void {
         this.label = this.rawNavData.label;
-
-        if (this.parentLink !== undefined) {
-            this.link = this.parentLink;
-        }
-
-        this.link += this.rawNavData.link;
-
+        this.link = this.parentLink + this.rawNavData.link;
         this.children = this.rawNavData.children;
     }
 
     onClick(): void {
         this.isOpen = !this.isOpen;
+    }
+
+    onBlur(): void {
+        this.isOpen = false;
+    }
+
+    onClickChild(): void {
+        this.isOpen = false;
     }
 }
