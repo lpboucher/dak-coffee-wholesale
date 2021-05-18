@@ -1,6 +1,47 @@
 .nav-item {
     @apply p-2 rounded-lg;
+    @apply no-underline;
 
     @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
-    @apply md:p-4 md:flex md:items-center md:justify-start;
+}
+
+.nav-item-active {
+    @apply underline;
+}
+
+.nav-item-arrow {
+    @apply inline w-4 h-4 mt-1 ml-1;
+    @apply transition-all duration-200 transform;
+
+    @apply md:-mt-1;
+}
+
+.nav-item-arrow-open {
+    @apply nav-item-arrow;
+    @apply rotate-180;
+}
+
+.nav-item-arrow-closed {
+    @apply nav-item-arrow;
+    @apply rotate-0;
+}
+
+.nav-item-children-container {
+    @apply w-1/2 z-50;
+    @apply bg-white shadow-lg rounded-b-lg;
+    @apply absolute;
+    @apply transition duration-200 transform;
+
+    @apply md:static md:shadow-none md:rounded-none;
+}
+
+.nav-item-children-container-open {
+    @apply nav-item-children-container;
+}
+
+.nav-item-children-container-closed {
+    @apply nav-item-children-container;
+    @apply opacity-0 scale-95;
+
+    @apply md:hidden;
 }
