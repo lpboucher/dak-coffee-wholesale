@@ -1,0 +1,6 @@
+.nav-item {
+    @apply p-2 rounded-lg;
+
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+    @apply md:p-4 md:flex md:items-center md:justify-start;
+}
