@@ -6,12 +6,10 @@ export const NAVIGATION = [
             {
                 label: "Coffees",
                 link: "/coffee",
-                children: [],
             },
             {
                 label: "Merchandise",
                 link: "/merchandise",
-                children: [],
             },
         ],
     },
