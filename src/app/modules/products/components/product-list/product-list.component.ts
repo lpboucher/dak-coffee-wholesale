@@ -12,11 +12,9 @@ import { Product } from "@shared/models/classes/product.class";
 })
 export class ProductListComponent implements OnInit {
     @Input() products$: Observable<Product[]> = new Observable();
-    featuredProducts$: Observable<Product[]> = new Observable();
 
     constructor(private productService: ProductService) { }
 
     ngOnInit(): void {
-        this.featuredProducts$ = this.productService.getFeaturedProducts();
     }
 }
