@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onSubmitLogin() {
+    onSubmitLogin(): void {
         this.submissionAttempted = true;
 
         if (this.loginForm.valid) {
