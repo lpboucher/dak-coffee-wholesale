@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Validators, FormBuilder } from "@angular/forms";
+import { Validators, FormBuilder, AbstractControl } from "@angular/forms";
 import { AuthService } from "@core/authentication/authentication.service";
 
 @Component({
@@ -8,17 +8,19 @@ import { AuthService } from "@core/authentication/authentication.service";
     styleUrls: ["./login.page.scss"],
 })
 export class LoginPageComponent implements OnInit {
+    readonly minPasswordCharacters = 8;
+    submissionAttempted = false;
     loginForm = this.fb.group({
         email: ["", [Validators.required, Validators.email]],
-        password: ["", Validators.required],
+        password: ["", [Validators.required, Validators.minLength(this.minPasswordCharacters)]],
     });
 
-    get email(): string {
-        return this.loginForm.get("email")?.value;
+    get emailControl(): AbstractControl {
+        return this.control("email")!;
     }
 
-    get password(): string {
-        return this.loginForm.get("password")?.value;
+    get passwordControl(): AbstractControl {
+        return this.control("password")!;
     }
 
     constructor(
@@ -29,9 +31,21 @@ export class LoginPageComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onSubmitLogin() {
+    onSubmitLogin(): void {
+        this.submissionAttempted = true;
+
         if (this.loginForm.valid) {
-            this.authService.login(this.email, this.password);
+            this.authService.login(this.emailControl.value, this.passwordControl.value);
         }
+    }
+
+    hasErrors(controlName: string): boolean {
+        return (this.control(controlName)?.invalid
+        && (this.control(controlName)?.dirty || this.control(controlName)?.touched))
+        ?? false;
+    }
+
+    private control(name: string): AbstractControl | null {
+        return this.loginForm.get(name);
     }
 }
