@@ -1,22 +1,32 @@
 .main-nav {
-    @apply flex flex-row items-center justify-between;
+    @apply flex flex-row;
     @apply w-full p-2 bg-white;
 
     @apply md:p-5 md:flex-col md:h-screen;
 }
 
 .brand {
-    @apply flex flex-none items-center justify-around;
+    @apply flex flex-none items-center justify-around place-self-center;
 
     @apply md:mb-10;
 }
 
-.nav-item-list {
-    @apply flex flex-row flex-1 space-x-2 justify-center;
+.nav-item-list-container {
+    @apply w-full;
+}
 
-    @apply md:w-full md:flex-col md:justify-start;
+.nav-item-list {
+    @apply flex flex-row place-content-around;
+
+    @apply md:flex-col;
+}
+
+.nav-spacer {
+    @apply flex-none;
+
+    @apply md:flex-grow;
 }
 
 .nav-footer {
-    @apply flex-none;
+    @apply place-self-center;
 }
