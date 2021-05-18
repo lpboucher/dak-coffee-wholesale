@@ -19,10 +19,12 @@ export class AuthService {
 
     login(email: string, password: string ): void {
         // no API, use dummy user object for now
+        console.log(email, password);
         if (email === DEV.user && password === DEV.password) {
             console.log("successfully logged in");
             this.setSession(DEV.token);
         }
+
         // TODO implement proper auth
         /*return this.http.post<User>('/api/login', {email, password}).pipe(
             tap(res => this.setSession),
