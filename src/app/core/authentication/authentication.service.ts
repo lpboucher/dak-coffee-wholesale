@@ -24,9 +24,9 @@ export class AuthService {
         if (email === DEV.user && password === DEV.password) {
             console.log("successfully logged in");
             this.setSession(DEV.token);
+            this.router.navigate(["/"]);
         }
 
-        this.router.navigate(["/"]);
 
         // TODO implement proper auth
         /*return this.http.post<User>('/api/login', {email, password}).pipe(
