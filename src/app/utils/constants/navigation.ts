@@ -1,6 +1,4 @@
-export type NavigationItemType = { label: string, link: string, children: NavigationItemType[] };
-
-export const NAVIGATION: NavigationItemType[] = [
+export const NAVIGATION = [
     {
         label: "All Products",
         link: "/products",
