@@ -1,1 +1,8 @@
-<app-product-list [products$]=products$></app-product-list>
+<div class="product-page-container">
+    <div class="product-page-featured-items-container">
+        <div class="product-page-featured-items-card-container" *ngFor="let product of featuredProducts$ | async">
+            <app-featured-product-card [product]="product"></app-featured-product-card>
+        </div>
+    </div>
+    <app-product-list [products$]=products$></app-product-list>
+</div>

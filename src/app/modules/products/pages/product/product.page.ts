@@ -12,6 +12,7 @@ import { ActivatedRoute } from "@angular/router";
     styleUrls: ["./product.page.scss"]
 })
 export class ProductPageComponent implements OnInit {
+    featuredProducts$: Observable<Product[]> = new Observable;
     products$: Observable<Product[]> = new Observable();
 
     constructor(
@@ -20,6 +21,8 @@ export class ProductPageComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.featuredProducts$ = this.productService.getFeaturedProducts();
+
         const productsToShow = this.route.snapshot.data["productType"];
         this.products$ = this.productService.getProductsByType(productsToShow);
     }
