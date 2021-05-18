@@ -3,10 +3,13 @@
         <img class="" src="/favicon.ico"/>
         <span class="">DAK</span>
     </header>
-    <ul class="nav-item-list" *ngFor="let parent of navigation">
-        <app-nav-item [rawNavData]="parent"></app-nav-item>
-    </ul>
-    <footer class="nav-footer flex-none">
+    <div class="nav-item-list-container" *ngFor="let parent of navigation">
+        <ul class="nav-item-list">
+            <app-nav-item [rawNavData]="parent" class="nav-item"></app-nav-item>
+        </ul>
+    </div>
+    <div class="nav-spacer"></div>
+    <footer class="nav-footer">
         <a href="">Logout</a>
     </footer>
 </nav>
