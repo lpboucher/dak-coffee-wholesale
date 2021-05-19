@@ -11,6 +11,7 @@ import { NAVIGATION } from "@app/utils/constants/navigation";
 })
 export class SidebarComponent implements OnInit {
     navigation = NAVIGATION;
+    openLabel = "All Products";
 
     constructor(private authService: AuthService) { }
 

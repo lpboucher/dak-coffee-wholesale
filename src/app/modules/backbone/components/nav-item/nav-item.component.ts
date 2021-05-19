@@ -11,6 +11,7 @@ export class NavItemComponent implements OnInit {
     @Input() label: string = "";
     @Input() link: string = "";
     @Input() children: NavigationItemType[] = [];
+    @Input() openLabel: string = "";
 
     constructor() { }
 

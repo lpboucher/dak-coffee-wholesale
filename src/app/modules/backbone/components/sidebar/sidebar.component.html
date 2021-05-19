@@ -5,7 +5,7 @@
     </header>
     <div class="nav-item-list-container" *ngFor="let parent of navigation">
         <ul class="nav-item-list">
-            <app-nav-item [label]="parent.label" [link]="parent.link" [children]="parent.children" class="nav-item"></app-nav-item>
+            <app-nav-item [label]="parent.label" [link]="parent.link" [children]="parent.children" [openLabel]="openLabel" class="nav-item"></app-nav-item>
         </ul>
     </div>
     <div class="nav-spacer"></div>
