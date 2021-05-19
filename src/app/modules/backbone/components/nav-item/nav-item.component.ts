@@ -8,20 +8,15 @@ import { NavigationItemType } from "@utils/constants/navigation";
     styleUrls: ["./nav-item.component.scss"]
 })
 export class NavItemComponent implements OnInit {
-    @Input() rawNavData!: NavigationItemType;
-    @Input() parentLink: string = "";
+    @Input() label: string = "";
+    @Input() link: string = "";
+    @Input() children: NavigationItemType[] = [];
 
-    label: string = "";
-    link: string = "";
-    children: NavigationItemType[] = [];
     isOpen = false;
 
     constructor() { }
 
     ngOnInit(): void {
-        this.label = this.rawNavData.label;
-        this.link = this.parentLink + this.rawNavData.link;
-        this.children = this.rawNavData.children;
     }
 
     onClick(): void {
