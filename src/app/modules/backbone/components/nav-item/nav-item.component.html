@@ -1,14 +1,14 @@
-<li [routerLink]="[ link ]" class="nav-item" (click)="onClick()" routerLinkActive="nav-item-active">
+<li [routerLink]="[ link ]" class="nav-item" routerLinkActive="nav-item-active">
     <span>{{ label }}</span>
     <span *ngIf="children.length > 0">
-        <svg [ngClass]="{'nav-item-arrow-open': isOpen, 'nav-item-arrow-closed': !isOpen}" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="nav-item-arrow" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
             </path>
         </svg>
     </span>
 </li>
-<div [ngClass]="{'nav-item-children-container-open': isOpen, 'nav-item-children-container-closed': !isOpen}">
-    <ul *ngFor="let child of children">
-        <app-nav-item [label]="child.label" [link]="link + child.link" [children]="child.children" (click)="onClickChild()"></app-nav-item>
+<div class="nav-item-children-container">
+    <ul class="nav-item-children-list" *ngFor="let child of children">
+        <app-nav-item [label]="child.label" [link]="link + child.link" [children]="child.children"></app-nav-item>
     </ul>
 </div>

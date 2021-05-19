@@ -12,22 +12,8 @@ export class NavItemComponent implements OnInit {
     @Input() link: string = "";
     @Input() children: NavigationItemType[] = [];
 
-    isOpen = false;
-
     constructor() { }
 
     ngOnInit(): void {
-    }
-
-    onClick(): void {
-        this.isOpen = !this.isOpen;
-    }
-
-    onBlur(): void {
-        this.isOpen = false;
-    }
-
-    onClickChild(): void {
-        this.isOpen = false;
     }
 }
