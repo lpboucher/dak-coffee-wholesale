@@ -4,5 +4,5 @@
             <app-featured-product-card [product]="product"></app-featured-product-card>
         </div>
     </div>
-    <app-product-list [products$]=products$></app-product-list>
+    <app-product-list [products]="products$ | async"></app-product-list>
 </div>
