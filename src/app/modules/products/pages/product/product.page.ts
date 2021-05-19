@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { ProductService } from "@app/core/products/product.service";
+import { ProductService } from "@core/products/product.service";
 
-import { Product } from "@app/shared/models/classes/product.class";
+import { Product } from "@shared/models/classes/product.class";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
