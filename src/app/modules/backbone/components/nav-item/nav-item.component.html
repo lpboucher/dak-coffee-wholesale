@@ -9,6 +9,6 @@
 </li>
 <div [ngClass]="{'nav-item-children-container-open': isOpen, 'nav-item-children-container-closed': !isOpen}">
     <ul *ngFor="let child of children">
-        <app-nav-item [rawNavData]="child" [parentLink]="link" (click)="onClickChild()"></app-nav-item>
+        <app-nav-item [label]="child.label" [link]="link + child.link" [children]="child.children" (click)="onClickChild()"></app-nav-item>
     </ul>
 </div>
