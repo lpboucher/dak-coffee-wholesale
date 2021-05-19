@@ -21,6 +21,10 @@
     @apply hidden;
 }
 
+.nav-item-force-open .nav-item-arrow {
+    @apply hidden;
+}
+
 .nav-item:hover .nav-item-arrow {
     @apply rotate-180;
 }
@@ -38,6 +42,10 @@
     @apply opacity-100 scale-100;
 
     @apply md:block;
+}
+
+.nav-item-force-open + .nav-item-children-container {
+    @apply nav-item-children-container-open;
 }
 
 .nav-item:hover + .nav-item-children-container {
