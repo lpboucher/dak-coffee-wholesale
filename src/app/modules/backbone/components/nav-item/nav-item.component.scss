@@ -6,7 +6,7 @@
 }
 
 .nav-item-active {
-    @apply underline;
+    @apply text-gray-800 bg-gray-100 transition-colors;
 }
 
 .nav-item-arrow {
@@ -27,7 +27,7 @@
 }
 
 .nav-item-children-container {
-    @apply w-1/2 z-50;
+    @apply z-50;
     @apply bg-white shadow-lg rounded-b-lg;
     @apply absolute;
     @apply transition duration-200 transform;
