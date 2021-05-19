@@ -6,7 +6,7 @@ import { componentDeclarations } from "@shared/shared.common";
 
 @NgModule({
     declarations: [
-        ...componentDeclarations
+        ...componentDeclarations,
     ],
     imports: [
         CommonModule,
