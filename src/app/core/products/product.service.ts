@@ -4,8 +4,8 @@ import { take, map } from "rxjs/operators";
 
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
-import { ProductType } from "@app/shared/models/types/product-type.type";
-import { Merchandise } from "@app/shared/models/classes/merchandise.class";
+import { ProductType } from "@shared/models/types/product-type.type";
+import { Merchandise } from "@shared/models/classes/merchandise.class";
 
 @Injectable({
     providedIn: "root"
