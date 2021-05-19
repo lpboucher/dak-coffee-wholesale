@@ -14,3 +14,11 @@
     @apply p-4;
     @apply xl:w-1/2;
 }
+
+.product-list-container {
+    @apply -m-4;
+}
+
+.product-list {
+    @apply flex flex-wrap;
+}
