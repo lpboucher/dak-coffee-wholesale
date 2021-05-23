@@ -44,6 +44,7 @@ export const routes: Routes = [
     {
         path: "",
         component: ProductPageComponent,
-        children: []
+        children: [],
+        pathMatch: "full"
     },
 ];
