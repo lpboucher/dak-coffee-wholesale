@@ -6,7 +6,7 @@
 }
 
 .nav-item-active {
-    @apply text-gray-800 bg-gray-100;
+    @apply text-gray-800 bg-gray-100 rounded-lg;
 }
 
 .nav-item-arrow {
@@ -44,18 +44,14 @@
     @apply md:block;
 }
 
-.nav-item-force-open + .nav-item-children-container {
+.nav-item-force-open > .nav-item-children-container {
     @apply nav-item-children-container-open;
 }
 
-.nav-item:hover + .nav-item-children-container {
+.nav-item-container:hover > .nav-item-children-container {
     @apply nav-item-children-container-open;
 }
 
-.nav-item-active + .nav-item-children-container {
+.nav-item-active > .nav-item-children-container {
     @apply nav-item-children-container-open;
-}
-
-.nav-item-children-list {
-    @apply md:pl-8;
 }
