@@ -1,0 +1,57 @@
+.nav-item {
+    @apply p-2 rounded-lg;
+    @apply no-underline;
+
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+}
+
+.nav-item-active {
+    @apply text-gray-800 bg-gray-100 rounded-lg;
+}
+
+.nav-item-arrow {
+    @apply inline w-4 h-4 mt-1 ml-1;
+    @apply transition-all duration-200 transform;
+    @apply rotate-0;
+
+    @apply md:-mt-1;
+}
+
+.nav-item-active .nav-item-arrow {
+    @apply hidden;
+}
+
+.nav-item-force-open .nav-item-arrow {
+    @apply hidden;
+}
+
+.nav-item:hover .nav-item-arrow {
+    @apply rotate-180;
+}
+
+.nav-item-children-container {
+    @apply z-50;
+    @apply bg-white shadow-lg rounded-b-lg opacity-0 scale-95;
+    @apply absolute;
+    @apply transition duration-200 transform;
+
+    @apply md:hidden md:static md:shadow-none md:rounded-none;
+}
+
+.nav-item-children-container-open {
+    @apply opacity-100 scale-100;
+
+    @apply md:block;
+}
+
+.nav-item-force-open > .nav-item-children-container {
+    @apply nav-item-children-container-open;
+}
+
+.nav-item-container:hover > .nav-item-children-container {
+    @apply nav-item-children-container-open;
+}
+
+.nav-item-active > .nav-item-children-container {
+    @apply nav-item-children-container-open;
+}
