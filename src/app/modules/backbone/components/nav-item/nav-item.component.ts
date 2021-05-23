@@ -17,12 +17,4 @@ export class NavItemComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
-    onBlur(): void {
-        this.isOpen = false;
-    }
-
-    onClickChild(): void {
-        this.isOpen = false;
-    }
 }
