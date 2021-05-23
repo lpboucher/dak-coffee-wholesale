@@ -1,7 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-
-import { ProductService } from "@core/products/product.service";
+import { Component, OnInit, Input } from "@angular/core";
 
 import { Product } from "@shared/models/classes/product.class";
 
@@ -11,13 +8,10 @@ import { Product } from "@shared/models/classes/product.class";
     styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-    featuredProducts$: Observable<Product[]> = new Observable();
-    products$: Observable<Product[]> = new Observable();
+    @Input() products: Product[] = [];
 
-    constructor(private productService: ProductService) { }
+    constructor() { }
 
     ngOnInit(): void {
-        this.featuredProducts$ = this.productService.getFeaturedProducts();
-        this.products$ = this.productService.getProducts();
     }
 }

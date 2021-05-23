@@ -4,7 +4,8 @@ import { take, map } from "rxjs/operators";
 
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
-import { ProductType } from "@app/shared/models/types/product-type.type";
+import { ProductType } from "@shared/models/types/product-type.type";
+import { Merchandise } from "@shared/models/classes/merchandise.class";
 
 @Injectable({
     providedIn: "root"
@@ -95,6 +96,16 @@ export class ProductService {
             varietal: "Caturra",
             tastingNotes: "Orange, Marshmallow, Pear, Cane Sugar",
         }),
+        new Merchandise({
+            id: "7",
+            name: "Dak Tote Bag",
+            price: "$14.00",
+            collection: undefined,
+            description: "Premium quality: 300 gr./m2",
+            slug: "tote",
+            dimensions: "41 x 42 cm",
+            material: "Cotton",
+        })
     ];
 
     constructor() { }
