@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="login-background">
+    <div class="login-card-container">
+        <div class="login-card">
+            <h2 class="login-card-title">Login</h2>
+            <form class="login-card-inputs" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+
+                <label class="login-card-email-title">
+                    E-mail
+                    <input class="login-card-email-input" formControlName="email" type="text"
+                        placeholder="e-mail address" />
+                </label>
+                <div *ngIf="hasErrors('email')" class="login-card-submission-error-message">
+                    <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
+                    <p *ngIf="emailControl.errors?.email">Please enter a valid email address.</p>
+                </div>
+
+                <label class="login-card-password-title">
+                    Password
+                    <input class="login-card-password-input" formControlName="password" type="password"
+                        placeholder="password" />
+                </label>
+                <div *ngIf="hasErrors('password')" class="login-card-submission-error-message">
+                    <p *ngIf="passwordControl.errors?.required">Please enter a password.</p>
+                    <p *ngIf="passwordControl.errors?.minlength">Password must be at least {{ minPasswordCharacters }}
+                        characters.</p>
+                </div>
+
+                <button class="login-card-submit-button">Login</button>
+                <div *ngIf="submissionAttempted" class="login-card-submission-error-message">
+                    <p>Incorrect e-mail or password.</p>
+                </div>
+
+                <div class="login-card-extras">
+                    <a href="forgot-password" class="login-card-forgot-password">Forgot password?</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
