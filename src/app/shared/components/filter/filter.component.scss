@@ -1,0 +1,59 @@
+.filter-container {
+    @apply flex-auto flex flex-col w-64;
+}
+
+.filter-item {
+    @apply flex flex-col;
+}
+
+.active-filter-item {
+    @apply border-red-200;
+}
+
+.filter-item-key-container {
+    @apply w-full;
+}
+
+.filter-item-key {
+    @apply my-2 bg-white p-1 flex border border-gray-200 rounded;
+}
+
+.filter-item-key-name {
+    @apply p-1 px-2 appearance-none outline-none w-full text-gray-800;
+}
+
+.filter-item-key-cross {
+    @apply cursor-pointer w-6 h-full flex items-center text-gray-400 outline-none focus:outline-none;
+}
+
+.filter-item-key-cross-image {
+    @apply w-4 h-4;
+}
+
+.filter-item-key-arrow-container {
+    @apply text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200;
+}
+
+.filter-item-key-arrow {
+    @apply cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none;
+}
+
+.filter-item-key-arrow-image {
+    @apply w-4 h-4;
+}
+
+.filter-item-options {
+    @apply shadow top-full z-40 w-full left-0 rounded overflow-y-auto;
+}
+
+.filter-item-option-container {
+    @apply flex flex-col w-full;
+}
+
+.filter-item-option {
+    @apply cursor-pointer w-full border-gray-100 border-b hover:bg-gray-100 flex w-full items-center p-2 pl-2 border-transparent bg-white border-l-2 relative hover:bg-gray-600 hover:text-gray-100 hover:border-gray-600 w-full items-center flex;
+}
+
+.filter-item-option-content {
+    @apply mx-2 leading-6;
+}
