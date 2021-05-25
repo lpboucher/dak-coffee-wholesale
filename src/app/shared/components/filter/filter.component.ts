@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Product } from "@shared/models/classes/product.class";
 import { Coffee } from "@shared/models/classes/coffee.class";
 
+type FilterType = { [key: string]: string[] };
+
 @Component({
     selector: "app-filter",
     templateUrl: "./filter.component.html",
@@ -10,7 +12,8 @@ import { Coffee } from "@shared/models/classes/coffee.class";
 })
 export class FilterComponent implements OnInit {
     @Input() tempProducts: Product[] = [];
-    private filter: Map<string, Map<string, boolean>> = new Map();
+    @Input() filterOptions: FilterType = {};
+    private activeFilter: FilterType = {};
     private openKey?: string = undefined;
 
     constructor(
@@ -24,89 +27,64 @@ export class FilterComponent implements OnInit {
         const processes = Array.from(new Set(coffees.map(c => c.process))) as string[];
         const varieties = Array.from(new Set(coffees.map(c => c.varietal))) as string[];
 
-        const originsSet = new Map(origins.map(o => [o, false]));
-        const processesSet = new Map(processes.map(p => [p, false]));
-        const varietiesSet = new Map(varieties.map(v => [v, false]));
-
-        this.filter.set("Origins", originsSet);
-        this.filter.set("Processes", processesSet);
-        this.filter.set("Varieties", varietiesSet);
-
-        console.log(this.filter);
+        this.filterOptions["Origins"] = origins;
+        this.filterOptions["Processes"] = processes;
+        this.filterOptions["Varieties"] = varieties;
     }
 
-    toggleOpenKey(key: string): void {
-        if (this.isOpenKey(key)) {
+    toggleOpenMenu(key: string): void {
+        if (this.isOpenMenu(key)) {
             this.openKey = undefined;
         } else {
             this.openKey = key;
         }
     }
 
-    isOpenKey(key: string): boolean {
+    isOpenMenu(key: string): boolean {
         return this.openKey == key;
     }
 
     removeKeyFromFilter(key: string) {
-        const f = ((map: Map<string, boolean>) => {
-            for (let [subkey, _] of map) {
-                map.set(subkey, false);
-            }
-
-            this.filter.set(key, map);
-        });
-
-        this.changeFilter(key, f);
+        delete this.activeFilter[key];
+        this.updateQueryParams();
     }
 
     toggleOptionInFilter(key: string, value: string): void {
-        const f = ((map: Map<string, boolean>) => {
-            if (map.has(value)) {
-                map.set(value, !map.get(value));
-                this.filter.set(key, map);
-            }
-        });
-
-        this.changeFilter(key, f);
+        if (this.activeFilter[key] == undefined || !this.activeFilter[key].includes(value)) {
+            this.addOptionToFilter(key, value);
+        } else {
+            this.removeOptionFromFilter(key, value);
+        }
     }
 
-    private changeFilter(key: string, f: (map: Map<string, boolean>) => void): void {
-        let values = this.filter.get(key);
-        if (values == undefined) {
-            return;
+    addOptionToFilter(key: string, value: string): void {
+        if (this.activeFilter[key] == undefined) {
+            this.activeFilter[key] = [];
         }
 
-        f(values);
+        this.activeFilter[key].push(value);
+        this.updateQueryParams();
+    }
+
+    removeOptionFromFilter(key: string, value: string): void {
+        this.activeFilter[key] = this.activeFilter[key].filter(f => f != value);
+
+        if (this.activeFilter[key].length == 0) {
+            delete this.activeFilter[key];
+        }
 
         this.updateQueryParams();
     }
 
     updateQueryParams(): void {
-        let activeFilters: { [key: string]: string[] } = {};
-
-        for (let [key, value] of this.filter) {
-            const active = Array.from(value.entries())
-                .filter(([_, active]) => active)
-                .map(([name, _]) => name);
-
-            if (active.length > 0) {
-                activeFilters[key] = active;
-            }
-        }
-
-        this.router.navigate([], { queryParams: activeFilters });
+        this.router.navigate([], { queryParams: this.activeFilter });
     }
 
     availableFilterKeys(): string[] {
-        return Array.from(this.filter.keys());
+        return Object.keys(this.filterOptions);
     }
 
-    availableFilterKeyValues(key: string): string[] {
-        let values = this.filter.get(key);
-        if (values == undefined) {
-            return [];
-        }
-
-        return Array.from(values).map(([name, _]) => name);
+    availableFilterOptions(key: string): string[] {
+        return this.filterOptions[key];
     }
 }
