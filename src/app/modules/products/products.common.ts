@@ -37,7 +37,7 @@ export const routes: Routes = [
         children: []
     },
     {
-        path: ":slug",
+        path: ":productType/:slug",
         component: SingleProductPageComponent,
         children: []
     },
