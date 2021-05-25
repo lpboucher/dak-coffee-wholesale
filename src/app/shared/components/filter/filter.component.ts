@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+
+import { FilterType } from "@shared/models/types/filter-type.type";
+
 import { Product } from "@shared/models/classes/product.class";
 import { Coffee } from "@shared/models/classes/coffee.class";
 
-type FilterType = { [key: string]: string[] };
 
 @Component({
     selector: "app-filter",
