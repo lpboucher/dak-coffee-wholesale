@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from "@shared/models/classes/product.class";
 import { Coffee } from "@shared/models/classes/coffee.class";
 
@@ -18,6 +18,7 @@ export class FilterComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private activatedRoute: ActivatedRoute,
     ) { }
 
     ngOnInit(): void {
@@ -30,6 +31,22 @@ export class FilterComponent implements OnInit {
         this.filterOptions["Origins"] = origins;
         this.filterOptions["Processes"] = processes;
         this.filterOptions["Varieties"] = varieties;
+
+        this.setupInitialFilter();
+    }
+
+    private setupInitialFilter(): void {
+        const queryParams = this.activatedRoute.snapshot.queryParams;
+
+        for (const key of Object.keys(queryParams)) {
+            let currentOptions = queryParams[key];
+
+            if (!Array.isArray(currentOptions)) {
+                currentOptions = [currentOptions];
+            }
+
+            this.activeFilter[key] = currentOptions;
+        }
     }
 
     toggleOpenMenu(key: string): void {
