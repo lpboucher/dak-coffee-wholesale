@@ -1,5 +1,5 @@
-<li [routerLink]="[link]" class="nav-item-container" routerLinkActive="nav-item-active" [ngClass]="{'nav-item-force-open': label == openLabel}">
-    <div class="nav-item">
+<li class="nav-item-container" routerLinkActive="nav-item-active" [ngClass]="{'nav-item-force-open': label == openLabel}">
+    <div class="nav-item" [routerLink]="[link]">
         <span>{{ label }}</span>
         <span *ngIf="children.length > 0">
             <svg class="nav-item-arrow" fill="currentColor" viewBox="0 0 20 20">
