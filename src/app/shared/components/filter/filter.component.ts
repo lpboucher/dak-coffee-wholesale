@@ -3,9 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
 
-import { Product } from "@shared/models/classes/product.class";
-import { Coffee } from "@shared/models/classes/coffee.class";
-
 
 @Component({
     selector: "app-filter",
@@ -13,7 +10,6 @@ import { Coffee } from "@shared/models/classes/coffee.class";
     styleUrls: ["./filter.component.scss"]
 })
 export class FilterComponent implements OnInit {
-    @Input() tempProducts: Product[] = [];
     @Input() filterOptions: FilterType = {};
     private activeFilter: FilterType = {};
     private openKey?: string = undefined;
@@ -24,16 +20,6 @@ export class FilterComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const coffees: Coffee[] = this.tempProducts.filter(p => p.productType == "coffee").map(p => p as Coffee);
-
-        const origins = Array.from(new Set(coffees.map(c => c.origin))) as string[];
-        const processes = Array.from(new Set(coffees.map(c => c.process))) as string[];
-        const varieties = Array.from(new Set(coffees.map(c => c.varietal))) as string[];
-
-        this.filterOptions["Origins"] = origins;
-        this.filterOptions["Processes"] = processes;
-        this.filterOptions["Varieties"] = varieties;
-
         this.setupInitialFilter();
     }
 
