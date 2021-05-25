@@ -25,15 +25,8 @@ export const providerDeclarations: any[] = [
 
 export const routes: Routes = [
     {
-        path: "coffee",
+        path: ":productType",
         component: ProductPageComponent,
-        data: { productType: "coffee" },
-        children: []
-    },
-    {
-        path: "merchandise",
-        component: ProductPageComponent,
-        data: { productType: "merchandise" },
         children: []
     },
     {
@@ -43,7 +36,7 @@ export const routes: Routes = [
     },
     {
         path: "",
-        component: ProductPageComponent,
+        redirectTo: "all",
         children: [],
         pathMatch: "full"
     },
