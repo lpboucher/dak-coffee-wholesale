@@ -27,6 +27,10 @@ export const routes: Routes = [
                 loadChildren: () => import("@modules/products/products.module").then(m => m.ProductsModule),
                 canActivate: [LoginGuard],
             },
+            {
+                path: "general-information",
+                loadChildren: () => import("@modules/general-info/general-info.module").then(m => m.GeneralInfoModule),
+            }
         ]
     },
 ];
