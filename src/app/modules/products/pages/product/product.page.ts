@@ -12,7 +12,7 @@ import { Product } from "@shared/models/classes/product.class";
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
-    featuredProducts$: Observable<Product[]> = new Observable;
+    featuredProducts$: Observable<Product[]> = new Observable();
     products$: Observable<Product[]> = new Observable();
 
     constructor(
