@@ -3,14 +3,8 @@
     @apply antialiased bg-gray-200 text-gray-900 font-sans;
 }
 
-.product-page-featured-items-container {
-    @apply flex flex-wrap;
-}
-
-.product-page-featured-items-card-container {
-    @apply w-full;
-    @apply p-4;
-    @apply xl:w-1/2;
+.featured-item-container {
+    @apply p-4 col-span-2;
 }
 
 .product-list-container {
