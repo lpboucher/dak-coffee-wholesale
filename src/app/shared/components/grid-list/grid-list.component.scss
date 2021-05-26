@@ -1,0 +1,75 @@
+.grid-list-base {
+    @apply grid justify-between;
+}
+
+.mobile-columns-1 {
+    @apply grid-cols-1;
+
+    @apply sm:grid-cols-2 xl:grid-cols-4;
+}
+
+.mobile-columns-2 {
+    @apply grid-cols-2;
+
+    @apply sm:grid-cols-4 xl:grid-cols-8;
+}
+
+.mobile-columns-3 {
+    @apply grid-cols-3;
+
+    @apply sm:grid-cols-6 xl:grid-cols-12;
+}
+
+.mobile-columns-4 {
+    @apply grid-cols-4;
+
+    @apply sm:grid-cols-8 xl:grid-cols-12;
+}
+
+.mobile-columns-5 {
+    @apply grid-cols-5;
+
+    @apply sm:grid-cols-10 xl:grid-cols-12;
+}
+
+.mobile-columns-6 {
+    @apply grid-cols-6;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-7 {
+    @apply grid-cols-7;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-8 {
+    @apply grid-cols-8;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-9 {
+    @apply grid-cols-9;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-10 {
+    @apply grid-cols-10;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-11 {
+    @apply grid-cols-11;
+
+    @apply sm:grid-cols-12;
+}
+
+.mobile-columns-12 {
+    @apply grid-cols-12;
+
+    @apply sm:grid-cols-12;
+}
