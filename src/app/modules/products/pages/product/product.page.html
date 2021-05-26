@@ -5,6 +5,6 @@
         </div>
     </div>
     <div class="product-list-container" *ngIf="products$ | async as products">
-        <app-product-list class="product-list" [products]="products"></app-product-list>
+        <app-product-list [products]="products"></app-product-list>
     </div>
 </div>

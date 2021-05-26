@@ -1,3 +1,5 @@
-<div class="product-card-container" *ngFor="let product of products">
-    <app-product-card [product]="product"></app-product-card>
-</div>
+<app-grid-list [mobileColumnCount]=1>
+    <div class="product-card-container" *ngFor="let product of products">
+        <app-product-card [product]="product"></app-product-card>
+    </div>
+</app-grid-list>
