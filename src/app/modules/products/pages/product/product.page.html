@@ -1,5 +1,5 @@
 <div class="product-page-container">
-    <app-grid-list [mobileColumnCount]=1>
+    <app-grid-list [mobileColumnCount]=1 [itemColumnSpan]=2>
         <div class="featured-item-container" *ngFor="let product of featuredProducts$ | async">
             <app-featured-product-card [product]="product"></app-featured-product-card>
         </div>
