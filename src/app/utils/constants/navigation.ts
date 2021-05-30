@@ -19,7 +19,7 @@ export const NAVIGATION: NavigationItemType[] = [
     },
     {
         label: "General Information",
-        link: "/",
+        link: "/general-information",
         children: [],
     }
 ];

@@ -1,0 +1,72 @@
+.general-info-section {
+    @apply text-gray-600;
+}
+
+.general-info-container {
+    @apply container mx-auto;
+    @apply px-5 py-24;
+}
+
+.general-info-block {
+    @apply flex items-center flex-col;
+    @apply mx-auto border-b pb-10 mb-10 border-gray-200;
+
+    @apply lg:w-3/5 sm:flex-row;
+}
+
+.general-info-block-image-container {
+    @apply inline-flex items-center justify-center flex-shrink-0;
+    @apply h-20 w-20 rounded-full bg-indigo-100 text-indigo-500;
+
+    @apply sm:w-32 sm:h-32;
+}
+
+.general-info-block-image-container-left {
+    @apply general-info-block-image-container;
+
+    @apply sm:mr-10
+}
+
+.general-info-block-image-container-right {
+    @apply general-info-block-image-container;
+
+    @apply order-first;
+    @apply sm:order-none sm:ml-10;
+}
+
+.general-info-block-image {
+    @apply w-10 h-10;
+
+    @apply sm:w-16 sm:h-16;
+}
+
+.general-info-block-content {
+    @apply flex-grow;
+    @apply text-center mt-6;
+
+    @apply sm:text-left sm:mt-0;
+}
+
+.general-info-block-content-header {
+    @apply text-gray-900 text-lg font-medium mb-2;
+}
+
+.general-info-block-content-body {
+    @apply leading-relaxed text-base;
+}
+
+.general-info-block-content-link {
+    @apply inline-flex items-center;
+    @apply mt-3 text-indigo-500;
+}
+
+.general-info-block-content-link-image {
+    @apply w-4 h-4 ml-2;
+}
+
+.general-info-button {
+    @apply flex;
+    @apply mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 rounded text-lg;
+
+    @apply focus:outline-none hover:bg-indigo-600;
+}
