@@ -4,7 +4,6 @@ import { Observable, Subscription } from "rxjs";
 
 import { ProductService } from "@core/products/product.service";
 import { Product } from "@shared/models/classes/product.class";
-import { ProductType } from "@shared/models/types/product-type.type";
 
 @Component({
     selector: "app-product",
@@ -12,27 +11,28 @@ import { ProductType } from "@shared/models/types/product-type.type";
     styleUrls: ["./product.page.scss"]
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
+    private subscriptions = new Subscription();
     featuredProducts$: Observable<Product[]> = new Observable;
     products$: Observable<Product[]> = new Observable();
-    paramMapSubscription$: Subscription;
 
     constructor(
         private productService: ProductService,
         private route: ActivatedRoute,
-    ) {
-        this.paramMapSubscription$ = this.route.paramMap.subscribe(
-            paramMap => {
-                const productsToShow = paramMap.get("productType") as ProductType;
-                this.products$ = this.productService.getProductsByType(productsToShow);
-            }
-        );
-    }
+    ) {}
 
     ngOnInit(): void {
         this.featuredProducts$ = this.productService.getFeaturedProducts();
+
+        this.subscriptions.add(this.route.params
+            .subscribe(
+                ({productType}) => {
+                    this.products$ = this.productService.getProductsByType(productType);
+                }
+            )
+        );
     }
 
     ngOnDestroy(): void {
-        this.paramMapSubscription$.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 }
