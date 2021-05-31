@@ -1,12 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: 'clamp'
+    name: "clamp"
 })
 export class ClampPipe implements PipeTransform {
 
-    transform(value: unknown, ...args: unknown[]): unknown {
-        return null;
+    transform(value: number, min: number, max: number): number {
+        value = Math.max(value, min);
+        value = Math.min(value, max);
+
+        return value;
     }
 
 }
