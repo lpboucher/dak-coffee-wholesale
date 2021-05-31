@@ -1,0 +1,21 @@
+.wallet-container {
+    @apply p-4 text-center;
+}
+
+.wallet {
+    @apply px-4 py-6;
+    @apply border-2 border-gray-200 rounded-lg;
+}
+
+.wallet-image {
+    @apply w-12 h-12 mb-3 inline-block;
+    @apply text-indigo-500;
+}
+
+.wallet-contents {
+    @apply font-medium text-3xl text-gray-900;
+}
+
+.wallet-text {
+    @apply leading-relaxed;
+}
