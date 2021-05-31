@@ -1,5 +1,5 @@
 .main-nav {
-    @apply flex flex-row flex-wrap flex-shrink;
+    @apply flex flex-row flex-wrap flex-shrink justify-between;
     @apply w-full p-2 bg-white;
 
     @apply md:p-5 md:flex-col md:h-screen;
