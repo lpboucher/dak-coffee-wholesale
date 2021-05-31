@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { ClampPipe } from "@shared/pipes/clamp.pipe";
 
 @Component({
     selector: "app-grid-list",
@@ -10,11 +11,14 @@ export class GridListComponent implements OnInit {
     @Input() itemColumnSpan: number = 1;
     @Input() gridGap: number = 0;
 
-    constructor() { }
+    constructor(private clamp: ClampPipe) { }
 
     ngOnInit(): void {
-        this.mobileColumnCount = this.clampColumnValue(this.mobileColumnCount);
-        this.itemColumnSpan = this.clampColumnValue(this.itemColumnSpan);
+        const MAX_COLUMN_COUNT = 12;
+        const MIN_COLUMN_COUNT = 1;
+
+        this.mobileColumnCount = this.clamp.transform(this.mobileColumnCount, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
+        this.itemColumnSpan = this.clamp.transform(this.itemColumnSpan, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
     }
 
     get columnClass(): string {
@@ -35,15 +39,5 @@ export class GridListComponent implements OnInit {
         }
 
         return baseString + "0";
-    }
-
-    private clampColumnValue(columnValue: number): number {
-        const MAX_COLUMN_COUNT = 12;
-        const MIN_COLUMN_COUNT = 1;
-
-        columnValue = Math.min(MAX_COLUMN_COUNT, columnValue);
-        columnValue = Math.max(MIN_COLUMN_COUNT, columnValue);
-
-        return columnValue;
     }
 }
