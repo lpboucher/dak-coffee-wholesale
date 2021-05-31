@@ -1,5 +1,5 @@
 .main-nav {
-    @apply flex flex-row;
+    @apply flex flex-row flex-wrap flex-shrink;
     @apply w-full p-2 bg-white;
 
     @apply md:p-5 md:flex-col md:h-screen;
@@ -12,7 +12,7 @@
 }
 
 .nav-item-list-container {
-    @apply w-full;
+    @apply md:w-full;
 }
 
 .nav-item-list {
@@ -29,7 +29,8 @@
 
 .wallet-container {
     @apply place-self-center;
-    @apply w-1/2;
+
+    @apply xl:w-1/2;
 }
 
 .nav-footer {
