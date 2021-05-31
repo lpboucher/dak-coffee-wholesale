@@ -16,11 +16,11 @@ export class GridListComponent implements OnInit {
         this.itemColumnSpan = this.clampColumnValue(this.itemColumnSpan);
     }
 
-    getColumnClass(): string {
+    get columnClass(): string {
         return `mobile-columns-${ this.mobileColumnCount }`;
     }
 
-    getItemColumnSpan(): string {
+    get itemColumnSpanClass(): string {
         return `item-span-${ this.itemColumnSpan }`;
     }
 
