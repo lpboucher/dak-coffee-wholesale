@@ -1,12 +1,8 @@
 <div class="product-page-container">
-    <app-grid-list [mobileColumnCount]=1 [itemColumnSpan]=2>
-        <div class="featured-item-container" *ngFor="let product of featuredProducts$ | async">
-            <app-featured-product-card [product]="product"></app-featured-product-card>
-        </div>
+    <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
+        <app-featured-product-card *ngFor="let product of featuredProducts$ | async" [product]="product"></app-featured-product-card>
     </app-grid-list>
-    <div class="product-list-container" *ngIf="products$ | async as products">
-        <app-grid-list [mobileColumnCount]=1 [gridGap]=4>
-            <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
-        </app-grid-list>
-    </div>
+    <app-grid-list [gridGap]=4>
+        <app-product-card *ngFor="let product of products$ | async" [product]="product"></app-product-card>
+    </app-grid-list>
 </div>
