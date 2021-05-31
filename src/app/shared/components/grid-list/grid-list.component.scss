@@ -1,5 +1,6 @@
 .grid-list-base {
     @apply grid justify-between;
+    @apply p-4;
 }
 
 .mobile-columns-1 {
