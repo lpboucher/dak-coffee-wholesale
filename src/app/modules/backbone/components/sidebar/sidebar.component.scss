@@ -29,7 +29,8 @@
 
 .wallet-container {
     @apply place-self-center;
-    @apply w-1/2;
+
+    @apply xl:w-1/2;
 }
 
 .nav-footer {
