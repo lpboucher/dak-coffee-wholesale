@@ -11,14 +11,14 @@ export class GridListComponent implements OnInit {
     @Input() itemColumnSpan: number = 1;
     @Input() gridGap: number = 0;
 
-    constructor(private clamp: ClampPipe) { }
+    constructor(private clampPipe: ClampPipe) { }
 
     ngOnInit(): void {
         const MAX_COLUMN_COUNT = 12;
         const MIN_COLUMN_COUNT = 1;
 
-        this.mobileColumnCount = this.clamp.transform(this.mobileColumnCount, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
-        this.itemColumnSpan = this.clamp.transform(this.itemColumnSpan, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
+        this.mobileColumnCount = this.clampPipe.transform(this.mobileColumnCount, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
+        this.itemColumnSpan = this.clampPipe.transform(this.itemColumnSpan, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
     }
 
     get columnClass(): string {
