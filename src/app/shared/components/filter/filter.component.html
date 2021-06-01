@@ -1,17 +1,17 @@
-<div class="filter-container">
+<!-- <div class="filter-container">
     <div class="filter-item" *ngFor="let key of availableFilterKeys()">
-        <div class="filter-item-key-container" [ngClass]="{ 'open-filter-item': isOpenMenu(key) }">
+        <div class="filter-item-key-container" [ngClass]="{ 'open-filter-item': false }">
             <div class="filter-item-key">
-                <p class="filter-item-key-name" (click)="toggleOpenMenu(key)" >{{ key }}</p>
+                <p class="filter-item-key-name" (click)="onItemSelect()" >{{ key }}</p>
                 <div>
-                    <button class="filter-item-key-cross" (click)="removeKeyFromFilter(key)">
+                    <button class="filter-item-key-cross" (click)="onDeSelect()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="filter-item-key-cross-image">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </button>
                 </div>
-                <div class="filter-item-key-arrow-container" (click)="toggleOpenMenu(key)" >
+                <div class="filter-item-key-arrow-container" (click)="onItemSelect()" >
                     <button class="filter-item-key-arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="filter-item-key-arrow-image">
                             <polyline points="18 15 12 9 6 15"></polyline>
@@ -21,9 +21,18 @@
             </div>
         </div>
         <div class="filter-item-options">
-            <div class="filter-item-option" (click)="toggleOptionInFilter(key, option)" *ngFor="let option of availableFilterOptions(key)">
+            <div class="filter-item-option" (click)="onItemSelect()" *ngFor="let option of availableFilterOptions(key)">
                 <div class="filter-item-option-content">{{ option }}</div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<ng-multiselect-dropdown *ngFor="let filter of dropdownList"
+    [placeholder]="filter.displayName"
+    [settings]="dropdownSettings"
+    [data]="filter.options"
+    [(ngModel)]="filter.selectedItems"
+    (onSelect)="updateFilter()"
+    (onDeSelect)="updateFilter()"
+>
+</ng-multiselect-dropdown>

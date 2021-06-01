@@ -1,7 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { IDropdownSettings } from "ng-multiselect-dropdown";
+
 import { FilterType } from "@shared/models/types/filter-type.type";
+
+
+type DropdownSubItem = { id: number, text: string }
+type DropdownItem = { displayName: string, key: string, options: DropdownSubItem[], selectedItems: DropdownSubItem[] };
 
 
 @Component({
@@ -11,8 +17,13 @@ import { FilterType } from "@shared/models/types/filter-type.type";
 })
 export class FilterComponent implements OnInit {
     @Input() filterOptions: FilterType = {};
-    private activeFilter: FilterType = {};
-    private openKey?: string = undefined;
+    dropdownList: DropdownItem[] = [];
+    dropdownSettings: IDropdownSettings = {};
+    private nameToId: { [key: string]: number } = {};
+    private nextId = new class {
+        private nextId = 0;
+        generate = () => this.nextId++;
+    };
 
     constructor(
         private router: Router,
@@ -20,76 +31,58 @@ export class FilterComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.setupInitialFilter();
+        this.dropdownList = this.generateDropdownList();
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: "id",
+            textField: "text",
+            enableCheckAll: false,
+            allowSearchFilter: true,
+        };
     }
 
-    private setupInitialFilter(): void {
-        const queryParams = this.activatedRoute.snapshot.queryParams;
+    updateFilter(): void {
+        const filter = this.dropdownList
+            .filter(item => item.selectedItems.length > 0)
+            .reduce((previous, current) => {
+                return {
+                    ...previous,
+                    [current.key]: current.selectedItems.map(selected => selected.text),
+                };
+            }, {});
 
-        for (const key of Object.keys(queryParams)) {
-            let currentOptions = queryParams[key];
-
-            if (!Array.isArray(currentOptions)) {
-                currentOptions = [currentOptions];
-            }
-
-            this.activeFilter[key] = currentOptions;
-        }
+        this.router.navigate([], { queryParams: filter });
     }
 
-    toggleOpenMenu(key: string): void {
-        if (this.isOpenMenu(key)) {
-            this.openKey = undefined;
-        } else {
-            this.openKey = key;
-        }
+    private generateDropdownList(): DropdownItem[] {
+        return Object.values(this.filterOptions)
+            .map(option => {
+                return {
+                    displayName: option.displayName,
+                    key: option.key,
+                    options: option.subOptions.map(o => this.makeDropdownSubItem(o)),
+                    selectedItems: this.setupInitialFilter(option.key),
+                }
+            });
     }
 
-    isOpenMenu(key: string): boolean {
-        return this.openKey == key;
-    }
-
-    removeKeyFromFilter(key: string) {
-        delete this.activeFilter[key];
-        this.updateQueryParams();
-    }
-
-    toggleOptionInFilter(key: string, value: string): void {
-        if (this.activeFilter[key] == undefined || !this.activeFilter[key].includes(value)) {
-            this.addOptionToFilter(key, value);
-        } else {
-            this.removeOptionFromFilter(key, value);
-        }
-    }
-
-    addOptionToFilter(key: string, value: string): void {
-        if (this.activeFilter[key] == undefined) {
-            this.activeFilter[key] = [];
+    private makeDropdownSubItem(name: string): DropdownSubItem {
+        let id = this.nameToId[name];
+        if (id == null) {
+            id = this.nextId.generate();
         }
 
-        this.activeFilter[key].push(value);
-        this.updateQueryParams();
+        return { id: id, text: name };
     }
 
-    removeOptionFromFilter(key: string, value: string): void {
-        this.activeFilter[key] = this.activeFilter[key].filter(f => f != value);
+    private setupInitialFilter(key: string): DropdownSubItem[] {
+        let params = this.activatedRoute.snapshot.queryParams[key];
+        if (params == null) { return []; }
 
-        if (this.activeFilter[key].length == 0) {
-            delete this.activeFilter[key];
+        if (!Array.isArray(params)) {
+            params = [params];
         }
 
-        this.updateQueryParams();
-    }
-
-    updateQueryParams(): void {
-        this.router.navigate([], { queryParams: this.activeFilter });
-    }
-
-    availableFilterKeys(): string[] {
-        return Object.keys(this.filterOptions);
-    }
-
-    availableFilterOptions(key: string): string[] {
-        return this.filterOptions[key];
+        return params.map((p: any) => this.makeDropdownSubItem(String(p)));
     }
 }
