@@ -17,7 +17,6 @@ export class GridListComponent implements OnInit {
     constructor(private clampPipe: ClampPipe) { }
 
     ngOnInit(): void {
-
         this.mobileColumnCount = this.clampPipe.transform(this.mobileColumnCount, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
         this.itemColumnSpan = this.clampPipe.transform(this.itemColumnSpan, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
     }
