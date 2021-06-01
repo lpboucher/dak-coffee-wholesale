@@ -1,0 +1,9 @@
+<ng-multiselect-dropdown *ngFor="let filter of dropdownList"
+    [placeholder]="filter.displayName"
+    [settings]="dropdownSettings"
+    [data]="filter.options"
+    [(ngModel)]="filter.selectedItems"
+    (onSelect)="updateFilter()"
+    (onDeSelect)="updateFilter()"
+>
+</ng-multiselect-dropdown>
