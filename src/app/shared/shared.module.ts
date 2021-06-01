@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 
 import { componentDeclarations } from "@shared/shared.common";
+import { ClampPipe } from "@shared/pipes/clamp.pipe";
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { componentDeclarations } from "@shared/shared.common";
         NgMultiSelectDropDownModule.forRoot(),
     ],
     providers: [
+        ClampPipe,
     ],
     exports: [
         ...componentDeclarations,
