@@ -7,6 +7,8 @@ import { CoreModule } from "@core/core.module";
 
 import { AppComponent } from "./app.component";
 
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+
 @NgModule({
     declarations: [
         AppComponent
@@ -16,6 +18,7 @@ import { AppComponent } from "./app.component";
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
+        NgMultiSelectDropDownModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent]
