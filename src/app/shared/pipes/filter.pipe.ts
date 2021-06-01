@@ -15,13 +15,8 @@ export class FilterPipe implements PipeTransform {
     }
 
     includedByFilter(filter: FilterType, item: Object): boolean {
-        for (const [key, value] of Object.keys(item)) {
-            if (this.matchingValue(filter, key, value)) {
-                return true;
-            }
-        }
-
-        return false;
+        return Object.entries(item)
+            .some(([k, v]) => this.matchingValue(filter, k, v));
     }
 
     matchingValue(filter: FilterType, key: string, value: string): boolean {
