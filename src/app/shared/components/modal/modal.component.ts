@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Input, Component, OnInit } from "@angular/core";
 
 @Component({
     selector: "app-modal",
@@ -6,10 +6,24 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./modal.component.scss"]
 })
 export class ModalComponent implements OnInit {
+    @Input() showSelf: boolean = false;
 
     constructor() { }
 
     ngOnInit(): void {
     }
 
+    show(): void {
+        this.showSelf = true;
+    }
+
+    onCancel(): void {
+        console.log("Modal cancelled.");
+        this.showSelf = false;
+    }
+
+    onConfirm(): void {
+        console.log("Modal confirmed.");
+        this.showSelf = false;
+    }
 }
