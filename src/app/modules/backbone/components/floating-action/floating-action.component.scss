@@ -1,12 +1,7 @@
-.floating-action-background {
-    @apply fixed flex items-center justify-center z-50;
-    @apply w-full h-full;
-    @apply bg-gray-600 bg-opacity-70;
-}
-
 .floating-action-button {
-    @apply p-4 rounded-full shadow cursor-pointer;
-    @apply bg-white font-bold text-center;
+    @apply fixed bottom-10 right-10 z-50;
+    @apply p-3 rounded-full shadow-lg;
+    @apply bg-white font-bold text-center cursor-pointer;
 
-    @apply hover:shadow-lg;
+    @apply hover:shadow-xl;
 }
