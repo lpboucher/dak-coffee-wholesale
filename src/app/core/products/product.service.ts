@@ -15,7 +15,7 @@ export class ProductService {
         new Coffee({
             id: "0",
             name: "The Alchemist",
-            price: "$15.00",
+            price: "15.00",
             slug: "alchemist",
             collection: "featured",
             origin: "Rawanda",
@@ -26,7 +26,7 @@ export class ProductService {
         new Coffee({
             id: "1",
             name: "La Terraza",
-            price: "$24.00",
+            price: "24.00",
             slug: "terraza",
             collection: "featured",
             origin: "Colombia",
@@ -37,7 +37,7 @@ export class ProductService {
         new Coffee({
             id: "2",
             name: "La Dalia",
-            price: "$15.00",
+            price: "15.00",
             slug: "dalia",
             collection: "featured",
             origin: "Salvador",
@@ -48,7 +48,7 @@ export class ProductService {
         new Coffee({
             id: "3",
             name: "El Diviso",
-            price: "$16.00",
+            price: "16.00",
             slug: "diviso",
             collection: "upcoming",
             origin: "Colombia",
@@ -59,7 +59,7 @@ export class ProductService {
         new Coffee({
             id: "4",
             name: "Rusatira",
-            price: "$15.90",
+            price: "15.90",
             slug: "rusatira",
             origin: "Rwanda",
             tastingNotes: "Red Grapes, Peach, Nougat, Green Tea",
@@ -69,7 +69,7 @@ export class ProductService {
         new Coffee({
             id: "5",
             name: "Aurora",
-            price: "$11.00",
+            price: "11.00",
             slug: "aurora",
             origin: "Nicaragua",
             tastingNotes: "Hazelnut, Honey, Lime, Rose Hips, Stone Fruit",
@@ -79,7 +79,7 @@ export class ProductService {
         new Coffee({
             id: "6",
             name: "Nuna II",
-            price: "$14.00",
+            price: "14.00",
             slug: "nuna-ii",
             origin: "Colombia",
             tastingNotes: "Black Cherry, Guava, Sugar",
@@ -89,7 +89,7 @@ export class ProductService {
         new Coffee({
             id: "7",
             name: "Orange Cream",
-            price: "$11.75",
+            price: "11.75",
             slug: "orange-cream",
             origin: "Colombia",
             process: "Washed",
@@ -99,7 +99,7 @@ export class ProductService {
         new Merchandise({
             id: "7",
             name: "Dak Tote Bag",
-            price: "$14.00",
+            price: "14.00",
             collection: undefined,
             description: "Premium quality: 300 gr./m2",
             slug: "tote",
