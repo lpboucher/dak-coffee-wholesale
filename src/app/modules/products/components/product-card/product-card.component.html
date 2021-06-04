@@ -10,7 +10,6 @@
             <div class="product-card-body-price">{{product.price}}</div>
             <button
                 class="product-card-body-add-to-cart snipcart-add-item"
-                (click)="onClick()"
                 [attr.data-item-id]="product.id"
                 [attr.data-item-url]="'/products/' + product.productType + '/' + product.slug"
                 [attr.data-item-name]="product.name"
