@@ -1,7 +1,7 @@
 .floating-action-button {
-    @apply fixed bottom-10 right-10 z-50;
-    @apply p-3 rounded-full shadow-lg;
-    @apply bg-white font-bold text-center cursor-pointer;
+    @apply fixed bottom-5 right-10 z-50;
+    @apply p-4 rounded-full shadow-lg;
+    @apply bg-yellow-200 text-yellow-800 font-bold text-center cursor-pointer;
 
     @apply hover:shadow-xl;
 }
