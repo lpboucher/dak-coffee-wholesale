@@ -7,8 +7,9 @@
 
 .modal {
     @apply bg-white rounded-lg text-left shadow-xl;
+    @apply transform transition-all;
 
-    @apply transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full;
+    @apply sm:my-8 sm:align-middle sm:max-w-lg sm:w-full;
 }
 
 .modal-body {
