@@ -8,7 +8,7 @@ export abstract class DataApiService<T> {
 
     protected requestOptions = {
         headers: new HttpHeaders().append("Content-Type", "application/json"),
-        withCredentials: true
+        // withCredentials: true
     };
 
     /**

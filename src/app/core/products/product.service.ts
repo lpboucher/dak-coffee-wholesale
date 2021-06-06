@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { take, map } from "rxjs/operators";
 
+import { environment as config } from "@env";
+import { DataApiService } from "@core/abstracts/data-api.service";
 import { Coffee } from "@shared/models/classes/coffee.class";
 import { Product } from "@shared/models/classes/product.class";
 import { ProductType } from "@shared/models/types/product-type.type";
@@ -10,7 +13,7 @@ import { Merchandise } from "@shared/models/classes/merchandise.class";
 @Injectable({
     providedIn: "root"
 })
-export class ProductService {
+export class ProductService extends DataApiService<Product> {
     products: Product[] = [
         new Coffee({
             id: "0",
@@ -108,13 +111,16 @@ export class ProductService {
         })
     ];
 
-    constructor() { }
-
-    getProducts(): Observable<Product[]> {
-        return of(this.products);
+    constructor(protected http: HttpClient) {
+        super(config.backendURL + "wholesale/", http, Coffee);
     }
 
-    getOne(slug: string): Observable<Product | undefined> {
+    getProducts(): Observable<Product[]> {
+        return this.getAll("coffees?isActive=true");
+        // return of(this.products);
+    }
+
+    getProduct(slug: string): Observable<Product | undefined> {
         return of(this.products)
             .pipe(
                 map(arr => arr.find(p => p.slug === slug))

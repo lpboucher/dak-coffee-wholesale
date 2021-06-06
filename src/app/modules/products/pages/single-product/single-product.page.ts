@@ -24,6 +24,6 @@ export class SingleProductPageComponent implements OnInit {
             return;
         }
 
-        this.product$ = this.productService.getOne(slug);
+        this.product$ = this.productService.getProduct(slug);
     }
 }
