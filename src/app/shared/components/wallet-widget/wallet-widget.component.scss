@@ -1,31 +1,19 @@
-.wallet-container {
-    @apply px-4 text-center;
-
-    @apply md:p-4;
-}
-
 .wallet {
-    @apply border-gray-200 rounded-lg;
+    @apply p-2 border-gray-200 rounded-lg text-center cursor-pointer;
 
-    @apply md:border-2 md:px-4 md:py-6;
+    @apply md:border-2;
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
 }
 
 .wallet-image {
     @apply w-8 h-8 inline-block;
     @apply text-indigo-500;
 
-    @apply md:w-12 md:h-12 md:mb-3 md:block md:w-full;
+    @apply md:mb-1 md:mx-auto md:block;
 }
 
 .wallet-contents {
-    @apply text-gray-900 inline pl-2;
+    @apply text-gray-900 inline;
 
-    @apply md:font-medium md:text-3xl;
-}
-
-.wallet-text {
-    @apply hidden;
-    @apply leading-relaxed;
-
-    @apply md:block;
+    @apply md:font-medium md:text-xl;
 }

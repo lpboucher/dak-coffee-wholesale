@@ -27,12 +27,23 @@
     @apply md:flex-grow;
 }
 
-.wallet-container {
-    @apply place-self-center;
+.widget-container {
+    @apply flex flex-wrap justify-between;
+}
 
-    @apply xl:w-1/2;
+.widget-item {
+    @apply px-1 w-1/2;
 }
 
 .nav-footer {
     @apply place-self-center;
+
+    @apply md:w-full;
+}
+
+.footer-item {
+    @apply p-2 rounded-lg;
+    @apply text-center no-underline cursor-pointer;
+
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
 }
