@@ -1,6 +1,6 @@
 .nav-item {
     @apply p-2 rounded-lg;
-    @apply no-underline;
+    @apply no-underline cursor-pointer;
 
     @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
 }
