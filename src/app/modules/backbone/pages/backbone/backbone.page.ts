@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-import { CartService } from "@core/cart/cart.service";
-
 @Component({
     selector: "app-backbone",
     templateUrl: "./backbone.page.html",
@@ -9,7 +7,7 @@ import { CartService } from "@core/cart/cart.service";
 })
 export class BackbonePageComponent implements OnInit {
 
-    constructor(private cartService: CartService) { }
+    constructor() { }
 
     ngOnInit(): void {
     }
