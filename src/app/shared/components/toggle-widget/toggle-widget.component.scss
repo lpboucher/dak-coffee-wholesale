@@ -34,13 +34,17 @@
 }
 
 .toggle-slider-background {
-    @apply block w-14 h-8;
+    @apply block w-10 h-6;
     @apply bg-gray-600 rounded-full;
+
+    @apply md:w-14 md:h-8;
 }
 
 .toggle-slider-dot {
-    @apply absolute left-1 top-1 w-6 h-6;
+    @apply absolute left-1 top-1 w-4 h-4;
     @apply bg-white rounded-full transition;
+
+    @apply md:w-6 md:h-6;
 }
 
 input:checked ~ .toggle-slider > .toggle-slider-dot {
