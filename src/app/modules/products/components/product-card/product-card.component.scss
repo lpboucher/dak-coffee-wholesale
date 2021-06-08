@@ -5,13 +5,10 @@
 }
 
 .product-card-image-container {
-    @apply relative;
-    @apply pb-48;
     @apply overflow-hidden;
 }
 
 .product-card-image {
-    @apply absolute inset-0;
     @apply h-full w-full object-cover;
 }
 
