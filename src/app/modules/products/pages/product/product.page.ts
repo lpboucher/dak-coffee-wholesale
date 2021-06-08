@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 
-import { ProductService } from "@core/products/product.service";
+import { ProductApiService } from "@core/products/product-api.service";
 import { Product } from "@shared/models/classes/product.class";
 
 @Component({
@@ -16,7 +16,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     products$: Observable<Product[]> = new Observable();
 
     constructor(
-        private productService: ProductService,
+        private productService: ProductApiService,
         private route: ActivatedRoute,
     ) {}
 
