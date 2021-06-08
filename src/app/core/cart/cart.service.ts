@@ -31,11 +31,14 @@ export class CartService implements OnDestroy {
                 });
             })
         );
-
     }
 
     ngOnDestroy() {
         this.subscriptions.unsubscribe();
+    }
+
+    addItem(item: any) {
+        console.log(item);
     }
 
     private evaluateCartWeight(): number {

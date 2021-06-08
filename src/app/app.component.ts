@@ -1,26 +1,40 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { fromEvent, Subscription } from "rxjs";
 
-import { AuthService } from "@core/authentication/authentication.service";
-import { AlertService } from "@core/alerts/alert.service";
-import { CartService } from "./core/cart/cart.service";
+import { SnipcartService } from "@core/cart/snipcart.service";
+import { SnipcartEvents } from "@shared/models/types/snipcart-events.type";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+    private subscriptions: Subscription = new Subscription();
     title = "dak-wholesale";
-    logString: string = "";
+    cartEvents!: SnipcartEvents;
 
     constructor(
-        private authService: AuthService,
-        private alertService: AlertService,
-        private cartService: CartService,
-    ) {}
+        private snipcartService: SnipcartService,
+    ) {
+        this.subscriptions.add(fromEvent(document, "snipcart.ready")
+            .subscribe(_ => {
+                // this.cartEvents.addingItemSubscription();
+                this.cartEvents.addedItemSubscription = this.snipcartService.addItemAddingListener();
+                // this.cartEvents.updatedItemSubscription();
+                // this.cartEvents.removedItemSubscription();
+                // this.cartEvents.orderCompletedSubscription();
+            })
+        );
+    }
 
-    ngOnInit(): void {
-        console.log(this.authService.isLoggedIn());
-        this.alertService.success("IT WORKS!");
+    ngOnInit(): void {}
+
+    ngOnDestroy(): void {
+        this.cartEvents.addingItemSubscription();
+        this.cartEvents.addedItemSubscription();
+        this.cartEvents.updatedItemSubscription();
+        this.cartEvents.removedItemSubscription();
+        this.cartEvents.orderCompletedSubscription();
     }
 }
