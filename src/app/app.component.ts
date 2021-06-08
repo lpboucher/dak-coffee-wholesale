@@ -17,8 +17,7 @@ export class AppComponent implements OnInit {
         private authService: AuthService,
         private alertService: AlertService,
         private cartService: CartService,
-    ) {
-    }
+    ) {}
 
     ngOnInit(): void {
         console.log(this.authService.isLoggedIn());
