@@ -10,7 +10,7 @@ import { ModalService } from "@core/modals/modal.service";
 export class ModalComponent {
     display = true;
 
-    constructor(private modalService: ModalService) { }
+    constructor(private modalService: ModalService<ModalComponent>) { }
 
     onCancel(): void {
         console.log("Modal cancelled.");

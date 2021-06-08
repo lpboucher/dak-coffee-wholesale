@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 
 import { ModalService } from "@core/modals/modal.service";
 
+import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Component({
     selector: "app-floating-action",
@@ -10,9 +11,9 @@ import { ModalService } from "@core/modals/modal.service";
 })
 export class FloatingActionComponent {
 
-    constructor(private modalService: ModalService) { }
+    constructor(private modalService: ModalService<ModalComponent>) { }
 
     async showModal(): Promise<void> {
-        this.modalService.open();
+        this.modalService.open(ModalComponent);
     }
 }

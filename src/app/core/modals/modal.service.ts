@@ -1,12 +1,10 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector } from "@angular/core";
-
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type } from "@angular/core";
 
 @Injectable({
     providedIn: "root"
 })
-export class ModalService {
-    private currentModelRef: ComponentRef<ModalComponent> | undefined;
+export class ModalService<T> {
+    private currentModelRef: ComponentRef<T> | undefined;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -14,11 +12,11 @@ export class ModalService {
         private injector: Injector,
     ) { }
 
-    async open(): Promise<void> {
+    async open(component: Type<T>): Promise<void> {
         if (this.currentModelRef) { return; }
 
         this.currentModelRef = this.componentFactoryResolver
-            .resolveComponentFactory(ModalComponent)
+            .resolveComponentFactory(component)
             .create(this.injector);
 
         this.applicationRef.attachView(this.currentModelRef.hostView);
