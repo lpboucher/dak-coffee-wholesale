@@ -7,8 +7,7 @@ import { ModalComponent } from "@app/shared/components/modal/modal.component";
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
 export class SamplesConfirmationModalComponent {
-    @ViewChild("modal")
-    modal: ModalComponent | undefined = undefined;
+    @ViewChild("modal") modal: ModalComponent | undefined = undefined;
 
     constructor() { }
 

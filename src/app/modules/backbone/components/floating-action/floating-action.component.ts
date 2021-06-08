@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { ModalService } from "@core/modals/modal.service";
+import { ModalService } from "@app/core/views/modal.service";
 
 import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 

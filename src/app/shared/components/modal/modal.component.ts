@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { ModalService } from "@core/modals/modal.service";
+import { ModalService } from "@app/core/views/modal.service";
 
 @Component({
     selector: "app-modal",

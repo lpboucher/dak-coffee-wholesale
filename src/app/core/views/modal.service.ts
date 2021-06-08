@@ -21,10 +21,9 @@ export class ModalService<T> {
 
         this.applicationRef.attachView(this.currentModelRef.hostView);
 
-        const domElem = (this.currentModelRef.hostView as EmbeddedViewRef<any>)
-            .rootNodes[0] as HTMLElement;
+        const [ domElem ] = (this.currentModelRef.hostView as EmbeddedViewRef<any>).rootNodes;
 
-        document.body.appendChild(domElem);
+        document.body.appendChild(domElem as HTMLElement);
     }
 
     async close(): Promise<void> {
