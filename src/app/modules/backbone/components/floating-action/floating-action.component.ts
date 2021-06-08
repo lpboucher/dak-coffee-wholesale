@@ -1,15 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { ModalService } from "@core/modals/modal.service";
+
 
 @Component({
     selector: "app-floating-action",
     templateUrl: "./floating-action.component.html",
     styleUrls: ["./floating-action.component.scss"]
 })
-export class FloatingActionComponent implements OnInit {
+export class FloatingActionComponent {
 
-    constructor() { }
+    constructor(private modalService: ModalService) { }
 
-    ngOnInit(): void {
+    async showModal(): Promise<void> {
+        this.modalService.open();
     }
-
 }

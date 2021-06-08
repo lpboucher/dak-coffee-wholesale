@@ -7,10 +7,10 @@ import { ModalService } from "@core/modals/modal.service";
     templateUrl: "./modal.component.html",
     styleUrls: ["./modal.component.scss"]
 })
-export class ModalComponent<T> {
+export class ModalComponent {
     display = true;
 
-    constructor(private modalService: ModalService<T>) { }
+    constructor(private modalService: ModalService) { }
 
     onCancel(): void {
         console.log("Modal cancelled.");
