@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { CartService } from "@core/cart/cart.service";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-cart-widget",
@@ -7,9 +9,16 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CartWidgetComponent implements OnInit {
 
-    constructor() { }
+    constructor(private cartService: CartService) { }
 
     ngOnInit(): void {
     }
 
+    get cartTotal(): Observable<number> {
+        return this.cartService.cartTotal$;
+    }
+
+    get cartWeight(): Observable<number> {
+        return this.cartService.cartWeight$;
+    }
 }
