@@ -28,7 +28,7 @@
 }
 
 .widget-container {
-    @apply flex flex-wrap justify-between;
+    @apply flex flex-wrap justify-evenly my-1;
 }
 
 .widget-item {
