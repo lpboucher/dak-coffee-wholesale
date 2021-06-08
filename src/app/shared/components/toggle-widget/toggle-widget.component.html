@@ -1,1 +1,14 @@
-<p>toggle-widget works!</p>
+<div class="toggle-container">
+    <p class="toggle-header">{{ header }}</p>
+    <div class="toggle-body">
+        <label class="toggle">
+            <input type="checkbox" class="toggle-input">
+            <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
+            <div class="toggle-slider">
+                <div class="toggle-slider-background"></div>
+                <div class="toggle-slider-dot"></div>
+            </div>
+            <div class="checked-option toggle-option">{{ checkedOption }}</div>
+        </label>
+    </div>
+</div>
