@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { ModalService } from "@core/modals/modal.service";
 
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 
 @Component({
     selector: "app-floating-action",
@@ -11,9 +11,9 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
 })
 export class FloatingActionComponent {
 
-    constructor(private modalService: ModalService<ModalComponent>) { }
+    constructor(private modalService: ModalService<SamplesConfirmationModalComponent>) { }
 
     async showModal(): Promise<void> {
-        this.modalService.open(ModalComponent);
+        this.modalService.open(SamplesConfirmationModalComponent);
     }
 }

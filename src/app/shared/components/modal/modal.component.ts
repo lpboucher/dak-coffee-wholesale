@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { ModalService } from "@core/modals/modal.service";
 
@@ -7,22 +7,13 @@ import { ModalService } from "@core/modals/modal.service";
     templateUrl: "./modal.component.html",
     styleUrls: ["./modal.component.scss"]
 })
-export class ModalComponent {
-    display = true;
+export abstract class ModalComponent {
+    protected abstract modalService: ModalService<ModalComponent>;
+    @Input() abstract display: boolean;
 
-    constructor(private modalService: ModalService<ModalComponent>) { }
+    constructor() { }
 
-    onCancel(): void {
-        console.log("Modal cancelled.");
-        this.close();
-    }
-
-    onConfirm(): void {
-        console.log("Modal confirmed.");
-        this.close();
-    }
-
-    private async close(): Promise<void> {
+    protected async close(): Promise<void> {
         this.display = false;
 
         setTimeout(async () => {
