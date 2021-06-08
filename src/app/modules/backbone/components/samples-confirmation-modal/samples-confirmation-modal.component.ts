@@ -8,7 +8,6 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
 export class SamplesConfirmationModalComponent extends ModalComponent {
-    display = true;
 
     constructor(protected modalService: ModalService<SamplesConfirmationModalComponent>) {
         super();

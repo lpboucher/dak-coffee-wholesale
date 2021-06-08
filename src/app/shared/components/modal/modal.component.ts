@@ -9,7 +9,7 @@ import { ModalService } from "@core/modals/modal.service";
 })
 export abstract class ModalComponent {
     protected abstract modalService: ModalService<ModalComponent>;
-    @Input() abstract display: boolean;
+    @Input() display: boolean = true;
 
     constructor() { }
 
