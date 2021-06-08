@@ -1,6 +1,6 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector } from "@angular/core";
 
-import { ModalComponent } from "@modules/modal/components/modal/modal.component";
+import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Injectable({
     providedIn: "root"

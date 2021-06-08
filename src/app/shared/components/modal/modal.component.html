@@ -1,4 +1,4 @@
-<div class="modal-container" [ngClass]="{ 'flex': showSelf, 'hidden': !showSelf }" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="modal-container" [class.open]="display" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="modal">
         <div class="modal-body">
             <div class="modal-body-icon-container">
@@ -17,3 +17,4 @@
         </div>
     </div>
 </div>
+
