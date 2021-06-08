@@ -12,12 +12,21 @@ export class ModalComponent<T> {
 
     constructor(private modalService: ModalService<T>) { }
 
-    async close(): Promise<void> {
+    onCancel(): void {
+        console.log("Modal cancelled.");
+        this.close();
+    }
+
+    onConfirm(): void {
+        console.log("Modal confirmed.");
+        this.close();
+    }
+
+    private async close(): Promise<void> {
         this.display = false;
 
         setTimeout(async () => {
             await this.modalService.close();
         }, 300);
     }
-
 }
