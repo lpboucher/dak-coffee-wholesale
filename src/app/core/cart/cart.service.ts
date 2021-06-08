@@ -10,5 +10,5 @@ export class CartService {
         return this.snipcart.store.getState().cart.total;
     }
 
-    constructor() { }
+    constructor() {}
 }
