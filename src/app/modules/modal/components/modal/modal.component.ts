@@ -1,15 +1,23 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { ModalService } from "@core/modals/modal.service";
 
 @Component({
     selector: "app-modal",
     templateUrl: "./modal.component.html",
     styleUrls: ["./modal.component.scss"]
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent<T> {
+    display = true;
 
-    constructor() { }
+    constructor(private modalService: ModalService<T>) { }
 
-    ngOnInit(): void {
+    async close(): Promise<void> {
+        this.display = false;
+
+        setTimeout(async () => {
+            await this.modalService.close();
+        }, 300);
     }
 
 }
