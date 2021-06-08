@@ -1,17 +1,16 @@
-import { Component } from "@angular/core";
-import { ModalService } from "@app/core/modals/modal.service";
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { Component, ViewChild } from "@angular/core";
+import { ModalComponent } from "@app/shared/components/modal/modal.component";
 
 @Component({
     selector: "app-samples-confirmation-modal",
     templateUrl: "./samples-confirmation-modal.component.html",
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
-export class SamplesConfirmationModalComponent extends ModalComponent {
+export class SamplesConfirmationModalComponent {
+    @ViewChild("modal")
+    modal: ModalComponent | undefined = undefined;
 
-    constructor(protected modalService: ModalService<SamplesConfirmationModalComponent>) {
-        super();
-    }
+    constructor() { }
 
     onCancel(): void {
         console.log("Modal cancelled.");
@@ -21,5 +20,11 @@ export class SamplesConfirmationModalComponent extends ModalComponent {
     onConfirm(): void {
         console.log("Modal confirmed.");
         this.close();
+    }
+
+    private close(): void {
+        if (this.modal != undefined) {
+            this.modal.close();
+        }
     }
 }
