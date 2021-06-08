@@ -13,6 +13,14 @@
         <app-wallet-widget class="widget-item"></app-wallet-widget>
         <app-wallet-widget class="widget-item"></app-wallet-widget>
     </div>
+    <div class="widget-container">
+        <app-toggle-widget
+            class="widget-item"
+            [header]="'Volume Discount'"
+            [uncheckedOption]="'30%'"
+            [checkedOption]="'45%'">
+        </app-toggle-widget>
+    </div>
     <footer class="nav-footer">
         <div class="footer-item" (click)="onLogoutClicked()">
             <span>Logout</span>
