@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ProductService } from "@core/products/product.service";
+import { ProductApiService } from "@core/products/product-api.service";
 import { Observable } from "rxjs";
 
 import { Product } from "@shared/models/classes/product.class";
@@ -15,7 +15,7 @@ export class SingleProductPageComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private productService: ProductService,
+        private productService: ProductApiService,
     ) { }
 
     ngOnInit(): void {

@@ -13,7 +13,7 @@ import { Merchandise } from "@shared/models/classes/merchandise.class";
 @Injectable({
     providedIn: "root"
 })
-export class ProductService extends DataApiService<Product> {
+export class ProductApiService extends DataApiService<Product> {
     products: Product[] = [
         new Coffee({
             id: "0",
