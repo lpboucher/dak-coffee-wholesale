@@ -1,29 +1,22 @@
-import { Input, Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { ModalService } from "@app/core/views/modal.service";
 
 @Component({
     selector: "app-modal",
     templateUrl: "./modal.component.html",
     styleUrls: ["./modal.component.scss"]
 })
-export class ModalComponent implements OnInit {
-    @Input() showSelf: boolean = false;
+export class ModalComponent {
+    display: boolean = true;
 
-    constructor() { }
+    constructor(private modalService: ModalService<ModalComponent>) { }
 
-    ngOnInit(): void {
-    }
+    async close(): Promise<void> {
+        this.display = false;
 
-    show(): void {
-        this.showSelf = true;
-    }
-
-    onCancel(): void {
-        console.log("Modal cancelled.");
-        this.showSelf = false;
-    }
-
-    onConfirm(): void {
-        console.log("Modal confirmed.");
-        this.showSelf = false;
+        setTimeout(async () => {
+            await this.modalService.close();
+        }, 300);
     }
 }

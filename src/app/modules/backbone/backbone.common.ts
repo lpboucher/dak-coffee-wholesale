@@ -7,6 +7,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { NavItemComponent } from "./components/nav-item/nav-item.component";
 import { FloatingActionComponent } from "./components/floating-action/floating-action.component";
+import { SamplesConfirmationModalComponent } from "./components/samples-confirmation-modal/samples-confirmation-modal.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -17,6 +18,7 @@ export const componentDeclarations: any[] = [
     FooterComponent,
     NavItemComponent,
     FloatingActionComponent,
+    SamplesConfirmationModalComponent,
 ];
 
 export const routes: Routes = [

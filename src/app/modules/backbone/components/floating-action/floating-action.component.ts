@@ -1,15 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+
+import { ModalService } from "@app/core/views/modal.service";
+
+import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 
 @Component({
     selector: "app-floating-action",
     templateUrl: "./floating-action.component.html",
     styleUrls: ["./floating-action.component.scss"]
 })
-export class FloatingActionComponent implements OnInit {
+export class FloatingActionComponent {
 
-    constructor() { }
+    constructor(private modalService: ModalService<SamplesConfirmationModalComponent>) { }
 
-    ngOnInit(): void {
+    async showModal(): Promise<void> {
+        this.modalService.open(SamplesConfirmationModalComponent);
     }
-
 }
