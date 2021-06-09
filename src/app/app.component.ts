@@ -19,11 +19,11 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {
         this.subscriptions.add(fromEvent(document, "snipcart.ready")
             .subscribe(_ => {
-                // this.cartEvents.addingItemSubscription();
-                this.cartEvents.addedItemSubscription = this.snipcartService.addItemAddingListener();
-                // this.cartEvents.updatedItemSubscription();
-                // this.cartEvents.removedItemSubscription();
-                // this.cartEvents.orderCompletedSubscription();
+                this.cartEvents.addingItemSubscription = this.snipcartService.addItemAddingListener();
+                this.cartEvents.addedItemSubscription = this.snipcartService.addItemAddedListener();
+                this.cartEvents.updatedItemSubscription = this.snipcartService.addItemUpdatedListener();
+                this.cartEvents.removedItemSubscription = this.snipcartService.addItemRemovedListener();
+                this.cartEvents.orderCompletedSubscription = this.snipcartService.addOrderCompletedListener();
             })
         );
     }
