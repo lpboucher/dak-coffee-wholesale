@@ -22,10 +22,7 @@ export class CoffeeApiService extends DataApiService<Coffee> {
     }
 
     getCoffee(slug: string): Observable<Coffee | undefined> {
-        return this.getCoffees()
-            .pipe(
-                map(arr => arr.find(c => c.slug === slug))
-            );
+        return this.getOne(`coffee/${ slug }`)
     }
 
     getFeaturedCoffees(): Observable<Coffee[]> {
