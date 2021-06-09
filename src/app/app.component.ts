@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
 
 import { SnipcartService } from "@core/cart/snipcart.service";
-import { SnipcartEvents } from "@shared/models/types/snipcart-events.type";
+import { SnipcartEvents, defaultSnipcartEvents } from "@shared/models/types/snipcart-events.type";
 
 @Component({
   selector: "app-root",
@@ -12,7 +12,7 @@ import { SnipcartEvents } from "@shared/models/types/snipcart-events.type";
 export class AppComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription = new Subscription();
     title = "dak-wholesale";
-    cartEvents!: SnipcartEvents;
+    cartEvents: SnipcartEvents = defaultSnipcartEvents();
 
     constructor(
         private snipcartService: SnipcartService,
