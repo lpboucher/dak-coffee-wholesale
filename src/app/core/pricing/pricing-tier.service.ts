@@ -6,14 +6,11 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class PricingTierService {
     private isVolumeDiscountActive$ = new BehaviorSubject(false);
+    toggleDiscount = () => this.isVolumeDiscountActive$.next(!this.isVolumeDiscountActive$.value);
 
     get isDiscountActive(): Observable<boolean> {
         return this.isVolumeDiscountActive$.asObservable();
     }
 
-    constructor() { }
-
-    toggleDiscount(): void {
-        this.isVolumeDiscountActive$.next(!this.isVolumeDiscountActive$.value);
-    }
+    constructor() {}
 }

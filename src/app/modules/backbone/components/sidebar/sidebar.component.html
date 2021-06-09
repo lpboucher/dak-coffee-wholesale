@@ -12,7 +12,8 @@
     <app-toggle-widget
         [header]="'Volume Discount'"
         [uncheckedOption]="'30%'"
-        [checkedOption]="'45%'">
+        [checkedOption]="'45%'"
+        [toggleCallback]="onPriceTierToggle">
     </app-toggle-widget>
     <div class="widget-container">
         <app-wallet-widget class="widget-item"></app-wallet-widget>

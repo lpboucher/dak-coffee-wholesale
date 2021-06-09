@@ -9,6 +9,7 @@ export class ToggleWidgetComponent {
     @Input() header: string = "";
     @Input() uncheckedOption: string = "";
     @Input() checkedOption: string = "";
+    @Input() toggleCallback: () => void = () => {};
 
     constructor() { }
 }
