@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-toggle-widget",
@@ -10,6 +11,7 @@ export class ToggleWidgetComponent {
     @Input() uncheckedOption: string = "";
     @Input() checkedOption: string = "";
     @Input() toggleCallback: () => void = () => {};
+    @Input() isChecked$: Observable<boolean> = new Observable();
 
     constructor() { }
 }
