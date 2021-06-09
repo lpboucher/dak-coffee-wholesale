@@ -10,6 +10,10 @@ export class SnipcartService {
 
     constructor(private cartService: CartService) {}
 
+    initialiseCartService(): () => {} {
+        return this.registerSnipcartEvent("snipcart.initialized", (_) => this.cartService.updateCartTotal());
+    }
+
     addItemAddingListener(): () => {} {
         return this.registerSnipcartEvent("item.adding", (cartItem: any) => this.cartService.addingItem(cartItem));
     }

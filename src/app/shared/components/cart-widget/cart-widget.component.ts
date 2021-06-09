@@ -8,17 +8,16 @@ import { Observable } from "rxjs";
     styleUrls: ["./cart-widget.component.scss"]
 })
 export class CartWidgetComponent implements OnInit {
+    cartTotal$: Observable<number>;
 
-    constructor(private cartService: CartService) { }
+    constructor(private cartService: CartService) {
+        this.cartTotal$ = this.cartService.currentCartTotal$;
+    }
 
     ngOnInit(): void {
     }
 
-    get cartTotal(): Observable<number> {
-        return this.cartService.cartTotal$;
-    }
-
-    get cartWeight(): Observable<number> {
+    get cartWeight$(): Observable<number> {
         return this.cartService.cartWeight$;
     }
 }
