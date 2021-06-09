@@ -2,7 +2,7 @@
     <p class="toggle-header">{{ header }}</p>
     <div class="toggle-body">
         <label class="toggle">
-            <input type="checkbox" class="toggle-input" (click)="toggleCallback()">
+            <input [checked]="isChecked$ | async" type="checkbox" class="toggle-input" (click)="toggleCallback()">
             <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
             <div class="toggle-slider">
                 <div class="toggle-slider-background"></div>
