@@ -37,8 +37,24 @@ export class CartService implements OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    addItem(item: any) {
-        console.log(item);
+    addingItem(item: any) {
+        console.log(`Adding: ${ item }`);
+    }
+
+    addedItem(item: any) {
+        console.log(`Added: ${ item }`);
+    }
+
+    updatedItem(item: any) {
+        console.log(`Updated: ${ item }`);
+    }
+
+    removedItem(item: any) {
+        console.log(`Removed: ${ item }`);
+    }
+
+    orderCompleted(cart: any) {
+        console.log(`Order completed: ${ cart }`);
     }
 
     private evaluateCartWeight(): number {
