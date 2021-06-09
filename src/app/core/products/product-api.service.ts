@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { flatten } from "@angular/compiler";
-import { forkJoin, Observable } from "rxjs";
+import { forkJoin, Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { environment as config } from "@env";
@@ -51,13 +51,20 @@ export class ProductApiService extends DataApiService<Product> {
     }
 
     getProductsByType(productType?: ProductType | "all"): Observable<Product[]> {
-        if (!productType || productType === "all") {
-            return this.getProducts();
+        switch (productType) {
+            case undefined: /* fallthrough */
+            case "all": {
+                return this.getProducts();
+            }
+            case "coffee": {
+                return this.coffeeApiService.getCoffees();
+            }
+            case "merchandise": {
+                return this.merchandiseApiService.getMerchandise();
+            }
+            default: {
+                return of([]);
+            }
         }
-
-        return this.getProducts()
-            .pipe(
-                map(arr => arr.filter(p => p.productType === productType))
-            );
     }
 }
