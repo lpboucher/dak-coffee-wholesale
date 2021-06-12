@@ -13,8 +13,9 @@
         [header]="'Volume Discount'"
         [uncheckedOption]="'30%'"
         [checkedOption]="'45%'"
-        [toggleCallback]="onPriceTierToggle"
-        [isChecked$]="priceTierActive$">
+        [isChecked]="(priceTierActive$ | async) || false"
+        (toggle)="onPricingToggled($event)"
+    >
     </app-toggle-widget>
     <div class="widget-container">
         <app-wallet-widget class="widget-item"></app-wallet-widget>
