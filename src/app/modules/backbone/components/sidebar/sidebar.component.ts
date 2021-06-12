@@ -14,18 +14,19 @@ import { Observable } from "rxjs";
 export class SidebarComponent implements OnInit {
     navigation = NAVIGATION;
     openLabel = "";
-    onPriceTierToggle: () => void;
-    priceTierActive$: Observable<boolean>;
+    priceTierActive$: Observable<boolean> = new Observable();
 
     constructor(
         private authService: AuthService,
         private pricingTierService: PricingTierService,
-    ) {
-        this.onPriceTierToggle = this.pricingTierService.toggleDiscount;
-        this.priceTierActive$ = this.pricingTierService.isDiscountActive;
-    }
+    ) {}
 
     ngOnInit(): void {
+        this.priceTierActive$ = this.pricingTierService.isDiscountActive$;
+    }
+
+    onPricingToggled(value: boolean): void {
+        this.pricingTierService.toggleDiscount(value);
     }
 
     onLogoutClicked(): void {

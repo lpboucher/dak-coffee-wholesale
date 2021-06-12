@@ -1,5 +1,4 @@
-import { Component, Input } from "@angular/core";
-import { Observable } from "rxjs";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: "app-toggle-widget",
@@ -10,8 +9,14 @@ export class ToggleWidgetComponent {
     @Input() header: string = "";
     @Input() uncheckedOption: string = "";
     @Input() checkedOption: string = "";
-    @Input() toggleCallback: () => void = () => {};
-    @Input() isChecked$: Observable<boolean> = new Observable();
+    @Input() isChecked: boolean = false;
+    @Output() toggle: EventEmitter<boolean> =  new EventEmitter();
+
 
     constructor() { }
+
+    doToggle(): void {
+        this.isChecked = !this.isChecked;
+        this.toggle.emit(this.isChecked);
+    }
 }
