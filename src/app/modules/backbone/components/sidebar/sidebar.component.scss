@@ -30,7 +30,7 @@
 .widget-container {
     @apply flex flex-wrap flex-grow my-1;
 
-    @apply md:justify-evenly md:flex-grow-0;
+    @apply md:items-center md:justify-evenly md:flex-grow-0;
 }
 
 .widget-item {
