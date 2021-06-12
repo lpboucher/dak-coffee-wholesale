@@ -28,11 +28,15 @@
 }
 
 .widget-container {
-    @apply flex flex-wrap justify-between;
+    @apply flex flex-wrap flex-grow my-1;
+
+    @apply md:items-center md:justify-evenly md:flex-grow-0;
 }
 
 .widget-item {
-    @apply px-1 w-1/2;
+    @apply px-1;
+
+    @apply md:w-1/2;
 }
 
 .nav-footer {
