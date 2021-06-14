@@ -1,15 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
+import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Component({
     selector: "app-wallet-modal",
     templateUrl: "./wallet-modal.component.html",
     styleUrls: ["./wallet-modal.component.scss"]
 })
-export class WalletModalComponent implements OnInit {
+export class WalletModalComponent {
+    @ViewChild("modal") modal: ModalComponent | undefined = undefined;
 
     constructor() { }
 
-    ngOnInit(): void {
+    onOk(): void {
+        if (this.modal != undefined) {
+            this.modal.close();
+        }
     }
-
 }
