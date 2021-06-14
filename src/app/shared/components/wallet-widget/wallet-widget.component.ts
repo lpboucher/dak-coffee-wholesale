@@ -12,4 +12,7 @@ export class WalletWidgetComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    onClick(): void {
+        console.log("Wallet widget clicked.");
+    }
 }
