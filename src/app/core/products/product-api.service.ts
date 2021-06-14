@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { flatten } from "@angular/compiler";
-import { forkJoin, Observable, of } from "rxjs";
+import { Observable, of, zip } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { environment as config } from "@env";
@@ -26,12 +26,8 @@ export class ProductApiService extends DataApiService<Product> {
     }
 
     getProducts(): Observable<Product[]> {
-        return forkJoin([
-            this.coffeeApiService.getCoffees(),
-            this.merchandiseApiService.getMerchandise(),
-        ]).pipe(
-            map((products: Product[][]) => flatten(products)),
-        );
+        return zip(this.coffeeApiService.getCoffees(), this.merchandiseApiService.getMerchandise())
+            .pipe(map((products: Product[][]) => flatten(products)));
     }
 
     getProduct(slug: string): Observable<Product | undefined> {
