@@ -7,7 +7,6 @@ const ITEM_COUNT_THRESHOLD: number = 4;
     providedIn: "root"
 })
 export class PricingTierService {
-
     private isVolumeDiscountActive$ = new BehaviorSubject(false);
 
     get isDiscountActive$(): Observable<boolean> {
