@@ -3,6 +3,7 @@ import { GridListComponent } from "@shared/components/grid-list/grid-list.compon
 import { ModalComponent } from "@shared/components/modal/modal.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
+import { WalletModalComponent } from '@shared/components/wallet-modal/wallet-modal.component';
 
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
@@ -14,6 +15,7 @@ export const componentDeclarations: any[] = [
     ModalComponent,
     ToggleWidgetComponent,
     WidgetComponent,
+    WalletModalComponent,
 
     ClampPipe,
     FilterPipe,
