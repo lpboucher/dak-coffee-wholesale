@@ -11,6 +11,10 @@ export class PricingTierService {
         return this.isVolumeDiscountActive$.asObservable();
     }
 
+    get isDiscountActive(): boolean {
+        return this.isVolumeDiscountActive$.value;
+    }
+
     constructor() {}
 
     toggleDiscount(value?: boolean): void {
