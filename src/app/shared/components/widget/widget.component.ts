@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: "app-widget",
@@ -7,10 +7,14 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class WidgetComponent implements OnInit {
     @Input() content: string = "";
+    @Output() clickEvent: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() { }
 
     ngOnInit(): void {
     }
 
+    onClick(): void {
+        this.clickEvent.emit();
+    }
 }
