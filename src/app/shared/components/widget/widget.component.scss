@@ -5,7 +5,7 @@
     @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
 }
 
-::slotted(svg) {
+::ng-deep svg {
     @apply w-8 h-8 inline-block;
     @apply text-indigo-500;
 
