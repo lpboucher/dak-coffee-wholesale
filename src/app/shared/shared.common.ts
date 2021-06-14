@@ -4,6 +4,7 @@ import { WalletWidgetComponent } from "@shared/components/wallet-widget/wallet-w
 import { ModalComponent } from "@shared/components/modal/modal.component";
 import { CartWidgetComponent } from "@shared/components/cart-widget/cart-widget.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
+import { WidgetComponent } from "@shared/components/widget/widget.component";
 
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
@@ -15,6 +16,7 @@ export const componentDeclarations: any[] = [
     WalletWidgetComponent,
     CartWidgetComponent,
     ToggleWidgetComponent,
+    WidgetComponent,
 
     ClampPipe,
     FilterPipe,
