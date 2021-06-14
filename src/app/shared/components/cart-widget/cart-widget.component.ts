@@ -23,6 +23,6 @@ export class CartWidgetComponent implements OnInit {
     }
 
     onClick(): void {
-        console.log("Cart widget clicked.");
+        (window as any).Snipcart.api.theme.cart.open();
     }
 }
