@@ -7,7 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class WidgetComponent implements OnInit {
     @Input() content: string = "";
-    @Output() clickEvent: EventEmitter<void> = new EventEmitter<void>();
+    @Output() widgetClickEvent: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() { }
 
@@ -15,6 +15,6 @@ export class WidgetComponent implements OnInit {
     }
 
     onClick(): void {
-        this.clickEvent.emit();
+        this.widgetClickEvent.emit();
     }
 }

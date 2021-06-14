@@ -21,4 +21,8 @@ export class CartWidgetComponent implements OnInit {
     get cartWeight(): Observable<number> {
         return this.cartService.cartWeight$;
     }
+
+    onClick(): void {
+        console.log("Cart widget clicked.");
+    }
 }
