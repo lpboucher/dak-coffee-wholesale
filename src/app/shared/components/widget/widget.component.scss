@@ -1,0 +1,19 @@
+.wallet {
+    @apply p-2 border-gray-200 rounded-lg text-center cursor-pointer;
+
+    @apply md:border-2;
+    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+}
+
+::slotted(svg) {
+    @apply w-8 h-8 inline-block;
+    @apply text-indigo-500;
+
+    @apply md:mb-1 md:mx-auto md:block;
+}
+
+.wallet-contents {
+    @apply text-gray-900 inline;
+
+    @apply md:font-medium md:text-base;
+}
