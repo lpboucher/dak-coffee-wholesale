@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
+import { ModalService } from "@app/core/views/modal.service";
+import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
+
 @Component({
     selector: "app-wallet-widget",
     templateUrl: "./wallet-widget.component.html",
@@ -7,12 +10,12 @@ import { Component, OnInit } from "@angular/core";
 })
 export class WalletWidgetComponent implements OnInit {
 
-    constructor() { }
+    constructor(private modalService: ModalService<WalletModalComponent>) { }
 
     ngOnInit(): void {
     }
 
     onClick(): void {
-        console.log("Wallet widget clicked.");
+        this.modalService.open(WalletModalComponent);
     }
 }
