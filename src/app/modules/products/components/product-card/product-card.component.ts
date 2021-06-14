@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Product } from "@shared/models/classes/product.class";
 
@@ -8,10 +9,19 @@ import { Product } from "@shared/models/classes/product.class";
     styleUrls: ["./product-card.component.scss"]
 })
 export class ProductCardComponent implements OnInit {
+    @ViewChild("addToCartButton") addToCartButton!: ElementRef;
     @Input() product!: Product;
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
+    }
+
+    onClick(event: Event): void {
+        const elementUnderClick = event.target as HTMLElement;
+        const addToCartButtonElement = this.addToCartButton.nativeElement as HTMLElement;
+        if (elementUnderClick == addToCartButtonElement) { return; }
+
+        this.router.navigate(["products", this.product.productType, this.product.slug]);
     }
 }
