@@ -1,15 +1,17 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { ModalService } from "@core/views/modal.service";
 
 import { CloudinaryImage } from "@cloudinary/base";
 
 import { Product } from "@shared/models/classes/product.class";
+import { GetNotifiedConfirmationModalComponent } from "@modules/products/components/get-notified-confirmation-modal/get-notified-confirmation-modal.component";
 
 @Component({
     selector: "app-featured-product-card",
     templateUrl: "./featured-product-card.component.html",
     styleUrls: ["./featured-product-card.component.scss"]
 })
-export class FeaturedProductCardComponent implements OnInit {
+export class FeaturedProductCardComponent {
     @Input() product!: Product;
 
     get imageUrl(): string {
@@ -19,12 +21,9 @@ export class FeaturedProductCardComponent implements OnInit {
         return new CloudinaryImage(url, cloudName).toURL();
     }
 
-    constructor() { }
+    constructor(private modalService: ModalService<GetNotifiedConfirmationModalComponent>) { }
 
-    ngOnInit(): void {
-    }
-
-    onClick(): void {
-        console.log(this.product);
+    async showModal(): Promise<void> {
+        this.modalService.open(GetNotifiedConfirmationModalComponent);
     }
 }
