@@ -19,7 +19,7 @@ export class MerchandiseApiService extends DataApiService<Merchandise> {
         return this.getAll("merchandises?isActive=true");
     }
 
-    getMerchandiseItem(slug: string): Observable<Merchandise | undefined> {
+    getMerchandiseItem(slug: string): Observable<Merchandise> {
         return this.getOne(`merchandise/${ slug }`);
     }
 }
