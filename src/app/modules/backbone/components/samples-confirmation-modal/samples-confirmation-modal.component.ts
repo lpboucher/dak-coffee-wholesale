@@ -9,17 +9,26 @@ import { ModalComponent } from "@app/shared/components/modal/modal.component";
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalComponent | undefined = undefined;
     selectionOptions: string[] = ["Filter", "Espresso", "Both"];
+    selection: string | undefined;
+    submissionAttempted: boolean = false;
 
     constructor() { }
 
+    onSelection(selection: string): void {
+        this.selection = selection;
+    }
+
     onCancel(): void {
-        console.log("Modal cancelled.");
         this.close();
     }
 
     onConfirm(): void {
-        console.log("Modal confirmed.");
-        this.close();
+        this.submissionAttempted = true;
+
+        if (this.selection != undefined) {
+            console.log(this.selection);
+            this.close();
+        }
     }
 
     private close(): void {
