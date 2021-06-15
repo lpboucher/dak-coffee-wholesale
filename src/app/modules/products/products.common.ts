@@ -6,6 +6,7 @@ import { SingleProductPageComponent } from "@modules/products/pages/single-produ
 import { ProductCardComponent } from "@modules/products/components/product-card/product-card.component";
 import { ProductDetailComponent } from "@modules/products/components/product-detail/product-detail.component";
 import { FeaturedProductCardComponent } from "@modules/products/components/featured-product-card/featured-product-card.component";
+import { ConfirmationModalComponent } from "./components/confirmation-modal/confirmation-modal.component";
 
 export const pageDeclarations: any[] = [
     ProductPageComponent,
@@ -16,6 +17,7 @@ export const componentDeclarations: any[] = [
     ProductCardComponent,
     ProductDetailComponent,
     FeaturedProductCardComponent,
+    ConfirmationModalComponent
 ];
 
 export const providerDeclarations: any[] = [
