@@ -3,19 +3,19 @@ import { Directive, ElementRef, Input, OnInit } from "@angular/core";
 import { Product } from "@shared/models/classes/product.class";
 
 @Directive({
-    selector: "[appSnipcartAdd]"
+    selector: "[snipcartAdd]"
 })
 export class SnipcartAddDirective implements OnInit {
-    @Input() appSnipcartAdd!: Product;
+    @Input() snipcartAdd!: Product;
 
     constructor(private el: ElementRef) {}
 
     ngOnInit(): void {
         this.el.nativeElement.className += " snipcart-add-item";
 
-        this.el.nativeElement.setAttribute("data-item-id", `${ this.appSnipcartAdd.id }`);
-        this.el.nativeElement.setAttribute("data-item-url", `/products/${ this.appSnipcartAdd.productType }/${ this.appSnipcartAdd.slug }`);
-        this.el.nativeElement.setAttribute("data-item-name", `${ this.appSnipcartAdd.name }`);
-        this.el.nativeElement.setAttribute("data-item-price", `${ this.appSnipcartAdd.price }`);
+        this.el.nativeElement.setAttribute("data-item-id", `${ this.snipcartAdd.id }`);
+        this.el.nativeElement.setAttribute("data-item-url", `/products/${ this.snipcartAdd.productType }/${ this.snipcartAdd.slug }`);
+        this.el.nativeElement.setAttribute("data-item-name", `${ this.snipcartAdd.name }`);
+        this.el.nativeElement.setAttribute("data-item-price", `${ this.snipcartAdd.price }`);
     }
 }
