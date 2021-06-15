@@ -12,7 +12,7 @@ export class WalletModalComponent {
     constructor() { }
 
     onOk(): void {
-        if (this.modal != undefined) {
+        if (this.modal != null) {
             this.modal.close();
         }
     }
