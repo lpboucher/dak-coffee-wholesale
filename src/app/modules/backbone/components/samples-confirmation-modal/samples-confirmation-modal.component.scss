@@ -29,9 +29,46 @@
     @apply text-lg leading-6 font-medium text-gray-900;
 }
 
-.modal-body-content-message {
-    @apply mt-2;
+.modal-body-content-text {
     @apply text-sm text-gray-500;
+}
+
+.modal-body-content-message {
+    @apply mt-2 mb-1;
+    @apply modal-body-content-text;
+}
+
+.modal-body-content-selection-item {
+    @apply flex items-center;
+    @apply ml-6 p-1;
+}
+
+.modal-body-content-selection-input {
+    @apply mr-2;
+
+    @apply transition-transform duration-200;
+}
+
+.modal-body-content-selection-input:hover {
+    @apply transform scale-125;
+}
+
+.modal-body-content-selection-label {
+    @apply flex items-center;
+    @apply cursor-pointer;
+    @apply modal-body-content-text;
+}
+
+.modal-body-content-selection-input:checked + .modal-body-content-selection-label {
+    @apply text-blue-500 font-medium;
+}
+
+.modal-body-no-selection {
+    @apply hidden;
+    @apply modal-body-content-text;
+    @apply text-red-500;
+
+    @apply transition-transform duration-200;
 }
 
 .modal-footer {

@@ -8,6 +8,7 @@ import { ModalComponent } from "@app/shared/components/modal/modal.component";
 })
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalComponent | undefined = undefined;
+    selectionOptions: string[] = ["Filter", "Espresso", "Both"];
 
     constructor() { }
 

@@ -7,7 +7,12 @@
         </div>
         <div class="modal-body-content">
             <h3 class="modal-body-content-header" id="modal-title">Order samples</h3>
-            <p class="modal-body-content-message">Are you sure you want to order samples?</p>
+            <p class="modal-body-content-message">Select blend:</p>
+            <div class="modal-body-content-selection-item" *ngFor="let option of selectionOptions">
+                <input id="{{ option }}" name="sampleSelection" type="radio" value="{{ option }}" class="modal-body-content-selection-input" />
+                <label for="{{ option }}" class="modal-body-content-selection-label">{{ option }}</label>
+            </div>
+            <div class="modal-body-no-selection">Please select a blend before submitting, or click "Cancel".</div>
         </div>
     </div>
     <div class="modal-footer">
