@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
+const ITEM_COUNT_THRESHOLD: number = 4;
+
 @Injectable({
     providedIn: "root"
 })
 export class PricingTierService {
-    private static ITEM_COUNT_THRESHOLD: number = 4;
 
     private isVolumeDiscountActive$ = new BehaviorSubject(false);
 
@@ -20,7 +21,7 @@ export class PricingTierService {
     }
 
     updateDiscount(itemCount: number): void {
-        if (itemCount > PricingTierService.ITEM_COUNT_THRESHOLD) {
+        if (itemCount > ITEM_COUNT_THRESHOLD) {
             this.toggleDiscount(true);
         }
     }
