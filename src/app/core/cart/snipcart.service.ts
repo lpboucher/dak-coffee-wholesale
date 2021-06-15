@@ -11,7 +11,7 @@ export class SnipcartService {
     constructor(private cartService: CartService) {}
 
     initialiseCartService(): () => {} {
-        return this.registerSnipcartEvent("snipcart.initialized", (_) => this.cartService.updateCart());
+        return this.registerSnipcartEvent("snipcart.initialized", (_) => this.cartService.update());
     }
 
     addItemAddingListener(): () => {} {

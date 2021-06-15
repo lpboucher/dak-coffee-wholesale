@@ -1,6 +1,8 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -17,38 +19,43 @@ export class CartService implements OnDestroy {
         return this.cartWeight$.asObservable();
     }
 
-    constructor() {}
+    constructor(private pricingTierService: PricingTierService) {}
 
     ngOnDestroy() {
         this.subscriptions.unsubscribe();
     }
 
     addingItem(item: any) {
-        this.updateCart();
+        this.update();
         console.log(`Adding: ${ item }`);
     }
 
     addedItem(item: any) {
-        this.updateCart();
+        this.update();
         console.log(`Added: ${ item }`);
     }
 
     updatedItem(item: any) {
-        this.updateCart();
+        this.update();
         console.log(`Updated: ${ item }`);
     }
 
     removedItem(item: any) {
-        this.updateCart();
+        this.update();
         console.log(`Removed: ${ item }`);
     }
 
     orderCompleted(cart: any) {
-        this.updateCart();
+        this.update();
         console.log(`Order completed: ${ cart }`);
     }
 
-    updateCart(): void {
+    update(): void {
+        this.updateCart();
+        this.updatePricingService();
+    }
+
+    private updateCart(): void {
         setTimeout(() => {
             this.updateCartTotal();
             this.updateCartWeight();
@@ -69,5 +76,10 @@ export class CartService implements OnDestroy {
         return cartItems
             .filter((item: any) => item?.dimensions?.weight != null && item?.quantity != null)
             .reduce((sum: number, item: any) => sum + (item.dimensions.weight * item.quantity), 0);
+    }
+
+    private updatePricingService(): void {
+        const itemsInCart = (window as any).Snipcart.store.getState().cart.items.count;
+        this.pricingTierService.updateDiscount(itemsInCart);
     }
 }
