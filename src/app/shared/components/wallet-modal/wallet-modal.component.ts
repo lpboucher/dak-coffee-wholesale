@@ -7,7 +7,7 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
     styleUrls: ["./wallet-modal.component.scss"]
 })
 export class WalletModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined = undefined;
+    @ViewChild("modal") modal: ModalComponent | undefined;
 
     constructor() { }
 
