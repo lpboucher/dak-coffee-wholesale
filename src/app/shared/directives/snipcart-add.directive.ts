@@ -13,9 +13,12 @@ export class SnipcartAddDirective implements OnInit {
     ngOnInit(): void {
         this.el.nativeElement.className += " snipcart-add-item";
 
-        this.el.nativeElement.setAttribute("data-item-id", `${ this.snipcartAdd.id }`);
-        this.el.nativeElement.setAttribute("data-item-url", `/products/${ this.snipcartAdd.productType }/${ this.snipcartAdd.slug }`);
-        this.el.nativeElement.setAttribute("data-item-name", `${ this.snipcartAdd.name }`);
-        this.el.nativeElement.setAttribute("data-item-price", `${ this.snipcartAdd.price }`);
+        const { id, productType, slug, name, price } = this.snipcartAdd;
+        const url = `/products/${ productType }/${ slug }`;
+
+        this.el.nativeElement.setAttribute("data-item-id", id);
+        this.el.nativeElement.setAttribute("data-item-url", url);
+        this.el.nativeElement.setAttribute("data-item-name", name);
+        this.el.nativeElement.setAttribute("data-item-price", price);
     }
 }
