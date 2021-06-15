@@ -1,8 +1,6 @@
 import { FilterComponent } from "@shared/components/filter/filter.component";
 import { GridListComponent } from "@shared/components/grid-list/grid-list.component";
-import { WalletWidgetComponent } from "@shared/components/wallet-widget/wallet-widget.component";
 import { ModalComponent } from "@shared/components/modal/modal.component";
-import { CartWidgetComponent } from "@shared/components/cart-widget/cart-widget.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 
@@ -13,8 +11,6 @@ export const componentDeclarations: any[] = [
     FilterComponent,
     GridListComponent,
     ModalComponent,
-    WalletWidgetComponent,
-    CartWidgetComponent,
     ToggleWidgetComponent,
     WidgetComponent,
 
