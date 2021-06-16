@@ -9,6 +9,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
+    images: { main: string | null, thumb: string | null } = { main: null, thumb: null };
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
@@ -34,6 +35,16 @@ export abstract class Product {
 
             if (productShape.slug != null) {
                 this.slug = productShape.slug;
+            }
+
+            if (productShape.images != null) {
+                if (productShape.images.main != null) {
+                    this.images.main = productShape.images.main;
+                }
+
+                if (productShape.images.thumb != null) {
+                    this.images.thumb = productShape.images.thumb;
+                }
             }
         }
     }
