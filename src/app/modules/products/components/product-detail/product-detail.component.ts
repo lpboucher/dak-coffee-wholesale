@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
+
+import { Cloudinary } from "@cloudinary/base";
+
 import { Product } from "@shared/models/classes/product.class";
 
 @Component({
@@ -8,6 +11,16 @@ import { Product } from "@shared/models/classes/product.class";
 })
 export class ProductDetailComponent implements OnInit {
     @Input() product!: Product;
+
+    get imageUrl(): string {
+        const cloud = new Cloudinary({
+            cloud: {
+                cloudName: "dak-coffee-roasters"
+            }
+        });
+
+        return cloud.image(`/Products/Mains/${ this.product.images.main }`).toURL();
+    }
 
     constructor() { }
 
