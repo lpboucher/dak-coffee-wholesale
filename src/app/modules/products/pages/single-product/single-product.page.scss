@@ -1,0 +1,9 @@
+.loading-container {
+    @apply flex;
+    @apply pt-24 pl-40;
+}
+
+.loading-content-container {
+    @apply flex flex-col;
+    @apply pt-6 pl-6;
+}
