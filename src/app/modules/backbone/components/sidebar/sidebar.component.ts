@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
     }
 
     onCartWidgetClicked(): void {
-        console.log("Cart widget clicked.");
+        (window as any).Snipcart.api.theme.cart.open();
     }
 
     onLogoutClicked(): void {
