@@ -8,14 +8,7 @@
         <p *ngFor="let description of product.displayedDescription">{{description}}</p>
         <div class="product-card-body-price-container">
             <div class="product-card-body-price">{{product.price}}</div>
-            <button
-                class="product-card-body-add-to-cart snipcart-add-item"
-                [attr.data-item-id]="product.id"
-                [attr.data-item-url]="'/products/' + product.productType + '/' + product.slug"
-                [attr.data-item-name]="product.name"
-                [attr.data-item-price]="product.price">
-            Add to cart
-            </button>
+            <button [snipcartAdd]="product" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
     <div class="product-card-details-container">

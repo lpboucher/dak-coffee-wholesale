@@ -5,6 +5,8 @@ import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-w
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { WalletModalComponent } from '@shared/components/wallet-modal/wallet-modal.component';
 
+import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
+
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
 import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
@@ -16,6 +18,8 @@ export const componentDeclarations: any[] = [
     ToggleWidgetComponent,
     WidgetComponent,
     WalletModalComponent,
+
+    SnipcartAddDirective,
 
     ClampPipe,
     FilterPipe,
