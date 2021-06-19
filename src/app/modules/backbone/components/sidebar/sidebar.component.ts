@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
+import { ModalService } from "@core/views/modal.service";
+import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
 
 import { NAVIGATION } from "@utils/constants/navigation";
 
@@ -17,16 +19,6 @@ export class SidebarComponent implements OnInit {
     openLabel = "";
     priceTierActive$: Observable<boolean> = new Observable();
 
-    constructor(
-        private authService: AuthService,
-        private pricingTierService: PricingTierService,
-        private cartService: CartService,
-    ) {}
-
-    ngOnInit(): void {
-        this.priceTierActive$ = this.pricingTierService.isDiscountActive$;
-    }
-
     get cartTotal(): Observable<number> {
         return this.cartService.cartTotal$;
     }
@@ -35,12 +27,23 @@ export class SidebarComponent implements OnInit {
         return this.cartService.cartWeight$;
     }
 
+    constructor(
+        private authService: AuthService,
+        private pricingTierService: PricingTierService,
+        private cartService: CartService,
+        private modalService: ModalService<WalletModalComponent>
+    ) {}
+
+    ngOnInit(): void {
+        this.priceTierActive$ = this.pricingTierService.isDiscountActive$;
+    }
+
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
     }
 
     onWalletWidgetClicked(): void {
-        console.log("Wallet widget clicked.");
+        this.modalService.open(WalletModalComponent);
     }
 
     onCartWidgetClicked(): void {
