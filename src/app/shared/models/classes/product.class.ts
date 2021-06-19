@@ -1,5 +1,6 @@
 import { CollectionType } from "@shared/models/types/collection-type.type";
 import { ProductType } from "../types/product-type.type";
+import { ProductImages } from "../types/product-images.type";
 
 export abstract class Product {
     abstract productType: ProductType;
@@ -9,7 +10,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
-    images: { main: string | null, thumb: string | null } = { main: null, thumb: null };
+    images: ProductImages = { main: null, thumb: null };
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
