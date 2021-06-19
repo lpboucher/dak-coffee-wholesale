@@ -22,7 +22,7 @@ export class CoffeeApiService extends DataApiService<Coffee> {
     }
 
     getCoffee(slug: string): Observable<Coffee> {
-        return this.getOne(`coffee/${ slug }`)
+        return this.getOne(`coffee/${ slug }`);
     }
 
     getFeaturedCoffees(): Observable<Coffee[]> {

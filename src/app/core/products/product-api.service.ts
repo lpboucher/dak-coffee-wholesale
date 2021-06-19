@@ -46,15 +46,13 @@ export class ProductApiService extends DataApiService<Product> {
             );
     }
 
-    getProductsByType(productType?: ProductType | "all"): Observable<Product[]> {
-        const typeToProducts: Record<(ProductType | "all"), () => Observable<Product[]>> = {
-            "all": this.getProducts.bind(this),
-            "coffee": this.coffeeApiService.getCoffees.bind(this),
-            "subscription": () => of([]),
-            "merchandise": this.merchandiseApiService.getMerchandise.bind(this),
-            "equipment": () => of([]),
+    getProductsByType(productType: ProductType): Observable<Product[]> {
+        const typeToProducts: Record<ProductType, Observable<Product[]>> = {
+            coffee: this.coffeeApiService.getCoffees(),
+            merchandise: this.merchandiseApiService.getMerchandise(),
+            all: this.getProducts(),
         };
 
-        return typeToProducts[productType ?? "all"]();
+        return typeToProducts[productType] || this.getProducts();
     }
 }
