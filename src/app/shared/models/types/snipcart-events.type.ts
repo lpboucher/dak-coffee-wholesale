@@ -13,14 +13,3 @@ export type SnipcartEvents = {
     removedItemSubscription: () => void,
     orderCompletedSubscription: () => void,
 };
-
-export function defaultSnipcartEvents(): SnipcartEvents {
-    return {
-        snipcartInitializedSubscription: () => {},
-        addingItemSubscription: () => {},
-        addedItemSubscription: () => {},
-        updatedItemSubscription: () => {},
-        removedItemSubscription: () => {},
-        orderCompletedSubscription: () => {},
-    };
-}
