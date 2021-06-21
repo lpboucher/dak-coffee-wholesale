@@ -1,7 +1,7 @@
 <div *ngIf="product$ | async as p">
     <app-product-detail [product]="p"></app-product-detail>
     <p class="related-products-title">You may also like</p>
-    <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [mdColumnCount]=3 [gridGap]=10>
+    <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [gridGap]=2>
         <app-product-card
             *ngFor="let relatedProduct of relatedProducts"
             [product]="relatedProduct"

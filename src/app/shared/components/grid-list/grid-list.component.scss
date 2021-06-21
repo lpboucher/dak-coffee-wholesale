@@ -26,12 +26,6 @@ $maxGapSize: 10;
     }
 }
 
-@for $size from 1 through $maxColumnSize {
-    .md-columns-#{$size} {
-        @apply md:grid-cols-#{$size};
-    }
-}
-
 @for $count from 1 through $maxSpanCount {
     .item-span-#{$count} {
         ::ng-deep > * {
