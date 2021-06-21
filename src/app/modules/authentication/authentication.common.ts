@@ -1,8 +1,8 @@
 import { Routes } from "@angular/router";
 
-import { LoginPageComponent } from "@modules/login/pages/login/login.page";
+import { LoginPageComponent } from "@app/modules/authentication/pages/login/login.page";
 
-import { LoginComponent } from "@modules/login/components/login/login.component";
+import { LoginComponent } from "@app/modules/authentication/components/login/login.component";
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,

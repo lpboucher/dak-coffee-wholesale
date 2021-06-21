@@ -7,6 +7,6 @@ export const routes: Routes = [
     },
     {
         path: "auth",
-        loadChildren: () => import("@modules/login/login.module").then(m => m.LoginModule)
+        loadChildren: () => import("@modules/authentication/authentication.module").then(m => m.AuthenticationModule)
     },
 ];
