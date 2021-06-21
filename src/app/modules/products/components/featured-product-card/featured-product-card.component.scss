@@ -52,3 +52,17 @@
     @apply px-3 py-2;
     @apply bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
 }
+
+.skeleton-loader-container {
+    @apply flex;
+    @apply w-full;
+}
+
+.skeleton-loader-details {
+    @apply flex flex-col justify-evenly;
+    @apply w-full pl-2;
+}
+
+.skeleton-loader-buttons {
+    @apply flex flex-col justify-between;
+}

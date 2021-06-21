@@ -17,13 +17,64 @@
     </div>
 </ng-container>
 <ng-template #showLoader>
-    <ngx-skeleton-loader
-        count="1"
-        appearance="circle"
-        [theme]="{
-            'width': '100%',
-            'height': '150px',
-            'border-radius': '0.5rem'
-        }">
-    </ngx-skeleton-loader>
+    <div class="skeleton-loader-container">
+        <ngx-skeleton-loader
+            count="1"
+            appearance="circle"
+            [theme]="{
+                'width': '230px',
+                'height': '145px',
+                'border-radius': '0.5rem'
+            }">
+        </ngx-skeleton-loader>
+        <div class="skeleton-loader-details">
+            <ngx-skeleton-loader
+                count="1"
+                appearance="circle"
+                [theme]="{
+                    'width': '100px',
+                    'height': '20px',
+                    'border-radius': '0.5rem'
+                }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader
+                count="1"
+                appearance="circle"
+                [theme]="{
+                    'width': '100px',
+                    'height': '40px',
+                    'border-radius': '0.5rem'
+                }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader
+                count="1"
+                appearance="circle"
+                [theme]="{
+                    'width': '40px',
+                    'height': '40px',
+                    'border-radius': '0.5rem'
+                }">
+            </ngx-skeleton-loader>
+        </div>
+        <div class="skeleton-loader-buttons">
+            <ngx-skeleton-loader
+                count="1"
+                appearance="circle"
+                [theme]="{
+                    'width': '100px',
+                    'height': '40px',
+                    'border-radius': '0.5rem'
+                }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader
+                count="1"
+                appearance="circle"
+                [theme]="{
+                    'width': '100px',
+                    'height': '40px',
+                    'border-radius': '0.5rem'
+                }">
+            </ngx-skeleton-loader>
+        </div>
+    </div>
 </ng-template>
