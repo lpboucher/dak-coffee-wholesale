@@ -1,14 +1,16 @@
 <div class="toggle-container">
     <p class="toggle-header">{{ header }}</p>
     <div class="toggle-body">
-        <label class="toggle">
-            <input [checked]="isChecked" type="checkbox" class="toggle-input" (click)="doToggle()">
-            <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
-            <div class="toggle-slider">
-                <div class="toggle-slider-background"></div>
-                <div class="toggle-slider-dot"></div>
+        <form [formGroup]="toggleForm">
+            <div class="toggle" (click)="doToggle()">
+                <input type="checkbox" class="toggle-input" formControlName="toggle">
+                <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
+                <div class="toggle-slider">
+                    <div class="toggle-slider-background"></div>
+                    <div class="toggle-slider-dot"></div>
+                </div>
+                <div class="checked-option toggle-option">{{ checkedOption }}</div>
             </div>
-            <div class="checked-option toggle-option">{{ checkedOption }}</div>
-        </label>
+        </form>
     </div>
 </div>

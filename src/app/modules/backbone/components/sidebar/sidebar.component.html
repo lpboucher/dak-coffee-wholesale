@@ -13,7 +13,7 @@
         [header]="'Volume Discount'"
         [uncheckedOption]="'30%'"
         [checkedOption]="'45%'"
-        [isChecked]="(priceTierActive$ | async) || false"
+        [initialCheckboxState]="(priceTierActive$ | async) || false"
         (toggle)="onPricingToggled($event)"
     >
     </app-toggle-widget>
