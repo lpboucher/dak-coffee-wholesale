@@ -4,7 +4,7 @@ import { ModalService } from "@core/views/modal.service";
 import { CloudinaryImage } from "@cloudinary/base";
 
 import { Product } from "@shared/models/classes/product.class";
-import { GetNotifiedConfirmationModalComponent } from "@modules/products/components/get-notified-confirmation-modal/get-notified-confirmation-modal.component";
+import { NotificationModalComponent } from "@app/modules/products/components/notification-modal/notification-modal.component";
 
 @Component({
     selector: "app-featured-product-card",
@@ -21,9 +21,9 @@ export class FeaturedProductCardComponent {
         return new CloudinaryImage(url, cloudName).toURL();
     }
 
-    constructor(private modalService: ModalService<GetNotifiedConfirmationModalComponent>) { }
+    constructor(private modalService: ModalService<NotificationModalComponent>) { }
 
     async showModal(): Promise<void> {
-        this.modalService.open(GetNotifiedConfirmationModalComponent);
+        this.modalService.open(NotificationModalComponent);
     }
 }
