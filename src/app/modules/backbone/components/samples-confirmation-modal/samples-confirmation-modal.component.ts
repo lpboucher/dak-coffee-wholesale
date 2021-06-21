@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
 
-import { ModalComponent } from "@app/shared/components/modal/modal.component";
+import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Component({
     selector: "app-samples-confirmation-modal",
