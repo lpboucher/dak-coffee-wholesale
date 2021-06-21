@@ -14,7 +14,7 @@ export class FeaturedProductCardComponent {
 
     constructor(private modalService: ModalService<NotificationModalComponent>) { }
 
-    async showModal(): Promise<void> {
+    async onGetNotifiedClicked(): Promise<void> {
         this.modalService.open(NotificationModalComponent);
     }
 }
