@@ -106,12 +106,16 @@
     @apply w-5 h-5;
 }
 
-.loading-container {
+.skeleton-loader-container {
     @apply flex;
     @apply pt-24 pl-40;
 }
 
-.loading-content-container {
+.skeleton-loader-details-container {
     @apply flex flex-col;
-    @apply pt-6 pl-6;
+    @apply w-full ml-6 mr-40 mt-6;
+}
+
+.skeleton-loader-bar-container {
+    @apply flex justify-between mt-5;
 }
