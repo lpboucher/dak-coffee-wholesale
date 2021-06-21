@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { ModalService } from "@core/views/modal.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { GetNotifiedConfirmationModalComponent } from "@modules/products/components/get-notified-confirmation-modal/get-notified-confirmation-modal.component";
+import { NotificationModalComponent } from "@app/modules/products/components/notification-modal/notification-modal.component";
 
 @Component({
     selector: "app-featured-product-card",
@@ -12,9 +12,9 @@ import { GetNotifiedConfirmationModalComponent } from "@modules/products/compone
 export class FeaturedProductCardComponent {
     @Input() product!: Product;
 
-    constructor(private modalService: ModalService<GetNotifiedConfirmationModalComponent>) { }
+    constructor(private modalService: ModalService<NotificationModalComponent>) { }
 
     async showModal(): Promise<void> {
-        this.modalService.open(GetNotifiedConfirmationModalComponent);
+        this.modalService.open(NotificationModalComponent);
     }
 }

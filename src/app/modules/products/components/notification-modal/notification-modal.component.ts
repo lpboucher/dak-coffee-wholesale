@@ -2,11 +2,11 @@ import { Component, ViewChild } from "@angular/core";
 import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Component({
-    selector: "app-get-notified-confirmation-modal",
-    templateUrl: "./get-notified-confirmation-modal.component.html",
-    styleUrls: ["./get-notified-confirmation-modal.component.scss"]
+    selector: "app-notification-modal",
+    templateUrl: "./notification-modal.component.html",
+    styleUrls: ["./notification-modal.component.scss"]
 })
-export class GetNotifiedConfirmationModalComponent {
+export class NotificationModalComponent {
     @ViewChild("modal") modal: ModalComponent | undefined;
 
     constructor() {}
