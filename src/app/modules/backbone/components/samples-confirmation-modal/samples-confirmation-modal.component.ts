@@ -1,4 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+
 import { ModalComponent } from "@app/shared/components/modal/modal.component";
 
 @Component({
@@ -9,14 +11,12 @@ import { ModalComponent } from "@app/shared/components/modal/modal.component";
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalComponent | undefined = undefined;
     selectionOptions: string[] = ["Filter", "Espresso", "Both"];
-    selection: string | undefined;
     submissionAttempted: boolean = false;
+    selectionForm = this.fb.group({
+        selection: new FormControl("", Validators.required),
+    });
 
-    constructor() { }
-
-    onSelection(selection: string): void {
-        this.selection = selection;
-    }
+    constructor(private fb: FormBuilder) { }
 
     onCancel(): void {
         this.close();
@@ -25,8 +25,8 @@ export class SamplesConfirmationModalComponent {
     onConfirm(): void {
         this.submissionAttempted = true;
 
-        if (this.selection != undefined) {
-            console.log(this.selection);
+        if (this.selectionForm.valid) {
+            console.log(this.selectionForm.get("selection")!.value);
             this.close();
         }
     }

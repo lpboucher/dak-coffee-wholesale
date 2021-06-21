@@ -38,9 +38,11 @@
     @apply modal-body-content-text;
 }
 
-.modal-body-content-selection-item {
+.modal-body-content-selection-label {
     @apply flex items-center;
     @apply ml-6 p-1;
+    @apply cursor-pointer;
+    @apply modal-body-content-text;
 }
 
 .modal-body-content-selection-input {
@@ -53,27 +55,15 @@
     @apply transform scale-125;
 }
 
-.modal-body-content-selection-label {
-    @apply flex items-center;
-    @apply cursor-pointer;
-    @apply modal-body-content-text;
-}
-
 .modal-body-content-selection-input:checked + .modal-body-content-selection-label {
     @apply text-blue-500 font-medium;
 }
 
 .modal-body-no-selection {
-    @apply opacity-0 h-0;
-
     @apply modal-body-content-text;
     @apply text-red-500;
 
     @apply transition-all transition duration-200;
-}
-
-.modal-body-no-selection-show {
-    @apply opacity-100 h-auto;
 }
 
 .modal-footer {
