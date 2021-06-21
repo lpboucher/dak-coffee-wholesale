@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, Validators } from "@angular/forms";
 
 import { ModalComponent } from "@shared/components/modal/modal.component";
 
+type SelectionOption = "Filter" | "Espresso" | "Both";
+
 @Component({
     selector: "app-samples-confirmation-modal",
     templateUrl: "./samples-confirmation-modal.component.html",
@@ -10,7 +12,7 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
 })
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalComponent | undefined;
-    selectionOptions: string[] = ["Filter", "Espresso", "Both"];
+    selectionOptions: SelectionOption[] = ["Filter", "Espresso", "Both"];
     submissionAttempted: boolean = false;
     selectionForm = this.fb.group({
         selection: new FormControl("", Validators.required),
