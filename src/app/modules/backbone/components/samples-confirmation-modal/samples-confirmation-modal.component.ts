@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { ModalComponent } from "@shared/components/modals/modal.component";
 import { Roast } from "@shared/models/types/roast.type";
 
 @Component({
