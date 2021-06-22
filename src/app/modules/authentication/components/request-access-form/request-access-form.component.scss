@@ -37,11 +37,15 @@
 .request-access-input {
     @apply block;
     @apply w-full py-2 px-1;
-    @apply appearance-none border-b-2 border-gray-100;
+    @apply border-b-2 border-gray-100;
     @apply text-gray-800;
 
     @apply focus:text-gray-500;
     @apply focus:outline-none focus:border-gray-200;
+}
+
+select:invalid {
+    @apply text-gray-400;
 }
 
 .request-access-submit-button {

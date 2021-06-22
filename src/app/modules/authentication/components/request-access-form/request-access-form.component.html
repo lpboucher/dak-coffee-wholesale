@@ -27,7 +27,10 @@
 
                 <label class="request-access-input-title">
                     Sector
-                    <input formControlName="sector" type="text" placeholder="sector" class="request-access-input" />
+                    <select formControlName="sector" class="request-access-input" required>
+                        <option value="" disabled selected hidden class="request-access-input-text">Select sector</option>
+                        <option *ngFor="let option of sectorOptions" value="{{ option }}">{{ option }}</option>
+                    </select>
                 </label>
                 <div *ngIf="hasErrors(sectorControl)" class="request-access-submission-error-message">Please enter a business sector.</div>
 

@@ -3,12 +3,16 @@ import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 
 import { AuthService } from "@core/authentication/authentication.service";
 
+import { Sector } from "@shared/models/types/sector-type.type";
+
 @Component({
     selector: "app-request-access-form",
     templateUrl: "./request-access-form.component.html",
     styleUrls: ["./request-access-form.component.scss"]
 })
 export class RequestAccessFormComponent {
+    private submissionAttempted = false;
+    sectorOptions: Sector[] = ["cafe", "office", "reseller", "restaurant", "subscription box"];
 
     requestAccessForm = this.fb.group({
         email: ["", [Validators.required, Validators.email]],
@@ -54,6 +58,8 @@ export class RequestAccessFormComponent {
     ) {}
 
     onSubmitRegistration(): void {
+        this.submissionAttempted = true;
+
         if (this.requestAccessForm.invalid) { return; }
 
         this.authService.register({
@@ -67,7 +73,9 @@ export class RequestAccessFormComponent {
     }
 
     hasErrors(control: AbstractControl): boolean {
-        return control.invalid && (control.dirty || control.touched);
+        return control.invalid
+            && ((control.dirty || control.touched)
+                || this.submissionAttempted);
     }
 
     private control(name: string): AbstractControl | null {
