@@ -3,7 +3,7 @@ import { GridListComponent } from "@shared/components/grid-list/grid-list.compon
 import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
-import { WalletModalComponent } from '@shared/components/wallet-modal/wallet-modal.component';
+import { WalletModalComponent } from '@shared/components/modals/content/wallet-modal/wallet-modal.component';
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
 
