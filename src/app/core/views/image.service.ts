@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CloudinaryImage } from "@cloudinary/base";
 
-const CLOUD_NAME = { cloudName: "dak-coffee-roasters" };
+import { environment as config } from "@env";
 
 @Injectable({
     providedIn: "root"
@@ -11,7 +11,7 @@ export class ImageService {
     constructor() { }
 
     getImageUrl(path: string): string {
-        return new CloudinaryImage(path, CLOUD_NAME).toURL();
+        return new CloudinaryImage(path, config.cloudinaryName).toURL();
     }
 
     getProductThumbUrl(basename: string): string {
