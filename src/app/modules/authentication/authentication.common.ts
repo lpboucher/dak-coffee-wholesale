@@ -28,6 +28,6 @@ export const routes: Routes = [
     },
     {
         path: "register",
-        component: RequestAccessFormComponent,
+        component: RequestAccessPage,
     }
 ];
