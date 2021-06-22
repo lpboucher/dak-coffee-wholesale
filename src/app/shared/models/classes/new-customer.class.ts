@@ -1,4 +1,4 @@
-type Sector = "cafe" | "restaurant" | "office" | "subscription box" | "reseller";
+import { Sector } from "@shared/models/types/sector-type.type";
 
 export class NewCustomer {
     contactName: string = "";
