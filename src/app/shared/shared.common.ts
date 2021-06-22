@@ -1,6 +1,6 @@
 import { FilterComponent } from "@shared/components/filter/filter.component";
 import { GridListComponent } from "@shared/components/grid-list/grid-list.component";
-import { ModalComponent } from "@app/shared/components/modals/modal.component";
+import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { WalletModalComponent } from '@shared/components/wallet-modal/wallet-modal.component';
@@ -14,7 +14,7 @@ import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 export const componentDeclarations: any[] = [
     FilterComponent,
     GridListComponent,
-    ModalComponent,
+    ModalBackboneComponent,
     ToggleWidgetComponent,
     WidgetComponent,
     WalletModalComponent,

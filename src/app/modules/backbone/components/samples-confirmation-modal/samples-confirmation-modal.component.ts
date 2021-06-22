@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { ModalComponent } from "@app/shared/components/modals/modal.component";
+import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
 
 @Component({
     selector: "app-samples-confirmation-modal",
@@ -7,7 +7,7 @@ import { ModalComponent } from "@app/shared/components/modals/modal.component";
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
 export class SamplesConfirmationModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined = undefined;
+    @ViewChild("modal") modal: ModalBackboneComponent | undefined = undefined;
 
     constructor() { }
 
