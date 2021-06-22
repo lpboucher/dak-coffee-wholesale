@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { ToastrModule } from "ngx-toastr";
+import { CloudinaryModule } from "@cloudinary/angular";
 
 import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor";
 import { throwIfAlreadyLoaded } from "@core/guards/module-import.guard";
@@ -13,6 +14,7 @@ import { throwIfAlreadyLoaded } from "@core/guards/module-import.guard";
         CommonModule,
         HttpClientModule,
         ToastrModule.forRoot(),
+        CloudinaryModule
     ],
     providers: [
         {

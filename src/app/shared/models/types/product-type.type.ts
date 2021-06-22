@@ -1,1 +1,5 @@
-export type ProductType = "coffee" | "subscription" | "merchandise" | "equipment";
+export type ProductTypeAll = "all";
+
+export type ProductTypeUnique = "coffee" | "merchandise";
+
+export type ProductType = ProductTypeAll | ProductTypeUnique;

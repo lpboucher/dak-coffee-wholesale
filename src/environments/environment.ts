@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backendURL: "http://127.0.0.1:4200/api/"
+  backendURL: "http://127.0.0.1:4200/api/",
+  cloudinaryCloudName: "dak-coffee-roasters",
 };
 
 /*
