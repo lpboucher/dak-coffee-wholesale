@@ -17,4 +17,8 @@ export class ImageService {
     getProductThumbUrl(basename: string): string {
         return this.getImageUrl(`/Products/Thumbs/${ basename }`);
     }
+
+    getProductMainUrl(basename: string): string {
+        return this.getImageUrl(`/Products/Mains/${ basename }`);
+    }
 }
