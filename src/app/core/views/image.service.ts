@@ -10,8 +10,8 @@ export class ImageService {
 
     constructor() { }
 
-    getImageUrl(path: string): string {
-        return new CloudinaryImage(path, config.cloudinaryName).toURL();
+    private getImageUrl(path: string): string {
+        return new CloudinaryImage(path, {cloudName: config.cloudinaryCloudName}).toURL();
     }
 
     getProductThumbUrl(basename: string): string {
