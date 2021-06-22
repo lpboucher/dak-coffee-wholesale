@@ -1,9 +1,8 @@
 import { FilterComponent } from "@shared/components/filter/filter.component";
 import { GridListComponent } from "@shared/components/grid-list/grid-list.component";
-import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
-import { WalletModalComponent } from '@shared/components/modals/content/wallet-modal/wallet-modal.component';
+import { ModalBackboneComponent, WalletModalComponent } from "@shared/components/modals"
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
 
