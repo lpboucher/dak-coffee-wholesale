@@ -5,6 +5,7 @@ import { RequestAccessPageComponent } from "@modules/authentication/pages/reques
 
 import { LoginComponent } from "@modules/authentication/components/login/login.component";
 import { RequestAccessFormComponent } from "@modules/authentication/components/request-access-form/request-access-form.component";
+import { RequestAccessStepsComponent } from "@modules/authentication/components/request-access-steps/request-access-steps.component";
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,
@@ -14,6 +15,7 @@ export const pageDeclarations: any[] = [
 export const componentDeclarations: any[] = [
     LoginComponent,
     RequestAccessFormComponent,
+    RequestAccessStepsComponent,
 ];
 
 export const providerDeclarations: any[] = [
