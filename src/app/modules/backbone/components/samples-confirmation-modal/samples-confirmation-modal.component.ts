@@ -1,7 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
-import { ModalComponent } from "@shared/components/modals/modal.component";
+import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
+
 import { Roast } from "@shared/models/types/roast.type";
 
 @Component({
@@ -10,7 +11,7 @@ import { Roast } from "@shared/models/types/roast.type";
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
 export class SamplesConfirmationModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined;
+    @ViewChild("modal") modal: ModalBackboneComponent | undefined = undefined;
     selectionOptions: Roast[] = ["Filter", "Espresso", "Both"];
     submissionAttempted: boolean = false;
     sampleSelectionForm = this.fb.group({
