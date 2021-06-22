@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
-import { ModalBackboneComponent } from "@app/shared/components/modals/backbone/modal-backbone.component";
+import { ModalBackboneComponent } from "@shared/components/modals";
 
 import { Roast } from "@shared/models/types/roast.type";
 
