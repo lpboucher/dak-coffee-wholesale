@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 
 import { AuthService } from "@core/authentication/authentication.service";
 
@@ -14,15 +14,20 @@ export class RequestAccessFormComponent {
     private submissionAttempted = false;
     sectorOptions: Sector[] = ["cafe", "office", "reseller", "restaurant", "subscription box"];
 
-    requestAccessForm = this.fb.group({
-        email: ["", [Validators.required, Validators.email]],
-        password: ["", [Validators.required, Validators.minLength(8)]],
-        passwordConfirm: ["", Validators.required],
-        contactName: ["", Validators.required],
-        businessName: ["", Validators.required],
-        sector: ["", Validators.required],
-        vatNumber: [""],
-    });
+    requestAccessForm = this.fb.group(
+        {
+            email: ["", [Validators.required, Validators.email]],
+            password: ["", [Validators.required, Validators.minLength(8)]],
+            passwordConfirm: ["", Validators.required],
+            contactName: ["", Validators.required],
+            businessName: ["", Validators.required],
+            sector: ["", Validators.required],
+            vatNumber: [""],
+        },
+        {
+            validators: [this.matchPasswordsValidator()],
+        }
+    );
 
     get contactNameControl(): AbstractControl {
         return this.control("contactName")!;
@@ -73,12 +78,34 @@ export class RequestAccessFormComponent {
     }
 
     hasErrors(control: AbstractControl): boolean {
-        return control.invalid
-            && ((control.dirty || control.touched)
-                || this.submissionAttempted);
+        return control.invalid && this.shouldShowErrors(control);
+    }
+
+    hasUnmatchedPasswords(): boolean {
+        const errors = this.requestAccessForm.errors;
+        return errors != null
+            && errors.hasOwnProperty("notMatching")
+            && errors.notMatching === true
+            && this.shouldShowErrors(this.passwordConfirmControl);
+    }
+
+    private shouldShowErrors(control: AbstractControl): boolean {
+        return control.dirty || control.touched || this.submissionAttempted;
     }
 
     private control(name: string): AbstractControl | null {
         return this.requestAccessForm.get(name);
+    }
+
+    private matchPasswordsValidator(): ValidatorFn {
+        return (formGroup: AbstractControl): ValidationErrors | null => {
+            const passwordControlValue = formGroup.get("password")?.value;
+            const passwordConfirmControlValue = formGroup.get("passwordConfirm")?.value;
+
+            if (passwordControlValue == null || passwordConfirmControlValue == null) { return null; }
+
+            const passwordsMatch = passwordControlValue === passwordConfirmControlValue;
+            return passwordsMatch ? null : { notMatching: true };
+        };
     }
 }
