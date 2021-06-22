@@ -28,7 +28,7 @@
                 <label class="request-access-input-title">
                     Sector
                     <select formControlName="sector" class="request-access-input" required>
-                        <option value="" disabled selected hidden class="request-access-input-text">Select sector</option>
+                        <option value="" disabled selected hidden>Select sector</option>
                         <option *ngFor="let option of sectorOptions" value="{{ option }}">{{ option }}</option>
                     </select>
                 </label>
