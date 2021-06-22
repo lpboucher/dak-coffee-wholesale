@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { ModalService } from "@app/core/views/modal.service";
 
-import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
+import { SamplesConfirmationModalComponent } from "@shared/components/modals/content/samples-confirmation-modal/samples-confirmation-modal.component";
 
 @Component({
     selector: "app-floating-action",
