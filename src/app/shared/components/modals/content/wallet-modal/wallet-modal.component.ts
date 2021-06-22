@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { ModalBackboneComponent } from "@app/shared/components/modals";
+import { ModalBackboneComponent } from "@shared/components/modals";
 
 @Component({
     selector: "app-wallet-modal",
