@@ -60,18 +60,3 @@
     @apply mr-2;
     @apply text-gray-900;
 }
-
-.skeleton-loader-details {
-    @apply flex flex-col;
-    @apply pl-2;
-}
-
-.skeleton-loader-buttons {
-    @apply flex justify-between;
-    @apply px-2;
-}
-
-.skeleton-loader-footer {
-    @apply flex flex-col;
-    @apply pl-2 pt-4;
-}
