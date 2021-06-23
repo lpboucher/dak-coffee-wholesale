@@ -8,6 +8,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { NavItemComponent } from "./components/nav-item/nav-item.component";
 import { FloatingActionComponent } from "./components/floating-action/floating-action.component";
 import { SamplesConfirmationModalComponent } from "./components/samples-confirmation-modal/samples-confirmation-modal.component";
+import { HeaderComponent } from "@modules/backbone/components/header/header.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -19,6 +20,7 @@ export const componentDeclarations: any[] = [
     NavItemComponent,
     FloatingActionComponent,
     SamplesConfirmationModalComponent,
+    HeaderComponent,
 ];
 
 export const routes: Routes = [
