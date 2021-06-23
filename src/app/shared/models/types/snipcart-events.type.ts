@@ -6,21 +6,10 @@ type SnipcartMetaEventType = "language.updated" | "snipcart.initialized" | "snip
 export type SnipcartEventType = SnipcartItemEventType | SnipcartCartEventType | SnipcartCustomerEventType | SnipcartMetaEventType;
 
 export type SnipcartEvents = {
-    snipcartInitializedSubscription: () => void,
+    cartStateListener: () => void,
     addingItemSubscription: () => void,
     addedItemSubscription: () => void,
     updatedItemSubscription: () => void,
     removedItemSubscription: () => void,
     orderCompletedSubscription: () => void,
 };
-
-export function defaultSnipcartEvents(): SnipcartEvents {
-    return {
-        snipcartInitializedSubscription: () => {},
-        addingItemSubscription: () => {},
-        addedItemSubscription: () => {},
-        updatedItemSubscription: () => {},
-        removedItemSubscription: () => {},
-        orderCompletedSubscription: () => {},
-    };
-}

@@ -10,8 +10,13 @@ export class SnipcartService {
 
     constructor(private cartService: CartService) {}
 
-    initialiseCartService(): () => {} {
-        return this.registerSnipcartEvent("snipcart.initialized", (_) => this.cartService.update());
+    cartStateListener(): () => {} {
+        const snipcart = (window as any).Snipcart;
+
+        return snipcart.store.subscribe(() => {
+            const { cart } = snipcart.store.getState();
+            this.cartService.updateCart(cart.total, cart.items.items);
+        });
     }
 
     addItemAddingListener(): () => {} {
