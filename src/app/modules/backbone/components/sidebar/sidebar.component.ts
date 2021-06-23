@@ -21,11 +21,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
     priceTierActive = false;
 
     get cartTotal(): Observable<number> {
-        return this.cartService.cartTotal$;
+        return this.cartService.currentCartTotal$;
     }
 
     get cartWeight(): Observable<number> {
-        return this.cartService.cartWeight$;
+        return this.cartService.currentCartWeight$;
     }
 
     constructor(
