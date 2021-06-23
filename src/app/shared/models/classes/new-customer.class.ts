@@ -1,32 +1,38 @@
 import { Sector } from "@shared/models/types/sector-type.type";
 
 export class NewCustomer {
-    contactName: string = "";
-    businessName: string = "";
-    email: string = "";
-    password: string = "";
-    sector: Sector | undefined;
-    vatNumber: string | undefined;
+    contactName: string | null = null;
+    businessName: string | null = null;
+    email: string | null = null;
+    password: string | null = null;
+    sector: Sector | null = null;
+    vatNumber: string | null = null;
 
-    constructor(
-        contactName: string,
-        businessName: string,
-        email: string,
-        password: string,
-        sector?: Sector,
-        vatNumber?: string,
-    ) {
-        this.contactName = contactName;
-        this.businessName = businessName;
-        this.email = email;
-        this.password = password;
+    constructor(newCustomerShape?: Partial<NewCustomer>) {
+        if (newCustomerShape != null) {
+            if (newCustomerShape.contactName != null) {
+                this.contactName = newCustomerShape.contactName;
+            }
 
-        if (sector != null) {
-            this.sector = sector;
-        }
+            if (newCustomerShape.businessName != null) {
+                this.businessName = newCustomerShape.businessName;
+            }
 
-        if (vatNumber != null) {
-            this.vatNumber = vatNumber;
+            if (newCustomerShape.email != null) {
+                this.email = newCustomerShape.email;
+            }
+
+            if (newCustomerShape.password != null) {
+                this.password = newCustomerShape.password;
+            }
+
+            if (newCustomerShape.sector != null) {
+                this.sector = newCustomerShape.sector;
+            }
+
+            if (newCustomerShape.vatNumber != null) {
+                this.vatNumber = newCustomerShape.vatNumber;
+            }
         }
     }
 }
