@@ -4,7 +4,7 @@
             <app-featured-product-card *ngFor="let product of featuredProducts" [product]="product"></app-featured-product-card>
         </ng-container>
         <ng-template #featuredProductsLoading>
-            <app-featured-product-card *ngFor="let _ of [].constructor(2)" [product]="undefined"></app-featured-product-card>
+            <app-featured-product-card-loader *ngFor="let _ of [].constructor(2)"></app-featured-product-card-loader>
         </ng-template>
     </app-grid-list>
     <app-grid-list [gridGap]=4>
