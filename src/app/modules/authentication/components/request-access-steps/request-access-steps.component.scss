@@ -1,0 +1,55 @@
+.request-access-steps-wrapper {
+    @apply flex place-content-center;
+}
+
+.request-access-steps-container {
+    @apply w-8/12;
+
+    @apply md:w-10/12 lg:w-full;
+    @apply sm:p-0;
+}
+
+.request-access-steps-item-container {
+    @apply flex relative;
+    @apply pb-12;
+}
+
+.request-access-steps-item-container:last-child {
+    @apply pb-0;
+}
+
+.request-access-steps-item-bar-container {
+    @apply flex items-center justify-center absolute;
+    @apply h-full w-10;
+    @apply inset-0;
+}
+
+.request-access-steps-item-bar {
+    @apply h-full w-1;
+    @apply bg-gray-200;
+    @apply pointer-events-none;
+}
+
+.request-access-steps-item-image-container {
+    @apply flex-shrink-0 inline-flex items-center justify-center relative;
+    @apply w-10 h-10 z-10;
+    @apply rounded-full bg-indigo-500 text-white;
+}
+
+.request-access-steps-item-image {
+    @apply w-5 h-5;
+}
+
+.request-access-steps-item-content-container {
+    @apply flex-grow;
+    @apply pl-4;
+}
+
+.request-access-steps-item-content-title {
+    @apply mb-1;
+    @apply font-medium text-sm text-gray-900 tracking-wider;
+}
+
+.request-access-steps-item-content-text {
+    @apply leading-relaxed;
+}
