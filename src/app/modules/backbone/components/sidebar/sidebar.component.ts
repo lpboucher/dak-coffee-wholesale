@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, OnDestroy } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 
 import { AuthService } from "@core/authentication/authentication.service";
@@ -15,10 +15,10 @@ import { NAVIGATION } from "@utils/constants/navigation";
   styleUrls: ["./sidebar.component.scss"]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
+    protected subscriptions: Subscription = new Subscription();
     navigation = NAVIGATION;
     openLabel = "";
     priceTierActive = false;
-    private subscriptions: Subscription = new Subscription();
 
     get cartTotal(): Observable<number> {
         return this.cartService.cartTotal$;
@@ -37,8 +37,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.subscriptions.add(
-            this.pricingTierService.isDiscountActive$.subscribe(value => {
+        this.subscriptions.add(this.pricingTierService.isDiscountActive$
+            .subscribe((value) => {
                 this.priceTierActive = value;
                 this.changeDetectorRef.detectChanges();
             })
