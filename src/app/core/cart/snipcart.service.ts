@@ -1,17 +1,34 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 
 import { CartService } from "@core/cart/cart.service";
 import { SnipcartEventType } from "@shared/models/types/snipcart-events.type";
+import { Subscription } from "rxjs";
 
 @Injectable({
     providedIn: "root"
 })
-export class SnipcartService {
+export class SnipcartService implements OnDestroy {
+    private subscriptions: Subscription = new Subscription();
 
     constructor(private cartService: CartService) {}
 
-    initialiseCartService(): () => {} {
-        return this.registerSnipcartEvent("snipcart.initialized", (_) => this.cartService.updateCart());
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
+
+    initialiseCartService(): void {
+        const snipcart = (window as any).Snipcart;
+
+        this.subscriptions.add(
+            snipcart.store.subscribe(() => {
+                const state = snipcart.store.getState();
+
+                this.cartService.updateCart(
+                    state.cart.total,
+                    state.cart.items.items
+                );
+            })
+        );
     }
 
     addItemAddingListener(): () => {} {

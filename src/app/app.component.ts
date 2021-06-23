@@ -16,13 +16,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(private snipcartService: SnipcartService) {
         this.subscriptions.add(fromEvent(document, "snipcart.ready")
-            .subscribe(_ => this.cartEvents = {
-                snipcartInitializedSubscription: this.snipcartService.initialiseCartService(),
-                addingItemSubscription: this.snipcartService.addItemAddingListener(),
-                addedItemSubscription: this.snipcartService.addItemAddedListener(),
-                updatedItemSubscription: this.snipcartService.addItemUpdatedListener(),
-                removedItemSubscription: this.snipcartService.addItemRemovedListener(),
-                orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
+            .subscribe(_ => {
+                this.snipcartService.initialiseCartService();
+
+                this.cartEvents = {
+                    addingItemSubscription: this.snipcartService.addItemAddingListener(),
+                    addedItemSubscription: this.snipcartService.addItemAddedListener(),
+                    updatedItemSubscription: this.snipcartService.addItemUpdatedListener(),
+                    removedItemSubscription: this.snipcartService.addItemRemovedListener(),
+                    orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
+                }
             })
         );
     }
@@ -32,7 +35,6 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if (this.cartEvents == null) { return; }
 
-        this.cartEvents.snipcartInitializedSubscription();
         this.cartEvents.addingItemSubscription();
         this.cartEvents.addedItemSubscription();
         this.cartEvents.updatedItemSubscription();

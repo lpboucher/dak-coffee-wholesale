@@ -1,11 +1,10 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
-export class CartService implements OnDestroy {
-    private subscriptions: Subscription = new Subscription();
+export class CartService {
     private cartTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
     private cartWeight$: BehaviorSubject<number> = new BehaviorSubject(0);
 
@@ -19,54 +18,42 @@ export class CartService implements OnDestroy {
 
     constructor() {}
 
-    ngOnDestroy() {
-        this.subscriptions.unsubscribe();
-    }
-
     addingItem(item: any) {
-        this.updateCart();
         console.log(`Adding: ${ item }`);
     }
 
     addedItem(item: any) {
-        this.updateCart();
         console.log(`Added: ${ item }`);
     }
 
     updatedItem(item: any) {
-        this.updateCart();
         console.log(`Updated: ${ item }`);
     }
 
     removedItem(item: any) {
-        this.updateCart();
         console.log(`Removed: ${ item }`);
     }
 
     orderCompleted(cart: any) {
-        this.updateCart();
         console.log(`Order completed: ${ cart }`);
     }
 
-    updateCart(): void {
-        setTimeout(() => {
-            this.updateCartTotal();
-            this.updateCartWeight();
-        });
+    updateCart(total: number, items: any): void {
+        this.updateCartTotal(total);
+        this.updateCartWeight(items);
     }
 
-    private updateCartTotal(): void {
-        const newTotal = (window as any).Snipcart.store.getState().cart.total;
-        this.cartTotal$.next(newTotal);
+    private updateCartTotal(total: number): void {
+        this.cartTotal$.next(total);
     }
 
-    private updateCartWeight(): void {
-        this.cartWeight$.next(this.evaluateCartWeight());
+    private updateCartWeight(items: any): void {
+        const newWeight = this.evaluateCartWeight(items);
+        this.cartWeight$.next(newWeight);
     }
 
-    private evaluateCartWeight(): number {
-        const cartItems = (window as any).Snipcart.store.getState().cart.items.items;
-        return cartItems
+    private evaluateCartWeight(items: any): number {
+        return items
             .filter((item: any) => item?.dimensions?.weight != null && item?.quantity != null)
             .reduce((sum: number, item: any) => sum + (item.dimensions.weight * item.quantity), 0);
     }
