@@ -1,21 +1,15 @@
-.request-access-background {
-    @apply flex flex-col;
-    @apply h-screen;
-    @apply bg-gray-100;
-}
-
 .request-access-container {
     @apply grid place-items-center;
-    @apply mx-2 my-20;
-
-    @apply sm:my-auto;
+    @apply mx-2;
 }
 
 .request-access-card {
-    @apply w-11/12 p-12 px-6 py-10;
+    @apply w-10/12;
+    @apply p-12 px-6 py-10;
     @apply bg-white rounded-lg shadow-md;
 
-    @apply sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6;
+    @apply md:w-11/12 lg:w-9/12 2xl:w-8/12;
+    @apply sm:px-10 sm:py-6;
     @apply lg:shadow-lg;
 }
 

@@ -1,62 +1,60 @@
-<div class="request-access-background">
-    <div class="request-access-container">
-        <div class="request-access-card">
-            <h1 class="request-access-title">Request Access</h1>
+<div class="request-access-container">
+    <div class="request-access-card">
+        <h1 class="request-access-title">Request Access</h1>
 
-            <form [formGroup]="requestAccessForm" (ngSubmit)="onSubmitRegistration()" class="request-access-form">
-                <label class="request-access-input-title">
-                    E-mail
-                    <input formControlName="email" type="text" placeholder="e-mail address" class="request-access-input" />
-                </label>
-                <div *ngIf="hasErrors(emailControl)" class="request-access-submission-error-message">
-                    <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
-                    <p *ngIf="emailControl.errors?.email">Please enter a valid email address.</p>
-                </div>
+        <form [formGroup]="requestAccessForm" (ngSubmit)="onSubmitRegistration()" class="request-access-form">
+            <label class="request-access-input-title">
+                E-mail
+                <input formControlName="email" type="text" placeholder="e-mail address" class="request-access-input" />
+            </label>
+            <div *ngIf="hasErrors(emailControl)" class="request-access-submission-error-message">
+                <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
+                <p *ngIf="emailControl.errors?.email">Please enter a valid email address.</p>
+            </div>
 
-                <label class="request-access-input-title">
-                    Contact Name
-                    <input formControlName="contactName" type="text" placeholder="contact name" class="request-access-input" />
-                </label>
-                <div *ngIf="hasErrors(contactNameControl)" class="request-access-submission-error-message">Please enter a contact name.</div>
+            <label class="request-access-input-title">
+                Contact Name
+                <input formControlName="contactName" type="text" placeholder="contact name" class="request-access-input" />
+            </label>
+            <div *ngIf="hasErrors(contactNameControl)" class="request-access-submission-error-message">Please enter a contact name.</div>
 
-                <label class="request-access-input-title">
-                    Business Name
-                    <input formControlName="businessName" type="text" placeholder="business name" class="request-access-input" />
-                </label>
-                <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">Please enter a business name.</div>
+            <label class="request-access-input-title">
+                Business Name
+                <input formControlName="businessName" type="text" placeholder="business name" class="request-access-input" />
+            </label>
+            <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">Please enter a business name.</div>
 
-                <label class="request-access-input-title">
-                    Sector
-                    <select formControlName="sector" class="request-access-input" required>
-                        <option value="" disabled selected hidden>Select sector</option>
-                        <option *ngFor="let option of sectorOptions" value="{{ option }}">{{ option }}</option>
-                    </select>
-                </label>
-                <div *ngIf="hasErrors(sectorControl)" class="request-access-submission-error-message">Please enter a business sector.</div>
+            <label class="request-access-input-title">
+                Sector
+                <select formControlName="sector" class="request-access-input" required>
+                    <option value="" disabled selected hidden>Select sector</option>
+                    <option *ngFor="let option of sectorOptions" value="{{ option }}">{{ option }}</option>
+                </select>
+            </label>
+            <div *ngIf="hasErrors(sectorControl)" class="request-access-submission-error-message">Please enter a business sector.</div>
 
-                <label class="request-access-input-title">
-                    VAT Number (optional)
-                    <input formControlName="vatNumber" type="text" placeholder="VAT number (optional)" class="request-access-input" />
-                </label>
-                <div *ngIf="hasErrors(vatNumberControl)" class="request-access-submission-error-message">Please enter a valid VAT number.</div>
+            <label class="request-access-input-title">
+                VAT Number (optional)
+                <input formControlName="vatNumber" type="text" placeholder="VAT number (optional)" class="request-access-input" />
+            </label>
+            <div *ngIf="hasErrors(vatNumberControl)" class="request-access-submission-error-message">Please enter a valid VAT number.</div>
 
-                <label class="request-access-input-title">
-                    Password
-                    <input formControlName="password" type="password" placeholder="password" class="request-access-input" />
-                </label>
-                <div *ngIf="hasErrors(passwordControl)" class="request-access-submission-error-message">
-                    <p *ngIf="passwordControl.errors?.required">Please enter a password.</p>
-                    <p *ngIf="passwordControl.errors?.minlength">Password must be at least 8 characters.</p>
-                </div>
+            <label class="request-access-input-title">
+                Password
+                <input formControlName="password" type="password" placeholder="password" class="request-access-input" />
+            </label>
+            <div *ngIf="hasErrors(passwordControl)" class="request-access-submission-error-message">
+                <p *ngIf="passwordControl.errors?.required">Please enter a password.</p>
+                <p *ngIf="passwordControl.errors?.minlength">Password must be at least 8 characters.</p>
+            </div>
 
-                <label class="request-access-input-title">
-                    Confirm Password
-                    <input formControlName="passwordConfirm" type="password" placeholder="password" class="request-access-input" />
-                </label>
-                <div *ngIf="hasUnmatchedPasswords()" class="request-access-submission-error-message">Passwords do not match.</div>
+            <label class="request-access-input-title">
+                Confirm Password
+                <input formControlName="passwordConfirm" type="password" placeholder="password" class="request-access-input" />
+            </label>
+            <div *ngIf="hasUnmatchedPasswords()" class="request-access-submission-error-message">Passwords do not match.</div>
 
-                <button class="request-access-submit-button">Submit</button>
-            </form>
-        </div>
+            <button class="request-access-submit-button">Submit</button>
+        </form>
     </div>
 </div>
