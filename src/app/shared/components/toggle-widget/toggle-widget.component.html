@@ -3,7 +3,7 @@
     <div class="toggle-body">
         <form [formGroup]="toggleForm">
             <div class="toggle" (click)="doToggle()">
-                <input type="checkbox" class="toggle-input" formControlName="toggle">
+                <input type="checkbox" class="toggle-input" formControlName="toggle" [checked]="isChecked">
                 <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
                 <div class="toggle-slider">
                     <div class="toggle-slider-background"></div>
