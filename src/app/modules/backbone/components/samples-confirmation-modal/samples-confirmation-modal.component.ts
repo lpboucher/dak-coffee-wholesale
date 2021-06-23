@@ -1,5 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
-import { ModalComponent } from "@app/shared/components/modal/modal.component";
+import { FormBuilder, Validators } from "@angular/forms";
+
+import { ModalComponent } from "@shared/components/modal/modal.component";
+import { Roast } from "@shared/models/types/roast.type";
 
 @Component({
     selector: "app-samples-confirmation-modal",
@@ -7,22 +10,29 @@ import { ModalComponent } from "@app/shared/components/modal/modal.component";
     styleUrls: ["./samples-confirmation-modal.component.scss"]
 })
 export class SamplesConfirmationModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined = undefined;
+    @ViewChild("modal") modal: ModalComponent | undefined;
+    selectionOptions: Roast[] = ["Filter", "Espresso", "Both"];
+    submissionAttempted: boolean = false;
+    sampleSelectionForm = this.fb.group({
+        selection: ["", Validators.required],
+    });
 
-    constructor() { }
+    constructor(private fb: FormBuilder) { }
 
     onCancel(): void {
-        console.log("Modal cancelled.");
         this.close();
     }
 
     onConfirm(): void {
-        console.log("Modal confirmed.");
-        this.close();
+        this.submissionAttempted = true;
+
+        if (this.sampleSelectionForm.valid) {
+            this.close();
+        }
     }
 
     private close(): void {
-        if (this.modal != undefined) {
+        if (this.modal != null) {
             this.modal.close();
         }
     }

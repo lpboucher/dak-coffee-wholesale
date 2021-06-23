@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class CartService {
         return this.cartWeight$.asObservable();
     }
 
-    constructor() {}
+    constructor(private pricingTierService: PricingTierService) {}
 
     addingItem(item: any) {
         console.log(`Adding: ${ item }`);
@@ -56,5 +58,10 @@ export class CartService {
         return items
             .filter((item: any) => item?.dimensions?.weight != null && item?.quantity != null)
             .reduce((sum: number, item: any) => sum + (item.dimensions.weight * item.quantity), 0);
+    }
+
+    private updatePricingService(): void {
+        const itemsInCart = (window as any).Snipcart.store.getState().cart.items.count;
+        this.pricingTierService.updateDiscount(itemsInCart);
     }
 }

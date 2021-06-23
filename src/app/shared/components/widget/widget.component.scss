@@ -5,7 +5,7 @@
     @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
 }
 
-.wallet-image {
+::ng-deep svg {
     @apply w-8 h-8 inline-block;
     @apply text-indigo-500;
 
@@ -15,5 +15,5 @@
 .wallet-contents {
     @apply text-gray-900 inline;
 
-    @apply md:font-medium md:text-xl;
+    @apply md:font-medium md:text-base;
 }
