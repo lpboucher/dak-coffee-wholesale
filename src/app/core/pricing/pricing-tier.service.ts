@@ -21,8 +21,6 @@ export class PricingTierService {
     }
 
     updateDiscount(itemCount: number): void {
-        if (itemCount > ITEM_COUNT_THRESHOLD) {
-            this.toggleDiscount(true);
-        }
+        this.toggleDiscount(itemCount > ITEM_COUNT_THRESHOLD);
     }
 }
