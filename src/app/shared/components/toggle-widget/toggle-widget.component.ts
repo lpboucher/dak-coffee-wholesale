@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
 
 @Component({
     selector: "app-toggle-widget",
@@ -13,11 +12,7 @@ export class ToggleWidgetComponent {
     @Input() isChecked: boolean = false;
     @Output() toggle: EventEmitter<boolean> =  new EventEmitter();
 
-    toggleForm = this.fb.group({
-        toggle: [""],
-    });
-
-    constructor(private fb: FormBuilder) { }
+    constructor() { }
 
     doToggle(): void {
         this.isChecked = !this.isChecked;
