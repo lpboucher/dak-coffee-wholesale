@@ -7,6 +7,7 @@ import { ProductCardComponent } from "@modules/products/components/product-card/
 import { ProductDetailComponent } from "@modules/products/components/product-detail/product-detail.component";
 import { FeaturedProductCardComponent } from "@modules/products/components/featured-product-card/featured-product-card.component";
 import { FeaturedProductCardLoaderComponent } from "@modules/products/components/featured-product-card-loader/featured-product-card-loader.component";
+import { ProductCardLoaderComponent } from "@modules/products/components/product-card-loader/product-card-loader.component";
 
 export const pageDeclarations: any[] = [
     ProductPageComponent,
@@ -18,6 +19,7 @@ export const componentDeclarations: any[] = [
     ProductDetailComponent,
     FeaturedProductCardComponent,
     FeaturedProductCardLoaderComponent,
+    ProductCardLoaderComponent,
 ];
 
 export const providerDeclarations: any[] = [
