@@ -6,6 +6,7 @@ type SnipcartMetaEventType = "language.updated" | "snipcart.initialized" | "snip
 export type SnipcartEventType = SnipcartItemEventType | SnipcartCartEventType | SnipcartCustomerEventType | SnipcartMetaEventType;
 
 export type SnipcartEvents = {
+    cartStateListener: () => void,
     addingItemSubscription: () => void,
     addedItemSubscription: () => void,
     updatedItemSubscription: () => void,
