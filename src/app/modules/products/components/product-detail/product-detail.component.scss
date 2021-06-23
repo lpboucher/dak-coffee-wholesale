@@ -105,17 +105,3 @@
 .product-detail-content-order-like-symbol {
     @apply w-5 h-5;
 }
-
-.skeleton-loader-container {
-    @apply flex;
-    @apply pt-24 pl-40;
-}
-
-.skeleton-loader-details-container {
-    @apply flex flex-col;
-    @apply w-full ml-6 mr-40 mt-6;
-}
-
-.skeleton-loader-bar-container {
-    @apply flex justify-between mt-5;
-}

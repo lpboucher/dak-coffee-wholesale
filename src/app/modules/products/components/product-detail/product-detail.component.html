@@ -1,121 +1,46 @@
-<ng-container *ngIf="product != null; else showLoader">
-    <section class="product-detail-section">
-        <div class="product-detail-wrapper">
-            <div class="product-detail">
-                <img alt="ecommerce" class="product-detail-image" src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg">
-                <div class="product-detail-content">
-                    <h2 class="product-detail-content-brand">{{ product.collection }}</h2>
-                    <h1 class="product-detail-content-title">{{ product.name }}</h1>
-                    <div *ngFor="let description of product.displayedDescription">
-                        <p class="product-detail-content-body">{{ description }}<p>
-                    </div>
-                    <div *ngFor="let detail of product.displayedDetails">
-                        <p class="product-detail-content-body">{{ detail }}<p>
-                    </div>
-                    <div class="product-detail-content-selection-wrapper">
-                        <div class="product-detail-content-selection-size">
-                            <span class="product-detail-content-selection-size-text">Size</span>
-                            <div class="product-detail-content-selection-size-options-wrapper">
-                                <select class="product-detail-content-selection-size-options">
-                                    <option>250g</option>
-                                    <option>500g</option>
-                                    <option>1kg</option>
-                                    <option>2kg</option>
-                                </select>
-                                <span class="product-detail-content-selection-size-arrow-wrapper">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" class="product-detail-content-selection-size-arrow" viewBox="0 0 24 24">
-                                        <path d="M6 9l6 6 6-6"></path>
-                                    </svg>
-                                </span>
-                            </div>
+<section class="product-detail-section">
+    <div class="product-detail-wrapper">
+        <div class="product-detail">
+            <img alt="ecommerce" class="product-detail-image" src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg">
+            <div class="product-detail-content">
+                <h2 class="product-detail-content-brand">{{ product.collection }}</h2>
+                <h1 class="product-detail-content-title">{{ product.name }}</h1>
+                <div *ngFor="let description of product.displayedDescription">
+                    <p class="product-detail-content-body">{{ description }}<p>
+                </div>
+                <div *ngFor="let detail of product.displayedDetails">
+                    <p class="product-detail-content-body">{{ detail }}<p>
+                </div>
+                <div class="product-detail-content-selection-wrapper">
+                    <div class="product-detail-content-selection-size">
+                        <span class="product-detail-content-selection-size-text">Size</span>
+                        <div class="product-detail-content-selection-size-options-wrapper">
+                            <select class="product-detail-content-selection-size-options">
+                                <option>250g</option>
+                                <option>500g</option>
+                                <option>1kg</option>
+                                <option>2kg</option>
+                            </select>
+                            <span class="product-detail-content-selection-size-arrow-wrapper">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="product-detail-content-selection-size-arrow" viewBox="0 0 24 24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
                         </div>
                     </div>
-                    <div class="product-detail-content-order-wrapper">
-                        <span class="product-detail-content-order-price">{{ product.price }}</span>
-                        <button class="product-detail-content-order-button">Add to cart</button>
-                        <button class="product-detail-content-order-like">
-                            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                class="product-detail-content-order-like-symbol" viewBox="0 0 24 24">
-                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                            </svg>
-                        </button>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-</ng-container>
-<ng-template #showLoader>
-    <div class="skeleton-loader-container">
-        <ngx-skeleton-loader
-            count="1"
-            appearance="circle"
-            [theme]="{
-                'width': '550px',
-                'height': '630px',
-                'border-radius': '0.5rem'
-            }">
-        </ngx-skeleton-loader>
-        <div class="skeleton-loader-details-container">
-            <ngx-skeleton-loader
-                count="1"
-                appearance="circle"
-                [theme]="{
-                    'width': '140px',
-                    'height': '50px',
-                    'border-radius': '0.5rem'
-                }">
-            </ngx-skeleton-loader>
-            <ngx-skeleton-loader
-                count="1"
-                appearance="circle"
-                [theme]="{
-                    'width': '140px',
-                    'height': '100px',
-                    'border-radius': '0.5rem'
-                }">
-            </ngx-skeleton-loader>
-            <ngx-skeleton-loader
-                count="1"
-                appearance="circle"
-                [theme]="{
-                    'width': '140px',
-                    'height': '50px',
-                    'border-radius': '0.5rem'
-                }">
-            </ngx-skeleton-loader>
-            <div class="skeleton-loader-bar-container">
-                <ngx-skeleton-loader
-                    count="1"
-                    appearance="circle"
-                    [theme]="{
-                        'width': '50px',
-                        'height': '50px',
-                        'border-radius': '0.5rem'
-                    }">
-                </ngx-skeleton-loader>
-                <div>
-                    <ngx-skeleton-loader
-                        count="1"
-                        appearance="circle"
-                        [theme]="{
-                            'width': '120px',
-                            'height': '50px',
-                            'border-radius': '0.5rem'
-                        }">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader
-                        count="1"
-                        appearance="circle"
-                        [theme]="{
-                            'width': '50px',
-                            'height': '50px',
-                            'border-radius': '0.5rem'
-                        }">
-                    </ngx-skeleton-loader>
+                <div class="product-detail-content-order-wrapper">
+                    <span class="product-detail-content-order-price">{{ product.price }}</span>
+                    <button class="product-detail-content-order-button">Add to cart</button>
+                    <button class="product-detail-content-order-like">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            class="product-detail-content-order-like-symbol" viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-</ng-template>
+</section>
