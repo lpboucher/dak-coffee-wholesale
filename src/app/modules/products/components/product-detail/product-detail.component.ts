@@ -9,7 +9,7 @@ import { Product } from "@shared/models/classes/product.class";
     styleUrls: ["./product-detail.component.scss"]
 })
 export class ProductDetailComponent implements OnInit {
-    @Input() product!: Product;
+    @Input() product!: Product | undefined;
 
     get imageUrl(): string {
         if (this.product.images.main == null) { return ""; }

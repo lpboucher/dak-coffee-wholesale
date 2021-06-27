@@ -11,9 +11,9 @@ import { Product } from "@shared/models/classes/product.class";
     styleUrls: ["./single-product.page.scss"]
 })
 export class SingleProductPageComponent implements OnInit {
-    product$?: Observable<Product | undefined>;
+    product$!: Observable<Product | undefined>;
     relatedProducts$?: Observable<Product[]>;
-
+   
     constructor(
         private route: ActivatedRoute,
         private productService: ProductApiService,
