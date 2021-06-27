@@ -1,8 +1,8 @@
 import { Routes } from "@angular/router";
 
-import { LoginPageComponent } from "@modules/login/pages/login/login.page";
+import { LoginPageComponent } from "@modules/authentication/pages/login/login.page";
 
-import { LoginComponent } from "@modules/login/components/login/login.component";
+import { LoginComponent } from "@modules/authentication/components/login/login.component";
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,
@@ -18,9 +18,11 @@ export const providerDeclarations: any[] = [
 export const routes: Routes = [
     {
         path: "",
+        redirectTo: "login",
+        pathMatch: "full"
+    },
+    {
+        path: "login",
         component: LoginPageComponent,
-        children: [
-            { path: "login", component: LoginComponent },
-        ]
     },
 ];
