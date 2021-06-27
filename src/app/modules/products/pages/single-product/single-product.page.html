@@ -1,6 +1,8 @@
-<div *ngIf="product$ | async as product; else productLoading">
-    <app-product-detail [product]="product"></app-product-detail>
-</div>
-<ng-template #productLoading>
-    <app-product-detail-loader></app-product-detail-loader>
-</ng-template>
+<ng-container *ngIf="product$ | withLoader | async as product">
+    <ng-template [ngIf]="!product.error && !product.loading">
+        <app-product-detail [product]="product.value"></app-product-detail>
+    </ng-template>
+    <ng-template [ngIf]="product.loading">
+        <app-product-detail-loader></app-product-detail-loader>
+    </ng-template>
+</ng-container>
