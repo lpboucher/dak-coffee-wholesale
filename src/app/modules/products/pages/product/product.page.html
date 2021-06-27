@@ -15,7 +15,7 @@
                 <app-product-card *ngFor="let product of products.value" [product]="product"></app-product-card>
             </ng-template>
             <ng-template [ngIf]="products.loading">
-                <app-featured-product-card-loader *ngFor="let _ of [].constructor(2)"></app-featured-product-card-loader>
+                <app-product-card-loader *ngFor="let _ of [].constructor(12)"></app-product-card-loader>
             </ng-template>
         </ng-container>
     </app-grid-list>
