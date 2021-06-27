@@ -1,8 +1,8 @@
 import { Routes } from "@angular/router";
 
-import { LoginPageComponent } from "@app/modules/authentication/pages/login/login.page";
+import { LoginPageComponent } from "@modules/authentication/pages/login/login.page";
 
-import { LoginComponent } from "@app/modules/authentication/components/login/login.component";
+import { LoginComponent } from "@modules/authentication/components/login/login.component";
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,
@@ -16,6 +16,11 @@ export const providerDeclarations: any[] = [
 ];
 
 export const routes: Routes = [
+    {
+        path: "",
+        redirectTo: "login",
+        pathMatch: "full"
+    },
     {
         path: "login",
         component: LoginPageComponent,

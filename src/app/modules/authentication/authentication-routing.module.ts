@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
-import { routes } from "@app/modules/authentication/authentication.common";
+import { routes } from "@modules/authentication/authentication.common";
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
