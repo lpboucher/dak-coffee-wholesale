@@ -12,8 +12,8 @@ export class ProductDetailComponent implements OnInit {
     @Input() product!: Product | undefined;
 
     get imageUrl(): string {
-        if (this.product.images.main == null) { return ""; }
-        return this.imageService.getProductMainUrl(this.product.images.main);
+        if (this.product?.images.main == null) { return ""; }
+        return this.imageService.getProductMainUrl(this.product?.images.main);
     }
 
     constructor(private imageService: ImageService) { }

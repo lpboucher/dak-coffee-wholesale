@@ -27,6 +27,12 @@ export const routes: Routes = [
         component: BackbonePageComponent,
         children: [
             {
+                path: "",
+                redirectTo: "products",
+                children: [],
+                pathMatch: "full"
+            },
+            {
                 path: "products",
                 loadChildren: () => import("@modules/products/products.module").then(m => m.ProductsModule),
                 canActivate: [LoginGuard],
