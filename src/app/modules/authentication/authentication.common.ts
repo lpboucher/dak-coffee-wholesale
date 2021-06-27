@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
 
-import { LoginPageComponent } from "@app/modules/authentication/pages/login/login.page";
-import { RequestAccessPage } from "@app/modules/authentication/pages/request-access/request-access.page";
+import { LoginPageComponent } from "@modules/authentication/pages/login/login.page";
+import { RequestAccessPage } from "@modules/authentication/pages/request-access/request-access.page";
 
-import { LoginComponent } from "@app/modules/authentication/components/login/login.component";
-import { RequestAccessFormComponent } from '@app/modules/authentication/components/request-access-form/request-access-form.component';
+import { LoginComponent } from "@modules/authentication/components/login/login.component";
+import { RequestAccessFormComponent } from '@modules/authentication/components/request-access-form/request-access-form.component';
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,
