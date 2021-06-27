@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
-import { tap, shareReplay } from "rxjs/operators";
+import { NewCustomer } from "@shared/models/classes/new-customer.class";
 
 const DEV = {
     user: "test@test.com",
@@ -16,6 +16,10 @@ const DEV = {
 export class AuthService {
 
     constructor(private http: HttpClient, private router: Router) {
+    }
+
+    register(newCustomer: NewCustomer): void {
+        console.log(newCustomer);
     }
 
     login(email: string, password: string ): void {

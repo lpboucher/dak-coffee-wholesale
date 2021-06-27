@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
 
@@ -10,7 +11,12 @@ import { Product } from "@shared/models/classes/product.class";
 export class ProductCardComponent implements OnInit {
     @Input() product!: Product;
 
-    constructor() { }
+    get imageUrl(): string {
+        if (this.product.images.thumb == null) { return ""; }
+        return this.imageService.getProductThumbUrl(this.product.images.thumb);
+    }
+
+    constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
     }

@@ -1,36 +1,25 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
+import { environment as config } from "@env";
 import { Merchandise } from "@shared/models/classes/merchandise.class";
+import { DataApiService } from "@core/abstracts/data-api.service";
 
 @Injectable({
     providedIn: "root"
 })
-export class MerchandiseApiService {
-    merchandise: Merchandise[] = [
-        new Merchandise({
-            id: "7",
-            name: "Dak Tote Bag",
-            price: "14.00",
-            collection: undefined,
-            description: "Premium quality: 300 gr./m2",
-            slug: "tote",
-            dimensions: "41 x 42 cm",
-            material: "Cotton",
-        })
-    ];
+export class MerchandiseApiService extends DataApiService<Merchandise> {
 
-    constructor() {}
-
-    getMerchandise(): Observable<Merchandise[]> {
-        return of(this.merchandise);
+    constructor(protected http: HttpClient) {
+        super(config.backendURL + "wholesale/", http, Merchandise);
     }
 
-    getMerchandiseItem(slug: string): Observable<Merchandise | undefined> {
-        return this.getMerchandise()
-            .pipe(
-                map(arr => arr.find(p => p.slug === slug))
-            );
+    getMerchandise(): Observable<Merchandise[]> {
+        return this.getAll("merchandises?isActive=true");
+    }
+
+    getMerchandiseItem(slug: string): Observable<Merchandise> {
+        return this.getOne(`merchandise/${ slug }`);
     }
 }

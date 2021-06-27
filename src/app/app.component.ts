@@ -12,18 +12,19 @@ import { SnipcartEvents } from "@shared/models/types/snipcart-events.type";
 export class AppComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription = new Subscription();
     title = "dak-wholesale";
-    cartEvents!: SnipcartEvents;
+    cartEvents?: SnipcartEvents;
 
-    constructor(
-        private snipcartService: SnipcartService,
-    ) {
+    constructor(private snipcartService: SnipcartService) {
         this.subscriptions.add(fromEvent(document, "snipcart.ready")
             .subscribe(_ => {
-                // this.cartEvents.addingItemSubscription();
-                this.cartEvents.addedItemSubscription = this.snipcartService.addItemAddingListener();
-                // this.cartEvents.updatedItemSubscription();
-                // this.cartEvents.removedItemSubscription();
-                // this.cartEvents.orderCompletedSubscription();
+                this.cartEvents = {
+                    cartStateListener: this.snipcartService.cartStateListener(),
+                    addingItemSubscription: this.snipcartService.addItemAddingListener(),
+                    addedItemSubscription: this.snipcartService.addItemAddedListener(),
+                    updatedItemSubscription: this.snipcartService.addItemUpdatedListener(),
+                    removedItemSubscription: this.snipcartService.addItemRemovedListener(),
+                    orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
+                }
             })
         );
     }
@@ -31,6 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit(): void {}
 
     ngOnDestroy(): void {
+        if (this.cartEvents == null) { return; }
+
+        this.cartEvents.cartStateListener();
         this.cartEvents.addingItemSubscription();
         this.cartEvents.addedItemSubscription();
         this.cartEvents.updatedItemSubscription();
