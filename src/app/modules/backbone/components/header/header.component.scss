@@ -1,0 +1,37 @@
+.main-nav {
+    @apply flex flex-row justify-between place-items-center;
+    @apply p-2;
+    @apply bg-red-500;
+}
+
+.brand {
+    @apply flex flex-col flex-none items-center justify-between;
+    @apply p-1;
+}
+
+.burger-menu-wrapper {
+    @apply m-0 h-6 ml-6;
+}
+
+.burger-menu {
+    @apply flex flex-col justify-around;
+    @apply h-full;
+}
+
+.burger-bar {
+    @apply h-0.5 w-6 rounded-lg;
+    @apply bg-gray-800;
+}
+
+.nav-spacer {
+    @apply flex-grow;
+}
+
+.widget-container {
+    @apply flex;
+    @apply my-1;
+}
+
+.widget-item {
+    @apply px-1;
+}
