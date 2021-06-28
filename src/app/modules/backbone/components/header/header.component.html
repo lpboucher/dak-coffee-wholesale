@@ -26,6 +26,6 @@
         </app-widget>
     </div>
 </nav>
-<div class="sidebar">
-    <app-sidebar></app-sidebar>
+<div class="sidebar" [ngClass]="{ 'sidebar-open': showSidebar, 'sidebar-closed': !showSidebar }">
+    <app-sidebar [(open)]="showSidebar"></app-sidebar>
 </div>
