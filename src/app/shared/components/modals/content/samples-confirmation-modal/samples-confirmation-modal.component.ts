@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators  } from "@angular/forms";
 
 import { ModalBackboneComponent } from "@shared/components/modals";
 
@@ -18,7 +18,7 @@ export class SamplesConfirmationModalComponent {
         selection: ["", Validators.required],
     });
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder) {}
 
     onCancel(): void {
         this.close();
@@ -33,7 +33,7 @@ export class SamplesConfirmationModalComponent {
     }
 
     private close(): void {
-        if (this.modal != null) {
+        if (this.modal != undefined) {
             this.modal.close();
         }
     }
