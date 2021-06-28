@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 
 import { AuthService } from "@core/authentication/authentication.service";
+
+import { PasswordMatch } from "@core/validators/password-match.validator";
 
 import { Sector } from "@shared/models/types/sector-type.type";
 
@@ -25,7 +27,7 @@ export class RequestAccessFormComponent {
             vatNumber: [""],
         },
         {
-            validators: [this.matchPasswordsValidator()],
+            validators: [PasswordMatch("password", "passwordConfirm")],
         }
     );
 
@@ -91,17 +93,5 @@ export class RequestAccessFormComponent {
 
     private shouldShowErrors(control: AbstractControl): boolean {
         return control.dirty || control.touched || this.submissionAttempted;
-    }
-
-    private matchPasswordsValidator(): ValidatorFn {
-        return (formGroup: AbstractControl): ValidationErrors | null => {
-            const passwordControlValue = formGroup.get("password")?.value;
-            const passwordConfirmControlValue = formGroup.get("passwordConfirm")?.value;
-
-            if (passwordControlValue == null || passwordConfirmControlValue == null) { return null; }
-
-            const passwordsMatch = passwordControlValue === passwordConfirmControlValue;
-            return passwordsMatch ? null : { notMatching: true };
-        };
     }
 }
