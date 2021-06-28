@@ -1,6 +1,6 @@
 .request-access-background {
     @apply flex flex-col;
-    @apply h-screen;
+    @apply min-h-screen;
     @apply bg-gray-100;
 }
 
