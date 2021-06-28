@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
@@ -21,8 +21,9 @@ export class HeaderComponent extends SidebarComponent {
         pricingTierService: PricingTierService,
         cartService: CartService,
         modalService: ModalService<WalletModalComponent>,
+        changeDetectorRef: ChangeDetectorRef,
     ) {
-        super(authService, pricingTierService, cartService, modalService);
+        super(authService, pricingTierService, cartService, modalService, changeDetectorRef);
     }
 
     onBurgerMenuClick(): void {

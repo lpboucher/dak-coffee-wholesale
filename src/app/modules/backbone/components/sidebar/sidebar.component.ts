@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, OnDestroy } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, Input, Output, EventEmitter } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 
 import { AuthService } from "@core/authentication/authentication.service";
@@ -16,6 +16,8 @@ import { NAVIGATION } from "@utils/constants/navigation";
 })
 export class SidebarComponent implements OnInit, OnDestroy {
     protected subscriptions: Subscription = new Subscription();
+    @Input() open: boolean = false;
+    @Output() openChange = new EventEmitter<boolean>();
     navigation = NAVIGATION;
     openLabel = "";
     priceTierActive = false;
@@ -49,7 +51,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    onMobileCloseClicked(): void {}
+    onMobileCloseClicked(): void {
+        this.open = false;
+        this.openChange.emit(this.open);
+    }
 
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
