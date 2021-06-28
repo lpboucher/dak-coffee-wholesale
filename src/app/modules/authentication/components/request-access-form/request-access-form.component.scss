@@ -1,12 +1,6 @@
-.request-access-background {
-    @apply flex flex-col;
-    @apply min-h-screen;
-    @apply bg-gray-100;
-}
-
 .request-access-container {
     @apply grid place-items-center;
-    @apply mx-2 my-20;
+    @apply mx-2;
 }
 
 .request-access-card {
