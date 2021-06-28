@@ -30,31 +30,31 @@ export class RequestAccessFormComponent {
     );
 
     get contactNameControl(): AbstractControl {
-        return this.control("contactName")!;
+        return this.requestAccessForm.get("contactName")!;
     }
 
     get businessNameControl(): AbstractControl {
-        return this.control("businessName")!;
+        return this.requestAccessForm.get("businessName")!;
     }
 
     get emailControl(): AbstractControl {
-        return this.control("email")!;
+        return this.requestAccessForm.get("email")!;
     }
 
     get passwordControl(): AbstractControl {
-        return this.control("password")!;
+        return this.requestAccessForm.get("password")!;
     }
 
     get passwordConfirmControl(): AbstractControl {
-        return this.control("passwordConfirm")!;
+        return this.requestAccessForm.get("passwordConfirm")!;
     }
 
     get sectorControl(): AbstractControl {
-        return this.control("sector")!;
+        return this.requestAccessForm.get("sector")!;
     }
 
     get vatNumberControl(): AbstractControl {
-        return this.control("vatNumber")!;
+        return this.requestAccessForm.get("vatNumber")!;
     }
 
     constructor(
@@ -91,10 +91,6 @@ export class RequestAccessFormComponent {
 
     private shouldShowErrors(control: AbstractControl): boolean {
         return control.dirty || control.touched || this.submissionAttempted;
-    }
-
-    private control(name: string): AbstractControl | null {
-        return this.requestAccessForm.get(name);
     }
 
     private matchPasswordsValidator(): ValidatorFn {
