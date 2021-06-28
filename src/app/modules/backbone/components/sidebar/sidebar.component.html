@@ -3,6 +3,10 @@
         <img class="" src="/favicon.ico"/>
         <span class="">DAK</span>
     </header>
+    <div class="mobile-close" (click)="onMobileCloseClicked()">
+        <div class="mobile-close-bar-1"></div>
+        <div class="mobile-close-bar-2"></div>
+    </div>
     <div class="nav-item-list-container" *ngFor="let parent of navigation">
         <ul class="nav-item-list">
             <app-nav-item [label]="parent.label" [link]="parent.link" [children]="parent.children" [openLabel]="openLabel" class="nav-item"></app-nav-item>

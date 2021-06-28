@@ -35,3 +35,7 @@
 .widget-item {
     @apply px-1;
 }
+
+.sidebar {
+    @apply fixed top-0 left-0;
+}

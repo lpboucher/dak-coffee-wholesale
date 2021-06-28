@@ -49,6 +49,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
+    onMobileCloseClicked(): void {}
+
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
     }

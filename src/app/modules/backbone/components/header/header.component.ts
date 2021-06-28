@@ -14,6 +14,8 @@ import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.c
     styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent extends SidebarComponent {
+    showSidebar = false;
+
     constructor(
         authService: AuthService,
         pricingTierService: PricingTierService,
@@ -23,5 +25,7 @@ export class HeaderComponent extends SidebarComponent {
         super(authService, pricingTierService, cartService, modalService);
     }
 
-    onBurgerMenuClick(): void {}
+    onBurgerMenuClick(): void {
+        this.showSidebar = true;
+    }
 }
