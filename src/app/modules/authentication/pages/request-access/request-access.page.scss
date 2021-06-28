@@ -1,9 +1,15 @@
 .request-access-page-container {
-    @apply h-screen sm:flex sm:flex-row sm:flex-row-reverse;
+    @apply min-h-screen;
+
+    @apply sm:flex sm:flex-row sm:flex-row-reverse;
 }
 
 .request-access-page-element {
-    @apply sm:w-1/2 py-20 bg-gray-100 sm:p-0 flex place-items-center place-content-center;
+    @apply flex place-items-center place-content-center;
+    @apply py-20;
+    @apply bg-gray-100;
+
+    @apply sm:w-1/2 sm:p-0;
 }
 
 .request-access-page-element:first-child {
