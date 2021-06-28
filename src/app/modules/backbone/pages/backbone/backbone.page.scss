@@ -7,10 +7,18 @@
 
 .sidebar {
     @apply fixed w-full;
+    @apply hidden z-50;
 
-    @apply md:col-span-4 md:sticky md:top-0;
-    @apply lg:col-span-3;
-    @apply md:h-screen;
+    @apply md:block md:sticky;
+    @apply md:top-0 md:h-screen;
+    @apply md:col-span-4 lg:col-span-3;
+}
+
+.header {
+    @apply fixed;
+    @apply w-full;
+
+    @apply md:hidden;
 }
 
 .page-container {
