@@ -45,6 +45,6 @@
     @apply nav-item-children-container-open;
 }
 
-.nav-item-active > .nav-item-children-container {
+.nav-item-active + .nav-item-children-container {
     @apply nav-item-children-container-open;
 }
