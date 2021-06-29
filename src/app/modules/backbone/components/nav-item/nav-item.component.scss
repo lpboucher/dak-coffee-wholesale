@@ -10,11 +10,9 @@
 }
 
 .nav-item-arrow {
-    @apply inline w-4 h-4 mt-1 ml-1;
+    @apply inline w-4 h-4 ml-1;
     @apply transition-all duration-200 transform;
     @apply rotate-0;
-
-    @apply md:-mt-1;
 }
 
 .nav-item-active .nav-item-arrow {
@@ -30,18 +28,13 @@
 }
 
 .nav-item-children-container {
-    @apply z-50;
-    @apply bg-white shadow-lg rounded-b-lg opacity-0 scale-95;
-    @apply absolute;
+    @apply static hidden;
+    @apply bg-white;
     @apply transition duration-200 transform;
-
-    @apply md:hidden md:static md:shadow-none md:rounded-none;
 }
 
 .nav-item-children-container-open {
-    @apply opacity-100 scale-100;
-
-    @apply md:block;
+    @apply block;
 }
 
 .nav-item-force-open > .nav-item-children-container {
