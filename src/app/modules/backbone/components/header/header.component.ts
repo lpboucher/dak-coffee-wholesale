@@ -20,11 +20,10 @@ export class HeaderComponent extends SidebarComponent {
     constructor(
         authService: AuthService,
         pricingTierService: PricingTierService,
-        cartService: CartService,
         modalService: ModalService<WalletModalComponent>,
         changeDetectorRef: ChangeDetectorRef,
     ) {
-        super(authService, pricingTierService, cartService, modalService, changeDetectorRef);
+        super(authService, pricingTierService, modalService, changeDetectorRef);
     }
 
     onClickedOffSidebar(): void {
