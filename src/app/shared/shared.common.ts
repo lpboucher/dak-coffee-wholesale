@@ -6,6 +6,7 @@ import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { WalletModalComponent } from '@shared/components/wallet-modal/wallet-modal.component';
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
+import { BindQueryParamsDirective } from "@shared/directives/bind-query-params.directive";
 
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
@@ -21,6 +22,7 @@ export const componentDeclarations: any[] = [
     WalletModalComponent,
 
     SnipcartAddDirective,
+    BindQueryParamsDirective,
 
     ClampPipe,
     FilterPipe,
