@@ -25,10 +25,10 @@
             </svg>
         </app-widget>
     </div>
-</nav>
-<div class="sidebar-container" [ngClass]="{ 'sidebar-open': showSidebar, 'sidebar-closed': !showSidebar }">
-    <div class="sidebar">
-        <app-sidebar [(open)]="showSidebar"></app-sidebar>
+    <div class="sidebar-container" [ngClass]="{ 'sidebar-open': showSidebar, 'sidebar-closed': !showSidebar }">
+        <div class="sidebar">
+            <app-sidebar [(open)]="showSidebar"></app-sidebar>
+        </div>
+        <div class="sidebar-background" (click)="onClickedOffSidebar()"></div>
     </div>
-    <div class="sidebar-background" (click)="onClickedOffSidebar()"></div>
-</div>
+</nav>
