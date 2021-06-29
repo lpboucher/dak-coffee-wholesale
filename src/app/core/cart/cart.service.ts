@@ -20,6 +20,10 @@ export class CartService {
 
     constructor(private pricingTierService: PricingTierService) {}
 
+    openCart(): void {
+        (window as any).Snipcart.api.theme.cart.open();
+    }
+
     addingItem(item: any) {
         console.log(`Adding: ${ item }`);
     }
