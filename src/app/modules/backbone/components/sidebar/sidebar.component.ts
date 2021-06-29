@@ -3,8 +3,6 @@ import { Subscription } from "rxjs";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
-import { ModalService } from "@core/views/modal.service";
-import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
 
 import { NAVIGATION } from "@utils/constants/navigation";
 
@@ -24,7 +22,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     constructor(
         private authService: AuthService,
         private pricingTierService: PricingTierService,
-        private modalService: ModalService<WalletModalComponent>,
         private changeDetectorRef: ChangeDetectorRef,
     ) {}
 
@@ -48,10 +45,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
-    }
-
-    onWalletWidgetClicked(): void {
-        this.modalService.open(WalletModalComponent);
     }
 
     onLogoutClicked(): void {

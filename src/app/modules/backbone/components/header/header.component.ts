@@ -1,11 +1,8 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 
 import { AuthService } from "@core/authentication/authentication.service";
-import { CartService } from "@core/cart/cart.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
-import { ModalService } from "@core/views/modal.service";
 
-import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
 import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.component";
 
 @Component({
@@ -20,10 +17,9 @@ export class HeaderComponent extends SidebarComponent {
     constructor(
         authService: AuthService,
         pricingTierService: PricingTierService,
-        modalService: ModalService<WalletModalComponent>,
         changeDetectorRef: ChangeDetectorRef,
     ) {
-        super(authService, pricingTierService, modalService, changeDetectorRef);
+        super(authService, pricingTierService, changeDetectorRef);
     }
 
     onClickedOffSidebar(): void {
