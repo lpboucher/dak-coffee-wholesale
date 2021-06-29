@@ -4,11 +4,7 @@
         <span>DAK</span>
     </header>
     <div class="burger-menu-wrapper">
-        <div class="burger-menu" (click)="onBurgerMenuClicked()">
-            <div class="burger-bar"></div>
-            <div class="burger-bar"></div>
-            <div class="burger-bar"></div>
-        </div>
+        <app-burger-menu [onBurgerMenuClick]="onBurgerMenuClick"></app-burger-menu>
     </div>
     <div class="nav-spacer"></div>
     <div class="widget-container">

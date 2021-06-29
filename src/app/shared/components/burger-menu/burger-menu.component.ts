@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: "app-burger-menu",
@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
     styleUrls: ["./burger-menu.component.scss"]
 })
 export class BurgerMenuComponent {
-    onBurgerMenuClick(): void {}
+    @Input() onBurgerMenuClick: () => void = () => {};
 }

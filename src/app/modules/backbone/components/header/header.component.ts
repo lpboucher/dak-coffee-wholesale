@@ -15,6 +15,7 @@ import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.c
 })
 export class HeaderComponent extends SidebarComponent {
     showSidebar = false;
+    onBurgerMenuClick: () => void = () => { this.showSidebar = true; }
 
     constructor(
         authService: AuthService,
@@ -24,10 +25,6 @@ export class HeaderComponent extends SidebarComponent {
         changeDetectorRef: ChangeDetectorRef,
     ) {
         super(authService, pricingTierService, cartService, modalService, changeDetectorRef);
-    }
-
-    onBurgerMenuClicked(): void {
-        this.showSidebar = true;
     }
 
     onClickedOffSidebar(): void {

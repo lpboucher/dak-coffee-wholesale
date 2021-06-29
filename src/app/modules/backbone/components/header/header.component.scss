@@ -10,17 +10,7 @@
 }
 
 .burger-menu-wrapper {
-    @apply m-0 h-6 ml-6;
-}
-
-.burger-menu {
-    @apply flex flex-col justify-around;
-    @apply h-full;
-}
-
-.burger-bar {
-    @apply h-0.5 w-6 rounded-lg;
-    @apply bg-gray-800;
+    @apply ml-6;
 }
 
 .nav-spacer {
