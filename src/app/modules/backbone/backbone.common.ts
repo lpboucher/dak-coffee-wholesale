@@ -11,6 +11,7 @@ import { FloatingActionComponent } from "@modules/backbone/components/floating-a
 import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 import { HeaderComponent } from "@modules/backbone/components/header/header.component";
 import { CartWidgetComponent } from "@modules/backbone/components/cart-widget/cart-widget.component";
+import { WalletWidgetComponent } from "@modules/backbone/components/wallet-widget/wallet-widget.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -24,6 +25,7 @@ export const componentDeclarations: any[] = [
     SamplesConfirmationModalComponent,
     HeaderComponent,
     CartWidgetComponent,
+    WalletWidgetComponent,
 ];
 
 export const routes: Routes = [
