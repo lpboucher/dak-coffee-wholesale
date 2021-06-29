@@ -10,6 +10,7 @@ import { NavItemComponent } from "@modules/backbone/components/nav-item/nav-item
 import { FloatingActionComponent } from "@modules/backbone/components/floating-action/floating-action.component";
 import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 import { HeaderComponent } from "@modules/backbone/components/header/header.component";
+import { CartWidgetComponent } from "@modules/backbone/components/cart-widget/cart-widget.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -22,6 +23,7 @@ export const componentDeclarations: any[] = [
     FloatingActionComponent,
     SamplesConfirmationModalComponent,
     HeaderComponent,
+    CartWidgetComponent,
 ];
 
 export const routes: Routes = [
