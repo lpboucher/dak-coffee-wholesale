@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { Observable } from "rxjs";
+
+import { CartService } from "@core/cart/cart.service";
 
 @Component({
     selector: "app-cart-widget",
@@ -6,5 +9,17 @@ import { Component } from "@angular/core";
     styleUrls: ["./cart-widget.component.scss"]
 })
 export class CartWidgetComponent {
-    constructor() { }
+    get cartTotal(): Observable<number> {
+        return this.cartService.currentCartTotal$;
+    }
+
+    get cartWeight(): Observable<number> {
+        return this.cartService.currentCartWeight$;
+    }
+
+    constructor(private cartService: CartService) { }
+
+    onCartWidgetClick(): void {
+        this.cartService.openCart();
+    }
 }
