@@ -6,5 +6,7 @@ import { Component } from "@angular/core";
     styleUrls: ["./wallet-widget.component.scss"]
 })
 export class WalletWidgetComponent {
-    constructor() { }
+    constructor() {}
+
+    onWalletWidgetClick(): void {}
 }
