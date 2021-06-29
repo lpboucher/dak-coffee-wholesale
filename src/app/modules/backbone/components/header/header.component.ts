@@ -26,7 +26,11 @@ export class HeaderComponent extends SidebarComponent {
         super(authService, pricingTierService, cartService, modalService, changeDetectorRef);
     }
 
-    onBurgerMenuClick(): void {
+    onBurgerMenuClicked(): void {
         this.showSidebar = true;
+    }
+
+    onClickedOffSidebar(): void {
+        this.showSidebar = false;
     }
 }

@@ -4,7 +4,7 @@
         <span>DAK</span>
     </header>
     <div class="burger-menu-wrapper">
-        <div class="burger-menu" (click)="onBurgerMenuClick()">
+        <div class="burger-menu" (click)="onBurgerMenuClicked()">
             <div class="burger-bar"></div>
             <div class="burger-bar"></div>
             <div class="burger-bar"></div>
@@ -26,6 +26,9 @@
         </app-widget>
     </div>
 </nav>
-<div class="sidebar" [ngClass]="{ 'sidebar-open': showSidebar, 'sidebar-closed': !showSidebar }">
-    <app-sidebar [(open)]="showSidebar"></app-sidebar>
+<div class="sidebar-container" [ngClass]="{ 'sidebar-open': showSidebar, 'sidebar-closed': !showSidebar }">
+    <div class="sidebar">
+        <app-sidebar [(open)]="showSidebar"></app-sidebar>
+    </div>
+    <div class="sidebar-background" (click)="onClickedOffSidebar()"></div>
 </div>
