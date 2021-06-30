@@ -1,11 +1,6 @@
-.dropdown-form {
-    @apply flex items-center justify-between;
-    @apply w-full;
-}
-
 .dropdown-container {
     @apply relative flex;
-    @apply my-2 p-1 w-2/5;
+    @apply my-2 p-1;
     @apply bg-white border border-gray-200 rounded;
     @apply cursor-pointer;
 }
