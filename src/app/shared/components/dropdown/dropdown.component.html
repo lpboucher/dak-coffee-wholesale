@@ -12,7 +12,7 @@
     </div>
     <div class="dropdown-option-list-container" *ngIf="showOptions" (mouseleave)="showOptions = false">
         <div class="dropdown-option-list-item-container" *ngFor="let option of options" (click)="onSelectOption(option, $event)">
-            <div class="dropdown-option-list-item">
+            <div class="dropdown-option-list-item" [ngClass]="{ 'active-item': option === currentlySelected }">
                 <option class="dropdown-option-list-item-content">{{ option }}</option>
             </div>
         </div>
