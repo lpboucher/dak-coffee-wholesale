@@ -5,6 +5,20 @@
     <div class="product-card-body">
         <span class="product-card-body-highlight">New</span>
         <h2 class="product-card-body-title">{{product.name}}</h2>
+        <form [formGroup]="selectionForm" (ngSubmit)="onSelectionFormSubmit()">
+            <label for="weight">
+                Weight
+                <select id="weight" formControlName="weight">
+                    <option *ngFor="let weight of weightOptions" value="{{ weight }}">{{ weight }}</option>
+                </select>
+            </label>
+            <label for="roast">
+                Roast
+                <select id="roast" formControlName="roast">
+                    <option *ngFor="let roast of roastOptions" value="{{ roast }}">{{ roast }}</option>
+                </select>
+            </label>
+        </form>
         <div class="product-card-body-price-container">
             <div class="product-card-body-price">€{{product.price}}</div>
             <button [snipcartAdd]="product" class="product-card-body-add-to-cart">Add to cart</button>
