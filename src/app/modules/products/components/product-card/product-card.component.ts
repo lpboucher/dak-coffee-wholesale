@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
+import { Roast } from "@shared/models/types/roast.type";
+import { Weight } from "@shared/models/types/weight.type";
 
 @Component({
     selector: "app-product-card",
@@ -12,8 +14,8 @@ import { Product } from "@shared/models/classes/product.class";
 })
 export class ProductCardComponent {
     @Input() product!: Product;
-    readonly weightOptions = ["250g", "1kg"];
-    readonly roastOptions = ["Filter", "Espresso", "Omni"];
+    readonly weightOptions: Weight[] = ["250g", "1kg"];
+    readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     selectionForm = this.fb.group({
         weight: [this.weightOptions[0], Validators.required],
         roast: [this.roastOptions[0], Validators.required]
