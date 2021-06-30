@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -9,6 +9,7 @@ import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 export class DropdownComponent implements OnInit {
     @Input() options: string[] = [];
     @Input() defaultSelection: string | undefined;
+    @Output() currentSelection: EventEmitter<string> = new EventEmitter<string>();
     showOptions: boolean = false;
     dropdownForm = this.fb.group({
         options: ["", Validators.required],
@@ -40,6 +41,7 @@ export class DropdownComponent implements OnInit {
 
     onSelectOption(option: string, event: Event): void {
         this.currentlySelected = option;
+        this.currentSelection.emit(this.currentlySelected);
         this.showOptions = false;
         event.stopPropagation();
     }
