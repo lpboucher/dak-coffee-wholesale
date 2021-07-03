@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators
 
 import { AuthService } from "@core/authentication/authentication.service";
 
-import { Sector } from "@shared/models/types/sector-type.type";
+import { SECTORS } from "@utils/constants/sectors";
 
 @Component({
     selector: "app-request-access-form",
@@ -12,7 +12,7 @@ import { Sector } from "@shared/models/types/sector-type.type";
 })
 export class RequestAccessFormComponent {
     private submissionAttempted = false;
-    sectorOptions: Sector[] = ["cafe", "office", "reseller", "restaurant", "subscription box"];
+    sectorOptions = SECTORS;
 
     requestAccessForm = this.fb.group(
         {
