@@ -14,4 +14,6 @@
 
 .request-access-page-element:first-child {
     @apply p-0 pt-14;
+
+    @apply md:py-14;
 }
