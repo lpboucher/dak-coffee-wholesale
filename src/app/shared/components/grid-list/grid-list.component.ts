@@ -3,6 +3,8 @@ import { ClampPipe } from "@shared/pipes/clamp.pipe";
 
 const MAX_COLUMN_COUNT = 12;
 const MIN_COLUMN_COUNT = 1;
+const MIN_GRID_GAP = 0;
+const MAX_GRID_GAP = 10;
 
 @Component({
     selector: "app-grid-list",
@@ -19,6 +21,7 @@ export class GridListComponent implements OnInit {
     ngOnInit(): void {
         this.mobileColumnCount = this.clampPipe.transform(this.mobileColumnCount, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
         this.itemColumnSpan = this.clampPipe.transform(this.itemColumnSpan, MIN_COLUMN_COUNT, MAX_COLUMN_COUNT);
+        this.gridGap = this.clampPipe.transform(this.gridGap, MIN_GRID_GAP, MAX_GRID_GAP);
     }
 
     get columnClass(): string {

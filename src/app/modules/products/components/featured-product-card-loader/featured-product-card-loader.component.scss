@@ -1,0 +1,13 @@
+.skeleton-loader-container {
+    @apply flex;
+    @apply w-full;
+}
+
+.skeleton-loader-details {
+    @apply flex flex-col justify-evenly;
+    @apply w-full pl-2;
+}
+
+.skeleton-loader-buttons {
+    @apply flex flex-col justify-between;
+}

@@ -8,7 +8,7 @@
                 <div *ngFor="let description of product.displayedDescription">
                     <p class="product-detail-content-body">{{ description }}<p>
                 </div>
-                <div *ngFor="let detail of product.displayedDetails">
+                <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
                 </div>
                 <div class="product-detail-content-selection-wrapper">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="product-detail-content-order-wrapper">
-                    <span class="product-detail-content-order-price">{{ product.price }}</span>
+                    <span class="product-detail-content-order-price">{{ product.price | volumeDiscount }}</span>
                     <button class="product-detail-content-order-button">Add to cart</button>
                     <button class="product-detail-content-order-like">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

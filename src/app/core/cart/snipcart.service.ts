@@ -10,8 +10,33 @@ export class SnipcartService {
 
     constructor(private cartService: CartService) {}
 
+    cartStateListener(): () => {} {
+        const snipcart = (window as any).Snipcart;
+
+        return snipcart.store.subscribe(() => {
+            const { cart } = snipcart.store.getState();
+            this.cartService.updateCart(cart.total, cart.items.items);
+        });
+    }
+
     addItemAddingListener(): () => {} {
-        return this.registerSnipcartEvent("item.adding", (cartItem: any) => this.cartService.addItem(cartItem));
+        return this.registerSnipcartEvent("item.adding", (cartItem: any) => this.cartService.addingItem(cartItem));
+    }
+
+    addItemAddedListener(): () => {} {
+        return this.registerSnipcartEvent("item.added", (cartItem: any) => this.cartService.addedItem(cartItem));
+    }
+
+    addItemUpdatedListener(): () => {} {
+        return this.registerSnipcartEvent("item.updated", (cartItem: any) => this.cartService.updatedItem(cartItem));
+    }
+
+    addItemRemovedListener(): () => {} {
+        return this.registerSnipcartEvent("item.removed", (cartItem: any) => this.cartService.removedItem(cartItem));
+    }
+
+    addOrderCompletedListener(): () => {} {
+        return this.registerSnipcartEvent("cart.confirmed", (cart: any) => this.cartService.orderCompleted(cart));
     }
 
     private registerSnipcartEvent(eventName: SnipcartEventType, callback: (param: any) => void): () => {} {

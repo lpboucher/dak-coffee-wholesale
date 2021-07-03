@@ -1,50 +1,68 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { fromEvent, Observable, Subscription } from "rxjs";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
+
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class CartService implements OnDestroy {
-    private static readonly REFRESH_RATE: number = 1000;
+export class CartService {
+    private cartTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
+    private cartWeight$: BehaviorSubject<number> = new BehaviorSubject(0);
 
-    private subscriptions: Subscription = new Subscription();
-    private snipcart: any = {};
-    cartTotal$: Observable<number> = new Observable();
-    cartWeight$: Observable<number> = new Observable();
-
-    constructor() {
-        this.subscriptions.add(
-            fromEvent(document, "snipcart.ready")
-            .subscribe(_ => {
-                this.snipcart = (window as any).Snipcart;
-
-                this.cartTotal$ = new Observable(subscriber => {
-                    setInterval(() =>
-                        subscriber.next(this.snipcart.store.getState().cart.total),
-                        CartService.REFRESH_RATE)
-                });
-
-                this.cartWeight$ = new Observable(subscriber => {
-                    setInterval(() =>
-                        subscriber.next(this.evaluateCartWeight()),
-                        CartService.REFRESH_RATE)
-                });
-            })
-        );
+    get currentCartTotal$(): Observable<number> {
+        return this.cartTotal$.asObservable();
     }
 
-    ngOnDestroy() {
-        this.subscriptions.unsubscribe();
+    get currentCartWeight$(): Observable<number> {
+        return this.cartWeight$.asObservable();
     }
 
-    addItem(item: any) {
-        console.log(item);
+    constructor(private pricingTierService: PricingTierService) {}
+
+    addingItem(item: any) {
+        console.log(`Adding: ${ item }`);
     }
 
-    private evaluateCartWeight(): number {
-        const cartItems = this.snipcart.store.getState().cart.items.items;
-        return cartItems
+    addedItem(item: any) {
+        console.log(`Added: ${ item }`);
+    }
+
+    updatedItem(item: any) {
+        console.log(`Updated: ${ item }`);
+    }
+
+    removedItem(item: any) {
+        console.log(`Removed: ${ item }`);
+    }
+
+    orderCompleted(cart: any) {
+        console.log(`Order completed: ${ cart }`);
+    }
+
+    updateCart(total: number, items: any): void {
+        this.updateCartTotal(total);
+        this.updateCartWeight(items);
+        this.updatePricingService();
+    }
+
+    private updateCartTotal(total: number): void {
+        this.cartTotal$.next(total);
+    }
+
+    private updateCartWeight(items: any): void {
+        const newWeight = this.evaluateCartWeight(items);
+        this.cartWeight$.next(newWeight);
+    }
+
+    private evaluateCartWeight(items: any): number {
+        return items
             .filter((item: any) => item?.dimensions?.weight != null && item?.quantity != null)
             .reduce((sum: number, item: any) => sum + (item.dimensions.weight * item.quantity), 0);
+    }
+
+    private updatePricingService(): void {
+        const itemsInCart = (window as any).Snipcart.store.getState().cart.items.count;
+        this.pricingTierService.updateDiscount(itemsInCart);
     }
 }

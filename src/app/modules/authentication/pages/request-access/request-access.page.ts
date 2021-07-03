@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
     templateUrl: "./request-access.page.html",
     styleUrls: ["./request-access.page.scss"]
 })
-export class RequestAccessPage implements OnInit {
+export class RequestAccessPageComponent implements OnInit {
 
     constructor() { }
 

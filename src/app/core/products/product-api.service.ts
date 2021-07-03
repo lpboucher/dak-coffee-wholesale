@@ -59,8 +59,8 @@ export class ProductApiService extends DataApiService<Product> {
     getRelatedProducts(slug: string): Observable<Product[]> {
         return this.getProducts()
             .pipe(
-                map(arr => arr.filter(e => e.slug !== slug)
-                    .slice(0, 3)),
+                map(arr => arr.filter(e => e.slug != slug)
+                    .slice(0, 4)),
             );
     }
 }

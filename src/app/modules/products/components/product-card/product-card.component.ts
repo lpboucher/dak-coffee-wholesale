@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-
-import { CloudinaryImage } from "@cloudinary/base";
+import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
 
@@ -13,13 +12,11 @@ export class ProductCardComponent implements OnInit {
     @Input() product!: Product;
 
     get imageUrl(): string {
-        const url = `/Products/Thumbs/${ this.product.images.thumb }`;
-        const cloudName = { cloudName: "dak-coffee-roasters" };
-
-        return new CloudinaryImage(url, cloudName).toURL();
+        if (this.product.images.thumb == null) { return ""; }
+        return this.imageService.getProductThumbUrl(this.product.images.thumb);
     }
 
-    constructor() { }
+    constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
     }

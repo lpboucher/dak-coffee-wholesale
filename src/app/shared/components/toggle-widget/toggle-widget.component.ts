@@ -12,7 +12,6 @@ export class ToggleWidgetComponent {
     @Input() isChecked: boolean = false;
     @Output() toggle: EventEmitter<boolean> =  new EventEmitter();
 
-
     constructor() { }
 
     doToggle(): void {

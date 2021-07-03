@@ -9,8 +9,8 @@
         </div>
         <p class="featured-product-card-body-description" *ngFor="let description of product.displayedDescription">{{description}}</p>
         <div class="featured-product-card-body-price-container">
-            <div class="featured-product-card-body-price">{{product.price}}</div>
-            <button class="featured-product-card-body-get-notified" (click)="onClick()">Get notified</button>
+            <div class="featured-product-card-body-price">{{product.price | volumeDiscount}}</div>
+            <button class="featured-product-card-body-get-notified" (click)="onGetNotifiedClicked()">Get notified</button>
         </div>
     </div>
 </div>
