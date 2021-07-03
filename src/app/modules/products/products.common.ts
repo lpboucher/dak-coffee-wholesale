@@ -9,7 +9,6 @@ import { FeaturedProductCardComponent } from "@modules/products/components/featu
 import { FeaturedProductCardLoaderComponent } from "@modules/products/components/featured-product-card-loader/featured-product-card-loader.component";
 import { ProductCardLoaderComponent } from "@modules/products/components/product-card-loader/product-card-loader.component";
 import { ProductDetailLoaderComponent } from "@modules/products/components/product-detail-loader/product-detail-loader.component";
-import { NotificationModalComponent } from "@app/modules/products/components/notification-modal/notification-modal.component";
 
 
 export const pageDeclarations: any[] = [
@@ -24,7 +23,6 @@ export const componentDeclarations: any[] = [
     FeaturedProductCardLoaderComponent,
     ProductCardLoaderComponent,
     ProductDetailLoaderComponent,
-    NotificationModalComponent
 ];
 
 export const providerDeclarations: any[] = [

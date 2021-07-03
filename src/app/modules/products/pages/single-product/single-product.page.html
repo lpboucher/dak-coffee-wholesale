@@ -1,6 +1,6 @@
 <ng-container *ngIf="product$ | withLoader | async as product">
     <ng-template [ngIf]="!product.error && !product.loading">
-        <app-product-detail [product]="product.value"></app-product-detail>
+        <app-product-detail *ngIf="product.value as loadedProduct" [product]="loadedProduct"></app-product-detail>
         <p class="related-products-title">You may also like</p>
         <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [gridGap]=2>
             <app-product-card
