@@ -7,15 +7,15 @@ import { CustomOption } from "@shared/models/types/custom-option.type";
     selector: "[snipcartAdd]"
 })
 export class SnipcartAddDirective implements OnInit, OnChanges {
-    @Input() snipcartAdd!: Product;
-    @Input() customOptions: CustomOption[] = [];
+    @Input("snipcartAdd") product!: Product;
+    @Input() modifiers: CustomOption[] = [];
 
     constructor(private el: ElementRef) {}
 
     ngOnInit(): void {
         this.el.nativeElement.className += " snipcart-add-item";
 
-        const { id, productType, slug, name, price } = this.snipcartAdd;
+        const { id, productType, slug, name, price } = this.product;
         const url = `/products/${ productType }/${ slug }`;
 
         this.el.nativeElement.setAttribute("data-item-id", id);
@@ -30,8 +30,8 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
     }
 
     private setCustomAttributes(): void {
-        this.customOptions.forEach((option, index) => {
-            const basename = `data-item-custom${ index }`;
+        this.modifiers.forEach((option, index) => {
+            const basename = `data-item-custom${ index + 1 }`;
             const optionList = this.rawListToSnipcartList(option.list);
 
             this.el.nativeElement.setAttribute(basename + "-name", option.name);
