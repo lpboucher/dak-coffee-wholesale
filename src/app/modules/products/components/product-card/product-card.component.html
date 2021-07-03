@@ -7,7 +7,7 @@
         <h2 class="product-card-body-title">{{product.name}}</h2>
         <p *ngFor="let description of product.displayedDescription">{{description}}</p>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">{{product.price}}</div>
+            <div class="product-card-body-price">{{product.price | volumeDiscount}}</div>
             <button [snipcartAdd]="product" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
