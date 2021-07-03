@@ -53,7 +53,7 @@
                     Confirm Password
                     <input formControlName="passwordConfirm" type="password" placeholder="password" class="request-access-input" />
                 </label>
-                <div *ngIf="hasUnmatchedPasswords()" class="request-access-submission-error-message">Passwords do not match.</div>
+                <div *ngIf="hasUnmatchedPasswords" class="request-access-submission-error-message">Passwords do not match.</div>
 
                 <button class="request-access-submit-button">Submit</button>
             </form>

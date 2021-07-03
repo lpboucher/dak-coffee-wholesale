@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 
 import { AuthService } from "@core/authentication/authentication.service";
-
 import { PasswordMatch } from "@core/validators/password-match.validator";
 
 import { Sector } from "@shared/models/types/sector-type.type";
@@ -30,6 +29,11 @@ export class RequestAccessFormComponent {
             validators: [PasswordMatch("password", "passwordConfirm")],
         }
     );
+
+    get hasUnmatchedPasswords(): boolean {
+        return this.requestAccessForm.errors?.notMatching === true
+            && this.shouldShowErrors(this.passwordConfirmControl);
+    }
 
     get contactNameControl(): AbstractControl {
         return this.requestAccessForm.get("contactName")!;
@@ -81,14 +85,6 @@ export class RequestAccessFormComponent {
 
     hasErrors(control: AbstractControl): boolean {
         return control.invalid && this.shouldShowErrors(control);
-    }
-
-    hasUnmatchedPasswords(): boolean {
-        const errors = this.requestAccessForm.errors;
-        return errors != null
-            && errors.hasOwnProperty("notMatching")
-            && errors.notMatching === true
-            && this.shouldShowErrors(this.passwordConfirmControl);
     }
 
     private shouldShowErrors(control: AbstractControl): boolean {
