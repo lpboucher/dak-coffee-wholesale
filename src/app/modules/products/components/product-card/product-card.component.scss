@@ -32,11 +32,11 @@
 }
 
 .product-card-body-selection-form {
-    @apply flex items-center justify-between;
+    @apply flex flex-col items-center justify-between;
 }
 
 .product-card-body-selection-item {
-    @apply flex-shrink-0 w-2/5;
+    @apply flex-shrink-0 w-full;
 }
 
 .product-card-body-price-container {

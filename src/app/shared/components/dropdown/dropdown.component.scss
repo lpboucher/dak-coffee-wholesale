@@ -36,7 +36,7 @@
 }
 
 .dropdown-option-list-container {
-    @apply absolute flex flex-col;
+    @apply absolute flex flex-col z-50;
     @apply w-full top-full left-0 mt-2;
     @apply shadow rounded overflow-y-auto;
 }
