@@ -5,7 +5,7 @@ import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { ModalService } from "@core/views/modal.service";
-import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
+import { WalletModalComponent } from "@shared/components/modals";
 
 import { NAVIGATION } from "@utils/constants/navigation";
 

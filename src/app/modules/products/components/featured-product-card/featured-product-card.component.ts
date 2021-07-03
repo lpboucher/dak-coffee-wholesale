@@ -2,8 +2,9 @@ import { Component, Input } from "@angular/core";
 import { ImageService } from "@core/views/image.service";
 import { ModalService } from "@core/views/modal.service";
 
+import { NotificationModalComponent } from "@shared/components/modals";
+
 import { Product } from "@shared/models/classes/product.class";
-import { NotificationModalComponent } from "@app/modules/products/components/notification-modal/notification-modal.component";
 
 @Component({
     selector: "app-featured-product-card",

@@ -3,14 +3,14 @@ import { Component } from "@angular/core";
 import { ModalService } from "@app/core/views/modal.service";
 
 @Component({
-    selector: "app-modal",
-    templateUrl: "./modal.component.html",
-    styleUrls: ["./modal.component.scss"]
+    selector: "app-modal-backbone",
+    templateUrl: "./modal-backbone.component.html",
+    styleUrls: ["./modal-backbone.component.scss"]
 })
-export class ModalComponent {
+export class ModalBackboneComponent {
     display: boolean = true;
 
-    constructor(private modalService: ModalService<ModalComponent>) { }
+    constructor(private modalService: ModalService<ModalBackboneComponent>) { }
 
     async close(): Promise<void> {
         this.display = false;
