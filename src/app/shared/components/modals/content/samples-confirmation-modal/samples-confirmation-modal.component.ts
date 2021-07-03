@@ -33,7 +33,7 @@ export class SamplesConfirmationModalComponent {
     }
 
     private close(): void {
-        if (this.modal != undefined) {
+        if (this.modal != null) {
             this.modal.close();
         }
     }
