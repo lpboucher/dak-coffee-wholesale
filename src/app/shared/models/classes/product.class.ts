@@ -1,6 +1,6 @@
+import { ProductImages } from "../types/product-images.interface";
 import { CollectionType } from "@shared/models/types/collection-type.type";
 import { ProductType } from "../types/product-type.type";
-import { ProductImages } from "../types/product-images.type";
 
 export abstract class Product {
     abstract productType: ProductType;

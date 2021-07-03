@@ -1,11 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map, startWith, catchError } from 'rxjs/operators';
+import { Pipe, PipeTransform } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { map, startWith, catchError } from "rxjs/operators";
 
-import { StreamStatus } from "../models/types/stream-status.type";
+import { StreamStatus } from "../models/types/stream-status.interface";
 
 @Pipe({
-  name: 'withLoader',
+  name: "withLoader",
 })
 export class WithLoaderPipe implements PipeTransform {
     transform<T = any>(val: Observable<T>): Observable<StreamStatus<T>> {

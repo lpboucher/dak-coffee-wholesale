@@ -3,7 +3,7 @@ import { Component, Input } from "@angular/core";
 import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { CustomOption } from "@shared/models/types/custom-option.type";
+import { CustomOption } from "@app/shared/models/types/custom-option.interface";
 import { Roast } from "@shared/models/types/roast.type";
 import { Weight } from "@shared/models/types/weight.type";
 
