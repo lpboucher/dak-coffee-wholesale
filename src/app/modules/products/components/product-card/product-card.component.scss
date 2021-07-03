@@ -31,6 +31,14 @@
     @apply text-sm;
 }
 
+.product-card-body-selection-form {
+    @apply flex flex-col items-center justify-between;
+}
+
+.product-card-body-selection-item {
+    @apply flex-shrink-0 w-full;
+}
+
 .product-card-body-price-container {
     @apply flex justify-between;
     @apply mt-3;
@@ -48,15 +56,14 @@
 
 .product-card-details-container {
     @apply p-4;
-    @apply border-t text-xs text-gray-700;
+    @apply border-t;
 }
 
 .product-card-details {
-    @apply flex items-center;
     @apply mb-1;
 }
 
 .product-card-details-text {
     @apply mr-2;
-    @apply text-gray-900;
+    @apply text-xs text-gray-700 italic;
 }
