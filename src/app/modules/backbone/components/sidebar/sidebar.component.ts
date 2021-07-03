@@ -19,14 +19,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     navigation = NAVIGATION;
     openLabel = "";
     priceTierActive = false;
-
-    get cartTotal(): Observable<number> {
-        return this.cartService.currentCartTotal$;
-    }
-
-    get cartWeight(): Observable<number> {
-        return this.cartService.currentCartWeight$;
-    }
+    cartTotal: number = 0;
+    cartWeight: number = 0;
 
     constructor(
         private authService: AuthService,
@@ -40,6 +34,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.pricingTierService.isDiscountActive$
             .subscribe((value) => {
                 this.priceTierActive = value;
+                this.changeDetectorRef.detectChanges();
+            })
+        );
+
+        this.subscriptions.add(this.cartService.currentCartTotal$
+            .subscribe((value) => {
+                this.cartTotal = value;
+                this.changeDetectorRef.detectChanges();
+            })
+        );
+
+        this.subscriptions.add(this.cartService.currentCartWeight$
+            .subscribe((value) => {
+                this.cartWeight = value;
                 this.changeDetectorRef.detectChanges();
             })
         );
