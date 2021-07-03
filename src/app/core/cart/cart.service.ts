@@ -43,6 +43,7 @@ export class CartService {
     updateCart(total: number, items: any): void {
         this.updateCartTotal(total);
         this.updateCartWeight(items);
+        this.updatePricingService();
     }
 
     private updateCartTotal(total: number): void {

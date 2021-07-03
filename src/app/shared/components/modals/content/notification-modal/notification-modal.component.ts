@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
-import { ModalComponent } from "@shared/components/modal/modal.component";
+
+import { ModalBackboneComponent } from "@shared/components/modals";
 
 @Component({
     selector: "app-notification-modal",
@@ -7,7 +8,7 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
     styleUrls: ["./notification-modal.component.scss"]
 })
 export class NotificationModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined;
+    @ViewChild("modal") modal: ModalBackboneComponent | undefined;
 
     constructor() {}
 
