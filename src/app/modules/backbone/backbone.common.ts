@@ -8,10 +8,7 @@ import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.c
 import { FooterComponent } from "@modules/backbone/components/footer/footer.component";
 import { NavItemComponent } from "@modules/backbone/components/nav-item/nav-item.component";
 import { FloatingActionComponent } from "@modules/backbone/components/floating-action/floating-action.component";
-import { SamplesConfirmationModalComponent } from "@modules/backbone/components/samples-confirmation-modal/samples-confirmation-modal.component";
 import { HeaderComponent } from "@modules/backbone/components/header/header.component";
-import { CartWidgetComponent } from "@modules/backbone/components/cart-widget/cart-widget.component";
-import { WalletWidgetComponent } from "@modules/backbone/components/wallet-widget/wallet-widget.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -22,10 +19,7 @@ export const componentDeclarations: any[] = [
     FooterComponent,
     NavItemComponent,
     FloatingActionComponent,
-    SamplesConfirmationModalComponent,
     HeaderComponent,
-    CartWidgetComponent,
-    WalletWidgetComponent,
 ];
 
 export const routes: Routes = [

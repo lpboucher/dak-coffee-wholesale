@@ -2,7 +2,10 @@ import { ChangeDetectorRef, Component, OnInit, OnDestroy, Input, Output, EventEm
 import { Subscription } from "rxjs";
 
 import { AuthService } from "@core/authentication/authentication.service";
+import { CartService } from "@core/cart/cart.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
+import { ModalService } from "@core/views/modal.service";
+import { WalletModalComponent } from "@shared/components/modals";
 
 import { NAVIGATION } from "@utils/constants/navigation";
 
@@ -18,10 +21,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
     navigation = NAVIGATION;
     openLabel = "";
     priceTierActive = false;
+    cartTotal: number = 0;
+    cartWeight: number = 0;
 
     constructor(
         private authService: AuthService,
         private pricingTierService: PricingTierService,
+        private cartService: CartService,
+        private modalService: ModalService<WalletModalComponent>,
         private changeDetectorRef: ChangeDetectorRef,
     ) {}
 
@@ -29,6 +36,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.pricingTierService.isDiscountActive$
             .subscribe((value) => {
                 this.priceTierActive = value;
+                this.changeDetectorRef.detectChanges();
+            })
+        );
+
+        this.subscriptions.add(this.cartService.currentCartTotal$
+            .subscribe((value) => {
+                this.cartTotal = value;
+                this.changeDetectorRef.detectChanges();
+            })
+        );
+
+        this.subscriptions.add(this.cartService.currentCartWeight$
+            .subscribe((value) => {
+                this.cartWeight = value;
                 this.changeDetectorRef.detectChanges();
             })
         );
@@ -45,6 +66,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
+    }
+
+    onWalletWidgetClicked(): void {
+        this.modalService.open(WalletModalComponent);
+    }
+
+    onCartWidgetClicked(): void {
+        (window as any).Snipcart.api.theme.cart.open();
     }
 
     onLogoutClicked(): void {
