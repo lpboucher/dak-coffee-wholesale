@@ -1,9 +1,9 @@
 import { Component, Input } from "@angular/core";
-import { CustomOption } from "@app/shared/models/classes/custom-option.class";
 
 import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
+import { CustomOption } from "@shared/models/types/custom-option.type";
 import { Roast } from "@shared/models/types/roast.type";
 import { Weight } from "@shared/models/types/weight.type";
 
@@ -49,8 +49,8 @@ export class ProductCardComponent {
 
     private makeSnipcartOptions(): CustomOption[] {
         return [
-            new CustomOption("Weight", this.weightOptions, this.currentWeight),
-            new CustomOption("Roast", this.roastOptions, this.currentRoast),
+            {name: "Weight", list: this.weightOptions, selection: this.currentWeight},
+            {name: "Roast", list: this.roastOptions, selection: this.currentRoast},
         ];
     }
 }

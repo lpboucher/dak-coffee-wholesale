@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit } from "@angular/core";
 
 import { Product } from "@shared/models/classes/product.class";
-import { CustomOption } from "@shared/models/classes/custom-option.class";
+import { CustomOption } from "@shared/models/types/custom-option.type";
 
 @Directive({
     selector: "[snipcartAdd]"
