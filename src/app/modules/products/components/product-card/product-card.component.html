@@ -6,12 +6,12 @@
         <span class="product-card-body-highlight">New</span>
         <h2 class="product-card-body-title">{{ product.name }}</h2>
         <form class="product-card-body-selection-form">
-            <app-dropdown class="product-card-body-selection-item" [options]="weightOptions" [defaultSelection]="weightOptions[0]"></app-dropdown>
-            <app-dropdown class="product-card-body-selection-item" [options]="roastOptions" [defaultSelection]="roastOptions[0]"></app-dropdown>
+            <app-dropdown class="product-card-body-selection-item" [options]="weightOptions" [defaultSelection]="defaultWeight" (currentSelection)="changeWeightSelection($event)"></app-dropdown>
+            <app-dropdown class="product-card-body-selection-item" [options]="roastOptions" [defaultSelection]="defaultRoast" (currentSelection)="changeRoastSelection($event)"></app-dropdown>
         </form>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">{{product.price | volumeDiscount}}</div>
-            <button [snipcartAdd]="product" class="product-card-body-add-to-cart">Add to cart</button>
+            <div class="product-card-body-price">€{{ product.price }}</div>
+            <button [snipcartAdd]="product" [modifiers]="snipcartOptions" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
     <div class="product-card-details-container">
