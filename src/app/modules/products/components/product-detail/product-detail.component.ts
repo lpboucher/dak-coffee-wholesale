@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-
-import { CloudinaryImage } from "@cloudinary/base";
+import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
 
@@ -10,16 +9,14 @@ import { Product } from "@shared/models/classes/product.class";
     styleUrls: ["./product-detail.component.scss"]
 })
 export class ProductDetailComponent implements OnInit {
-    @Input() product!: Product;
+    @Input() product!: Product | undefined;
 
     get imageUrl(): string {
-        const url = `/Products/Mains/${ this.product.images.main }`;
-        const cloudName = { cloudName: "dak-coffee-roasters" };
-
-        return new CloudinaryImage(url, cloudName).toURL();
+        if (this.product?.images.main == null) { return ""; }
+        return this.imageService.getProductMainUrl(this.product?.images.main);
     }
 
-    constructor() { }
+    constructor(private imageService: ImageService) { }
 
     ngOnInit(): void {
     }

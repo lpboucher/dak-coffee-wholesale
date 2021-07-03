@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { ModalBackboneComponent } from "@shared/components/modals";
 
 @Component({
     selector: "app-wallet-modal",
@@ -7,7 +7,7 @@ import { ModalComponent } from "@shared/components/modal/modal.component";
     styleUrls: ["./wallet-modal.component.scss"]
 })
 export class WalletModalComponent {
-    @ViewChild("modal") modal: ModalComponent | undefined;
+    @ViewChild("modal") modal: ModalBackboneComponent | undefined;
 
     constructor() { }
 

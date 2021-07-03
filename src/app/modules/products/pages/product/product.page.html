@@ -1,8 +1,22 @@
 <div class="product-page-container">
     <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
-        <app-featured-product-card *ngFor="let product of featuredProducts$ | async" [product]="product"></app-featured-product-card>
+        <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
+            <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
+                <app-featured-product-card *ngFor="let product of featuredProducts.value" [product]="product"></app-featured-product-card>
+            </ng-template>
+            <ng-template [ngIf]="featuredProducts.loading">
+                <app-featured-product-card-loader *ngFor="let _ of [].constructor(2)"></app-featured-product-card-loader>
+            </ng-template>
+        </ng-container>
     </app-grid-list>
     <app-grid-list [gridGap]=4>
-        <app-product-card *ngFor="let product of products$ | async" [product]="product"></app-product-card>
+        <ng-container *ngIf="products$ | withLoader | async as products">
+            <ng-template [ngIf]="!products.error && !products.loading">
+                <app-product-card *ngFor="let product of products.value" [product]="product"></app-product-card>
+            </ng-template>
+            <ng-template [ngIf]="products.loading">
+                <app-product-card-loader *ngFor="let _ of [].constructor(12)"></app-product-card-loader>
+            </ng-template>
+        </ng-container>
     </app-grid-list>
 </div>
