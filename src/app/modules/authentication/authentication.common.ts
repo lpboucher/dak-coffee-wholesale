@@ -1,14 +1,14 @@
 import { Routes } from "@angular/router";
 
 import { LoginPageComponent } from "@modules/authentication/pages/login/login.page";
-import { RequestAccessPage } from "@modules/authentication/pages/request-access/request-access.page";
+import { RequestAccessPageComponent } from "@modules/authentication/pages/request-access/request-access.page";
 
 import { LoginComponent } from "@modules/authentication/components/login/login.component";
-import { RequestAccessFormComponent } from '@modules/authentication/components/request-access-form/request-access-form.component';
+import { RequestAccessFormComponent } from "@modules/authentication/components/request-access-form/request-access-form.component";
 
 export const pageDeclarations: any[] = [
     LoginPageComponent,
-    RequestAccessPage,
+    RequestAccessPageComponent,
 ];
 
 export const componentDeclarations: any[] = [
@@ -26,6 +26,6 @@ export const routes: Routes = [
     },
     {
         path: "register",
-        component: RequestAccessFormComponent,
+        component: RequestAccessPageComponent,
     }
 ];
