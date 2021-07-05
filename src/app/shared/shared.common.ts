@@ -3,7 +3,7 @@ import { GridListComponent } from "@shared/components/grid-list/grid-list.compon
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
-
+import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -28,6 +28,7 @@ export const componentDeclarations: any[] = [
     DropdownComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    QuantityInputComponent,
 
     SnipcartAddDirective,
 
