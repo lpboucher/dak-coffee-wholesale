@@ -10,7 +10,7 @@
             <app-dropdown class="product-card-body-selection-item" [options]="roastOptions" [defaultSelection]="defaultRoast" (currentSelection)="changeRoastSelection($event)"></app-dropdown>
         </form>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">€{{ product.price }}</div>
+            <div class="product-card-body-price">€{{ product.price | volumeDiscount }}</div>
             <button [snipcartAdd]="product" [modifiers]="snipcartOptions" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
