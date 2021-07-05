@@ -3,6 +3,7 @@ import { GridListComponent } from "@shared/components/grid-list/grid-list.compon
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { BurgerMenuComponent } from "@shared/components/burger-menu/burger-menu.component";
+import { NavigationComponent } from "@shared/abstracts/navigation/navigation.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -27,6 +28,7 @@ export const componentDeclarations: any[] = [
     BurgerMenuComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    NavigationComponent,
 
     SnipcartAddDirective,
 
