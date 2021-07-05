@@ -25,31 +25,3 @@
 .widget-item {
     @apply px-1;
 }
-
-.sidebar-container {
-    @apply flex fixed top-0 left-0;
-    @apply w-full h-full;
-    @apply transition-all duration-500 ease-in-out;
-}
-
-.sidebar-open {
-    @apply transform translate-x-0;
-}
-
-.sidebar-closed {
-    @apply transform -translate-x-full;
-
-    @apply md:translate-x-0;
-}
-
-.sidebar {
-    @apply flex-shrink-0;
-    @apply w-3/4;
-
-    @apply sm:w-1/2;
-}
-
-.sidebar-background {
-    @apply flex-grow-0;
-    @apply w-full;
-}

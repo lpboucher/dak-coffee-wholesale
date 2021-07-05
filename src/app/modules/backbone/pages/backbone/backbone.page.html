@@ -1,9 +1,12 @@
 <section class="backbone-container">
-    <header class="sidebar">
-        <app-sidebar></app-sidebar>
-    </header>
+    <div class="sidebar-container" [ngClass]="{ 'show-sidebar': showSidebar }">
+        <header class="sidebar">
+            <app-sidebar (hideSidebarEvent)="onHideSidebar()"></app-sidebar>
+        </header>
+        <div class="sidebar-background" (click)="onHideSidebar()"></div>
+    </div>
     <header class="header">
-        <app-header></app-header>
+        <app-header (showSidebarEvent)="onShowSidebar()"></app-header>
     </header>
     <main class="page-container">
         <router-outlet></router-outlet>

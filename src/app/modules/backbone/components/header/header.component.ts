@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from "@angular/core";
+import { ChangeDetectorRef, Component, EventEmitter, Output } from "@angular/core";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
@@ -14,8 +14,7 @@ import { NavigationComponent } from "@shared/abstracts/navigation/navigation.com
     styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent extends NavigationComponent {
-    showSidebar = false;
-    onBurgerMenuClick: () => void = () => { this.showSidebar = true; }
+    @Output() showSidebarEvent: EventEmitter<any> = new EventEmitter();
 
     constructor(
         protected pricingTierService: PricingTierService,
@@ -27,7 +26,7 @@ export class HeaderComponent extends NavigationComponent {
         super(pricingTierService, changeDetectorRef, cartService, modalService, authService);
     }
 
-    onClickedOffSidebar(): void {
-        this.showSidebar = false;
+    onBurgerMenuClick(): void {
+        this.showSidebarEvent.emit();
     }
 }

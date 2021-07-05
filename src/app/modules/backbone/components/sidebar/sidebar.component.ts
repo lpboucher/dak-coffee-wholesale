@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, Output, EventEmitter } from "@angular/core";
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
@@ -16,8 +16,7 @@ import { NAVIGATION } from "@utils/constants/navigation";
   styleUrls: ["./sidebar.component.scss"]
 })
 export class SidebarComponent extends NavigationComponent {
-    @Input() open: boolean = false;
-    @Output() openChange = new EventEmitter<boolean>();
+    @Output() hideSidebarEvent: EventEmitter<any> = new EventEmitter();
     navigation = NAVIGATION;
     openLabel = "";
 
@@ -32,8 +31,7 @@ export class SidebarComponent extends NavigationComponent {
     }
 
     onMobileCloseClicked(): void {
-        this.open = false;
-        this.openChange.emit(this.open);
+        this.hideSidebarEvent.emit();
     }
 
     onPricingToggled(value: boolean): void {
