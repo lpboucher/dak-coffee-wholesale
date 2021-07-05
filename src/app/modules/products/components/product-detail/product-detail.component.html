@@ -14,14 +14,14 @@
                 <form [formGroup]="selectionForm" class="product-detail-selection-form">
                     <div class="product-detail-selection-group">
                         Weight:
-                        <label class="product-detail-selection-label" *ngFor="let option of weightOptions">
+                        <label class="product-detail-selection-label" *ngFor="let option of weightOptions" (click)="onSelectWeight(option)">
                             <input formControlName="weightSelection" type="radio" value="{{ option }}" class="product-detail-selection-input" />
                             {{ option }}
                         </label>
                     </div>
                     <div class="product-detail-selection-group">
                         Roast:
-                        <label class="product-detail-selection-label" *ngFor="let option of roastOptions">
+                        <label class="product-detail-selection-label" *ngFor="let option of roastOptions" (click)="onSelectRoast(option)">
                             <input formControlName="roastSelection" type="radio" value="{{ option }}" class="product-detail-selection-input" />
                             {{ option }}
                         </label>
@@ -29,7 +29,7 @@
                 </form>
                 <div class="product-detail-content-order-wrapper">
                     <span class="product-detail-content-order-price">{{ product.price | volumeDiscount }}</span>
-                    <button class="product-detail-content-order-button">Add to cart</button>
+                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [modifiers]="snipcartOptions">Add to cart</button>
                     <button class="product-detail-content-order-like">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             class="product-detail-content-order-like-symbol" viewBox="0 0 24 24">

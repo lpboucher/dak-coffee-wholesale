@@ -5,7 +5,8 @@ import { ImageService } from "@core/views/image.service";
 
 import { Product } from "@shared/models/classes/product.class";
 import { Weight } from "@shared/models/types/weight.type";
-import { Roast } from "@app/shared/models/types/roast.type";
+import { Roast } from "@shared/models/types/roast.type";
+import { CustomOption } from "@shared/models/types/custom-option.interface";
 
 @Component({
     selector: "app-product-detail",
@@ -14,11 +15,20 @@ import { Roast } from "@app/shared/models/types/roast.type";
 })
 export class ProductDetailComponent {
     @Input() product!: Product;
-    weightOptions: Weight[] = ["250g", "1kg"];
-    roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
+
+    readonly weightOptions: Weight[] = ["250g", "1kg"];
+    readonly defaultWeight: Weight = this.weightOptions[0];
+    currentWeight: Weight = this.defaultWeight;
+
+    readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
+    readonly defaultRoast: Roast = this.roastOptions[0];
+    currentRoast: Roast = this.defaultRoast;
+
+    snipcartOptions: CustomOption[] = this.makeSnipcartOptions();
+
     selectionForm = this.fb.group({
-        weightSelection: [this.weightOptions[0], Validators.required],
-        roastSelection: [this.roastOptions[0], Validators.required],
+        weightSelection: [this.defaultWeight, Validators.required],
+        roastSelection: [this.defaultRoast, Validators.required],
     });
 
     get imageUrl(): string {
@@ -30,4 +40,21 @@ export class ProductDetailComponent {
         private imageService: ImageService,
         private fb: FormBuilder,
     ) {}
+
+    onSelectWeight(weight: Weight): void {
+        this.currentWeight = weight;
+        this.snipcartOptions = this.makeSnipcartOptions();
+    }
+
+    onSelectRoast(roast: Roast): void {
+        this.currentRoast = roast;
+        this.snipcartOptions = this.makeSnipcartOptions();
+    }
+
+    private makeSnipcartOptions(): CustomOption[] {
+        return [
+            {name: "Weight", list: this.weightOptions, selection: this.currentWeight},
+            {name: "Roast", list: this.roastOptions, selection: this.currentRoast},
+        ];
+    }
 }
