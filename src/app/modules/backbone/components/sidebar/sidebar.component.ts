@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, OnInit, OnDestroy, Input, Output, EventEmitter } from "@angular/core";
-import { Subscription } from "rxjs";
+import { ChangeDetectorRef, Component, Input, Output, EventEmitter } from "@angular/core";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { ModalService } from "@core/views/modal.service";
+
 import { WalletModalComponent } from "@shared/components/modals";
+import { NavigationComponent } from "@shared/abstracts/navigation/navigation.component";
 
 import { NAVIGATION } from "@utils/constants/navigation";
 
@@ -14,49 +15,20 @@ import { NAVIGATION } from "@utils/constants/navigation";
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"]
 })
-export class SidebarComponent implements OnInit, OnDestroy {
-    protected subscriptions: Subscription = new Subscription();
+export class SidebarComponent extends NavigationComponent {
     @Input() open: boolean = false;
     @Output() openChange = new EventEmitter<boolean>();
     navigation = NAVIGATION;
     openLabel = "";
-    priceTierActive = false;
-    cartTotal: number = 0;
-    cartWeight: number = 0;
 
     constructor(
-        private authService: AuthService,
-        private pricingTierService: PricingTierService,
-        private cartService: CartService,
-        private modalService: ModalService<WalletModalComponent>,
-        private changeDetectorRef: ChangeDetectorRef,
-    ) {}
-
-    ngOnInit(): void {
-        this.subscriptions.add(this.pricingTierService.isDiscountActive$
-            .subscribe((value) => {
-                this.priceTierActive = value;
-                this.changeDetectorRef.detectChanges();
-            })
-        );
-
-        this.subscriptions.add(this.cartService.currentCartTotal$
-            .subscribe((value) => {
-                this.cartTotal = value;
-                this.changeDetectorRef.detectChanges();
-            })
-        );
-
-        this.subscriptions.add(this.cartService.currentCartWeight$
-            .subscribe((value) => {
-                this.cartWeight = value;
-                this.changeDetectorRef.detectChanges();
-            })
-        );
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.unsubscribe();
+        protected authService: AuthService,
+        protected pricingTierService: PricingTierService,
+        protected cartService: CartService,
+        protected modalService: ModalService<WalletModalComponent>,
+        protected changeDetectorRef: ChangeDetectorRef,
+    ) {
+        super(pricingTierService, changeDetectorRef, cartService, modalService, authService)
     }
 
     onMobileCloseClicked(): void {
@@ -66,17 +38,5 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     onPricingToggled(value: boolean): void {
         this.pricingTierService.toggleDiscount(value);
-    }
-
-    onWalletWidgetClicked(): void {
-        this.modalService.open(WalletModalComponent);
-    }
-
-    onCartWidgetClicked(): void {
-        (window as any).Snipcart.api.theme.cart.open();
-    }
-
-    onLogoutClicked(): void {
-        this.authService.logout();
     }
 }
