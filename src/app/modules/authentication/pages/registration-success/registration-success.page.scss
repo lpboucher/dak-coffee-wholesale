@@ -1,0 +1,54 @@
+.registration-success-container {
+    @apply flex flex-col items-center;
+    @apply container mx-auto px-5 py-24;
+    @apply text-gray-600;
+
+    @apply md:flex-row;
+}
+
+.registration-success-image-container {
+    @apply w-5/6 mb-10;
+
+    @apply lg:max-w-lg lg:w-full md:w-1/2 md:mb-0;
+}
+
+.registration-success-image {
+    @apply rounded;
+    @apply object-cover object-center;
+}
+
+.registration-success-content-container {
+    @apply flex flex-col items-center;
+    @apply text-center;
+
+    @apply lg:flex-grow;
+    @apply md:w-1/2 lg:pl-24 md:pl-16;
+    @apply md:items-start;
+    @apply md:text-left;
+}
+
+.registration-success-content-title {
+    @apply mb-4;
+    @apply text-gray-900 font-medium text-3xl;
+
+    @apply sm:text-4xl;
+}
+
+.registration-success-content-text {
+    @apply mb-8;
+    @apply leading-relaxed;
+}
+
+.registration-success-content-button-container {
+    @apply flex justify-center;
+}
+
+.registration-success-content-button {
+    @apply inline-flex;
+    @apply border-0 py-2 px-6 rounded;
+    @apply text-white text-lg;
+    @apply bg-indigo-500;
+    @apply cursor-pointer;
+
+    @apply focus:outline-none hover:bg-indigo-600;
+}
