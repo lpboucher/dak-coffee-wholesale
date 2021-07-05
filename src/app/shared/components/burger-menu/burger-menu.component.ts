@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     selector: "app-burger-menu",
@@ -6,5 +6,9 @@ import { Component, Input } from "@angular/core";
     styleUrls: ["./burger-menu.component.scss"]
 })
 export class BurgerMenuComponent {
-    @Input() onBurgerMenuClick: () => void = () => {};
+    @Output() clickEvent: EventEmitter<any> = new EventEmitter();
+
+    onClick(): void {
+        this.clickEvent.emit();
+    }
 }
