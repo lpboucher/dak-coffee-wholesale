@@ -36,5 +36,10 @@ export const routes: Routes = [
     {
         path: "register",
         component: RequestAccessPageComponent,
+        pathMatch: "full",
+    },
+    {
+        path: "register/success",
+        component: RegistrationSuccessPage,
     }
 ];
