@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { ModalService } from "@core/views/modal.service";
 
-import { WalletModalComponent } from "@shared/components/wallet-modal/wallet-modal.component";
+import { WalletModalComponent } from "@shared/components/modals/index";
 
 @Component({
     selector: "app-wallet-widget",
