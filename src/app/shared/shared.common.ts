@@ -5,6 +5,7 @@ import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { BurgerMenuComponent } from "@shared/components/burger-menu/burger-menu.component";
 import { NavigationComponent } from "@shared/abstracts/navigation/navigation.component";
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
+import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -31,6 +32,7 @@ export const componentDeclarations: any[] = [
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
     NavigationComponent,
+    QuantityInputComponent,
 
     SnipcartAddDirective,
 
