@@ -1,7 +1,6 @@
 <div class="quantity-input-container">
     <label for="custom-input-number" class="quantity-input-label">{{ label }}</label>
     <div class="quantity-input-button-container">
-<<<<<<< HEAD
         <div data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</div>
         <input
             name="custom-input-number"
@@ -11,10 +10,5 @@
             (change)="onUserChange($event)"
             (keydown.enter)="$event.preventDefault()" />
         <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</div>
-=======
-        <button data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</button>
-        <input type="number" (change)="onUserChange($event)" class="quantity-input-value" name="custom-input-number" [(ngModel)]="_quantity" />
-        <button data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</button>
->>>>>>> feat(quantity input): implement ControlValueAccessor interface
     </div>
 </div>
