@@ -4,6 +4,7 @@ import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-w
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { BurgerMenuComponent } from "@shared/components/burger-menu/burger-menu.component";
 import { NavigationComponent } from "@shared/abstracts/navigation/navigation.component";
+import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -26,6 +27,7 @@ export const componentDeclarations: any[] = [
     WidgetComponent,
     WalletModalComponent,
     BurgerMenuComponent,
+    DropdownComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
     NavigationComponent,

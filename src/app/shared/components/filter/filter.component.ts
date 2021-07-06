@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 
-import { FilterType } from "@shared/models/types/filter-type.type";
+import { FilterType } from "@app/shared/models/types/filter-type.interface";
 
 
 type DropdownSubItem = { id: number, text: string }
