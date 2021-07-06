@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from "@angular/forms";
 
 @Component({
@@ -18,13 +18,13 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
         }
     ]
 })
-export class QuantityInputComponent implements ControlValueAccessor, Validator {
+export class QuantityInputComponent implements OnInit, ControlValueAccessor, Validator {
     @Input() label: string = "";
     @Input() maxValue?: number;
     @Input() minValue?: number;
-    readonly defaultValue = 0;
     _quantity: number = this.defaultValue;
 
+    private readonly _defaultValue = 0;
     private onChange = (_: any) => {};
     private onTouched = () => {};
     private touched = false;
@@ -42,7 +42,18 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
         return this._quantity;
     }
 
+    get defaultValue(): number {
+        if (this.minValue != null) { return this.minValue; }
+        return this._defaultValue;
+    }
+
     constructor() {}
+
+    ngOnInit(): void {
+        if (this.minValue != null) {
+            this._quantity = this.minValue;
+        }
+    }
 
     writeValue(value: number): void {
         this.quantity = value;
