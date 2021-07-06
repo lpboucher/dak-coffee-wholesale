@@ -3,7 +3,7 @@
     <div class="quantity-input-button-container">
         <button data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</button>
         <form [formGroup]="quantityForm">
-            <input type="number" (change)="verifyQuantity()" class="quantity-input-value" name="custom-input-number" formControlName="quantity" />
+            <input #input type="number" (change)="onChange($event)" class="quantity-input-value" name="custom-input-number" formControlName="quantity" />
         </form>
         <button data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</button>
     </div>
