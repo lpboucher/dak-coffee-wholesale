@@ -1,12 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 
 @Component({
     selector: "app-dropdown",
     templateUrl: "./dropdown.component.html",
-    styleUrls: ["./dropdown.component.scss"]
+    styleUrls: ["./dropdown.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: DropdownComponent,
+        }
+    ]
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements OnInit, ControlValueAccessor {
     @Input() options: string[] = [];
     @Input() defaultSelection: string | undefined;
     @Output() currentSelection: EventEmitter<string> = new EventEmitter<string>();
@@ -15,12 +22,21 @@ export class DropdownComponent implements OnInit {
         options: ["", Validators.required],
     });
 
+    private onChange = (_: string) => {};
+    private onTouched = () => {};
+    private touched = false;
+    private disabled = false;
+
     get currentlySelected(): string {
         return this.optionsControl.value;
     }
 
     set currentlySelected(option: string) {
+        this.markAsTouched();
+        if (this.disabled) { return; }
+
         this.optionsControl.setValue(option);
+        this.onChange(this.currentlySelected);
     }
 
     get optionsControl(): AbstractControl {
@@ -35,7 +51,26 @@ export class DropdownComponent implements OnInit {
         }
     }
 
+    writeValue(value: string): void {
+        this.currentlySelected = value;
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(disabled: boolean): void {
+        this.disabled = disabled;
+    }
+
     onClickDropdown(): void {
+        this.markAsTouched();
+        if (this.disabled) { return; }
+
         this.showOptions = !this.showOptions;
     }
 
@@ -44,5 +79,12 @@ export class DropdownComponent implements OnInit {
         this.currentSelection.emit(this.currentlySelected);
         this.showOptions = false;
         event.stopPropagation();
+    }
+
+    private markAsTouched(): void {
+        if (this.touched) { return; }
+
+        this.onTouched();
+        this.touched = true;
     }
 }
