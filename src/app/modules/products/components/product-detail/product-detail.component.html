@@ -11,28 +11,25 @@
                 <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
                 </div>
-                <div class="product-detail-content-selection-wrapper">
-                    <div class="product-detail-content-selection-size">
-                        <span class="product-detail-content-selection-size-text">Size</span>
-                        <div class="product-detail-content-selection-size-options-wrapper">
-                            <select class="product-detail-content-selection-size-options">
-                                <option>250g</option>
-                                <option>500g</option>
-                                <option>1kg</option>
-                                <option>2kg</option>
-                            </select>
-                            <span class="product-detail-content-selection-size-arrow-wrapper">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="product-detail-content-selection-size-arrow" viewBox="0 0 24 24">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </span>
-                        </div>
+                <form [formGroup]="selectionForm" class="product-detail-selection-form">
+                    <div class="product-detail-selection-group">
+                        Weight:
+                        <label class="product-detail-selection-label" *ngFor="let option of weightOptions" (click)="onSelectWeight(option)">
+                            <input formControlName="weightSelection" type="radio" value="{{ option }}" class="product-detail-selection-input" />
+                            {{ option }}
+                        </label>
                     </div>
-                </div>
+                    <div class="product-detail-selection-group">
+                        Roast:
+                        <label class="product-detail-selection-label" *ngFor="let option of roastOptions" (click)="onSelectRoast(option)">
+                            <input formControlName="roastSelection" type="radio" value="{{ option }}" class="product-detail-selection-input" />
+                            {{ option }}
+                        </label>
+                    </div>
+                </form>
                 <div class="product-detail-content-order-wrapper">
-                    <span class="product-detail-content-order-price">{{ product.price | volumeDiscount }}</span>
-                    <button class="product-detail-content-order-button">Add to cart</button>
+                    <span class="product-detail-content-order-price">€{{ product.price | volumeDiscount }}</span>
+                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [modifiers]="snipcartOptions">Add to cart</button>
                     <button class="product-detail-content-order-like">
                         <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             class="product-detail-content-order-like-symbol" viewBox="0 0 24 24">
