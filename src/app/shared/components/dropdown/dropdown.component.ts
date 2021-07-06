@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 
 @Component({
@@ -16,7 +16,6 @@ import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, 
 export class DropdownComponent implements OnInit, ControlValueAccessor {
     @Input() options: string[] = [];
     @Input() defaultSelection: string | undefined;
-    @Output() currentSelection: EventEmitter<string> = new EventEmitter<string>();
     showOptions: boolean = false;
     dropdownForm = this.fb.group({
         options: ["", Validators.required],
@@ -29,14 +28,6 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
 
     get currentlySelected(): string {
         return this.optionsControl.value;
-    }
-
-    set currentlySelected(option: string) {
-        this.markAsTouched();
-        if (this.disabled) { return; }
-
-        this.optionsControl.setValue(option);
-        this.onChange(this.currentlySelected);
     }
 
     get optionsControl(): AbstractControl {
@@ -52,7 +43,11 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(value: string): void {
-        this.currentlySelected = value;
+        this.markAsTouched();
+        if (this.disabled) { return; }
+
+        this.optionsControl.setValue(value);
+        this.onChange(this.currentlySelected);
     }
 
     registerOnChange(fn: any): void {
@@ -75,8 +70,7 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
     }
 
     onSelectOption(option: string, event: Event): void {
-        this.currentlySelected = option;
-        this.currentSelection.emit(this.currentlySelected);
+        this.writeValue(option);
         this.showOptions = false;
         event.stopPropagation();
     }
