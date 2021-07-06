@@ -8,6 +8,7 @@
         <form class="product-card-body-selection-form" [formGroup]="productOptionsForm">
             <app-dropdown class="product-card-body-selection-item" formControlName="weight" [options]="weightOptions" [defaultSelection]="defaultWeight"></app-dropdown>
             <app-dropdown class="product-card-body-selection-item" formControlName="roast" [options]="roastOptions" [defaultSelection]="defaultRoast"></app-dropdown>
+            <app-quantity-input [minValue]="1"></app-quantity-input>
         </form>
         <div class="product-card-body-price-container">
             <div class="product-card-body-price">€{{ product.price }}</div>
