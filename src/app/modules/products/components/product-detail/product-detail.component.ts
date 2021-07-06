@@ -18,17 +18,12 @@ export class ProductDetailComponent {
 
     readonly weightOptions: Weight[] = ["250g", "1kg"];
     readonly defaultWeight: Weight = this.weightOptions[0];
-    currentWeight: Weight = this.defaultWeight;
-
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
-    currentRoast: Roast = this.defaultRoast;
-
-    snipcartOptions: CustomOption[] = this.makeSnipcartOptions();
 
     selectionForm = this.fb.group({
-        weightSelection: [this.defaultWeight, Validators.required],
-        roastSelection: [this.defaultRoast, Validators.required],
+        weight: [this.defaultWeight, Validators.required],
+        roast: [this.defaultRoast, Validators.required],
     });
 
     get imageUrl(): string {
@@ -36,25 +31,23 @@ export class ProductDetailComponent {
         return this.imageService.getProductMainUrl(this.product?.images.main);
     }
 
+    get weight(): Weight {
+        return this.selectionForm.get("weight")!.value;
+    }
+
+    get roast(): Roast {
+        return this.selectionForm.get("roast")!.value;
+    }
+
+    get snipcartOptions(): CustomOption[] {
+        return [
+            { name: "Weight", list: this.weightOptions, selection: this.weight },
+            { name: "Roast", list: this.roastOptions, selection: this.roast },
+        ];
+    }
+
     constructor(
         private imageService: ImageService,
         private fb: FormBuilder,
     ) {}
-
-    onSelectWeight(weight: Weight): void {
-        this.currentWeight = weight;
-        this.snipcartOptions = this.makeSnipcartOptions();
-    }
-
-    onSelectRoast(roast: Roast): void {
-        this.currentRoast = roast;
-        this.snipcartOptions = this.makeSnipcartOptions();
-    }
-
-    private makeSnipcartOptions(): CustomOption[] {
-        return [
-            {name: "Weight", list: this.weightOptions, selection: this.currentWeight},
-            {name: "Roast", list: this.roastOptions, selection: this.currentRoast},
-        ];
-    }
 }
