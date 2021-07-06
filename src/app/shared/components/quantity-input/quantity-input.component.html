@@ -2,9 +2,7 @@
     <label for="custom-input-number" class="quantity-input-label">Counter Input</label>
     <div class="quantity-input-button-container">
         <button data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</button>
-        <form [formGroup]="quantityForm">
-            <input #input type="number" (change)="onChange($event)" class="quantity-input-value" name="custom-input-number" formControlName="quantity" />
-        </form>
+        <input type="number" (change)="onChange($event)" class="quantity-input-value" name="custom-input-number" [(ngModel)]="_quantity" />
         <button data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</button>
     </div>
 </div>
