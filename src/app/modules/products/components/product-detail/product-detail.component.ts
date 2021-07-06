@@ -20,10 +20,12 @@ export class ProductDetailComponent {
     readonly defaultWeight: Weight = this.weightOptions[0];
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
+    readonly defaultQuantity: number = 1;
 
     selectionForm = this.fb.group({
         weight: [this.defaultWeight, Validators.required],
         roast: [this.defaultRoast, Validators.required],
+        quantity: [this.defaultQuantity, Validators.required],
     });
 
     get imageUrl(): string {
@@ -37,6 +39,10 @@ export class ProductDetailComponent {
 
     get roast(): Roast {
         return this.selectionForm.get("roast")!.value;
+    }
+
+    get quantity(): number {
+        return this.selectionForm.get("quantity")!.value;
     }
 
     get snipcartOptions(): CustomOption[] {
