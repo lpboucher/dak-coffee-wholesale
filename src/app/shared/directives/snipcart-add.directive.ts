@@ -23,11 +23,16 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
         this.el.nativeElement.setAttribute("data-item-url", url);
         this.el.nativeElement.setAttribute("data-item-name", name);
         this.el.nativeElement.setAttribute("data-item-price", price);
-        this.el.nativeElement.setAttribute("data-item-quantity", this.quantity);
+        this.el.nativeElement.setAttribute("data-item-min-quantity", 1);
         this.setCustomAttributes();
     }
 
     ngOnChanges(): void {
+        this.setChangingAttributes();
+    }
+
+    private setChangingAttributes(): void {
+        this.el.nativeElement.setAttribute("data-item-quantity", this.quantity);
         this.setCustomAttributes();
     }
 
