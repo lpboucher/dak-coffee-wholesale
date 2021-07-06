@@ -46,6 +46,8 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
         this.markAsTouched();
         if (this.disabled) { return; }
 
+        if (!this.options.includes(value)) { return; }
+
         this.optionsControl.setValue(value);
         this.onChange(this.currentlySelected);
     }
