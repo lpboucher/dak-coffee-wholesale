@@ -34,12 +34,12 @@
 
 .quantity-input-left-button {
     @apply quantity-input-button;
-    @apply rounded-l pb-1;
+    @apply rounded-l;
 }
 
 .quantity-input-right-button {
     @apply quantity-input-button;
-    @apply rounded-r pb-2;
+    @apply rounded-r;
 }
 
 .quantity-input-value {
