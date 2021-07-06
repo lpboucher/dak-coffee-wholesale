@@ -19,9 +19,11 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
     ]
 })
 export class QuantityInputComponent implements ControlValueAccessor, Validator {
-    readonly minValue = 1;
-    _quantity: number = this.minValue;
     @Input() label: string = "";
+    @Input() maxValue?: number;
+    @Input() minValue?: number;
+    readonly defaultValue = 0;
+    _quantity: number = this.defaultValue;
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
@@ -73,8 +75,13 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
 
     validate(control: AbstractControl): ValidationErrors | null {
         const value = control.value;
-        if (value < this.minValue) {
+
+        if (this.minValue != null && value < this.minValue) {
             return { mustBeAtLeastMin: value };
+        }
+
+        if (this.maxValue != null && value > this.maxValue) {
+            return { mustBeLessThanMax: value };
         }
 
         return null;
@@ -89,7 +96,19 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
 
     private sanitizeValue(value: number): number {
         return isNaN(value)
-            ? this.minValue
-            : Math.max(this.minValue, value);
+            ? this.defaultValue
+            : this.clampToRange(value);
+    }
+
+    private clampToRange(value: number): number {
+        if (this.minValue != null) {
+            value = Math.max(this.minValue, value);
+        }
+
+        if (this.maxValue != null) {
+            value = Math.min(this.maxValue, value);
+        }
+
+        return value;
     }
 }
