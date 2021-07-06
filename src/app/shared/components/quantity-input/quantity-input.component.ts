@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from "@angular/forms";
 
 @Component({
@@ -21,6 +21,7 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
 export class QuantityInputComponent implements ControlValueAccessor, Validator {
     readonly minValue = 1;
     _quantity: number = this.minValue;
+    @Input() label: string = "";
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
