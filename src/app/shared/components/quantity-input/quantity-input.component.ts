@@ -1,19 +1,31 @@
 import { Component } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
     selector: "app-quantity-input",
     templateUrl: "./quantity-input.component.html",
-    styleUrls: ["./quantity-input.component.scss"]
+    styleUrls: ["./quantity-input.component.scss"],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        multi: true,
+        useExisting: QuantityInputComponent,
+    }]
 })
-export class QuantityInputComponent {
+export class QuantityInputComponent implements ControlValueAccessor {
     readonly minValue = 1;
     _quantity: number = this.minValue;
 
-    set quantity(value: number) {
-        value = isNaN(value) ? this.minValue : value;
-        value = Math.max(this.minValue, value);
+    private onChange = (_: any) => {};
+    private onTouched = () => {};
+    private touched = false;
+    private disabled = false;
 
-        this._quantity = value;
+    set quantity(value: number) {
+        this.markAsTouched();
+        if (this.disabled) { return; }
+
+        this._quantity = this.sanitizeValue(value);
+        this.onChange(this._quantity);
     }
 
     get quantity(): number {
@@ -21,6 +33,22 @@ export class QuantityInputComponent {
     }
 
     constructor() {}
+
+    writeValue(value: number): void {
+        this.quantity = value;
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    setDisabledState(disabled: boolean): void {
+        this.disabled = disabled;
+    }
 
     onIncrement(): void {
         this.quantity = this.quantity + 1;
@@ -30,8 +58,21 @@ export class QuantityInputComponent {
         this.quantity = this.quantity - 1;
     }
 
-    onChange(event: Event): void {
+    onUserChange(event: Event): void {
         const value = (event.target as HTMLInputElement).valueAsNumber;
         this.quantity = value;
+    }
+
+    private markAsTouched(): void {
+        if (this.touched) { return; }
+
+        this.onTouched();
+        this.touched = true;
+    }
+
+    private sanitizeValue(value: number): number {
+        return isNaN(value)
+            ? this.minValue
+            : Math.max(this.minValue, value);
     }
 }
