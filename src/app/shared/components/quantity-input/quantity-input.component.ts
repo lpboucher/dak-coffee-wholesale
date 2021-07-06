@@ -1,17 +1,24 @@
 import { Component } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from "@angular/forms";
 
 @Component({
     selector: "app-quantity-input",
     templateUrl: "./quantity-input.component.html",
     styleUrls: ["./quantity-input.component.scss"],
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        multi: true,
-        useExisting: QuantityInputComponent,
-    }]
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: QuantityInputComponent,
+        },
+        {
+            provide: NG_VALIDATORS,
+            multi: true,
+            useExisting: QuantityInputComponent,
+        }
+    ]
 })
-export class QuantityInputComponent implements ControlValueAccessor {
+export class QuantityInputComponent implements ControlValueAccessor, Validator {
     readonly minValue = 1;
     _quantity: number = this.minValue;
 
@@ -61,6 +68,15 @@ export class QuantityInputComponent implements ControlValueAccessor {
     onUserChange(event: Event): void {
         const value = (event.target as HTMLInputElement).valueAsNumber;
         this.quantity = value;
+    }
+
+    validate(control: AbstractControl): ValidationErrors | null {
+        const value = control.value;
+        if (value < this.minValue) {
+            return { mustBeAtLeastMin: value };
+        }
+
+        return null;
     }
 
     private markAsTouched(): void {
