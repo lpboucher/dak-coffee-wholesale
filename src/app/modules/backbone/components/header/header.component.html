@@ -1,25 +1,12 @@
 <nav class="main-nav">
     <header class="brand">
-        <img class="" src="/favicon.ico"/>
-        <span class="">DAK</span>
+        <img src="/favicon.ico"/>
+        <span>DAK</span>
     </header>
-    <div class="mobile-close" (click)="onMobileCloseClicked()">
-        <div class="mobile-close-bar-1"></div>
-        <div class="mobile-close-bar-2"></div>
-    </div>
-    <div class="nav-item-list-container" *ngFor="let parent of navigation">
-        <ul class="nav-item-list">
-            <app-nav-item [label]="parent.label" [link]="parent.link" [children]="parent.children" [openLabel]="openLabel" class="nav-item"></app-nav-item>
-        </ul>
+    <div class="burger-menu-wrapper">
+        <app-burger-menu (clickEvent)="onBurgerMenuClick()"></app-burger-menu>
     </div>
     <div class="nav-spacer"></div>
-    <app-toggle-widget
-        [header]="'Volume Discount'"
-        [uncheckedOption]="'30%'"
-        [checkedOption]="'45%'"
-        [isChecked]="priceTierActive"
-        (toggle)="onPricingToggled($event)">
-    </app-toggle-widget>
     <div class="widget-container">
         <app-widget class="widget-item" [content]="'€200'" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -34,9 +21,4 @@
             </svg>
         </app-widget>
     </div>
-    <footer class="nav-footer">
-        <div class="footer-item" (click)="onLogoutClicked()">
-            <span>Logout</span>
-        </div>
-    </footer>
 </nav>

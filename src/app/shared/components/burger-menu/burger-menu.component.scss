@@ -1,0 +1,9 @@
+.burger-menu {
+    @apply flex flex-col justify-around;
+    @apply h-6;
+}
+
+.burger-bar {
+    @apply h-0.5 w-6 rounded-lg;
+    @apply bg-gray-800;
+}
