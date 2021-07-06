@@ -14,10 +14,10 @@ import { WalletModalComponent } from "@shared/components/modals";
     styles: [""]
 })
 export abstract class NavigationComponent implements OnInit, OnDestroy {
+    private subscriptions: Subscription = new Subscription();
     priceTierActive: boolean = false;
     cartTotal: number = 0;
     cartWeight: number = 0;
-    private subscriptions: Subscription = new Subscription();
 
     constructor(
         protected pricingTierService: PricingTierService,
