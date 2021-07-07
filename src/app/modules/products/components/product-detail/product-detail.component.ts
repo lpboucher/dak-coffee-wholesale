@@ -8,6 +8,8 @@ import { Weight } from "@shared/models/types/weight.type";
 import { Roast } from "@shared/models/types/roast.type";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
 
+import { WEIGHT_OPTIONS } from "@utils/constants/form-options";
+
 @Component({
     selector: "app-product-detail",
     templateUrl: "./product-detail.component.html",
@@ -16,8 +18,9 @@ import { CustomOption } from "@shared/models/types/custom-option.interface";
 export class ProductDetailComponent {
     @Input() product!: Product;
 
-    readonly weightOptions: Weight[] = ["250g", "1kg"];
+    readonly weightOptions = WEIGHT_OPTIONS;
     readonly defaultWeight: Weight = this.weightOptions[0];
+
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
     readonly defaultQuantity: number = 1;
@@ -47,8 +50,16 @@ export class ProductDetailComponent {
 
     get snipcartOptions(): CustomOption[] {
         return [
-            { name: "Weight", list: this.weightOptions, selection: this.weight },
-            { name: "Roast", list: this.roastOptions, selection: this.roast },
+            {
+                name: "Weight",
+                list: this.weightOptions.map(o => o as string),
+                selection: this.weight,
+            },
+            {
+                name: "Roast",
+                list: this.roastOptions,
+                selection: this.roast,
+            },
         ];
     }
 
