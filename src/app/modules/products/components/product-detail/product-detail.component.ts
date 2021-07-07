@@ -110,33 +110,27 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     private parseWeight(queryParams: ParamMap): void {
         const weight = queryParams.get("weight");
-        if (this.isValidWeight(weight)) {
-            this.weight = weight as Weight;
-        }
+        if (!this.isValidOption(weight, this.weightOptions)) { return; }
+
+        this.weight = weight as Weight;
     }
 
     private parseRoast(queryParams: ParamMap): void {
         const roast = queryParams.get("roast");
-        if (this.isValidRoast(roast)) {
-            this.roast = roast as Roast;
-        }
+        if (!this.isValidOption(roast, this.roastOptions)) { return; }
+
+        this.roast = roast as Roast;
+    }
+
+    isValidOption(value: string | null, options: any[]): boolean {
+        return value != null && options.includes(value);
     }
 
     private parseQuantity(queryParams: ParamMap): void {
         const quantity = queryParams.get("quantity");
-        if (quantity != null) {
-            this.quantity = Number.parseInt(quantity);
-        }
-    }
+        if (quantity == null) { return; }
 
-    private isValidRoast(roast: string | null): boolean {
-        return roast != null
-            && this.roastOptions.includes(roast as Roast);
-    }
-
-    private isValidWeight(weight: string | null): boolean {
-        return weight != null
-            && this.weightOptions.includes(weight as Weight);
+        this.quantity = Number.parseInt(quantity);
     }
 
     private updateWeightParams(): Subscription {
