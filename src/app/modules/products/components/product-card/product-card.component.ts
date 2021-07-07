@@ -50,12 +50,12 @@ export class ProductCardComponent {
         return this.productOptionsForm.get("quantity")!.value;
     }
 
-    get weightOptions(): string[] {
-        return this._weightOptions.map(w => w as string);
-    }
-
     get roastOptions(): string[] {
         return this._roastOptions.map(r => r as string);
+    }
+
+    get weightOptions(): string[] {
+        return this._weightOptions.map(w => w as string);
     }
 
     get snipcartOptions(): CustomOption[] {
