@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class FormatPricePipe implements PipeTransform {
     transform(price: number): string {
-        return "";
+        return `€${ price.toFixed(2) }`;
     }
 }
