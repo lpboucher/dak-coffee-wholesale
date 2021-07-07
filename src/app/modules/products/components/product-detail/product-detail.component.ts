@@ -1,5 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subscription } from "rxjs";
 
 import { ImageService } from "@core/views/image.service";
 
@@ -13,7 +15,7 @@ import { CustomOption } from "@shared/models/types/custom-option.interface";
     templateUrl: "./product-detail.component.html",
     styleUrls: ["./product-detail.component.scss"]
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit, OnDestroy {
     @Input() product!: Product;
 
     readonly weightOptions: Weight[] = ["250g", "1kg"];
@@ -21,6 +23,8 @@ export class ProductDetailComponent {
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
     readonly defaultQuantity: number = 1;
+
+    private subscriptions: Subscription = new Subscription();
 
     selectionForm = this.fb.group({
         weight: [this.defaultWeight, Validators.required],
@@ -67,7 +71,16 @@ export class ProductDetailComponent {
     constructor(
         private imageService: ImageService,
         private fb: FormBuilder,
+        private activatedRoute: ActivatedRoute
     ) {}
+
+    ngOnInit(): void {
+        this.subscriptions.add(this.parseQueryParams());
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
 
     private get weightControl(): AbstractControl {
         return this.selectionForm.get("weight")!;
@@ -79,5 +92,46 @@ export class ProductDetailComponent {
 
     private get quantityControl(): AbstractControl {
         return this.selectionForm.get("quantity")!;
+    }
+
+    private parseQueryParams(): Subscription {
+        return this.activatedRoute.queryParamMap.subscribe(
+            (queryParams) => {
+                this.parseWeight(queryParams);
+                this.parseRoast(queryParams);
+                this.parseQuantity(queryParams);
+            }
+        );
+    }
+
+    private parseWeight(queryParams: ParamMap): void {
+        const weight = queryParams.get("weight");
+        if (this.isValidWeight(weight)) {
+            this.weight = weight as Weight;
+        }
+    }
+
+    private parseRoast(queryParams: ParamMap): void {
+        const roast = queryParams.get("roast");
+        if (this.isValidRoast(roast)) {
+            this.roast = roast as Roast;
+        }
+    }
+
+    private parseQuantity(queryParams: ParamMap): void {
+        const quantity = queryParams.get("quantity");
+        if (quantity != null) {
+            this.quantity = Number.parseInt(quantity);
+        }
+    }
+
+    private isValidRoast(roast: string | null): boolean {
+        return roast != null
+            && this.roastOptions.includes(roast as Roast);
+    }
+
+    private isValidWeight(weight: string | null): boolean {
+        return weight != null
+            && this.weightOptions.includes(weight as Weight);
     }
 }
