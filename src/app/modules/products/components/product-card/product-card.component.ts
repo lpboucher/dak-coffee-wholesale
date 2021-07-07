@@ -17,11 +17,11 @@ import { ROAST_OPTIONS, WEIGHT_OPTIONS } from "@utils/constants/form-options";
 export class ProductCardComponent {
     @Input() product!: Product;
 
-    readonly weightOptions = WEIGHT_OPTIONS;
-    currentWeight: Weight = this.weightOptions[0];
+    private readonly _weightOptions = WEIGHT_OPTIONS;
+    currentWeight: Weight = this._weightOptions[0];
 
-    readonly roastOptions = ROAST_OPTIONS;
-    currentRoast: Roast = this.roastOptions[0];
+    private readonly _roastOptions = ROAST_OPTIONS;
+    currentRoast: Roast = this._roastOptions[0];
 
     snipcartOptions: CustomOption[] = this.makeSnipcartOptions();
 
@@ -29,6 +29,14 @@ export class ProductCardComponent {
     get imageUrl(): string {
         if (this.product.images.thumb == null) { return ""; }
         return this.imageService.getProductThumbUrl(this.product.images.thumb);
+    }
+
+    get roastOptions(): string[] {
+        return this._roastOptions.map(r => r as string);
+    }
+
+    get weightOptions(): string[] {
+        return this._weightOptions.map(w => w as string);
     }
 
     constructor(private imageService: ImageService) {}
@@ -51,12 +59,12 @@ export class ProductCardComponent {
         return [
             {
                 name: "Weight",
-                list: this.weightOptions.map(w => w as string),
+                list: this.weightOptions,
                 selection: this.currentWeight
             },
             {
                 name: "Roast",
-                list: this.roastOptions.map(r => r as string),
+                list: this.roastOptions,
                 selection: this.currentRoast
             },
         ];
