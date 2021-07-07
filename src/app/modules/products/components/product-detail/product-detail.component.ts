@@ -52,6 +52,12 @@ export class ProductDetailComponent {
         ];
     }
 
+    get totalPrice(): number {
+        if (isNaN(this.product.priceAsNumber)) { return NaN; }
+
+        return this.product.priceAsNumber * this.quantity;
+    }
+
     constructor(
         private imageService: ImageService,
         private fb: FormBuilder,
