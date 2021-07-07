@@ -8,6 +8,8 @@ import { Weight } from "@shared/models/types/weight.type";
 import { Roast } from "@shared/models/types/roast.type";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
 
+import { WEIGHT_OPTIONS } from "@utils/constants/form-options";
+
 @Component({
     selector: "app-product-detail",
     templateUrl: "./product-detail.component.html",
@@ -16,9 +18,8 @@ import { CustomOption } from "@shared/models/types/custom-option.interface";
 export class ProductDetailComponent {
     @Input() product!: Product;
 
-    readonly weightOptions: Weight[] = ["250g", "1kg"];
-    readonly defaultWeight: Weight = this.weightOptions[0];
-    currentWeight: Weight = this.defaultWeight;
+    readonly weightOptions = WEIGHT_OPTIONS;
+    currentWeight: Weight = this.weightOptions[0];
 
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
@@ -27,7 +28,7 @@ export class ProductDetailComponent {
     snipcartOptions: CustomOption[] = this.makeSnipcartOptions();
 
     selectionForm = this.fb.group({
-        weightSelection: [this.defaultWeight, Validators.required],
+        weightSelection: [this.currentWeight, Validators.required],
         roastSelection: [this.defaultRoast, Validators.required],
     });
 
@@ -53,8 +54,16 @@ export class ProductDetailComponent {
 
     private makeSnipcartOptions(): CustomOption[] {
         return [
-            {name: "Weight", list: this.weightOptions, selection: this.currentWeight},
-            {name: "Roast", list: this.roastOptions, selection: this.currentRoast},
+            {
+                name: "Weight",
+                list: this.weightOptions.map(o => o as string),
+                selection: this.currentWeight
+            },
+            {
+                name: "Roast",
+                list: this.roastOptions,
+                selection: this.currentRoast
+            },
         ];
     }
 }
