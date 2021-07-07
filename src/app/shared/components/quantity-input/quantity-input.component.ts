@@ -1,6 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from "@angular/forms";
 
+import { ClampPipe } from "@shared/pipes/clamp.pipe";
+
 @Component({
     selector: "app-quantity-input",
     templateUrl: "./quantity-input.component.html",
@@ -29,7 +31,7 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
     private touched = false;
     private disabled = false;
 
-    constructor() {}
+    constructor(private clampPipe: ClampPipe) {}
 
     writeValue(value: number): void {
         this.markAsTouched();
@@ -88,13 +90,6 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
     private sanitizeValue(value: number): number {
         return isNaN(value)
             ? this.minValue
-            : this.clampToRange(value);
-    }
-
-    private clampToRange(value: number): number {
-        value = Math.max(this.minValue, value);
-        value = Math.min(this.maxValue, value);
-
-        return value;
+            : this.clampPipe.transform(value, this.minValue, this.maxValue);
     }
 }
