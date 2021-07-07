@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
 import { ImageService } from "@core/views/image.service";
@@ -71,11 +71,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     constructor(
         private imageService: ImageService,
         private fb: FormBuilder,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
     ) {}
 
     ngOnInit(): void {
         this.subscriptions.add(this.parseQueryParams());
+        this.subscriptions.add(this.updateWeightParams());
+        this.subscriptions.add(this.updateRoastParams());
+        this.subscriptions.add(this.updateQuantityParams());
     }
 
     ngOnDestroy(): void {
@@ -133,5 +137,47 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     private isValidWeight(weight: string | null): boolean {
         return weight != null
             && this.weightOptions.includes(weight as Weight);
+    }
+
+    private updateWeightParams(): Subscription {
+        return this.updateQueryParams(
+            this.weightControl,
+            (value: Weight) => {
+                return { weight: value };
+            }
+        );
+    }
+
+    private updateRoastParams(): Subscription {
+        return this.updateQueryParams(
+            this.roastControl,
+            (value: Roast) => {
+                return { roast: value };
+            }
+        );
+    }
+
+    private updateQuantityParams(): Subscription {
+        return this.updateQueryParams(
+            this.quantityControl,
+            (value: number) => {
+                return { quantity: value };
+            }
+        );
+    }
+
+    private updateQueryParams(control: AbstractControl, makeParam: (value: any) => Object): Subscription {
+        return control.valueChanges.subscribe(
+            (value) => {
+                this.router.navigate(
+                    [],
+                    {
+                        relativeTo: this.activatedRoute,
+                        queryParams: makeParam(value),
+                        queryParamsHandling: "merge",
+                    }
+                )
+            }
+        );
     }
 }
