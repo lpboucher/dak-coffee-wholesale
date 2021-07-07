@@ -8,7 +8,7 @@ import { Weight } from "@shared/models/types/weight.type";
 import { Roast } from "@shared/models/types/roast.type";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
 
-import { WEIGHT_OPTIONS } from "@utils/constants/form-options";
+import { ROAST_OPTIONS, WEIGHT_OPTIONS } from "@utils/constants/form-options";
 
 @Component({
     selector: "app-product-detail",
@@ -21,7 +21,7 @@ export class ProductDetailComponent {
     readonly weightOptions = WEIGHT_OPTIONS;
     readonly defaultWeight: Weight = this.weightOptions[0];
 
-    readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
+    readonly roastOptions = ROAST_OPTIONS;
     readonly defaultRoast: Roast = this.roastOptions[0];
     readonly defaultQuantity: number = 1;
 
@@ -57,7 +57,7 @@ export class ProductDetailComponent {
             },
             {
                 name: "Roast",
-                list: this.roastOptions,
+                list: this.roastOptions.map(r => r as string),
                 selection: this.roast,
             },
         ];
