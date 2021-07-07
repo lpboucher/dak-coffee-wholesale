@@ -6,7 +6,7 @@
             name="custom-input-number"
             class="quantity-input-value"
             type="number"
-            [(ngModel)]="_quantity"
+            [(ngModel)]="quantity"
             (change)="onUserChange($event)"
             (keydown.enter)="$event.preventDefault()" />
         <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</div>
