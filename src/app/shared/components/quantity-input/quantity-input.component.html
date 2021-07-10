@@ -8,7 +8,9 @@
             type="number"
             [(ngModel)]="quantity"
             (change)="onUserChange($event)"
-            (keydown.enter)="$event.preventDefault()" />
+            (keydown.enter)="$event.preventDefault()"
+            disabled
+        />
         <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</div>
     </div>
 </div>
