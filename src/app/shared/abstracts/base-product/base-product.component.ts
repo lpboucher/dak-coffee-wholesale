@@ -59,5 +59,11 @@ export abstract class BaseProductComponent {
         ];
     }
 
+    get totalPrice(): number {
+        if (isNaN(this.product.priceAsNumber)) { return NaN; }
+
+        return this.product.priceAsNumber * this.quantity;
+    }
+
     constructor(protected fb: FormBuilder) {}
 }

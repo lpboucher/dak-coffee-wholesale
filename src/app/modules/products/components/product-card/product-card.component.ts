@@ -16,12 +16,6 @@ export class ProductCardComponent extends BaseProductComponent {
         return this.imageService.getProductThumbUrl(this.product.images.thumb);
     }
 
-    get totalPrice(): number {
-        if (isNaN(this.product.priceAsNumber)) { return NaN; }
-
-        return this.product.priceAsNumber * this.quantity;
-    }
-
     constructor(
         private imageService: ImageService,
         protected fb: FormBuilder,
