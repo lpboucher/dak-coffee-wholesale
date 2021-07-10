@@ -23,8 +23,8 @@ import { ClampPipe } from "@shared/pipes/clamp.pipe";
 export class QuantityInputComponent implements ControlValueAccessor, Validator {
     @Input() label: string = "";
     @Input() maxValue: number = 20;
-    @Input() minValue: number = 0;
-    quantity: number = 1;
+    @Input() minValue: number = 1;
+    quantity: number = this.minValue;
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
@@ -37,7 +37,7 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
         this.markAsTouched();
         if (this.disabled) { return; }
 
-        this.quantity = this.sanitizeValue(value);
+        this.quantity = this.clampPipe.transform(value, this.minValue, this.maxValue);
         this.onChange(this.quantity);
     }
 
@@ -85,11 +85,5 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
 
         this.onTouched();
         this.touched = true;
-    }
-
-    private sanitizeValue(value: number): number {
-        return isNaN(value)
-            ? this.minValue
-            : this.clampPipe.transform(value, this.minValue, this.maxValue);
     }
 }
