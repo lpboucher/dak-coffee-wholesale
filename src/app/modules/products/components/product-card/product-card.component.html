@@ -11,7 +11,7 @@
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">€{{ product.price | volumeDiscount }}</div>
+            <div class="product-card-body-price">{{ totalPrice | volumeDiscount | formatPrice }}</div>
             <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="snipcartOptions" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
