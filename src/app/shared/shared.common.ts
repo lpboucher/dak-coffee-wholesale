@@ -4,6 +4,7 @@ import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-w
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
 import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
+import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -30,6 +31,7 @@ export const componentDeclarations: any[] = [
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
     QuantityInputComponent,
+    BaseProductComponent,
 
     SnipcartAddDirective,
 
