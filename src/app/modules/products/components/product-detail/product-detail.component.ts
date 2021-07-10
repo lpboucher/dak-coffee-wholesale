@@ -16,6 +16,12 @@ export class ProductDetailComponent extends BaseProductComponent {
         return this.imageService.getProductMainUrl(this.product?.images.main);
     }
 
+    get totalPrice(): number {
+        if (isNaN(this.product.priceAsNumber)) { return NaN; }
+
+        return this.product.priceAsNumber * this.quantity;
+    }
+
     constructor(
         private imageService: ImageService,
         protected fb: FormBuilder,

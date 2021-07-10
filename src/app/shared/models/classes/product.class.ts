@@ -57,4 +57,9 @@ export abstract class Product {
     get displayedDetails(): string[] {
         return [this.description ?? ""];
     }
+
+    get priceAsNumber(): number {
+        if (this.price == null) { return NaN; }
+        return Number.parseFloat(this.price);
+    }
 }
