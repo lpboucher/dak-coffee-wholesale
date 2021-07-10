@@ -8,6 +8,7 @@
 .brand {
     @apply flex flex-none items-center justify-around place-self-center;
     @apply mb-10;
+    @apply cursor-pointer;
 }
 
 .mobile-close {
