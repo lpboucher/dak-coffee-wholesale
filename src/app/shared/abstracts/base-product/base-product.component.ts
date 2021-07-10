@@ -8,11 +8,7 @@ import { CustomOption } from "@shared/models/types/custom-option.interface";
 
 import { ROAST_OPTIONS, WEIGHT_OPTIONS } from "@utils/constants/form-options";
 
-@Component({
-    selector: "app-base-product",
-    templateUrl: "",
-    styleUrls: [""]
-})
+@Component({ template: "" })
 export abstract class BaseProductComponent {
     @Input() product!: Product;
 
