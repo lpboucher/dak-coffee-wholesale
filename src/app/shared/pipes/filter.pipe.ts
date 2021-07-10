@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { FilterType } from "@app/shared/models/types/filter-type.interface";
+import { FilterType } from "@shared/models/types/filter-type.interface";
 
 @Pipe({
     name: "filter"
