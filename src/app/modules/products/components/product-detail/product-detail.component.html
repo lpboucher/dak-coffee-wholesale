@@ -11,7 +11,7 @@
                 <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
                 </div>
-                <form [formGroup]="selectionForm" class="product-detail-selection-form">
+                <form [formGroup]="optionsForm" class="product-detail-selection-form">
                     <div class="product-detail-selection-group">
                         Weight:
                         <label class="product-detail-selection-label" *ngFor="let option of weightOptions">
@@ -30,7 +30,7 @@
                 <div class="product-detail-content-order-wrapper">
                     <span class="product-detail-content-order-price">€{{ product.price | volumeDiscount }}</span>
                     <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="snipcartOptions">Add to cart</button>
-                    <form [formGroup]="selectionForm" class="product-detail-content-order-quantity-form">
+                    <form [formGroup]="optionsForm" class="product-detail-content-order-quantity-form">
                         <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
                     </form>
                 </div>
