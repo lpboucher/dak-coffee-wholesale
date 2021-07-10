@@ -21,15 +21,12 @@ import { ClampPipe } from "@shared/pipes/clamp.pipe";
     ]
 })
 export class QuantityInputComponent implements ControlValueAccessor, Validator {
+    private touched = false;
+    private disabled = false;
     @Input() label: string = "";
     @Input() maxValue: number = 20;
     @Input() minValue: number = 1;
     quantity: number = this.minValue;
-
-    private onChange = (_: any) => {};
-    private onTouched = () => {};
-    private touched = false;
-    private disabled = false;
 
     constructor(private clampPipe: ClampPipe) {}
 
@@ -61,11 +58,6 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
         this.writeValue(this.quantity - 1);
     }
 
-    onUserChange(event: Event): void {
-        const value = (event.target as HTMLInputElement).valueAsNumber;
-        this.writeValue(value);
-    }
-
     validate(control: AbstractControl): ValidationErrors | null {
         const value = control.value;
 
@@ -86,4 +78,7 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
         this.onTouched();
         this.touched = true;
     }
+
+    private onChange = (_: any) => {};
+    private onTouched = () => {};
 }

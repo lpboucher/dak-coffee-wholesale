@@ -8,6 +8,10 @@
     @apply w-full ml-6 mr-40 mt-6;
 }
 
+.skeleton-loader-selection-options {
+    @apply flex justify-end;
+}
+
 .skeleton-loader-bar-container {
     @apply flex justify-between mt-5;
 }
