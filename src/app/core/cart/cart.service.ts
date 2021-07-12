@@ -76,7 +76,6 @@ export class CartService {
     }
 
     private updatePricingService(): void {
-        const itemsInCart = (window as any).Snipcart.store.getState().cart.items.count;
-        this.pricingTierService.updateDiscount(itemsInCart);
+        this.pricingTierService.updateDiscount(this.cartWeight$.value);
     }
 }
