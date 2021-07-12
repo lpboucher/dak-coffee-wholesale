@@ -14,17 +14,17 @@
                 <form [formGroup]="optionsForm" class="product-detail-selection-form">
                     <div class="product-detail-selection-group">
                         Weight:
-                        <label class="product-detail-selection-label" *ngFor="let option of weightOptions">
-                            <input formControlName="weight" type="radio" value="{{ option }}" class="product-detail-selection-input" />
-                            {{ option }}
-                        </label>
+                        <ng-container *ngFor="let option of weightOptions">
+                            <input formControlName="weight" id="{{ option }}" type="radio" value="{{ option }}" hidden="hidden" class="product-detail-selection-input" />
+                            <label class="product-detail-selection-label" for="{{ option }}">{{ option }}</label>
+                        </ng-container>
                     </div>
                     <div class="product-detail-selection-group">
                         Roast:
-                        <label class="product-detail-selection-label" *ngFor="let option of roastOptions">
-                            <input formControlName="roast" type="radio" value="{{ option }}" class="product-detail-selection-input" />
-                            {{ option }}
-                        </label>
+                        <ng-container *ngFor="let option of roastOptions">
+                            <input formControlName="roast" id="{{ option }}" type="radio" value="{{ option }}" hidden="hidden" class="product-detail-selection-input" />
+                            <label class="product-detail-selection-label" for="{{ option }}">{{ option }}</label>
+                        </ng-container>
                     </div>
                 </form>
                 <div class="product-detail-content-order-wrapper">
