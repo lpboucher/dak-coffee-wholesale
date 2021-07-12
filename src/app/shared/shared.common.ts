@@ -21,6 +21,7 @@ import { FilterPipe } from "@shared/pipes/filter.pipe";
 import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
+import { WeightPipe } from "@shared/pipes/weight.pipe";
 
 export const componentDeclarations: any[] = [
     FilterComponent,
@@ -44,6 +45,7 @@ export const componentDeclarations: any[] = [
     VolumeDiscountPipe,
     WithLoaderPipe,
     FormatPricePipe,
+    WeightPipe,
 ];
 
 export const providerDeclarations: any[] = [
