@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { Weight } from "@shared/models/types/weight.type";
 
 @Pipe({
-    name: "weight"
+    name: "weightToGrams"
 })
 export class WeightPipe implements PipeTransform {
     transform(weight: Weight): number {
