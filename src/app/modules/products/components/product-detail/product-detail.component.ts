@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 
 import { ImageService } from "@core/views/image.service";
 
@@ -34,27 +34,15 @@ export class ProductDetailComponent {
     }
 
     get weight(): Weight {
-        return this.weightControl.value;
-    }
-
-    set weight(weight: Weight) {
-        this.weightControl.setValue(weight);
+        return this.selectionForm.get("weight")!.value;
     }
 
     get roast(): Roast {
-        return this.roastControl.value;
-    }
-
-    set roast(roast: Roast) {
-        this.roastControl.setValue(roast);
+        return this.selectionForm.get("roast")!.value;
     }
 
     get quantity(): number {
-        return this.quantityControl.value;
-    }
-
-    set quantity(quantity: number) {
-        this.quantityControl.setValue(quantity);
+        return this.selectionForm.get("quantity")!.value;
     }
 
     get snipcartOptions(): CustomOption[] {
@@ -68,16 +56,4 @@ export class ProductDetailComponent {
         private imageService: ImageService,
         private fb: FormBuilder,
     ) {}
-
-    private get weightControl(): AbstractControl {
-        return this.selectionForm.get("weight")!;
-    }
-
-    private get roastControl(): AbstractControl {
-        return this.selectionForm.get("roast")!;
-    }
-
-    private get quantityControl(): AbstractControl {
-        return this.selectionForm.get("quantity")!;
-    }
 }
