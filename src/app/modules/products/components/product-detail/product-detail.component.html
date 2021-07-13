@@ -11,7 +11,7 @@
                 <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
                 </div>
-                <form [formGroup]="selectionForm" class="product-detail-selection-form">
+                <form [formGroup]="selectionForm" class="product-detail-selection-form" bindQueryParams>
                     <div class="product-detail-selection-group">
                         Weight:
                         <label class="product-detail-selection-label" *ngFor="let option of weightOptions">

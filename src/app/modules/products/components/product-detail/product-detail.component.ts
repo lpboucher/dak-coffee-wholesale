@@ -1,7 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { Subscription } from "rxjs";
 
 import { ImageService } from "@core/views/image.service";
 
@@ -15,7 +13,7 @@ import { CustomOption } from "@shared/models/types/custom-option.interface";
     templateUrl: "./product-detail.component.html",
     styleUrls: ["./product-detail.component.scss"]
 })
-export class ProductDetailComponent implements OnInit, OnDestroy {
+export class ProductDetailComponent {
     @Input() product!: Product;
 
     readonly weightOptions: Weight[] = ["250g", "1kg"];
@@ -23,8 +21,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     readonly roastOptions: Roast[] = ["Filter", "Espresso", "Both"];
     readonly defaultRoast: Roast = this.roastOptions[0];
     readonly defaultQuantity: number = 1;
-
-    private subscriptions: Subscription = new Subscription();
 
     selectionForm = this.fb.group({
         weight: [this.defaultWeight, Validators.required],
@@ -71,20 +67,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     constructor(
         private imageService: ImageService,
         private fb: FormBuilder,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
     ) {}
-
-    ngOnInit(): void {
-        this.subscriptions.add(this.parseQueryParams());
-        this.subscriptions.add(this.updateWeightParams());
-        this.subscriptions.add(this.updateRoastParams());
-        this.subscriptions.add(this.updateQuantityParams());
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.unsubscribe();
-    }
 
     private get weightControl(): AbstractControl {
         return this.selectionForm.get("weight")!;
@@ -96,82 +79,5 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     private get quantityControl(): AbstractControl {
         return this.selectionForm.get("quantity")!;
-    }
-
-    private parseQueryParams(): Subscription {
-        return this.activatedRoute.queryParamMap.subscribe(
-            (queryParams) => {
-                this.parseWeight(queryParams);
-                this.parseRoast(queryParams);
-                this.parseQuantity(queryParams);
-            }
-        );
-    }
-
-    private parseWeight(queryParams: ParamMap): void {
-        const weight = queryParams.get("weight");
-        if (!this.isValidOption(weight, this.weightOptions)) { return; }
-
-        this.weight = weight as Weight;
-    }
-
-    private parseRoast(queryParams: ParamMap): void {
-        const roast = queryParams.get("roast");
-        if (!this.isValidOption(roast, this.roastOptions)) { return; }
-
-        this.roast = roast as Roast;
-    }
-
-    isValidOption(value: string | null, options: any[]): boolean {
-        return value != null && options.includes(value);
-    }
-
-    private parseQuantity(queryParams: ParamMap): void {
-        const quantity = queryParams.get("quantity");
-        if (quantity == null) { return; }
-
-        this.quantity = Number.parseInt(quantity);
-    }
-
-    private updateWeightParams(): Subscription {
-        return this.updateQueryParams(
-            this.weightControl,
-            (value: Weight) => {
-                return { weight: value };
-            }
-        );
-    }
-
-    private updateRoastParams(): Subscription {
-        return this.updateQueryParams(
-            this.roastControl,
-            (value: Roast) => {
-                return { roast: value };
-            }
-        );
-    }
-
-    private updateQuantityParams(): Subscription {
-        return this.updateQueryParams(
-            this.quantityControl,
-            (value: number) => {
-                return { quantity: value };
-            }
-        );
-    }
-
-    private updateQueryParams(control: AbstractControl, makeParam: (value: any) => Object): Subscription {
-        return control.valueChanges.subscribe(
-            (value) => {
-                this.router.navigate(
-                    [],
-                    {
-                        relativeTo: this.activatedRoute,
-                        queryParams: makeParam(value),
-                        queryParamsHandling: "merge",
-                    }
-                )
-            }
-        );
     }
 }
