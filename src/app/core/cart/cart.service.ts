@@ -65,9 +65,7 @@ export class CartService {
     }
 
     private evaluateCartWeight(items: any): number {
-        return items
-            .map((item: any) => item.quantity * this.getSnipcartItemWeight(item))
-            .reduce((sum: number, weight: number) => sum + weight, 0);
+        return items.reduce((sum: number, item: any) => sum + (item.quantity * this.getSnipcartItemWeight(item)), 0);
     }
 
     private getSnipcartItemWeight(item: any): number {
