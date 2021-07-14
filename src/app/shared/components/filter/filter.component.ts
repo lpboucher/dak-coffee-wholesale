@@ -19,16 +19,23 @@ export class FilterComponent implements OnInit {
     @Input() filterOptions: FilterType = {};
     dropdownList: DropdownItem[] = [];
     dropdownSettings: IDropdownSettings = {};
-    private nameToId: { [key: string]: number } = {};
     private nextId = new class {
+        private nameToId: { [key: string]: number } = {};
         private nextId = 0;
-        generate = () => this.nextId++;
+        generate = (name: string) => {
+            if (this.nameToId[name] == null) {
+                this.nameToId[name] = this.nextId;
+                this.nextId += 1;
+            }
+
+            return this.nameToId[name];
+        }
     };
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         this.dropdownList = this.generateDropdownList();
@@ -66,13 +73,8 @@ export class FilterComponent implements OnInit {
             });
     }
 
-    private makeDropdownSubItem(name: string): DropdownSubItem {
-        let id = this.nameToId[name];
-        if (id == null) {
-            id = this.nextId.generate();
-        }
-
-        return { id: id, text: name };
+    private makeDropdownItem(name: string): DropdownSubItem {
+        return { id: this.nextId.generate(name), text: name };
     }
 
     private setupInitialFilter(key: string): DropdownSubItem[] {
