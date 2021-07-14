@@ -63,12 +63,12 @@ export class FilterComponent implements OnInit {
 
     private generateDropdownList(): DropdownItem[] {
         return Object.values(this.filterOptions)
-            .map(option => {
+            .map(category => {
                 return {
-                    displayName: option.displayName,
-                    key: option.key,
-                    options: option.subOptions.map(o => this.makeDropdownSubItem(o)),
-                    selectedItems: this.setupInitialFilter(option.key),
+                    displayName: category.displayName,
+                    key: category.key,
+                    options: category.options.map(o => this.makeDropdownItem(o)),
+                    selectedItems: this.setupInitialFilter(category.key),
                 }
             });
     }
@@ -85,6 +85,6 @@ export class FilterComponent implements OnInit {
             params = [params];
         }
 
-        return params.map((p: any) => this.makeDropdownSubItem(String(p)));
+        return params.map((p: any) => this.makeDropdownItem(String(p)));
     }
 }

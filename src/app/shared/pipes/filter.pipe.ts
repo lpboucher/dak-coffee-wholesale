@@ -21,6 +21,6 @@ export class FilterPipe implements PipeTransform {
 
     matchingValue(filter: FilterType, key: string, value: string): boolean {
         return Object.keys(filter).includes(key)
-            && filter[key].subOptions.includes(value);
+            && filter[key].options.includes(value);
     }
 }
