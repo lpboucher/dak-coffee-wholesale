@@ -58,7 +58,14 @@ export class FilterComponent implements OnInit {
                 };
             }, {});
 
-        this.router.navigate([], { queryParams: filter });
+        this.router.navigate(
+            [],
+            {
+                relativeTo: this.activatedRoute,
+                queryParams: filter,
+                queryParamsHandling: 'merge',
+            }
+        );
     }
 
     private generateDropdownList(): DropdownItem[] {
