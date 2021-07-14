@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
+import { ActiveFilters } from "@shared/models/types/active-filters.type";
 
 
 type DropdownSubItem = { id: number, text: string }
@@ -17,6 +18,7 @@ type DropdownItem = { displayName: string, key: string, options: DropdownSubItem
 })
 export class FilterComponent implements OnInit {
     @Input() filterOptions: FilterType = {};
+    @Output() selectedOptions: EventEmitter<ActiveFilters> = new EventEmitter();
     dropdownList: DropdownItem[] = [];
     dropdownSettings: IDropdownSettings = {};
     private nextId = new class {
@@ -46,6 +48,8 @@ export class FilterComponent implements OnInit {
             enableCheckAll: false,
             allowSearchFilter: true,
         };
+
+        this.updateFilter();
     }
 
     updateFilter(): void {
@@ -58,6 +62,7 @@ export class FilterComponent implements OnInit {
                 };
             }, {});
 
+        this.selectedOptions.emit(filter);
         this.router.navigate(
             [],
             {
