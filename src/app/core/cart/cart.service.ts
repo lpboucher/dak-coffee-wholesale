@@ -71,8 +71,8 @@ export class CartService {
     }
 
     private getSnipcartItemWeight(item: any): number {
-        let weightField = item.customFields.find((field: any) => field.name == "Weight");
-        return weightField?.value != null ? this.weightPipe.transform(weightField.value) : 0;
+        const weightField = item.customFields.find((field: any) => field.name === "Weight");
+        return weightField ? this.weightPipe.transform(weightField.value) : 0;
     }
 
     private updatePricingService(): void {
