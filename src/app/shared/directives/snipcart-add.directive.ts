@@ -39,7 +39,7 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
     private setCustomAttributes(): void {
         this.modifiers.forEach((option, index) => {
             const basename = `data-item-custom${ index + 1 }`;
-            const optionList = this.rawListToSnipcartList(option.list);
+            const optionList = this.rawListToSnipcartList(option.list, option.priceModifiers);
 
             this.el.nativeElement.setAttribute(basename + "-name", option.name);
             this.el.nativeElement.setAttribute(basename + "-options", optionList);
@@ -47,7 +47,14 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
         });
     }
 
-    private rawListToSnipcartList(raw: string[]): string {
-        return raw.reduce((prev, curr) => prev + "|" + curr);
+    private rawListToSnipcartList(rawList: string[], priceModifiers?: number[]): string {
+        if (priceModifiers != null) {
+            return rawList
+                .map((v, i) => { return { value: v, price: priceModifiers[i] } })
+                .reduce((prev, curr) => prev + `|${ curr.value }[${ curr.price }]`, "")
+                .substring(1);
+        }
+
+        return rawList.reduce((prev, curr) => prev + "|" + curr);
     }
 }

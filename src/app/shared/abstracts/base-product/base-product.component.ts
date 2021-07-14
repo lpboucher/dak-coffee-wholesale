@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 import { Product } from "@shared/models/classes/product.class";
+import { Coffee } from "@shared/models/classes/coffee.class";
 import { Roast } from "@shared/models/types/roast.type";
 import { Weight } from "@shared/models/types/weight.type";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
@@ -45,10 +46,13 @@ export abstract class BaseProductComponent {
     }
 
     get snipcartOptions(): CustomOption[] {
+        if (this.product.productType !== "coffee") return [];
+
         return [
             {
                 name: "Weight",
                 list: this.weightOptions,
+                priceModifiers: this.getWeightPriceModifiers(),
                 selection: this.weight,
             },
             {
@@ -66,4 +70,9 @@ export abstract class BaseProductComponent {
     }
 
     constructor(protected fb: FormBuilder) {}
+
+    private getWeightPriceModifiers(): number[] {
+        const coffee = this.product as Coffee;
+        return [0, coffee.kgPriceAsNumber - coffee.priceAsNumber];
+    }
 }
