@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
 import { ActiveFilters } from "@shared/models/types/active-filters.type";
+import { Subscription } from "rxjs";
 
 
 type DropdownSubItem = { id: number, text: string }
@@ -16,11 +17,12 @@ type DropdownItem = { displayName: string, key: string, options: DropdownSubItem
     templateUrl: "./filter.component.html",
     styleUrls: ["./filter.component.scss"]
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy {
     @Input() filterOptions: FilterType = {};
     @Output() selectedOptions: EventEmitter<ActiveFilters> = new EventEmitter();
     dropdownList: DropdownItem[] = [];
     dropdownSettings: IDropdownSettings = {};
+    private subscriptions: Subscription = new Subscription();
     private nextId = new class {
         private nameToId: { [key: string]: number } = {};
         private nextId = 0;
@@ -49,7 +51,18 @@ export class FilterComponent implements OnInit {
             allowSearchFilter: true,
         };
 
-        this.updateFilter();
+        this.subscriptions.add(
+            this.activatedRoute.queryParams.subscribe(
+                _ => {
+                    this.dropdownList = this.generateDropdownList();
+                    this.updateFilter();
+                }
+            )
+        )
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 
     updateFilter(): void {
