@@ -24,6 +24,7 @@ export function getFilterableProperties(products: Product[], productType: Produc
             }
         };
         case "coffee": return {
+            ...getFilterableProperties(products, "all"),
             origin: {
                 displayName: "Origin",
                 key: "origin",
@@ -46,6 +47,7 @@ export function getFilterableProperties(products: Product[], productType: Produc
             },
         };
         case "merchandise": return {
+            ...getFilterableProperties(products, "all"),
             dimensions: {
                 displayName: "Dimensions",
                 key: "dimensions",

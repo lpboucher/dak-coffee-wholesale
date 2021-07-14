@@ -81,7 +81,6 @@ export class FilterComponent implements OnInit, OnDestroy {
             {
                 relativeTo: this.activatedRoute,
                 queryParams: filter,
-                queryParamsHandling: 'merge',
             }
         );
     }
