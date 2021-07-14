@@ -9,6 +9,7 @@ import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterType } from "@shared/models/types/filter-type.type";
 
 import { getFilterableProperties } from "@utils/factories/filters";
+import { ActiveFilters } from "@app/shared/models/types/active-filters.type";
 
 @Component({
     selector: "app-product",
@@ -20,6 +21,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     featuredProducts$: Observable<Product[]> = new Observable();
     products$: Observable<Product[]> = new Observable();
     productType: ProductType | undefined;
+    activeFilters: ActiveFilters | undefined;
 
     constructor(
         private productService: ProductApiService,
@@ -46,5 +48,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     getFilterableProperties(products: Product[] | null): FilterType {
         if (products == null || this.productType == null) return {};
         return getFilterableProperties(products, this.productType);
+    }
+
+    onSelectionChange(activeFilters: ActiveFilters): void {
+        this.activeFilters = activeFilters;
     }
 }

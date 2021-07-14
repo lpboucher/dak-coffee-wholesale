@@ -7,9 +7,9 @@ import { ActiveFilters } from "@shared/models/types/active-filters.type";
 })
 export class FilterPipe implements PipeTransform {
 
-    transform(items: Object[], filter: ActiveFilters): Object[] {
+    transform<T>(items?: T[], filter?: ActiveFilters): T[] {
         if (items == null) { return []; }
-        if (filter == null) { return items; }
+        if (filter == null || Object.keys(filter).length == 0) { return items; }
 
         return items.filter(item => this.includedByFilter(filter, item));
     }
