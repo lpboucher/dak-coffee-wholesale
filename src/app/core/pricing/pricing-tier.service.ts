@@ -24,6 +24,8 @@ export class PricingTierService {
     }
 
     updateDiscount(cartWeight: number): void {
-        this.toggleDiscount(cartWeight > CART_WEIGHT_THRESHOLD);
+        if (cartWeight > CART_WEIGHT_THRESHOLD) {
+            this.toggleDiscount(true);
+        }
     }
 }
