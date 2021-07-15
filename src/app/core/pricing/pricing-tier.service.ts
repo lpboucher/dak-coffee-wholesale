@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-const CART_WEIGHT_THRESHOLD: number = 7.5;
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Injectable({
     providedIn: "root"

@@ -1,9 +1,9 @@
 <app-modal-backbone #modal>
     <div class="modal-body">
         <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Do you plan to order more than 8kgs today?</h3>
+            <h3 class="modal-body-content-header" id="modal-title">Do you plan to order more than {{ weightThreshold }}kgs today?</h3>
             <p class="modal-body-content-message">
-                <em>We offer a higher wholesale discount on orders of 8kgs or more.</em>
+                <em>We offer a higher wholesale discount on orders of {{ weightThreshold }}kgs or more.</em>
                 <br/>Your selection here will allow us to display adjusted prices, making it easier for you to shop.
             </p>
             <app-toggle-widget

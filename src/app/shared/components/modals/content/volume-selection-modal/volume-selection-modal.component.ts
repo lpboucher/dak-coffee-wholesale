@@ -4,6 +4,8 @@ import { PricingTierService } from "@app/core/pricing/pricing-tier.service";
 
 import { ModalBackboneComponent } from "@shared/components/modals";
 
+import { CART_WEIGHT_THRESHOLD } from "@app/utils/constants/discounts";
+
 @Component({
     selector: "app-volume-selection-modal",
     templateUrl: "./volume-selection-modal.component.html",
@@ -12,6 +14,7 @@ import { ModalBackboneComponent } from "@shared/components/modals";
 export class VolumeSelectionModalComponent {
     @ViewChild("modal") modal: ModalBackboneComponent | undefined;
     largeVolumeDiscountSelected: boolean = false;
+    weightThreshold: string = CART_WEIGHT_THRESHOLD.toFixed(1);
 
     constructor(
         private pricingTierService: PricingTierService,
