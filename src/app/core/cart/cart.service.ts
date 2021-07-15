@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
+import { WeightPipe } from "@shared/pipes/weight.pipe";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -18,7 +20,10 @@ export class CartService {
         return this.cartWeight$.asObservable();
     }
 
-    constructor(private pricingTierService: PricingTierService) {}
+    constructor(
+        private pricingTierService: PricingTierService,
+        private weightPipe: WeightPipe
+    ) {}
 
     openCart(): void {
         (window as any).Snipcart.api.theme.cart.open();
@@ -60,13 +65,15 @@ export class CartService {
     }
 
     private evaluateCartWeight(items: any): number {
-        return items
-            .filter((item: any) => item?.dimensions?.weight != null && item?.quantity != null)
-            .reduce((sum: number, item: any) => sum + (item.dimensions.weight * item.quantity), 0);
+        return items.reduce((sum: number, item: any) => sum + (item.quantity * this.getSnipcartItemWeight(item)), 0);
+    }
+
+    private getSnipcartItemWeight(item: any): number {
+        const weightField = item.customFields.find((field: any) => field.name === "Weight");
+        return weightField ? this.weightPipe.transform(weightField.value) : 0;
     }
 
     private updatePricingService(): void {
-        const itemsInCart = (window as any).Snipcart.store.getState().cart.items.count;
-        this.pricingTierService.updateDiscount(itemsInCart);
+        this.pricingTierService.updateDiscount(this.cartWeight$.value);
     }
 }
