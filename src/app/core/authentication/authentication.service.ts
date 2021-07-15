@@ -28,7 +28,7 @@ export class AuthService {
         if (email === DEV.user && password === DEV.password) {
             console.log("successfully logged in");
             this.setSession(DEV.token);
-            this.router.navigate(["/"]);
+            this.router.navigate(["/"], { queryParams: { checkPricing: true } });
         }
 
 

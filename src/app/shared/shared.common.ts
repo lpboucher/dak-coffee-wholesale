@@ -12,6 +12,7 @@ import {
     WalletModalComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    VolumeSelectionModalComponent,
 } from "@shared/components/modals";
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
@@ -34,6 +35,7 @@ export const componentDeclarations: any[] = [
     DropdownComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    VolumeSelectionModalComponent,
     NavigationComponent,
     QuantityInputComponent,
     BaseProductComponent,
