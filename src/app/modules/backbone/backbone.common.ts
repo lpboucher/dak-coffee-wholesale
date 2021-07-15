@@ -1,7 +1,5 @@
 import { Routes } from "@angular/router";
 
-import { LoginGuard } from "@core/guards/login.guard";
-
 import { BackbonePageComponent } from "@modules/backbone/pages/backbone/backbone.page";
 
 import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.component";
@@ -36,7 +34,6 @@ export const routes: Routes = [
             {
                 path: "products",
                 loadChildren: () => import("@modules/products/products.module").then(m => m.ProductsModule),
-                canActivate: [LoginGuard],
             },
             {
                 path: "general-information",
