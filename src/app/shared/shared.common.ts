@@ -13,6 +13,7 @@ import {
 } from "@shared/components/modals"
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
+import { BindQueryParamsDirective } from "@shared/directives/bind-query-params.directive";
 
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
@@ -34,6 +35,7 @@ export const componentDeclarations: any[] = [
     BaseProductComponent,
 
     SnipcartAddDirective,
+    BindQueryParamsDirective,
 
     ClampPipe,
     FilterPipe,
