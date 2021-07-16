@@ -4,6 +4,7 @@ import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-w
 import { WidgetComponent } from "@shared/components/widget/widget.component";
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
 import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
+import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -18,6 +19,7 @@ import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
 import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
+import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
 
 export const componentDeclarations: any[] = [
     FilterComponent,
@@ -30,6 +32,7 @@ export const componentDeclarations: any[] = [
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
     QuantityInputComponent,
+    BaseProductComponent,
 
     SnipcartAddDirective,
     BindQueryParamsDirective,
@@ -37,7 +40,8 @@ export const componentDeclarations: any[] = [
     ClampPipe,
     FilterPipe,
     VolumeDiscountPipe,
-    WithLoaderPipe
+    WithLoaderPipe,
+    FormatPricePipe,
 ];
 
 export const providerDeclarations: any[] = [

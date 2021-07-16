@@ -5,13 +5,13 @@
     <div class="product-card-body">
         <span class="product-card-body-highlight">New</span>
         <h2 class="product-card-body-title">{{ product.name }}</h2>
-        <form class="product-card-body-selection-form" [formGroup]="productOptionsForm">
+        <form class="product-card-body-selection-form" [formGroup]="optionsForm">
             <app-dropdown class="product-card-body-selection-item" formControlName="weight" [options]="weightOptions" [defaultSelection]="defaultWeight"></app-dropdown>
             <app-dropdown class="product-card-body-selection-item" formControlName="roast" [options]="roastOptions" [defaultSelection]="defaultRoast"></app-dropdown>
-            <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
+            <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">€{{ product.price }}</div>
+            <div class="product-card-body-price">{{ totalPrice | volumeDiscount | formatPrice }}</div>
             <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="snipcartOptions" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
