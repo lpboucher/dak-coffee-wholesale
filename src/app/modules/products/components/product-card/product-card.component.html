@@ -6,8 +6,12 @@
         <span class="product-card-body-highlight">New</span>
         <h2 class="product-card-body-title">{{ product.name }}</h2>
         <form class="product-card-body-selection-form" [formGroup]="optionsForm">
-            <app-dropdown class="product-card-body-selection-item" formControlName="weight" [options]="weightOptions" [defaultSelection]="defaultWeight"></app-dropdown>
-            <app-dropdown class="product-card-body-selection-item" formControlName="roast" [options]="roastOptions" [defaultSelection]="defaultRoast"></app-dropdown>
+            <app-dropdown
+                class="product-card-body-selection-item"
+                *ngFor="let attribute of productAttributes"
+                formControlName="{{ attribute }}"
+                [options]="getAttributeOptions(attribute)">
+            </app-dropdown>
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
         <div class="product-card-body-price-container">
