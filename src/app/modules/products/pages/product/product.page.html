@@ -1,7 +1,7 @@
 <div class="product-page-container">
-    <ng-container *ngIf="products$ | async as products">
+    <form *ngIf="products$ | async as products" bindQueryParams>
         <app-filter [filterOptions]="getFilterableProperties(products)" (selectedOptions)="onSelectionChange($event)"></app-filter>
-    </ng-container>
+    </form>
     <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
         <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
             <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
