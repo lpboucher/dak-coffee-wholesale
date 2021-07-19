@@ -18,7 +18,14 @@ export class RequestAccessFormComponent {
 
     requestAccessForm = this.fb.group(
         {
-            email: ["", [Validators.required, Validators.email], [EmailExists()]],
+            email: [
+                "",
+                {
+                    validators: [Validators.required, Validators.email],
+                    asyncValidators: [EmailExists()],
+                    updateOn: "blur",
+                }
+            ],
             password: ["", [Validators.required, Validators.minLength(8)]],
             passwordConfirm: ["", Validators.required],
             contactName: ["", Validators.required],
