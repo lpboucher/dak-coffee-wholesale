@@ -27,7 +27,7 @@ export abstract class BaseProductComponent implements OnInit {
                     return {
                         name: attr.name,
                         list: attr.options.map(o => o.optionName),
-                        priceModifiers: attr.options.map(o => o.priceModifier > 0 ? o.priceModifier - this.product.priceAsNumber : 0),
+                        priceModifiers: attr.options.map(o => o.priceModifier),
                         selection: this.optionsForm.get(attr.name)!.value,
                     }
                 }

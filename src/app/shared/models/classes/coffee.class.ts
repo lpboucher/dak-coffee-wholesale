@@ -1,4 +1,3 @@
-import { ProductAttributeOption } from "@shared/models/types/product-attribute-option.interface";
 import { ProductType } from "@shared/models/types/product-type.type";
 import { Product } from "@shared/models/classes/product.class";
 import { ProductAttribute } from "./product-attribute.class";
@@ -20,7 +19,7 @@ export class Coffee extends Product {
                     "weight",
                     [
                         { optionName: "250g", priceModifier: 0 },
-                        { optionName: "1kg", priceModifier: this.kgPriceAsNumber },
+                        { optionName: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
                     ]),
                 new ProductAttribute(
                     "roast",
