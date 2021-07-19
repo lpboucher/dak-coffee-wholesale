@@ -1,4 +1,7 @@
 <div class="product-page-container">
+    <ng-container *ngIf="products$ | async as products">
+        <app-filter [filterOptions]="getFilterableProperties(products)" (selectedOptions)="onSelectionChange($event)"></app-filter>
+    </ng-container>
     <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
         <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
             <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
@@ -9,9 +12,6 @@
             </ng-template>
         </ng-container>
     </app-grid-list>
-    <ng-container *ngIf="products$ | async as products">
-        <app-filter [filterOptions]="getFilterableProperties(products)" (selectedOptions)="onSelectionChange($event)"></app-filter>
-    </ng-container>
     <app-grid-list [gridGap]=4>
         <ng-container *ngIf="products$ | withLoader | async as products">
             <ng-template [ngIf]="!products.error && !products.loading">
