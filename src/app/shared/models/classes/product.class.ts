@@ -10,6 +10,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
+    filterableAttributes: string[] = ["productType"];
     images: ProductImages = { main: null, thumb: null };
 
     constructor(productShape?: Partial<Product>) {
@@ -37,6 +38,8 @@ export abstract class Product {
             if (productShape.slug != null) {
                 this.slug = productShape.slug;
             }
+
+            this.filterableAttributes = ["productType"];
 
             if (productShape.images != null) {
                 if (productShape.images.main != null) {

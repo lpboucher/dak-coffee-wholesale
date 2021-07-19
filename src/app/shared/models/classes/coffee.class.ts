@@ -12,6 +12,8 @@ export class Coffee extends Product {
         super(coffeeShape);
 
         if (coffeeShape != null) {
+            this.filterableAttributes = ["origin", "tastingNotes", "process", "varietal"];
+
             if (coffeeShape.origin != null) {
                 this.origin = coffeeShape.origin;
             }
