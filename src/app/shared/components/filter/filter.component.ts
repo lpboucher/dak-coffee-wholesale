@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 
@@ -15,14 +16,25 @@ type DropdownItem = { displayName: string, key: string, options: DropdownSubItem
 @Component({
     selector: "app-filter",
     templateUrl: "./filter.component.html",
-    styleUrls: ["./filter.component.scss"]
+    styleUrls: ["./filter.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: FilterComponent,
+        },
+    ]
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() filterOptions: FilterType = {};
     @Output() selectedOptions: EventEmitter<ActiveFilters> = new EventEmitter();
     dropdownList: DropdownItem[] = [];
     dropdownSettings: IDropdownSettings = {};
     private subscriptions: Subscription = new Subscription();
+    private onChange = (_: {}) => {};
+    private onTouched = () => {};
+    private touched = false;
+    private disabled = false;
     private nextId = new class {
         private nameToId: { [key: string]: number } = {};
         private nextId = 0;
@@ -40,6 +52,30 @@ export class FilterComponent implements OnInit, OnDestroy {
         private router: Router,
         private activatedRoute: ActivatedRoute,
     ) {}
+
+    writeValue(selectedItems: { [key: string]: string[] }): void {
+        this.dropdownList = this.dropdownList
+            .map(item => {
+                return {
+                    ...item,
+                    selectedItems: selectedItems[item.key].map(i => this.makeDropdownItem(i))
+                }
+            });
+
+        this.updateFilter();
+    }
+
+    registerOnChange(onChange: any): void {
+        this.onChange = onChange;
+    }
+
+    registerOnTouched(onTouched: any): void {
+        this.onTouched = onTouched;
+    }
+
+    setDisabledState(disabled: boolean): void {
+        this.disabled = disabled;
+    }
 
     ngOnInit(): void {
         this.dropdownList = this.generateDropdownList();
@@ -66,6 +102,9 @@ export class FilterComponent implements OnInit, OnDestroy {
     }
 
     updateFilter(): void {
+        this.markAsTouched();
+        if (this.disabled) return;
+
         const filter = this.dropdownList
             .filter(item => item.selectedItems.length > 0)
             .reduce((previous, current) => {
@@ -75,6 +114,7 @@ export class FilterComponent implements OnInit, OnDestroy {
                 };
             }, {});
 
+        this.onChange(filter);
         this.selectedOptions.emit(filter);
         this.router.navigate(
             [],
@@ -110,5 +150,11 @@ export class FilterComponent implements OnInit, OnDestroy {
         }
 
         return params.map((p: any) => this.makeDropdownItem(String(p)));
+    }
+
+    private markAsTouched() {
+        if (this.touched) return;
+        this.onTouched();
+        this.touched = true;
     }
 }
