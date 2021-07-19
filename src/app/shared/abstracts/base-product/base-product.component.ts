@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
+import { CartModifier } from "@shared/models/types/cart-modifier.interface";
 import { Product } from "@shared/models/classes/product.class";
-import { CustomOption } from "@shared/models/types/custom-option.interface";
 
 @Component({ template: "" })
 export abstract class BaseProductComponent implements OnInit {
@@ -19,15 +19,13 @@ export abstract class BaseProductComponent implements OnInit {
             .map(attr => attr.name);
     }
 
-    get snipcartOptions(): CustomOption[] {
+    get cartModifiers(): CartModifier[] {
         return this.product
             .attributes
             .map(
                 attr => {
                     return {
-                        name: attr.name,
-                        list: attr.options.map(o => o.optionName),
-                        priceModifiers: attr.options.map(o => o.priceModifier),
+                        attribute: attr,
                         selection: this.optionsForm.get(attr.name)!.value,
                     }
                 }
