@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { EmailExists } from "@app/core/validators/email-exists.validator";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
@@ -17,7 +18,7 @@ export class RequestAccessFormComponent {
 
     requestAccessForm = this.fb.group(
         {
-            email: ["", [Validators.required, Validators.email]],
+            email: ["", [Validators.required, Validators.email], [EmailExists()]],
             password: ["", [Validators.required, Validators.minLength(8)]],
             passwordConfirm: ["", Validators.required],
             contactName: ["", Validators.required],

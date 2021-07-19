@@ -11,6 +11,7 @@
                 <div *ngIf="hasErrors(emailControl)" class="request-access-submission-error-message">
                     <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
                     <p *ngIf="emailControl.errors?.email">Please enter a valid email address.</p>
+                    <p *ngIf="emailControl.errors?.emailTaken">This email address is already in use.</p>
                 </div>
 
                 <label class="request-access-input-title">
