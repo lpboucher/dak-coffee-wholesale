@@ -1,13 +1,12 @@
 import { Routes } from "@angular/router";
 
-import { LoginGuard } from "@core/guards/login.guard";
-
 import { BackbonePageComponent } from "@modules/backbone/pages/backbone/backbone.page";
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { NavItemComponent } from "./components/nav-item/nav-item.component";
-import { FloatingActionComponent } from "./components/floating-action/floating-action.component";
-import { SamplesConfirmationModalComponent } from "./components/samples-confirmation-modal/samples-confirmation-modal.component";
+
+import { SidebarComponent } from "@modules/backbone/components/sidebar/sidebar.component";
+import { FooterComponent } from "@modules/backbone/components/footer/footer.component";
+import { NavItemComponent } from "@modules/backbone/components/nav-item/nav-item.component";
+import { FloatingActionComponent } from "@modules/backbone/components/floating-action/floating-action.component";
+import { HeaderComponent } from "@modules/backbone/components/header/header.component";
 
 export const pageDeclarations: any[] = [
     BackbonePageComponent,
@@ -18,7 +17,7 @@ export const componentDeclarations: any[] = [
     FooterComponent,
     NavItemComponent,
     FloatingActionComponent,
-    SamplesConfirmationModalComponent,
+    HeaderComponent,
 ];
 
 export const routes: Routes = [
@@ -35,7 +34,6 @@ export const routes: Routes = [
             {
                 path: "products",
                 loadChildren: () => import("@modules/products/products.module").then(m => m.ProductsModule),
-                canActivate: [LoginGuard],
             },
             {
                 path: "general-information",

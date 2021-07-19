@@ -1,48 +1,64 @@
 .main-nav {
-    @apply flex flex-row flex-wrap flex-shrink justify-between;
-    @apply w-full p-2 bg-white;
-
-    @apply md:p-5 md:flex-col md:h-screen;
+    @apply relative flex flex-col flex-wrap flex-shrink justify-between;
+    @apply w-full h-screen;
+    @apply p-5;
+    @apply bg-white;
 }
 
 .brand {
     @apply flex flex-none items-center justify-around place-self-center;
+    @apply mb-10;
+    @apply cursor-pointer;
+}
 
-    @apply md:mb-10;
+.mobile-close {
+    @apply absolute top-0 right-0;
+    @apply w-5 h-5 mt-7;
+
+    @apply md:hidden;
+}
+
+.mobile-close-bar {
+    @apply absolute top-0 left-0 inline;
+    @apply w-0.5 h-4 rounded-lg;
+    @apply bg-gray-800;
+}
+
+.mobile-close-bar-1 {
+    @apply mobile-close-bar;
+    @apply transform rotate-45;
+}
+
+.mobile-close-bar-2 {
+    @apply mobile-close-bar;
+    @apply transform -rotate-45;
 }
 
 .nav-item-list-container {
-    @apply md:w-full;
+    @apply w-full;
 }
 
 .nav-item-list {
-    @apply flex flex-row place-content-around;
-
-    @apply md:flex-col;
+    @apply flex flex-col place-content-around;
 }
 
 .nav-spacer {
-    @apply flex-none;
-
-    @apply md:flex-grow;
+    @apply flex-grow;
 }
 
 .widget-container {
-    @apply flex flex-wrap flex-grow my-1;
-
-    @apply md:items-center md:justify-evenly md:flex-grow-0;
+    @apply flex flex-wrap items-center justify-evenly;
+    @apply my-1;
 }
 
 .widget-item {
     @apply px-1;
-
-    @apply md:w-1/2;
+    @apply w-1/2;
 }
 
 .nav-footer {
     @apply place-self-center;
-
-    @apply md:w-full;
+    @apply w-full;
 }
 
 .footer-item {

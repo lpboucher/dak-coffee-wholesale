@@ -5,16 +5,42 @@
     @apply md:grid-cols-12;
 }
 
-.sidebar {
-    @apply fixed w-full;
+.sidebar-container {
+    @apply fixed z-50 flex;
+    @apply w-full;
+    @apply transform -translate-x-full;
+    @apply transition-all duration-500 ease-in-out;
 
-    @apply md:col-span-4 md:sticky md:top-0;
-    @apply lg:col-span-3;
-    @apply md:h-screen;
+    @apply md:block md:sticky;
+    @apply md:top-0 md:h-screen md:w-full;
+    @apply md:col-span-4 lg:col-span-3;
+    @apply md:translate-x-0;
+}
+
+.show-sidebar {
+    @apply translate-x-0;
+}
+
+.sidebar {
+    @apply flex-shrink-0;
+    @apply w-3/4;
+
+    @apply md:w-full;
+}
+
+.sidebar-background {
+    @apply w-full h-screen;
+}
+
+.header {
+    @apply fixed;
+    @apply w-full;
+
+    @apply md:hidden;
 }
 
 .page-container {
-    @apply mt-14;
+    @apply mt-16;
 
     @apply md:mt-0 md:col-span-8;
     @apply lg:col-span-9;

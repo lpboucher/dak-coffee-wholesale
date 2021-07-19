@@ -1,0 +1,56 @@
+.request-access-container {
+    @apply grid place-items-center;
+    @apply mx-2;
+}
+
+.request-access-card {
+    @apply w-10/12;
+    @apply p-12 px-6 py-10;
+    @apply bg-white rounded-lg shadow-md;
+
+    @apply md:w-11/12 lg:w-9/12 2xl:w-8/12;
+    @apply sm:px-10 sm:py-6;
+    @apply lg:shadow-lg;
+}
+
+.request-access-title {
+    @apply text-center font-semibold text-3xl text-gray-800;
+
+    @apply lg:text-4xl;
+}
+
+.request-access-form {
+    @apply mt-10;
+}
+
+.request-access-input-title {
+    @apply block mt-6;
+    @apply text-xs font-semibold text-gray-600 uppercase;
+}
+
+.request-access-input {
+    @apply block;
+    @apply w-full py-2 px-1;
+    @apply border-b-2 border-gray-100;
+    @apply text-gray-800;
+
+    @apply focus:text-gray-500;
+    @apply focus:outline-none focus:border-gray-200;
+}
+
+select:invalid {
+    @apply text-gray-400;
+}
+
+.request-access-submit-button {
+    @apply w-full py-3 mt-10;
+    @apply bg-gray-800 rounded-sm;
+    @apply font-medium text-white uppercase;
+
+    @apply focus:outline-none hover:bg-gray-700 hover:shadow-none;
+}
+
+.request-access-submission-error-message {
+    @apply pt-2;
+    @apply text-red-600 text-sm italic;
+}

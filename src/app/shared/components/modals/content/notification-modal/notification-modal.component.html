@@ -1,4 +1,4 @@
-<app-modal #modal>
+<app-modal-backbone #modal>
     <div class="modal-body">
         <div class="modal-body-icon-container">
             <svg class="modal-body-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -6,11 +6,12 @@
             </svg>
         </div>
         <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Wallet Balance: €200</h3>
-            <p class="modal-body-content-message">This balance will automatically be applied as a discount, and will expire on 01/01/2021 if not used.</p>
+            <h3 class="modal-body-content-header" id="modal-title">Are you sure?</h3>
+            <p class="modal-body-content-message">You will receive an email notification to: test@test.com</p>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" (click)="onOk()" class="modal-footer-confirm">Ok</button>
+        <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Confirm</button>
+        <button type="button" (click)="onCancel()" class="modal-footer-cancel">Cancel</button>
     </div>
-</app-modal>
+</app-modal-backbone>

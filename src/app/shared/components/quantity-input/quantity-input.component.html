@@ -1,0 +1,14 @@
+<div class="quantity-input-container">
+    <label for="custom-input-number" class="quantity-input-label">{{ label }}</label>
+    <div class="quantity-input-button-container">
+        <div data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</div>
+        <input
+            name="custom-input-number"
+            class="quantity-input-value"
+            type="number"
+            [(ngModel)]="quantity"
+            disabled
+        />
+        <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</div>
+    </div>
+</div>

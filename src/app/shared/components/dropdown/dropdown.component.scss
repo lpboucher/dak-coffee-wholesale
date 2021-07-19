@@ -1,0 +1,72 @@
+.dropdown-container {
+    @apply relative flex;
+    @apply my-2 p-1;
+    @apply bg-white border border-gray-200 rounded;
+    @apply cursor-pointer;
+}
+
+.dropdown-selected {
+    @apply p-1 px-2 w-full;
+    @apply text-gray-800;
+}
+
+.dropdown-arrow-container {
+    @apply flex items-center;
+    @apply w-8 pt-2 pl-2 pr-1;
+    @apply border-l border-gray-200;
+    @apply text-gray-300;
+}
+
+.dropdown-arrow-button {
+    @apply w-6 h-6;
+    @apply text-gray-600;
+    @apply outline-none;
+
+    @apply focus:outline-none;
+}
+
+.dropdown-arrow-image {
+    @apply w-4 h-4;
+    @apply rotate-0;
+    @apply transition-all duration-200 transform;
+}
+
+.rotate-arrow {
+    @apply rotate-180;
+}
+
+.dropdown-option-list-container {
+    @apply absolute flex flex-col z-50;
+    @apply w-full top-full left-0 mt-2;
+    @apply shadow rounded overflow-y-auto;
+}
+
+.dropdown-option-list-item-container {
+    @apply flex flex-col;
+    @apply border-gray-100 border-b;
+    @apply cursor-pointer;
+}
+
+.dropdown-option-list-item-container:first-child {
+    @apply rounded-t;
+}
+
+.dropdown-option-list-item-container:last-child {
+    @apply rounded-b border-b-0;
+}
+
+.dropdown-option-list-item {
+    @apply flex items-center;
+    @apply p-2 pl-0;
+    @apply border-transparent bg-white;
+
+    @apply hover:bg-blue-600 hover:text-blue-100;
+}
+
+.active-item {
+    @apply border-l-2 border-blue-600;
+}
+
+.dropdown-option-list-item-content {
+    @apply mx-2 leading-6;
+}

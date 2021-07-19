@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-const ITEM_COUNT_THRESHOLD: number = 4;
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Injectable({
     providedIn: "root"
@@ -23,7 +23,9 @@ export class PricingTierService {
         this.isVolumeDiscountActive$.next(value ?? !this.isVolumeDiscountActive$.value);
     }
 
-    updateDiscount(itemCount: number): void {
-        this.toggleDiscount(itemCount > ITEM_COUNT_THRESHOLD);
+    updateDiscount(cartWeight: number): void {
+        if (cartWeight > CART_WEIGHT_THRESHOLD) {
+            this.toggleDiscount(true);
+        }
     }
 }

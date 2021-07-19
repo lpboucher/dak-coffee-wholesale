@@ -39,49 +39,41 @@
 }
 
 .product-detail-content-body {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-gray-600;
 }
 
-.product-detail-content-selection-wrapper {
-    @apply flex items-center;
-    @apply mt-6 pb-5 border-b-2 mb-5;
-    @apply border-gray-200;
+.product-detail-selection-form {
+    @apply flex flex-col;
+    @apply mt-6;
 }
 
-.product-detail-content-selection-size {
-    @apply flex items-center;
+.product-detail-selection-group {
+    @apply flex justify-end;
+    @apply text-sm text-gray-500;
 }
 
-.product-detail-content-selection-size-text {
-    @apply mr-3;
+.product-detail-selection-label {
+    @apply mx-2 my-1 p-1 w-20;
+    @apply border border-gray-500;
+    @apply text-center;
+    @apply cursor-pointer;
+
+    @apply hover:bg-gray-200;
 }
 
-.product-detail-content-selection-size-options-wrapper {
-    @apply relative;
+.product-detail-selection-label:last-child {
+    @apply mr-0;
 }
 
-.product-detail-content-selection-size-options {
-    @apply appearance-none;
-    @apply py-2 pl-3 pr-10;
-    @apply border-gray-400 rounded border text-base ;
-
-    @apply focus:outline-none focus:border-red-500;
-}
-
-.product-detail-content-selection-size-arrow-wrapper {
-    @apply absolute h-full flex items-center justify-center;
-    @apply right-0 top-0 w-10;
-    @apply text-center text-gray-600;
-
-    @apply pointer-events-none;
-}
-
-.product-detail-content-selection-size-arrow {
-    @apply w-4 h-4;
+input:checked + .product-detail-selection-label {
+    @apply bg-gray-500;
+    @apply text-white;
 }
 
 .product-detail-content-order-wrapper {
-    @apply flex;
+    @apply flex items-center;
+    @apply mt-2 pt-2 border-t-2;
+    @apply border-gray-200;
 }
 
 .product-detail-content-order-price {
@@ -90,18 +82,12 @@
 
 .product-detail-content-order-button {
     @apply flex;
-    @apply ml-auto border-0 py-2 px-6;
+    @apply ml-auto border-0 py-2 px-6 mt-1;
     @apply text-white bg-red-500;
 
-    @apply focus:outline-none hover:bg-red-600 rounded;
+    @apply focus:outline-none hover:bg-red-600;
 }
 
-.product-detail-content-order-like {
-    @apply inline-flex items-center justify-center;
-    @apply rounded-full w-10 h-10 p-0 border-0 ml-4;
-    @apply bg-gray-200 text-gray-500;
-}
-
-.product-detail-content-order-like-symbol {
-    @apply w-5 h-5;
+.product-detail-content-order-quantity-form {
+    @apply ml-4;
 }

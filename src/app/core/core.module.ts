@@ -8,13 +8,16 @@ import { CloudinaryModule } from "@cloudinary/angular";
 import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor";
 import { throwIfAlreadyLoaded } from "@core/guards/module-import.guard";
 
+import { SharedModule } from "@shared/shared.module";
+
 @NgModule({
     declarations: [],
     imports: [
         CommonModule,
         HttpClientModule,
         ToastrModule.forRoot(),
-        CloudinaryModule
+        CloudinaryModule,
+        SharedModule,
     ],
     providers: [
         {

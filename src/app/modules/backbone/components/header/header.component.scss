@@ -1,0 +1,27 @@
+.main-nav {
+    @apply flex flex-row justify-between place-items-center;
+    @apply p-2;
+    @apply bg-white;
+}
+
+.brand {
+    @apply flex flex-col flex-none items-center justify-between;
+    @apply p-1;
+}
+
+.burger-menu-wrapper {
+    @apply ml-6;
+}
+
+.nav-spacer {
+    @apply flex-grow;
+}
+
+.widget-container {
+    @apply flex;
+    @apply my-1;
+}
+
+.widget-item {
+    @apply px-1;
+}
