@@ -1,6 +1,7 @@
-import { ProductImages } from "../types/product-images.interface";
+import { ProductImages } from "@shared/models/types/product-images.interface";
 import { CollectionType } from "@shared/models/types/collection-type.type";
-import { ProductType } from "../types/product-type.type";
+import { ProductType } from "@shared/models/types/product-type.type";
+import { FilterableAttribute } from "@shared/models/types/filterable-attribute.type";
 
 export abstract class Product {
     abstract productType: ProductType;
@@ -10,7 +11,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
-    filterableAttributes: string[] = ["productType"];
+    filterableAttributes: FilterableAttribute[] = [];
     images: ProductImages = { main: null, thumb: null };
 
     constructor(productShape?: Partial<Product>) {
@@ -39,7 +40,7 @@ export abstract class Product {
                 this.slug = productShape.slug;
             }
 
-            this.filterableAttributes = ["productType"];
+            this.filterableAttributes = [{ attribute: "productType", displayName: "Product Type" }];
 
             if (productShape.images != null) {
                 if (productShape.images.main != null) {
