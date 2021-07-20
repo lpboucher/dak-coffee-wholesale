@@ -78,12 +78,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             .filter(key => changes[key] != null)
             .map(key => {
                 const v = changes[key] as { [key: string]: boolean };
-
-                return {
-                    [key]: Object.keys(v)
+                const active = Object.keys(v)
                         .filter(key => v[key])
                         .map(key => key)
-                }
+
+                return active.length == 0 ? {} : { [key]: active };
             })
             .reduce((union, obj) => {
                 return { ...union, ...obj }
