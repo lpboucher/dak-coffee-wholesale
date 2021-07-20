@@ -1,0 +1,27 @@
+.filter-container {
+    @apply flex items-center;
+}
+
+.filter-name {
+    @apply min-w-max;
+    @apply text-gray-900 font-medium;
+}
+
+.filter-options-container {
+    @apply flex flex-wrap;
+    @apply text-sm text-gray-500;
+}
+
+.filter-options-label {
+    @apply mx-2 my-1 px-2 py-1 w-20 min-w-max;
+    @apply border border-gray-500;
+    @apply text-center;
+    @apply cursor-pointer;
+
+    @apply hover:bg-gray-300;
+}
+
+.selected {
+    @apply bg-gray-500;
+    @apply text-white;
+}

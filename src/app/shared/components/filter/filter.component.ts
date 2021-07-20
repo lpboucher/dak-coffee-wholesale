@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
@@ -16,14 +16,39 @@ import { FilterType } from "@shared/models/types/filter-type.type";
         },
     ]
 })
-export class FilterComponent implements ControlValueAccessor {
+export class FilterComponent implements OnInit, ControlValueAccessor {
     @Input() propertyToFilter!: FilterType;
-    private onChange = (_: {}) => {};
+    private selection: { [key: string]: boolean } = {};
+    private onChange = (_: { [key: string]: boolean }) => {};
     private onTouched = () => {};
     private touched = false;
     private disabled = false;
 
-    writeValue(obj: any): void {}
+    constructor() {}
+
+    ngOnInit(): void {
+        this.selection = this.propertyToFilter
+            .options
+            .reduce((obj, id) => {
+                return { ...obj, [id]: false }
+            }, {});
+    }
+
+    onClick(id: string): void {
+        this.markAsTouched();
+        if (this.disabled) return;
+
+        this.selection[id] = !this.selection[id];
+        this.onChange(this.selection);
+    }
+
+    isSelected(id: string): boolean {
+        return this.selection[id];
+    }
+
+    writeValue(selection: { [key: string]: boolean }): void {
+        if (selection != null) this.selection = selection;
+    }
 
     registerOnChange(onChange: any): void {
         this.onChange = onChange;
