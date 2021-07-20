@@ -5,11 +5,10 @@ import { Observable, Subscription } from "rxjs";
 import { ProductApiService } from "@core/products/product-api.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterType } from "@shared/models/types/filter-type.type";
+import { ActiveFilters } from "@shared/models/types/active-filters.type";
 
-import { getFilterableProperties } from "@utils/factories/filters";
-import { ActiveFilters } from "@app/shared/models/types/active-filters.type";
+import { getUniqueValuesOfKey } from "@app/utils/helper";
 
 @Component({
     selector: "app-product",
@@ -20,7 +19,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
     featuredProducts$: Observable<Product[]> = new Observable();
     products$: Observable<Product[]> = new Observable();
-    productType: ProductType | undefined;
     activeFilters: ActiveFilters | undefined;
 
     constructor(
@@ -33,10 +31,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
         this.subscriptions.add(
             this.route.params.subscribe(
-                ({productType}) => {
-                    this.productType = productType;
-                    this.products$ = this.productService.getProductsByType(productType);
-                }
+                ({productType}) => this.products$ = this.productService.getProductsByType(productType)
             )
         );
     }
@@ -45,12 +40,23 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    getFilterableProperties(products: Product[] | null): FilterType {
-        if (products == null || this.productType == null) return {};
-        return getFilterableProperties(products, this.productType);
-    }
+    getFilterableProperties(products: Product[]): FilterType[] {
+        const filters = products
+            .map(p => p.filterableAttributes)
+            .reduce((arr, fa) => arr.concat(fa))
+            .map(fa => {
+                return {
+                    [fa.attribute]: {
+                        displayName: fa.displayName,
+                        key: fa.attribute,
+                        options: getUniqueValuesOfKey(products, fa.attribute),
+                    }
+                }
+            })
+            .reduce((union, obj) => {
+                return { ...union, ...obj }
+            });
 
-    onSelectionChange(activeFilters: ActiveFilters): void {
-        this.activeFilters = activeFilters;
+        return Object.values(filters);
     }
 }
