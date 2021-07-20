@@ -1,6 +1,6 @@
 <div class="product-page-container">
-    <form *ngIf="products$ | async as products" bindQueryParams>
-        <app-filter *ngFor="let property of getFilterableProperties(products)" [propertyToFilter]="property"></app-filter>
+    <form [formGroup]="filterForm" *ngIf="products$ | async as products">
+        <app-filter formControlName="filter" *ngFor="let property of getFilterableProperties(products)" [propertyToFilter]="property"></app-filter>
     </form>
     <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
         <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">

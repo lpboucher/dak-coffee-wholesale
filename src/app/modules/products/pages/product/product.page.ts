@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 
@@ -20,10 +21,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     featuredProducts$: Observable<Product[]> = new Observable();
     products$: Observable<Product[]> = new Observable();
     activeFilters: ActiveFilters | undefined;
+    filterForm = this.fb.group({ filter: [] });
 
     constructor(
         private productService: ProductApiService,
         private route: ActivatedRoute,
+        private fb: FormBuilder,
     ) {}
 
     ngOnInit(): void {
