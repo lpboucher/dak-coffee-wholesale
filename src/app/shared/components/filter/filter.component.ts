@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
@@ -16,20 +16,12 @@ import { FilterType } from "@shared/models/types/filter-type.type";
         },
     ]
 })
-export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
-    @Input() propertyToFilter: FilterType | undefined;
+export class FilterComponent implements ControlValueAccessor {
+    @Input() propertyToFilter!: FilterType;
     private onChange = (_: {}) => {};
     private onTouched = () => {};
     private touched = false;
     private disabled = false;
-
-    ngOnInit(): void {}
-
-    ngOnDestroy(): void {}
-
-    onSelect(item: any): void {}
-
-    onDeSelect(item: any): void {}
 
     writeValue(obj: any): void {}
 

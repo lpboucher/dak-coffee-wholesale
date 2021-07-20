@@ -1,0 +1,5 @@
+<div>{{ propertyToFilter.displayName }}</div>
+<div *ngFor="let option of propertyToFilter.options">
+    <input id="{{ option }}" type="radio" value="{{ option }}"/>
+    <label for="{{ option }}">{{ option }}</label>
+</div>
