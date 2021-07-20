@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 
@@ -21,7 +21,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     featuredProducts$: Observable<Product[]> = new Observable();
     products$: Observable<Product[]> = new Observable();
     activeFilters: ActiveFilters | undefined;
-    filterForm = this.fb.group({ filter: [] });
+    filterForm = this.fb.group({});
+
+    addFormControl(key: string): void {
+        this.filterForm.addControl(key, new FormControl());
+    }
 
     constructor(
         private productService: ProductApiService,
@@ -35,6 +39,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
             this.route.params.subscribe(
                 ({productType}) => this.products$ = this.productService.getProductsByType(productType)
+            )
+        );
+
+        this.subscriptions.add(
+            this.filterForm.valueChanges.subscribe(
+                changes => this.updateActiveFilters(changes)
             )
         );
     }
@@ -61,5 +71,22 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             });
 
         return Object.values(filters);
+    }
+
+    private updateActiveFilters(changes: any): void {
+        this.activeFilters = Object.keys(changes)
+            .filter(key => changes[key] != null)
+            .map(key => {
+                const v = changes[key] as { [key: string]: boolean };
+
+                return {
+                    [key]: Object.keys(v)
+                        .filter(key => v[key])
+                        .map(key => key)
+                }
+            })
+            .reduce((union, obj) => {
+                return { ...union, ...obj }
+            }, {});
     }
 }
