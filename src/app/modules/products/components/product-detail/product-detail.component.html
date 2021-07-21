@@ -11,25 +11,22 @@
                 <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
                 </div>
-                <form [formGroup]="optionsForm" class="product-detail-selection-form" bindQueryParams>
-                    <div class="product-detail-selection-group">
-                        <ng-container *ngFor="let option of weightOptions">
-                            <input formControlName="weight" id="{{ option }}" type="radio" value="{{ option }}" hidden="hidden" class="product-detail-selection-input" />
-                            <label class="product-detail-selection-label" for="{{ option }}">{{ option }}</label>
-                        </ng-container>
-                    </div>
-                    <div class="product-detail-selection-group">
-                        <ng-container *ngFor="let option of roastOptions">
-                            <input formControlName="roast" id="{{ option }}" type="radio" value="{{ option }}" hidden="hidden" class="product-detail-selection-input" />
-                            <label class="product-detail-selection-label" for="{{ option }}">{{ option }}</label>
-                        </ng-container>
-                    </div>
-                    <div class="product-detail-content-order-wrapper">
-                        <span class="product-detail-content-order-price">{{ totalPrice | volumeDiscount | formatPrice }}</span>
-                        <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="snipcartOptions">Add to cart</button>
-                        <app-quantity-input formControlName="quantity" [minValue]="1" class="product-detail-content-order-quantity-form"></app-quantity-input>
+                <form [formGroup]="optionsForm" class="product-detail-selection-form">
+                    <div class="product-detail-selection-group" *ngFor="let attribute of productAttributes">
+                        {{ attribute }}:
+                        <label class="product-detail-selection-label" *ngFor="let option of getAttributeOptions(attribute)">
+                            <input formControlName="{{ attribute }}" type="radio" value="{{ option }}" class="product-detail-selection-input" />
+                            {{ option }}
+                        </label>
                     </div>
                 </form>
+                <div class="product-detail-content-order-wrapper">
+                    <span class="product-detail-content-order-price">{{ totalPrice | volumeDiscount | formatPrice }}</span>
+                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="cartModifiers">Add to cart</button>
+                    <form [formGroup]="optionsForm" class="product-detail-content-order-quantity-form">
+                        <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
