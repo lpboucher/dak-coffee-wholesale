@@ -1,5 +1,7 @@
 .filter-container {
     @apply flex items-center;
+    @apply p-3;
+    @apply border-b-2 border-gray-500;
 }
 
 .filter-name {
