@@ -47,7 +47,10 @@ export class FilterComponent implements OnInit, ControlValueAccessor {
     }
 
     writeValue(selection: { [key: string]: boolean }): void {
-        if (selection != null) this.selection = selection;
+        if (selection == null) return;
+
+        this.selection = selection;
+        this.onChange(this.selection);
     }
 
     registerOnChange(onChange: any): void {
