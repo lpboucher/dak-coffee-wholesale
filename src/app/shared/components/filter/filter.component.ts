@@ -36,6 +36,19 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
     ) {}
 
     ngOnInit(): void {
+        this.subscriptions.add(
+            this.activatedRoute.queryParams.subscribe(
+                queryParams => {
+                    const rawSelection = queryParams[this.propertyToFilter.key];
+                    if (rawSelection == null) return;
+
+                    try {
+                        const selection = JSON.parse(rawSelection) as string[];
+                        selection.forEach(s => this.selection.add(s));
+                    } catch (_) { return };
+                }
+            )
+        );
     }
 
     ngOnDestroy(): void {
