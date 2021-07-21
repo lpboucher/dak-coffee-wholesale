@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { ProductApiService } from "@core/products/product-api.service";
 
 import { Product } from "@shared/models/classes/product.class";
+import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterType } from "@shared/models/types/filter-type.type";
 import { ActiveFilters } from "@shared/models/types/active-filters.type";
 
@@ -44,7 +45,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                         this.productService.getProductsByType(productType).subscribe(
                             products => {
                                 this.products.next(products);
-                                this.updateFilterForm(products);
+                                this.updateFilterForm(products, productType);
                             })
                     )
             )
@@ -61,7 +62,17 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    getFilterableProperties(products: Product[]): FilterType[] {
+    private updateFilterForm(products: Product[], productType: ProductType): void {
+        this.filterableProperties
+            ?.forEach(p => this.filterForm.removeControl(p.key));
+
+        this.filterableProperties = (this.getFilterableProperties(products, productType));
+
+        this.filterableProperties
+            .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
+    }
+
+    private getFilterableProperties(products: Product[], productType: ProductType): FilterType[] {
         const filters = products
             .map(p => p.filterableAttributes)
             .reduce((arr, fa) => arr.concat(fa))
@@ -78,17 +89,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                 return { ...union, ...obj }
             });
 
+        if (productType != "all") delete filters["productType"];
+
         return Object.values(filters);
-    }
-
-    private updateFilterForm(products: Product[]): void {
-        this.filterableProperties
-            ?.forEach(p => this.filterForm.removeControl(p.key));
-
-        this.filterableProperties = (this.getFilterableProperties(products));
-
-        this.filterableProperties
-            .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
     }
 
     private updateActiveFilters(changes: any): void {
