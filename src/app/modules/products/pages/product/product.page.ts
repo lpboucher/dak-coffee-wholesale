@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
 import { ProductApiService } from "@core/products/product-api.service";
 
@@ -18,11 +18,15 @@ import { getUniqueValuesOfKey } from "@app/utils/helper";
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
+    private products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
     featuredProducts$: Observable<Product[]> = new Observable();
-    products$: Observable<Product[]> = new Observable();
     filterableProperties: FilterType[] | undefined;
     activeFilters: ActiveFilters | undefined;
     filterForm = this.fb.group({});
+
+    get products$(): Observable<Product[]> {
+        return this.products.asObservable();
+    }
 
     constructor(
         private productService: ProductApiService,
@@ -35,21 +39,14 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
         this.subscriptions.add(
             this.route.params.subscribe(
-                ({productType}) => this.products$ = this.productService.getProductsByType(productType)
-            )
-        );
-
-        this.subscriptions.add(
-            this.products$.subscribe(
-                products => {
-                    this.filterableProperties
-                        ?.forEach(p => this.filterForm.removeControl(p.key));
-
-                    this.filterableProperties = this.getFilterableProperties(products);
-
-                    this.filterableProperties
-                        .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
-                }
+                ({productType}) =>
+                    this.subscriptions.add(
+                        this.productService.getProductsByType(productType).subscribe(
+                            products => {
+                                this.products.next(products);
+                                this.updateFilterForm(products);
+                            })
+                    )
             )
         );
 
@@ -82,6 +79,16 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             });
 
         return Object.values(filters);
+    }
+
+    private updateFilterForm(products: Product[]): void {
+        this.filterableProperties
+            ?.forEach(p => this.filterForm.removeControl(p.key));
+
+        this.filterableProperties = (this.getFilterableProperties(products));
+
+        this.filterableProperties
+            .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
     }
 
     private updateActiveFilters(changes: any): void {
