@@ -13,8 +13,6 @@ export function EmailExists(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         if (control.value == null) return of(null);
 
-        console.log(control.value);
-        console.log(dummyCheckEmailRemoteCall(control.value).pipe(map(res => res ? { emailTaken: true } : null)));
         return dummyCheckEmailRemoteCall(control.value)
             .pipe(
                 map(res => res ? { emailTaken: true } : null)
