@@ -1,7 +1,12 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
+import { Subscription } from "rxjs";
+
+
+type Selection = Set<string>;
 
 
 @Component({
@@ -16,37 +21,44 @@ import { FilterType } from "@shared/models/types/filter-type.type";
         },
     ]
 })
-export class FilterComponent implements OnInit, ControlValueAccessor {
+export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() propertyToFilter!: FilterType;
-    private selection: { [key: string]: boolean } = {};
-    private onChange = (_: { [key: string]: boolean }) => {};
+    private selection: Selection = new Set();
+    private onChange = (_: Selection) => this.internalOnChange();;
     private onTouched = () => {};
     private touched = false;
     private disabled = false;
+    private subscriptions: Subscription = new Subscription();
 
-    constructor() {}
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+    ) {}
 
     ngOnInit(): void {
-        this.selection = this.propertyToFilter
-            .options
-            .reduce((obj, id) => {
-                return { ...obj, [id]: false }
-            }, {});
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 
     onClick(id: string): void {
         this.markAsTouched();
         if (this.disabled) return;
 
-        this.selection[id] = !this.selection[id];
+        if (this.selection.has(id)) {
+            this.selection.delete(id);
+        } else {
+            this.selection.add(id);
+        }
         this.onChange(this.selection);
     }
 
     isSelected(id: string): boolean {
-        return this.selection[id];
+        return this.selection.has(id);
     }
 
-    writeValue(selection: { [key: string]: boolean }): void {
+    writeValue(selection: Selection): void {
         if (selection == null) return;
 
         this.selection = selection;
@@ -54,7 +66,10 @@ export class FilterComponent implements OnInit, ControlValueAccessor {
     }
 
     registerOnChange(onChange: any): void {
-        this.onChange = onChange;
+        this.onChange = (selection) => {
+            this.internalOnChange();
+            onChange(selection);
+        };
     }
 
     registerOnTouched(onTouched: any): void {
@@ -63,6 +78,20 @@ export class FilterComponent implements OnInit, ControlValueAccessor {
 
     setDisabledState(disabled: boolean): void {
         this.disabled = disabled;
+    }
+
+    private internalOnChange(): void {
+        const selectionParams = JSON.stringify([...this.selection]);
+        const queryParams = { [this.propertyToFilter.key]: selectionParams };
+
+        this.router.navigate(
+            [],
+            {
+                relativeTo: this.activatedRoute,
+                queryParams: queryParams,
+                queryParamsHandling: "merge",
+            }
+        );
     }
 
     private markAsTouched() {
