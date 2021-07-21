@@ -48,12 +48,12 @@
 }
 
 .product-detail-selection-group {
-    @apply flex flex-col;
+    @apply flex justify-end;
     @apply text-sm text-gray-500 capitalize;
 }
 
 .product-detail-selection-label {
-    @apply mx-2 my-1 p-1 w-20;
+    @apply mx-4 my-1 p-1 w-20;
     @apply border border-gray-500;
     @apply text-center;
     @apply cursor-pointer;
@@ -61,7 +61,7 @@
     @apply hover:bg-gray-200;
 }
 
-.product-detail-selection-label:last-child {
+.product-detail-selection-label {
     @apply mr-0;
 }
 
