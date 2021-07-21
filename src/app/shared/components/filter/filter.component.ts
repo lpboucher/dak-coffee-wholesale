@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 
 import { FilterType } from "@shared/models/types/filter-type.type";
 import { Subscription } from "rxjs";
@@ -24,7 +24,7 @@ type Selection = Set<string>;
 export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() propertyToFilter!: FilterType;
     private selection: Selection = new Set();
-    private onChange = (_: Selection) => this.internalOnChange();;
+    private onChange = (_: Selection) => this.internalOnChange();
     private onTouched = () => {};
     private touched = false;
     private disabled = false;
@@ -33,20 +33,13 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
+        private controlContainer: ControlContainer,
     ) {}
 
     ngOnInit(): void {
         this.subscriptions.add(
             this.activatedRoute.queryParams.subscribe(
-                queryParams => {
-                    const rawSelection = queryParams[this.propertyToFilter.key];
-                    if (rawSelection == null) return;
-
-                    try {
-                        const selection = JSON.parse(rawSelection) as string[];
-                        selection.forEach(s => this.selection.add(s));
-                    } catch (_) { return };
-                }
+                queryParams => this.updateFromQueryParams(queryParams)
             )
         );
     }
@@ -91,6 +84,19 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
 
     setDisabledState(disabled: boolean): void {
         this.disabled = disabled;
+    }
+
+    private updateFromQueryParams(queryParams: Params): void {
+        const rawSelection = queryParams[this.propertyToFilter.key];
+        if (rawSelection == null) return;
+
+        try {
+            const selection = JSON.parse(rawSelection) as string[];
+            this.controlContainer
+                .control
+                ?.get(this.propertyToFilter.key)
+                ?.patchValue(new Set(selection));
+        } catch (_) { return };
     }
 
     private internalOnChange(): void {
