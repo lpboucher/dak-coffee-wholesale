@@ -23,12 +23,10 @@ export abstract class BaseProductComponent implements OnInit {
         return this.product
             .attributes
             .map(
-                attr => {
-                    return {
-                        attribute: attr,
-                        selection: this.optionsForm.get(attr.name)!.value,
-                    }
-                }
+                attr => ({
+                    attribute: attr,
+                    selection: this.optionsForm.get(attr.name)!.value,
+                })
             );
     }
 
@@ -51,12 +49,10 @@ export abstract class BaseProductComponent implements OnInit {
         return this.product
             .attributes
             .reduce(
-                (obj, attr) => {
-                    return {
-                        [attr.name]: [attr.options[0].optionName, Validators.required],
-                        ...obj
-                    }
-                }, {}
+                (obj, attr) => ({
+                    ...obj,
+                    [attr.name]: [attr.options[0].optionName, Validators.required]
+                }), {}
             );
     }
 
