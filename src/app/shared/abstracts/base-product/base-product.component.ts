@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 
 import { CartModifier } from "@shared/models/types/cart-modifier.interface";
 import { Product } from "@shared/models/classes/product.class";
+import { ProductAttributeOption } from "@app/shared/models/types/product-attribute-option.interface";
 
 @Component({ template: "" })
 export abstract class BaseProductComponent implements OnInit {
@@ -47,6 +48,10 @@ export abstract class BaseProductComponent implements OnInit {
         });
     }
 
+    extractOptionNames(options: ProductAttributeOption[]): string[] {
+        return options.map(o => o.optionName);
+    }
+
     private get formConfig() {
         return this.product
             .attributes
@@ -59,16 +64,4 @@ export abstract class BaseProductComponent implements OnInit {
                 }, {}
             );
     }
-
-    getAttributeOptions(attribute: string): string[] {
-        const attr = this.product
-            .attributes
-            .find(attr => attr.name === attribute);
-
-        if (attr == null) return [];
-
-        return attr.options
-            .map(o => o.optionName);
-    }
-
 }

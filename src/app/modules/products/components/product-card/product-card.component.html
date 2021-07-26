@@ -8,9 +8,9 @@
         <form class="product-card-body-selection-form" [formGroup]="optionsForm">
             <app-dropdown
                 class="product-card-body-selection-item"
-                *ngFor="let attribute of productAttributes"
-                formControlName="{{ attribute }}"
-                [options]="getAttributeOptions(attribute)">
+                *ngFor="let attribute of product.attributes"
+                formControlName="{{ attribute.name }}"
+                [options]="extractOptionNames(attribute.options)">
             </app-dropdown>
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
