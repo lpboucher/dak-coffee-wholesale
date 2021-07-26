@@ -2,7 +2,7 @@ import { Directive, ElementRef, Input, OnChanges, OnInit } from "@angular/core";
 
 import { Product } from "@shared/models/classes/product.class";
 import { CartModifier } from "@shared/models/types/cart-modifier.interface";
-import { AttributeToSnipcartListPipe } from "@shared/pipes/attribute-to-snipcart-list.pipe";
+import { AttributeOptionsToSnipcartListPipe } from "@shared/pipes/attribute-to-snipcart-list.pipe";
 
 @Directive({
     selector: "[snipcartAdd]"
@@ -14,7 +14,7 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
 
     constructor(
         private el: ElementRef,
-        private attributeToSnipcartListPipe: AttributeToSnipcartListPipe,
+        private attributeOptionsToSnipcartListPipe: AttributeOptionsToSnipcartListPipe,
     ) {}
 
     ngOnInit(): void {
@@ -45,7 +45,7 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
             .forEach(
                 (modifier, index) => {
                     const basename = `data-item-custom${ index + 1}`;
-                    const attributeOptions = this.attributeToSnipcartListPipe.transform(modifier.attribute);
+                    const attributeOptions = this.attributeOptionsToSnipcartListPipe.transform(modifier.attribute.options);
 
                     this.el.nativeElement.setAttribute(basename + "-name", modifier.attribute.name);
                     this.el.nativeElement.setAttribute(basename + "-options", attributeOptions);

@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
+import { ProductAttributeOption } from "../models/types/product-attribute-option.interface";
 
 @Pipe({
     name: "attributeToSnipcartList"
 })
-export class AttributeToSnipcartListPipe implements PipeTransform {
-    transform(attribute: ProductAttribute): string {
-        if (attribute.options == null) return "";
-        return attribute.options
-            .reduce((s, o) => s +  `|${ o.optionName }[${ o.priceModifier }]`, "")
-            .substring(1);
+export class AttributeOptionsToSnipcartListPipe implements PipeTransform {
+    transform(options: ProductAttributeOption[] | null): string {
+        if (options == null) return "";
+        return options
+            .map(o => o.optionName + "[" + o.priceModifier + "]")
+            .join("|");
     }
 }
