@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 import { NewCustomer } from "@shared/models/classes/new-customer.class";
+import { PricingTierService } from "../pricing/pricing-tier.service";
 
 const DEV = {
     user: "test@test.com",
@@ -15,8 +16,11 @@ const DEV = {
 })
 export class AuthService {
 
-    constructor(private http: HttpClient, private router: Router) {
-    }
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private pricingTierService: PricingTierService,
+    ) {}
 
     register(newCustomer: NewCustomer): void {
         console.log(newCustomer);
@@ -29,6 +33,8 @@ export class AuthService {
             console.log("successfully logged in");
             this.setSession(DEV.token);
             this.router.navigate(["/"], { queryParams: { checkPricing: true } });
+
+            this.pricingTierService.calculateWalletAmount();
         }
 
 
