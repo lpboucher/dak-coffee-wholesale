@@ -45,10 +45,10 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
             .forEach(
                 (modifier, index) => {
                     const basename = `data-item-custom${ index + 1}`;
-                    const optionsList = this.attributeToSnipcartListPipe.transform(modifier.attribute);
+                    const attributeOptions = this.attributeToSnipcartListPipe.transform(modifier.attribute);
 
                     this.el.nativeElement.setAttribute(basename + "-name", modifier.attribute.name);
-                    this.el.nativeElement.setAttribute(basename + "-options", optionsList);
+                    this.el.nativeElement.setAttribute(basename + "-options", attributeOptions);
                     this.el.nativeElement.setAttribute(basename + "-value", modifier.selection);
                 }
             )
