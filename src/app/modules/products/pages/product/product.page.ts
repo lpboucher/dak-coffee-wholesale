@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, combineLatest, concat, merge, Observable, of, Subscription } from "rxjs";
 
 import { ProductApiService } from "@core/products/product-api.service";
 
@@ -11,6 +11,7 @@ import { FilterType } from "@shared/models/types/filter-type.type";
 import { ActiveFilters } from "@shared/models/types/active-filters.type";
 
 import { getUniqueValuesOfKey } from "@app/utils/helper";
+import { switchMap, withLatestFrom } from "rxjs/operators";
 
 @Component({
     selector: "app-product",
@@ -39,15 +40,18 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.featuredProducts$ = this.productService.getFeaturedProducts();
 
         this.subscriptions.add(
-            this.route.params.subscribe(
-                ({productType}) =>
-                    this.subscriptions.add(
-                        this.productService.getProductsByType(productType).subscribe(
-                            products => {
-                                this.products.next(products);
-                                this.updateFilterForm(products, productType);
-                            })
+            combineLatest([
+                this.route.params,
+                this.route.params
+                    .pipe(
+                        switchMap(({ productType }) => this.productService.getProductsByType(productType))
                     )
+            ])
+            .subscribe(
+                ([{ productType }, products]) => {
+                    this.products.next(products);
+                    this.updateFilterForm(products, productType);
+                }
             )
         );
 
