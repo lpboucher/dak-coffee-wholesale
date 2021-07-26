@@ -10,7 +10,10 @@ export class Merchandise extends Product {
         super(merchandiseShape);
 
         if (merchandiseShape != null) {
-            this.filterableAttributes = this.filterableAttributes.concat([{ attribute: "dimensions", displayName: "Dimensions" }]);
+            this.filterableAttributes = [
+                ...this.filterableAttributes,
+                { attribute: "dimensions", displayName: "Dimensions" }
+            ];
 
             if (merchandiseShape.dimensions != null) {
                 this.dimensions = merchandiseShape.dimensions;

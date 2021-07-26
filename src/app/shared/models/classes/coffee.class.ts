@@ -12,12 +12,13 @@ export class Coffee extends Product {
         super(coffeeShape);
 
         if (coffeeShape != null) {
-            this.filterableAttributes = this.filterableAttributes.concat([
+            this.filterableAttributes = [
+                ...this.filterableAttributes,
                 { attribute: "origin", displayName: "Origin" },
                 { attribute: "tastingNotes", displayName: "Tasting Notes" },
                 { attribute: "process", displayName: "Process" },
                 { attribute: "varietal", displayName: "Varietal" },
-            ]);
+            ];
 
             if (coffeeShape.origin != null) {
                 this.origin = coffeeShape.origin;
