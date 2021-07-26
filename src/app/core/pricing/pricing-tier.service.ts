@@ -11,6 +11,7 @@ const DUMMY_ORDER = { previousWalletBallance: 200, previousOrderTotal: 50 };
 })
 export class PricingTierService {
     private isVolumeDiscountActive$ = new BehaviorSubject(false);
+    private walletAmount = new BehaviorSubject(0);
 
     get isDiscountActive$(): Observable<boolean> {
         return this.isVolumeDiscountActive$.asObservable();
@@ -20,9 +21,15 @@ export class PricingTierService {
         return this.isVolumeDiscountActive$.value;
     }
 
-    get walletAmount(): number {
-        return DUMMY_ORDER.previousWalletBallance
-            + (DUMMY_ORDER.previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET);
+    get walletAmount$(): Observable<number> {
+        return this.walletAmount.asObservable();
+    }
+
+    calculateWalletAmount(): void {
+        this.walletAmount.next(
+            DUMMY_ORDER.previousWalletBallance
+                + (DUMMY_ORDER.previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET)
+        );
     }
 
     constructor() {}
