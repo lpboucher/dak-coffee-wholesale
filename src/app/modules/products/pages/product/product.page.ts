@@ -76,9 +76,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
     private updateActiveFilters(changes: any): void {
         this.activeFilters = Object.keys(changes)
-            .filter(key => changes[key] != null)
             .map(key => {
-                const active = [...changes[key]];
+                const active = [...(changes[key] ?? [])];
                 return active.length == 0 ? {} : { [key]: active };
             })
             .reduce((union, obj) => {
