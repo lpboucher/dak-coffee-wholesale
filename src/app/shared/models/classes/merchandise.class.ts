@@ -12,7 +12,7 @@ export class Merchandise extends Product {
         if (merchandiseShape != null) {
             this.filterableAttributes = [
                 ...this.filterableAttributes,
-                { attribute: "dimensions", displayName: "Dimensions" }
+                { key: "dimensions", displayName: "Dimensions" }
             ];
 
             if (merchandiseShape.dimensions != null) {

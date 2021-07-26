@@ -40,7 +40,7 @@ export abstract class Product {
                 this.slug = productShape.slug;
             }
 
-            this.filterableAttributes = [{ attribute: "productType", displayName: "Product Type" }];
+            this.filterableAttributes = [{ key: "productType", displayName: "Product Type" }];
 
             if (productShape.images != null) {
                 if (productShape.images.main != null) {

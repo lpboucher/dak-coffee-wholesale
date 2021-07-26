@@ -14,10 +14,10 @@ export class Coffee extends Product {
         if (coffeeShape != null) {
             this.filterableAttributes = [
                 ...this.filterableAttributes,
-                { attribute: "origin", displayName: "Origin" },
-                { attribute: "tastingNotes", displayName: "Tasting Notes" },
-                { attribute: "process", displayName: "Process" },
-                { attribute: "varietal", displayName: "Varietal" },
+                { key: "origin", displayName: "Origin" },
+                { key: "tastingNotes", displayName: "Tasting Notes" },
+                { key: "process", displayName: "Process" },
+                { key: "varietal", displayName: "Varietal" },
             ];
 
             if (coffeeShape.origin != null) {

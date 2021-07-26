@@ -20,10 +20,10 @@ export class ProductsToFiltersPipe implements PipeTransform {
                 (union, fa) => ({
                     ...union,
                     ...{
-                        [fa.attribute]: {
+                        [fa.key]: {
                             displayName: fa.displayName,
-                            key: fa.attribute,
-                            options: getUniqueValuesOfKey(products, fa.attribute),
+                            key: fa.key,
+                            options: getUniqueValuesOfKey(products, fa.key),
                         }
                     }
                 }), {}

@@ -1,4 +1,3 @@
-export type FilterableAttribute = {
-    attribute: string,
-    displayName: string,
-}
+import { FilterType } from "./filter-type.type";
+
+export type FilterableAttribute = Omit<FilterType, "options">;
