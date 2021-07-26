@@ -11,10 +11,7 @@ export const simpleDeepEqual = (firstObject: { [key: string]: any }, secondObjec
 }
 
 export function getUniqueValuesOfKey(objects: { [key: string]: any }[], key: string): any[] {
-    const values = objects
-        .filter(o => key in o)
-        .reduce((prev: any[], curr) => prev.concat(curr[key]), [])
-        .filter(value => value != null);
-    const uniqueValues = new Set(values);
-    return [...uniqueValues];
+    return [...new Set(
+        objects.map(item => item[key])
+    )].filter(value => value != null);
 }
