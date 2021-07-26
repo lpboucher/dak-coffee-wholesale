@@ -67,11 +67,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     }
 
     private updateFilterForm(products: Product[], productType: ProductType): void {
-        this.filterableProperties
-            ?.forEach(p => this.filterForm.removeControl(p.key));
+        this.filterForm.reset({});
 
-        this.filterableProperties = (this.getFilterableProperties(products, productType));
-
+        this.filterableProperties = this.getFilterableProperties(products, productType);
         this.filterableProperties
             .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
     }
