@@ -64,4 +64,13 @@ export abstract class Product {
         if (this.price == null) { return NaN; }
         return Number.parseFloat(this.price);
     }
+
+    get priceRelevantAttributes(): ProductAttribute[] {
+        return this.attributes
+            .filter(attr =>
+                attr.options
+                    ?.some(o => o.priceModifier > 0)
+                    ?? false
+            );
+    }
 }

@@ -29,7 +29,19 @@ export abstract class BaseProductComponent implements OnInit {
     get totalPrice(): number {
         if (isNaN(this.product.priceAsNumber)) { return NaN; }
 
-        return this.product.priceAsNumber * this.quantity;
+        const priceModifier = this.product
+            .priceRelevantAttributes
+            .filter(attr => attr.name != null)
+            .map(attr => {
+                const selection = this.optionsForm.get(attr.name!)?.value;
+                return attr.options
+                    ?.find(o => o.optionName === selection)
+                    ?.priceModifier
+                    ?? 0;
+            })
+            .reduce((sum, val) => sum + val, 0);
+
+        return (this.product.priceAsNumber + priceModifier) * this.quantity;
     }
 
     constructor(protected fb: FormBuilder) {}
