@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, combineLatest, concat, merge, Observable, of, Subscription } from "rxjs";
+import { BehaviorSubject, combineLatest, Observable, Subscription } from "rxjs";
+import { switchMap } from "rxjs/operators";
 
 import { ProductApiService } from "@core/products/product-api.service";
 
@@ -9,9 +10,7 @@ import { Product } from "@shared/models/classes/product.class";
 import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterType } from "@shared/models/types/filter-type.type";
 import { ActiveFilters } from "@shared/models/types/active-filters.type";
-
-import { getUniqueValuesOfKey } from "@app/utils/helper";
-import { switchMap, withLatestFrom } from "rxjs/operators";
+import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
 
 @Component({
     selector: "app-product",
@@ -34,6 +33,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         private productService: ProductApiService,
         private route: ActivatedRoute,
         private fb: FormBuilder,
+        private productsToFiltersPipe: ProductsToFiltersPipe,
     ) {}
 
     ngOnInit(): void {
@@ -69,31 +69,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private updateFilterForm(products: Product[], productType: ProductType): void {
         this.filterForm.reset({});
 
-        this.filterableProperties = this.getFilterableProperties(products, productType);
+        this.filterableProperties = this.productsToFiltersPipe.transform(products, productType);
         this.filterableProperties
             .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
-    }
-
-    private getFilterableProperties(products: Product[], productType: ProductType): FilterType[] {
-        const filters = products
-            .map(p => p.filterableAttributes)
-            .reduce((arr, fa) => arr.concat(fa))
-            .map(fa => {
-                return {
-                    [fa.attribute]: {
-                        displayName: fa.displayName,
-                        key: fa.attribute,
-                        options: getUniqueValuesOfKey(products, fa.attribute),
-                    }
-                }
-            })
-            .reduce((union, obj) => {
-                return { ...union, ...obj }
-            });
-
-        if (productType != "all") delete filters["productType"];
-
-        return Object.values(filters);
     }
 
     private updateActiveFilters(changes: any): void {
