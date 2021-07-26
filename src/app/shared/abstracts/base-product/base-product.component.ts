@@ -14,12 +14,6 @@ export abstract class BaseProductComponent implements OnInit {
         return this.optionsForm.get("quantity")!.value;
     }
 
-    get productAttributes() {
-        return this.product
-            .attributes
-            .map(attr => attr.name);
-    }
-
     get cartModifiers(): CartModifier[] {
         return this.product
             .attributes
