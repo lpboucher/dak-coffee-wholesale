@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 
 @Component({
@@ -13,12 +13,11 @@ import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, 
         }
     ]
 })
-export class DropdownComponent implements OnInit, ControlValueAccessor {
+export class DropdownComponent implements ControlValueAccessor {
     @Input() options: string[] = [];
-    @Input() defaultSelection: string | undefined;
     showOptions: boolean = false;
     dropdownForm = this.fb.group({
-        options: ["", Validators.required],
+        options: [this.options[0], Validators.required],
     });
 
     private onChange = (_: string) => {};
@@ -35,12 +34,6 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
     }
 
     constructor(private fb: FormBuilder) {}
-
-    ngOnInit(): void {
-        if (this.defaultSelection != null) {
-            this.optionsControl.setValue(this.defaultSelection);
-        }
-    }
 
     writeValue(value: string): void {
         this.markAsTouched();
