@@ -7,6 +7,7 @@ import { ProductAttribute } from "@shared/models/classes/product-attribute.class
 })
 export class AttributeToSnipcartListPipe implements PipeTransform {
     transform(attribute: ProductAttribute): string {
+        if (attribute.options == null) return "";
         return attribute.options
             .reduce((s, o) => s +  `|${ o.optionName }[${ o.priceModifier }]`, "")
             .substring(1);

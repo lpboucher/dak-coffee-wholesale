@@ -17,13 +17,12 @@ export abstract class BaseProductComponent implements OnInit {
     get cartModifiers(): CartModifier[] {
         return this.product
             .attributes
+            .filter(attr => attr.name != null)
             .map(
-                attr => {
-                    return {
+                attr => ({
                         attribute: attr,
-                        selection: this.optionsForm.get(attr.name)!.value,
-                    }
-                }
+                        selection: this.optionsForm.get(attr.name!)!.value,
+                    })
             );
     }
 
@@ -42,20 +41,20 @@ export abstract class BaseProductComponent implements OnInit {
         });
     }
 
-    extractOptionNames(options: ProductAttributeOption[]): string[] {
+    extractOptionNames(options: ProductAttributeOption[] | null): string[] {
+        if (options == null) return [];
         return options.map(o => o.optionName);
     }
 
     private get formConfig() {
         return this.product
             .attributes
+            .filter(attr => attr.name != null && attr.options != null)
             .reduce(
-                (obj, attr) => {
-                    return {
-                        [attr.name]: [attr.options[0].optionName, Validators.required],
+                (obj, attr) => ({
+                        [attr.name!]: [attr.options![0].optionName, Validators.required],
                         ...obj
-                    }
-                }, {}
+                    }), {}
             );
     }
 }

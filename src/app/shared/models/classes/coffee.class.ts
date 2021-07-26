@@ -15,20 +15,20 @@ export class Coffee extends Product {
 
         if (coffeeShape != null) {
             this.attributes = [
-                new ProductAttribute(
-                    "weight",
-                    [
+                new ProductAttribute({
+                    name: "weight",
+                    options: [
                         { optionName: "250g", priceModifier: 0 },
                         { optionName: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
-                    ]),
-                new ProductAttribute(
-                    "roast",
-                    [
+                    ]}),
+                new ProductAttribute({
+                    name: "roast",
+                    options: [
                         { optionName: "Filter", priceModifier: 0 },
                         { optionName: "Espresso", priceModifier: 0 },
                         { optionName: "Both", priceModifier: 0 },
                     ]
-                )
+                })
             ];
 
             if (coffeeShape.origin != null) {
