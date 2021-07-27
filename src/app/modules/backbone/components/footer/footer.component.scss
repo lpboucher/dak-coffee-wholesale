@@ -7,7 +7,7 @@
 }
 
 .footer-upper {
-    @apply flex flex-wrap;
+    @apply flex flex-wrap justify-evenly;
     @apply text-center order-first;
 
     @apply md:text-left;
