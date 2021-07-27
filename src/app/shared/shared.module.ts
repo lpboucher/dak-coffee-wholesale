@@ -7,6 +7,8 @@ import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 
 import { componentDeclarations, providerDeclarations } from "@shared/shared.common";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 @NgModule({
     declarations: [
         ...componentDeclarations,
@@ -17,6 +19,7 @@ import { componentDeclarations, providerDeclarations } from "@shared/shared.comm
         ReactiveFormsModule,
         NgMultiSelectDropDownModule.forRoot(),
         NgxSkeletonLoaderModule,
+        AngularSvgIconModule,
     ],
     providers: [
         ...providerDeclarations,
