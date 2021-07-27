@@ -8,6 +8,8 @@ import { CoreModule } from "@core/core.module";
 
 import { AppComponent } from "./app.component";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 
 @NgModule({
     declarations: [
@@ -20,6 +22,7 @@ import { AppComponent } from "./app.component";
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
+        AngularSvgIconModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent]
