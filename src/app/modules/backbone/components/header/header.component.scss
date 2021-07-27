@@ -1,7 +1,10 @@
 .main-nav {
-    @apply flex flex-row justify-between place-items-center;
     @apply p-2;
     @apply bg-white;
+}
+
+.main-nav-container {
+    @apply flex flex-row justify-between place-items-center;
 }
 
 .brand {
