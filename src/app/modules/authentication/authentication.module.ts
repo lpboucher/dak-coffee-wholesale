@@ -6,6 +6,8 @@ import { SharedModule } from "@shared/shared.module";
 
 import { componentDeclarations, pageDeclarations } from "@modules/authentication/authentication.common";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 @NgModule({
   declarations: [
       ...pageDeclarations,
@@ -14,7 +16,8 @@ import { componentDeclarations, pageDeclarations } from "@modules/authentication
   imports: [
     CommonModule,
     SharedModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    AngularSvgIconModule,
   ]
 })
 export class AuthenticationModule { }
