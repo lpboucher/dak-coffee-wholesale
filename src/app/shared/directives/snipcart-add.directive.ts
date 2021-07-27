@@ -14,8 +14,6 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
     constructor(private el: ElementRef) {}
 
     ngOnInit(): void {
-        this.el.nativeElement.className += " snipcart-add-item";
-
         const { id, productType, slug, name, price } = this.product;
         const url = `/products/${ productType }/${ slug }`;
 
