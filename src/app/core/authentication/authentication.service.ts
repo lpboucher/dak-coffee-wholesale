@@ -2,8 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
+import { CartService } from "@core/cart/cart.service";
+
 import { NewCustomer } from "@shared/models/classes/new-customer.class";
-import { PricingTierService } from "../pricing/pricing-tier.service";
 
 const DEV = {
     user: "test@test.com",
@@ -20,6 +22,7 @@ export class AuthService {
         private http: HttpClient,
         private router: Router,
         private pricingTierService: PricingTierService,
+        private cartService: CartService,
     ) {}
 
     register(newCustomer: NewCustomer): void {
@@ -35,6 +38,7 @@ export class AuthService {
             this.router.navigate(["/"], { queryParams: { checkPricing: true } });
 
             this.pricingTierService.calculateWalletAmount();
+            this.cartService.applyDiscount();
         }
 
 

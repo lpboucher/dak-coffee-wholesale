@@ -5,6 +5,10 @@ import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
 
+
+const DISCOUNT_CODE = "WALLET-ORDER-121";
+
+
 @Injectable({
     providedIn: 'root'
 })
@@ -24,6 +28,10 @@ export class CartService {
         private pricingTierService: PricingTierService,
         private weightPipe: WeightPipe
     ) {}
+
+    applyDiscount(code?: string): void {
+        (window as any).Snipcart.api.cart.applyDiscount(code ?? DISCOUNT_CODE);
+    }
 
     openCart(): void {
         (window as any).Snipcart.api.theme.cart.open();
