@@ -1,7 +1,7 @@
 <div class="quantity-input-container">
     <label for="custom-input-number" class="quantity-input-label">{{ label }}</label>
     <div class="quantity-input-button-container">
-        <div data-action="decrement" class="quantity-input-left-button" (click)="onDecrement()">-</div>
+        <div data-action="decrement" class="quantity-input-left-button" (click)="onDecrement($event)">-</div>
         <input
             name="custom-input-number"
             class="quantity-input-value"
@@ -9,6 +9,6 @@
             [(ngModel)]="quantity"
             disabled
         />
-        <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement()">+</div>
+        <div data-action="increment" class="quantity-input-right-button" (click)="onIncrement($event)">+</div>
     </div>
 </div>
