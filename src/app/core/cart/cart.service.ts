@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
+import { Product } from "@shared/models/classes/product.class";
+import { SnipcartCustomField } from "@shared/models/types/snipcart-custom-field.type";
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +29,21 @@ export class CartService {
 
     openCart(): void {
         (window as any).Snipcart.api.theme.cart.open();
+    }
+
+    addToCart(product: Product, quantity?: number, customFields?: SnipcartCustomField[]): void {
+        const { id, productType, slug, name, price } = product;
+        const url = `/products/${ productType }/${ slug }`;
+
+        (window as any).Snipcart.api.cart.items.add({
+            id: id,
+            name: name,
+            price: price,
+            url: url,
+            quantity: quantity ?? 1,
+            minQuantity: 1,
+            customFields: customFields,
+        });
     }
 
     addingItem(item: any) {

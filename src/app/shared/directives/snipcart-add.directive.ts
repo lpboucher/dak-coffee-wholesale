@@ -1,51 +1,35 @@
-import { Directive, ElementRef, Input, OnChanges, OnInit } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input, OnChanges, OnInit } from "@angular/core";
+import { CartService } from "@app/core/cart/cart.service";
 
 import { Product } from "@shared/models/classes/product.class";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
+import { SnipcartCustomField } from "@shared/models/types/snipcart-custom-field.type";
 
 @Directive({
     selector: "[snipcartAdd]"
 })
-export class SnipcartAddDirective implements OnInit, OnChanges {
+export class SnipcartAddDirective {
     @Input("snipcartAdd") product!: Product;
     @Input() modifiers: CustomOption[] = [];
     @Input() quantity: number = 1;
 
-    constructor(private el: ElementRef) {}
-
-    ngOnInit(): void {
-        const { id, productType, slug, name, price } = this.product;
-        const url = `/products/${ productType }/${ slug }`;
-
-        this.el.nativeElement.setAttribute("data-item-id", id);
-        this.el.nativeElement.setAttribute("data-item-url", url);
-        this.el.nativeElement.setAttribute("data-item-name", name);
-        this.el.nativeElement.setAttribute("data-item-price", price);
-        this.el.nativeElement.setAttribute("data-item-min-quantity", 1);
-        this.setCustomAttributes();
+    private get snipcartCustomFields(): SnipcartCustomField[] {
+        return this.modifiers
+            .map(mod => ({
+                name: mod.name,
+                options: mod.list.map(element => ({ name: element })),
+                required: false,
+                type: "dropdown",
+                value: mod.selection,
+            }));
     }
 
-    ngOnChanges(): void {
-        this.setChangingAttributes();
-    }
+    constructor(private cartService: CartService) {}
 
-    private setChangingAttributes(): void {
-        this.el.nativeElement.setAttribute("data-item-quantity", this.quantity);
-        this.setCustomAttributes();
-    }
+    @HostListener("click", ["$event"])
+    onClick(event: Event): void {
+        event.stopPropagation();
 
-    private setCustomAttributes(): void {
-        this.modifiers.forEach((option, index) => {
-            const basename = `data-item-custom${ index + 1 }`;
-            const optionList = this.rawListToSnipcartList(option.list);
-
-            this.el.nativeElement.setAttribute(basename + "-name", option.name);
-            this.el.nativeElement.setAttribute(basename + "-options", optionList);
-            this.el.nativeElement.setAttribute(basename + "-value", option.selection);
-        });
-    }
-
-    private rawListToSnipcartList(raw: string[]): string {
-        return raw.reduce((prev, curr) => prev + "|" + curr);
+        this.cartService.addToCart(this.product, this.quantity, this.snipcartCustomFields);
     }
 }
