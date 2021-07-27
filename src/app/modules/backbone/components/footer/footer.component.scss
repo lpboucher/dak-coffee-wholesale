@@ -95,7 +95,6 @@
 
 .footer-lower-logo {
     @apply flex items-center justify-center;
-    @apply text-sm font-medium text-gray-900;
 
     @apply md:justify-start;
 }
@@ -107,12 +106,12 @@
 }
 
 .footer-lower-logo-text {
-    @apply ml-3;
-    @apply text-xl;
+    @apply ml-3 mr-10;
+    @apply text-sm text-gray-500;
 }
 
 .footer-lower-text {
-    @apply mt-4;
+    @apply mt-4 mr-56;
     @apply text-sm text-gray-500;
 
     @apply sm:ml-6 sm:mt-0;
