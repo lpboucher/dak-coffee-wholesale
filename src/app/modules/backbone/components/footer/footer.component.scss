@@ -111,7 +111,7 @@
 }
 
 .footer-lower-text {
-    @apply mt-4 mr-56;
+    @apply mt-4;
     @apply text-sm text-gray-500;
 
     @apply sm:ml-6 sm:mt-0;
@@ -123,9 +123,9 @@
 
 .footer-lower-social-container {
     @apply flex inline-flex justify-center;
-    @apply mt-4 mr-52;
+    @apply mt-4 mr-10 mb-16;
 
-    @apply sm:ml-auto sm:mt-0 sm:justify-start;
+    @apply sm:ml-auto sm:mt-0 md:mr-52 md:mb-0 sm:justify-start;
 }
 
 .footer-lower-social-link {
