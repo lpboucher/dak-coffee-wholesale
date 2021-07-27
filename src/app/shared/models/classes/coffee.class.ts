@@ -6,7 +6,7 @@ export class Coffee extends Product {
     origin: string | null = null;
     tastingNotes: string[] | null = null;
     process: string | null = null;
-    varietal: string | null = null;
+    varietal: string[] | null = null;
 
     constructor(coffeeShape?: Partial<Coffee>) {
         super(coffeeShape);
@@ -33,13 +33,13 @@ export class Coffee extends Product {
             }
 
             if (coffeeShape.varietal != null) {
-                this.varietal = coffeeShape.varietal;
+                this.varietal = (coffeeShape.varietal as any as string).split(", ");
             }
         }
     }
 
     get displayedDescription(): string[] {
-        return [this.process ?? "", this.varietal ?? ""];
+        return [this.process ?? "", this.varietal?.join(", ") ?? ""];
     }
 
     get displayedDetails(): string[] {
