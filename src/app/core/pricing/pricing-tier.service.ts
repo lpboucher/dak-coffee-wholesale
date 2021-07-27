@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
 import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
-import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@app/utils/constants/wallet";
+import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@utils/constants/wallet";
 
 const DUMMY_ORDER = { previousWalletBallance: 200, previousOrderTotal: 50 };
 
@@ -29,14 +29,14 @@ export class PricingTierService {
         return this._walletAmount.value;
     }
 
+    constructor() {}
+
     calculateWalletAmount(): void {
         this._walletAmount.next(
             DUMMY_ORDER.previousWalletBallance
                 + (DUMMY_ORDER.previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET)
         );
     }
-
-    constructor() {}
 
     toggleDiscount(value?: boolean): void {
         this.isVolumeDiscountActive$.next(value ?? !this.isVolumeDiscountActive$.value);
