@@ -6,6 +6,8 @@ import { BackboneRoutingModule } from "./backbone-routing.module";
 
 import { componentDeclarations, pageDeclarations } from "../backbone/backbone.common";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 @NgModule({
     declarations: [
         ...pageDeclarations,
@@ -14,7 +16,8 @@ import { componentDeclarations, pageDeclarations } from "../backbone/backbone.co
     imports: [
         CommonModule,
         SharedModule,
-        BackboneRoutingModule
+        BackboneRoutingModule,
+        AngularSvgIconModule,
     ]
 })
 export class BackboneModule { }
