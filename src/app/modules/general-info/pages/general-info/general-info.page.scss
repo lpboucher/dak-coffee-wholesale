@@ -35,7 +35,7 @@
 }
 
 .general-info-block-image {
-    @apply w-10 h-10;
+    @apply w-10 h-10 mb-0;
 
     @apply sm:w-16 sm:h-16;
 }
@@ -61,7 +61,7 @@
 }
 
 .general-info-block-content-link-image {
-    @apply w-4 h-4 ml-2;
+    @apply w-4 h-4 ml-2 mb-0;
 }
 
 .general-info-button {
