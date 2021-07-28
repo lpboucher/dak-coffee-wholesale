@@ -33,10 +33,10 @@
     @apply overflow-hidden;
 
     max-height: 0;
-    transition: max-height 500ms linear;
+    transition: max-height 500ms ease-out;
 }
 
 .show-content {
-    max-height: 200px;
-    transition: max-height 200ms linear;
+    max-height: 100px;
+    transition: max-height 200ms ease-in;
 }
