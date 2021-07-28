@@ -4,7 +4,11 @@
     </div>
     <div class="product-card-body">
         <span class="product-card-body-highlight">New</span>
-        <h2 class="product-card-body-title">{{ product.name }}</h2>
+        <div class="product-card-body-title">
+            <h2>{{ product.name }}</h2>
+            <h2 *ngIf="product.displayedDetails.length > 0"> — {{ product.displayedDetails }}</h2>
+        </div>
+        <p class="product-card-body-details">{{ product.displayedDescription.join(", ") }}</p>
         <form class="product-card-body-selection-form" [formGroup]="optionsForm">
             <app-dropdown class="product-card-body-selection-item" formControlName="weight" [options]="weightOptions" [defaultSelection]="defaultWeight"></app-dropdown>
             <app-dropdown class="product-card-body-selection-item" formControlName="roast" [options]="roastOptions" [defaultSelection]="defaultRoast"></app-dropdown>
@@ -15,10 +19,7 @@
             <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="snipcartOptions" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
-    <div class="product-card-details-container">
-        <div class="product-card-details">
-            <p *ngFor="let description of product.displayedDescription" class="product-card-details-text">{{ description }}</p>
-            <p *ngFor="let detail of product.displayedDetails" class="product-card-details-text">{{ detail }}</p>
-        </div>
+    <div class="product-card-details-flavours" *ngIf="flavours.length > 0">
+        <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
     </div>
 </div>

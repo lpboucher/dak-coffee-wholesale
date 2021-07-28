@@ -4,7 +4,7 @@ import { Product } from "./product.class";
 export class Coffee extends Product {
     productType: ProductType = "coffee";
     origin: string | null = null;
-    tastingNotes: string | null = null;
+    tastingNotes: string[] | null = null;
     process: string | null = null;
     varietal: string | null = null;
 
@@ -17,7 +17,7 @@ export class Coffee extends Product {
             }
 
             if (coffeeShape.tastingNotes != null) {
-                this.tastingNotes = coffeeShape.tastingNotes;
+                this.tastingNotes = (coffeeShape.tastingNotes as any as string).split(", ");
             }
 
             if (coffeeShape.process != null) {
@@ -35,6 +35,6 @@ export class Coffee extends Product {
     }
 
     get displayedDetails(): string[] {
-        return [this.origin ?? "", this.tastingNotes ?? ""];
+        return [this.origin ?? ""];
     }
 }

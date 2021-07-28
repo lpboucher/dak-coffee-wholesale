@@ -7,6 +7,7 @@ import { Weight } from "@shared/models/types/weight.type";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
 
 import { ROAST_OPTIONS, WEIGHT_OPTIONS } from "@utils/constants/form-options";
+import { Coffee } from "@app/shared/models/classes/coffee.class";
 
 @Component({ template: "" })
 export abstract class BaseProductComponent {
@@ -42,6 +43,12 @@ export abstract class BaseProductComponent {
 
     get weightOptions(): string[] {
         return this._weightOptions.map(w => w as string);
+    }
+
+    get flavours(): string[] {
+        return this.product.productType === "coffee"
+            ? (this.product as Coffee).tastingNotes ?? []
+            : [];
     }
 
     get snipcartOptions(): CustomOption[] {
