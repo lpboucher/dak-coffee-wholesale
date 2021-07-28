@@ -1,0 +1,42 @@
+.slide-open-menu-container {
+    @apply m-1;
+}
+
+.slide-open-menu-header {
+    @apply flex;
+    @apply cursor-pointer;
+}
+
+.slide-open-menu-arrow-container {
+    @apply w-6 h-6 mt-1;
+    @apply text-gray-600;
+    @apply outline-none;
+
+    @apply focus:outline-none;
+}
+
+.slide-open-menu-arrow-image {
+    @apply w-4 h-4;
+    @apply rotate-0;
+    @apply transition-all duration-200 transform;
+}
+
+.rotate-arrow {
+    ::ng-deep svg {
+        @apply rotate-180;
+    }
+}
+
+.slide-open-menu-content {
+    @apply flex flex-col;
+    @apply ml-4;
+    @apply overflow-hidden;
+
+    max-height: 0;
+    transition: max-height 500ms linear;
+}
+
+.show-content {
+    max-height: 200px;
+    transition: max-height 200ms linear;
+}
