@@ -7,6 +7,7 @@ import { NavigationComponent } from "@shared/abstracts/navigation/navigation.com
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
 import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
 import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
+import { FlavourIconComponent } from "@shared/components/flavour-icon/flavour-icon.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -40,6 +41,7 @@ export const componentDeclarations: any[] = [
     NavigationComponent,
     QuantityInputComponent,
     BaseProductComponent,
+    FlavourIconComponent,
 
     SnipcartAddDirective,
     BindQueryParamsDirective,
