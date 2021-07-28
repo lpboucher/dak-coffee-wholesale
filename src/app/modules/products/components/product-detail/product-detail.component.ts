@@ -11,6 +11,9 @@ import { BaseProductComponent } from "@shared/abstracts/base-product/base-produc
     styleUrls: ["./product-detail.component.scss"]
 })
 export class ProductDetailComponent extends BaseProductComponent {
+    showFlavours: boolean = false;
+    showDetails: boolean = false;
+
     get imageUrl(): string {
         if (this.product?.images.main == null) { return ""; }
         return this.imageService.getProductMainUrl(this.product?.images.main);
@@ -21,5 +24,15 @@ export class ProductDetailComponent extends BaseProductComponent {
         protected fb: FormBuilder,
     ) {
         super(fb);
+    }
+
+    onShowFlavours(): void {
+        this.showDetails = false;
+        this.showFlavours = !this.showFlavours;
+    }
+
+    onShowDetails(): void {
+        this.showFlavours = false;
+        this.showDetails = !this.showDetails;
     }
 }

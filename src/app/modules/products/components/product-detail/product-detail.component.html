@@ -5,11 +5,51 @@
             <div class="product-detail-content">
                 <h2 class="product-detail-content-brand">{{ product.collection }}</h2>
                 <h1 class="product-detail-content-title">{{ product.name }}</h1>
-                <div *ngFor="let description of product.displayedDescription">
-                    <p class="product-detail-content-body">{{ description }}<p>
-                </div>
-                <div *ngFor="let detail of product?.displayedDetails">
+                <div *ngFor="let detail of product.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
+                </div>
+                <div class="product-detail-content-drawer-container">
+                    <div class="product-detail-content-drawer-item" *ngIf="flavours.length > 0">
+                        <div class="product-detail-content-drawer-item-header" (click)="onShowFlavours()">
+                            <h3>Flavours</h3>
+                            <div class="product-detail-content-drawer-item-arrow">
+                                <svg-icon
+                                    src="assets/svgs/expand_more_black_24dp.svg"
+                                    [svgStyle]="{ 'width.px': 20, 'height.px': 20, 'fill': 'gray' }"
+                                    [svgClass]="'product-detail-content-drawer-item-arrow-image'"
+                                    [ngClass]="{ 'rotate-arrow': showFlavours }">
+                                </svg-icon>
+                            </div>
+                        </div>
+                        <div class="product-detail-content-drawer-item-content" [ngClass]="{ 'show-drawer': showFlavours }">
+                            <div class="product-detail-content-drawer-item-content-item">
+                                <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-detail-content-drawer-item">
+                        <div class="product-detail-content-drawer-item-header" (click)="onShowDetails()">
+                            <h3>Details</h3>
+                            <div class="product-detail-content-drawer-item-arrow">
+                                <svg-icon
+                                    src="assets/svgs/expand_more_black_24dp.svg"
+                                    [svgStyle]="{ 'width.px': 20, 'height.px': 20, 'fill': 'gray' }"
+                                    [svgClass]="'product-detail-content-drawer-item-arrow-image'"
+                                    [ngClass]="{ 'rotate-arrow': showDetails }">
+                                </svg-icon>
+                            </div>
+                        </div>
+                        <div class="product-detail-content-drawer-item-content" [ngClass]="{ 'show-drawer': showDetails }">
+                            <div class="product-detail-content-drawer-item-content-item">
+                                <svg-icon src="assets/svgs/coffee-icons/bean.svg"></svg-icon>
+                                <p class="product-detail-content-drawer-item-text">{{ product.displayedDescription.join(", ") }}<p>
+                            </div>
+                            <div class="product-detail-content-drawer-item-content-item">
+                                <svg-icon src="assets/svgs/coffee-icons/label.svg"></svg-icon>
+                                <p class="product-detail-content-drawer-item-text">Delivered in a 100% recyclable bag and recyclable box<p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <form [formGroup]="optionsForm" class="product-detail-selection-form" bindQueryParams>
                     <div class="product-detail-selection-group">
