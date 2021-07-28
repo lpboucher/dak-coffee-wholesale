@@ -1,0 +1,16 @@
+<div class="slide-open-menu-container">
+    <div class="slide-open-menu-header" (click)="onClickHeader()">
+        <h3>{{ title }}</h3>
+        <div class="slide-open-menu-arrow-container">
+            <svg-icon
+                src="assets/svgs/expand_more_black_24dp.svg"
+                [svgStyle]="{ 'width.px': 20, 'height.px': 20, 'fill': 'gray' }"
+                [svgClass]="'slide-open-menu-arrow-image'"
+                [ngClass]="{ 'rotate-arrow': showContent }">
+            </svg-icon>
+        </div>
+    </div>
+    <div class="slide-open-menu-content" [ngClass]="{ 'show-content': showContent }">
+        <ng-content></ng-content>
+    </div>
+</div>

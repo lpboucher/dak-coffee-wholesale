@@ -5,11 +5,25 @@
             <div class="product-detail-content">
                 <h2 class="product-detail-content-brand">{{ product.collection }}</h2>
                 <h1 class="product-detail-content-title">{{ product.name }}</h1>
-                <div *ngFor="let description of product.displayedDescription">
-                    <p class="product-detail-content-body">{{ description }}<p>
-                </div>
-                <div *ngFor="let detail of product?.displayedDetails">
+                <div *ngFor="let detail of product.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
+                </div>
+                <div class="product-detail-content-drawer-container">
+                    <app-slide-open-menu title="Flavours" *ngIf="flavours.length > 0">
+                        <div class="product-detail-content-drawer-inner-container">
+                            <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
+                        </div>
+                    </app-slide-open-menu>
+                    <app-slide-open-menu title="Details">
+                        <div class="product-detail-content-drawer-item">
+                            <svg-icon src="assets/svgs/coffee-icons/bean.svg"></svg-icon>
+                            <p class="product-detail-content-drawer-item-text">{{ product.displayedDescription.join(", ") }}<p>
+                        </div>
+                        <div class="product-detail-content-drawer-item">
+                            <svg-icon src="assets/svgs/coffee-icons/label.svg"></svg-icon>
+                            <p class="product-detail-content-drawer-item-text">Delivered in a 100% recyclable bag and recyclable box<p>
+                        </div>
+                    </app-slide-open-menu>
                 </div>
                 <form [formGroup]="optionsForm" class="product-detail-selection-form" bindQueryParams>
                     <div class="product-detail-selection-group">

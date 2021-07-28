@@ -6,6 +6,8 @@ import { ProductsRoutingModule } from "./products-routing.module";
 
 import { componentDeclarations, pageDeclarations } from "@modules/products/products.common";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 @NgModule({
     declarations: [
         ...pageDeclarations,
@@ -15,6 +17,7 @@ import { componentDeclarations, pageDeclarations } from "@modules/products/produ
         CommonModule,
         SharedModule,
         ProductsRoutingModule,
+        AngularSvgIconModule,
     ]
 })
 export class ProductsModule { }
