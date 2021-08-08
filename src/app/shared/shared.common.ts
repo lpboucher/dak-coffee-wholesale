@@ -22,7 +22,7 @@ import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
 import { WeightPipe } from "@shared/pipes/weight.pipe";
-import { AttributeOptionsToSnipcartListPipe } from "@shared/pipes/attribute-to-snipcart-list.pipe";
+import { PriceModifierPipe } from "@app/shared/pipes/price-modifier.pipe";
 
 export const componentDeclarations: any[] = [
     FilterComponent,
@@ -47,11 +47,11 @@ export const componentDeclarations: any[] = [
     WithLoaderPipe,
     FormatPricePipe,
     WeightPipe,
-    AttributeOptionsToSnipcartListPipe,
+    PriceModifierPipe,
 ];
 
 export const providerDeclarations: any[] = [
     ClampPipe,
     VolumeDiscountPipe,
-    AttributeOptionsToSnipcartListPipe,
+    PriceModifierPipe,
 ];
