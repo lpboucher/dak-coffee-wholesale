@@ -55,7 +55,7 @@ export const componentDeclarations: any[] = [
     WithLoaderPipe,
     FormatPricePipe,
     WeightPipe,
-    ProductsToFiltersPipe
+    ProductsToFiltersPipe,
     PriceModifierPipe,
     CartModifierPipe,
 ];
