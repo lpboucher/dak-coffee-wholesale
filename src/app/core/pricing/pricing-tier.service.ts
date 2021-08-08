@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
 import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
-import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@app/utils/constants/wallet";
+import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@utils/constants/wallet";
 
 const DUMMY_ORDER = { previousWalletBallance: 200, previousOrderTotal: 50 };
 
@@ -11,7 +11,7 @@ const DUMMY_ORDER = { previousWalletBallance: 200, previousOrderTotal: 50 };
 })
 export class PricingTierService {
     private isVolumeDiscountActive$ = new BehaviorSubject(false);
-    private _walletAmount = new BehaviorSubject(0);
+    private _walletAmount$ = new BehaviorSubject(0);
 
     get isDiscountActive$(): Observable<boolean> {
         return this.isVolumeDiscountActive$.asObservable();
@@ -22,18 +22,17 @@ export class PricingTierService {
     }
 
     get walletAmount$(): Observable<number> {
-        return this._walletAmount.asObservable();
+        return this._walletAmount$.asObservable();
     }
 
     get walletAmount(): number {
-        return this._walletAmount.value;
+        return this._walletAmount$.value;
     }
 
     calculateWalletAmount(): void {
-        this._walletAmount.next(
-            DUMMY_ORDER.previousWalletBallance
-                + (DUMMY_ORDER.previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET)
-        );
+        const { previousWalletBallance, previousOrderTotal } = DUMMY_ORDER;
+        const newWalletAmount = previousWalletBallance + (previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET);
+        this._walletAmount$.next(newWalletAmount);
     }
 
     constructor() {}
