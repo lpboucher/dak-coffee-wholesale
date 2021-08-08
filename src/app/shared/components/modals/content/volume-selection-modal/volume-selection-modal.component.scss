@@ -1,0 +1,46 @@
+.modal-body {
+    @apply px-4 pt-5 pb-4;
+    @apply bg-white rounded-t-lg;
+
+    @apply sm:p-6 sm:pb-4 sm:flex sm:items-start;
+}
+
+.modal-body-content {
+    @apply mt-3;
+
+    @apply sm:mt-0 sm:ml-4 sm:text-left;
+}
+
+.modal-body-content-header {
+    @apply text-lg leading-6 font-medium text-gray-900 text-center;
+}
+
+.modal-body-text {
+    @apply mt-2;
+    @apply text-center;
+}
+
+.modal-body-content-message {
+    @apply modal-body-text;
+    @apply text-sm text-gray-500 ;
+}
+
+.modal-body-content-footer {
+    @apply modal-body-text;
+    @apply text-xs text-gray-400;
+}
+
+.modal-footer {
+    @apply px-4 py-3;
+    @apply bg-gray-50 rounded-b-lg;
+
+    @apply sm:px-6 sm:flex sm:flex-row-reverse;
+}
+
+.modal-footer-confirm {
+    @apply inline-flex justify-center;
+    @apply w-full px-4 py-2;
+    @apply rounded-md border border-transparent shadow-sm bg-green-600 text-base font-medium text-white;
+
+    @apply hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm;
+}

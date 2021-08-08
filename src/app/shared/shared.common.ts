@@ -12,9 +12,11 @@ import {
     WalletModalComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    VolumeSelectionModalComponent,
 } from "@shared/components/modals";
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
+import { BindQueryParamsDirective } from "@shared/directives/bind-query-params.directive";
 
 import { AdjustedProductPricePipe } from "@shared/pipes/adjusted-product-price.pipe";
 import { CartModifierPipe } from "@shared/pipes/cart-modifier.pipe";
@@ -37,11 +39,13 @@ export const componentDeclarations: any[] = [
     DropdownComponent,
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
+    VolumeSelectionModalComponent,
     NavigationComponent,
     QuantityInputComponent,
     BaseProductComponent,
 
     SnipcartAddDirective,
+    BindQueryParamsDirective,
 
     AdjustedProductPricePipe,
     ClampPipe,
@@ -60,4 +64,5 @@ export const providerDeclarations: any[] = [
     VolumeDiscountPipe,
     PriceModifierPipe,
     CartModifierPipe,
+    WeightPipe,
 ];

@@ -1,0 +1,22 @@
+<app-modal-backbone #modal>
+    <div class="modal-body">
+        <div class="modal-body-content">
+            <h3 class="modal-body-content-header" id="modal-title">Do you plan to order more than {{ weightThreshold }}kgs today?</h3>
+            <p class="modal-body-content-message">
+                <em>We offer a higher wholesale discount on orders of {{ weightThreshold }}kgs or more.</em>
+                <br/>Your selection here will allow us to display adjusted prices, making it easier for you to shop.
+            </p>
+            <app-toggle-widget
+                [uncheckedOption]="'No'"
+                [checkedOption]="'Yes'"
+                (toggle)="onChangeSelection($event)">
+            </app-toggle-widget>
+            <p class="modal-body-content-footer">
+                You can toggle the discount at any time using the widget on the sidebar.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Confirm</button>
+    </div>
+</app-modal-backbone>
