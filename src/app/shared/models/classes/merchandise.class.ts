@@ -12,6 +12,10 @@ export class Merchandise extends Product {
         super(merchandiseShape);
 
         if (merchandiseShape != null) {
+            this.filterableAttributes = [
+                { key: "dimensions", displayName: "Dimensions" }
+            ];
+
             if (merchandiseShape.dimensions != null) {
                 this.dimensions = merchandiseShape.dimensions;
             }

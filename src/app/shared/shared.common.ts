@@ -26,6 +26,7 @@ import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
 import { PriceModifierPipe } from "@app/shared/pipes/price-modifier.pipe";
 import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WeightPipe } from "@shared/pipes/weight.pipe";
+import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 
 export const componentDeclarations: any[] = [
@@ -54,6 +55,7 @@ export const componentDeclarations: any[] = [
     WithLoaderPipe,
     FormatPricePipe,
     WeightPipe,
+    ProductsToFiltersPipe
     PriceModifierPipe,
     CartModifierPipe,
 ];
@@ -65,4 +67,5 @@ export const providerDeclarations: any[] = [
     PriceModifierPipe,
     CartModifierPipe,
     WeightPipe,
+    ProductsToFiltersPipe,
 ];

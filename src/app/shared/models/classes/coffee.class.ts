@@ -14,6 +14,13 @@ export class Coffee extends Product {
         super(coffeeShape);
 
         if (coffeeShape != null) {
+            this.filterableAttributes = [
+                { key: "origin", displayName: "Origin" },
+                { key: "tastingNotes", displayName: "Tasting Notes" },
+                { key: "process", displayName: "Process" },
+                { key: "varietal", displayName: "Varietal" },
+             ];
+          
             this.attributes = [
                 new ProductAttribute({
                     name: "weight",

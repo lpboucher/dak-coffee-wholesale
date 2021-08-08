@@ -22,7 +22,6 @@
     "@cloudinary/angular": "^1.0.0-beta.8",
     "@cloudinary/base": "^1.0.0-beta.3",
     "autoprefixer": "^10.2.5",
-    "ng-multiselect-dropdown": "^0.3.4",
     "ngx-skeleton-loader": "^2.10.0",
     "ngx-toastr": "^13.2.1",
     "postcss": "^8.2.8",

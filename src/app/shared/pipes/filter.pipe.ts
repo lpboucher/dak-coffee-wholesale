@@ -1,26 +1,26 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { FilterType } from "@shared/models/types/filter-type.interface";
+import { ActiveFilters } from "@shared/models/types/active-filters.type";
 
 @Pipe({
     name: "filter"
 })
 export class FilterPipe implements PipeTransform {
 
-    transform(items: Object[], filter: FilterType): Object[] {
+    transform<T>(items?: T[], filter?: ActiveFilters): T[] {
         if (items == null) { return []; }
-        if (filter == null) { return items; }
+        if (filter == null || Object.keys(filter).length === 0) { return items; }
 
         return items.filter(item => this.includedByFilter(filter, item));
     }
 
-    includedByFilter(filter: FilterType, item: Object): boolean {
+    includedByFilter(filter: ActiveFilters, item: Object): boolean {
         return Object.entries(item)
             .some(([k, v]) => this.matchingValue(filter, k, v));
     }
 
-    matchingValue(filter: FilterType, key: string, value: string): boolean {
+    matchingValue(filter: ActiveFilters, key: string, value: string): boolean {
         return Object.keys(filter).includes(key)
-            && filter[key].subOptions.includes(value);
+            && filter[key].includes(String(value));
     }
 }

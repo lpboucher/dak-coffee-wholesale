@@ -1,6 +1,7 @@
 import { ProductImages } from "@shared/models/types/product-images.interface";
 import { CollectionType } from "@shared/models/types/collection-type.type";
 import { ProductType } from "@shared/models/types/product-type.type";
+import { FilterableAttribute } from "@shared/models/types/filterable-attribute.type";
 import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
 
 export abstract class Product {
@@ -12,6 +13,7 @@ export abstract class Product {
     collection: CollectionType | null = null;
     description: string | null = null;
     slug: string | null = null;
+    filterableAttributes: FilterableAttribute[] = [];
     images: ProductImages = { main: null, thumb: null };
 
     constructor(productShape?: Partial<Product>) {
@@ -63,6 +65,10 @@ export abstract class Product {
     get priceAsNumber(): number {
         if (this.price == null) { return NaN; }
         return Number.parseFloat(this.price);
+    }
+
+    get filterKeys(): string[] {
+        return [...new Set(this.filterableAttributes.map((filter) => filter.key))];
     }
 
     get attributesWithModifiers(): ProductAttribute[] {
