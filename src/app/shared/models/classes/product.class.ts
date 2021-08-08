@@ -40,8 +40,6 @@ export abstract class Product {
                 this.slug = productShape.slug;
             }
 
-            this.filterableAttributes = [{ key: "productType", displayName: "Product Type" }];
-
             if (productShape.images != null) {
                 if (productShape.images.main != null) {
                     this.images.main = productShape.images.main;
@@ -65,5 +63,9 @@ export abstract class Product {
     get priceAsNumber(): number {
         if (this.price == null) { return NaN; }
         return Number.parseFloat(this.price);
+    }
+
+    get filterKeys(): string[] {
+        return [...new Set(this.filterableAttributes.map((filter) => filter.key))];
     }
 }

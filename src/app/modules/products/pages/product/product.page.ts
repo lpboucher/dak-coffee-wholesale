@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, combineLatest, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { switchMap } from "rxjs/operators";
 
 import { ProductApiService } from "@core/products/product-api.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterType } from "@shared/models/types/filter-type.type";
 import { ActiveFilters } from "@shared/models/types/active-filters.type";
 import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
@@ -21,8 +20,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
     private products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
     featuredProducts$: Observable<Product[]> = new Observable();
-    filterableProperties: FilterType[] | undefined;
-    activeFilters: ActiveFilters | undefined;
+    filterableProperties: FilterType[] = [];
+    activeFilters: ActiveFilters = {};
     filterForm = this.fb.group({});
 
     get products$(): Observable<Product[]> {
@@ -39,24 +38,20 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.featuredProducts$ = this.productService.getFeaturedProducts();
 
-        this.subscriptions.add(
-            combineLatest([
-                this.route.params,
-                this.route.params
-                    .pipe(
-                        switchMap(({ productType }) => this.productService.getProductsByType(productType))
-                    )
-            ])
+        this.subscriptions.add(this.route.params
+            .pipe(
+                switchMap(({ productType }) => this.productService.getProductsByType(productType))
+            )
             .subscribe(
-                ([{ productType }, products]) => {
+                (products) => {
                     this.products.next(products);
-                    this.updateFilterForm(products, productType);
+                    this.updateFilterForm(products);
                 }
             )
         );
 
-        this.subscriptions.add(
-            this.filterForm.valueChanges.subscribe(
+        this.subscriptions.add(this.filterForm.valueChanges
+            .subscribe(
                 changes => this.updateActiveFilters(changes)
             )
         );
@@ -66,12 +61,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    private updateFilterForm(products: Product[], productType: ProductType): void {
+    private updateFilterForm(products: Product[]): void {
         this.filterForm.reset({});
 
-        this.filterableProperties = this.productsToFiltersPipe.transform(products, productType);
-        this.filterableProperties
-            .forEach(p => this.filterForm.addControl(p.key, new FormControl()));
+        this.filterableProperties = this.productsToFiltersPipe.transform(products);
+
+        this.filterableProperties.forEach(p => this.filterForm.addControl(p.key, new FormControl()));
     }
 
     private updateActiveFilters(changes: any): void {

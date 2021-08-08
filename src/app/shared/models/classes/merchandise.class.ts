@@ -11,7 +11,6 @@ export class Merchandise extends Product {
 
         if (merchandiseShape != null) {
             this.filterableAttributes = [
-                ...this.filterableAttributes,
                 { key: "dimensions", displayName: "Dimensions" }
             ];
 

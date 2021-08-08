@@ -13,7 +13,6 @@ export class Coffee extends Product {
 
         if (coffeeShape != null) {
             this.filterableAttributes = [
-                ...this.filterableAttributes,
                 { key: "origin", displayName: "Origin" },
                 { key: "tastingNotes", displayName: "Tasting Notes" },
                 { key: "process", displayName: "Process" },
