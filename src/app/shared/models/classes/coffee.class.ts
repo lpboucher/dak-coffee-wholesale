@@ -1,8 +1,10 @@
-import { ProductType } from "../types/product-type.type";
-import { Product } from "./product.class";
+import { ProductType } from "@shared/models/types/product-type.type";
+import { Product } from "@shared/models/classes/product.class";
+import { ProductAttribute } from "./product-attribute.class";
 
 export class Coffee extends Product {
     productType: ProductType = "coffee";
+    attributes: ProductAttribute[] = [];
     origin: string | null = null;
     tastingNotes: string | null = null;
     process: string | null = null;
@@ -12,6 +14,23 @@ export class Coffee extends Product {
         super(coffeeShape);
 
         if (coffeeShape != null) {
+            this.attributes = [
+                new ProductAttribute({
+                    name: "weight",
+                    options: [
+                        { optionName: "250g", priceModifier: 0 },
+                        { optionName: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
+                    ]}),
+                new ProductAttribute({
+                    name: "roast",
+                    options: [
+                        { optionName: "Filter", priceModifier: 0 },
+                        { optionName: "Espresso", priceModifier: 0 },
+                        { optionName: "Both", priceModifier: 0 },
+                    ]
+                })
+            ];
+
             if (coffeeShape.origin != null) {
                 this.origin = coffeeShape.origin;
             }
@@ -36,5 +55,9 @@ export class Coffee extends Product {
 
     get displayedDetails(): string[] {
         return [this.origin ?? "", this.tastingNotes ?? ""];
+    }
+
+    get kgPriceAsNumber(): number {
+        return 4 * this.priceAsNumber * 0.9;
     }
 }

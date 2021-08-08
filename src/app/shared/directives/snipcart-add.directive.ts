@@ -1,17 +1,21 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit } from "@angular/core";
 
 import { Product } from "@shared/models/classes/product.class";
-import { CustomOption } from "@shared/models/types/custom-option.interface";
+import { CartModifier } from "@shared/models/types/cart-modifier.interface";
+import { PriceModifierPipe } from "@app/shared/pipes/price-modifier.pipe";
 
 @Directive({
     selector: "[snipcartAdd]"
 })
 export class SnipcartAddDirective implements OnInit, OnChanges {
     @Input("snipcartAdd") product!: Product;
-    @Input() modifiers: CustomOption[] = [];
+    @Input() modifiers: CartModifier[] = [];
     @Input() quantity: number = 1;
 
-    constructor(private el: ElementRef) {}
+    constructor(
+        private el: ElementRef,
+        private priceModifierPipe: PriceModifierPipe,
+    ) {}
 
     ngOnInit(): void {
         this.el.nativeElement.className += " snipcart-add-item";
@@ -37,17 +41,16 @@ export class SnipcartAddDirective implements OnInit, OnChanges {
     }
 
     private setCustomAttributes(): void {
-        this.modifiers.forEach((option, index) => {
-            const basename = `data-item-custom${ index + 1 }`;
-            const optionList = this.rawListToSnipcartList(option.list);
+        this.modifiers
+            .forEach(
+                (modifier, index) => {
+                    const basename = `data-item-custom${ index + 1}`;
+                    const attributeOptions = this.priceModifierPipe.transform(modifier.attribute.options);
 
-            this.el.nativeElement.setAttribute(basename + "-name", option.name);
-            this.el.nativeElement.setAttribute(basename + "-options", optionList);
-            this.el.nativeElement.setAttribute(basename + "-value", option.selection);
-        });
-    }
-
-    private rawListToSnipcartList(raw: string[]): string {
-        return raw.reduce((prev, curr) => prev + "|" + curr);
+                    this.el.nativeElement.setAttribute(basename + "-name", modifier.attribute.name);
+                    this.el.nativeElement.setAttribute(basename + "-options", attributeOptions);
+                    this.el.nativeElement.setAttribute(basename + "-value", modifier.selection);
+                }
+            )
     }
 }
