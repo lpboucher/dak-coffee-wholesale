@@ -5,8 +5,7 @@ import { delay, map } from "rxjs/operators";
 const KNOWN_BUSINESSES: string[] = ["business1", "business2", "business3"];
 
 function dummyCheckBusinessRemoteCall(businessName: string): Observable<boolean> {
-    return of(KNOWN_BUSINESSES.includes(businessName))
-        .pipe(delay(2000));
+    return of(KNOWN_BUSINESSES.includes(businessName)).pipe(delay(2000));
 }
 
 export function BusinessExists(): AsyncValidatorFn {

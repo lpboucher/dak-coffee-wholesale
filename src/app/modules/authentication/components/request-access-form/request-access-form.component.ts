@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
-import { BusinessExists } from "@app/core/validators/business-exists.validator";
+import { BusinessExists } from "@core/validators/business-exists.validator";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
