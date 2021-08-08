@@ -16,6 +16,7 @@ import {
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
 
+import { AdjustedProductPricePipe } from "@shared/pipes/adjusted-product-price.pipe";
 import { CartModifierPipe } from "@shared/pipes/cart-modifier.pipe";
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
@@ -42,6 +43,7 @@ export const componentDeclarations: any[] = [
 
     SnipcartAddDirective,
 
+    AdjustedProductPricePipe,
     ClampPipe,
     FilterPipe,
     VolumeDiscountPipe,
@@ -53,6 +55,7 @@ export const componentDeclarations: any[] = [
 ];
 
 export const providerDeclarations: any[] = [
+    AdjustedProductPricePipe,
     ClampPipe,
     VolumeDiscountPipe,
     PriceModifierPipe,

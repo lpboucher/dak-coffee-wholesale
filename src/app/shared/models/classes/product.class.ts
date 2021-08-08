@@ -65,12 +65,7 @@ export abstract class Product {
         return Number.parseFloat(this.price);
     }
 
-    get priceRelevantAttributes(): ProductAttribute[] {
-        return this.attributes
-            .filter(attr =>
-                attr.options
-                    ?.some(o => o.priceModifier > 0)
-                    ?? false
-            );
+    get attributesWithModifiers(): ProductAttribute[] {
+        return this.attributes.filter((attribute) => attribute.options?.some(o => o.priceModifier > 0));
     }
 }
