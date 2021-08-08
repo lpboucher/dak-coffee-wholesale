@@ -2,7 +2,7 @@ import { ProductAttributeOption } from "@shared/models/types/product-attribute-o
 
 export class ProductAttribute {
     name: string | null = null;
-    options: ProductAttributeOption[] | null = null;
+    options: ProductAttributeOption[] = [];
 
     constructor(productAttributeShape?: Partial<ProductAttribute>) {
         if (productAttributeShape != null) {
@@ -14,5 +14,9 @@ export class ProductAttribute {
                 this.options = productAttributeShape.options;
             }
         }
+    }
+
+    get optionNames(): string[] {
+        return this.options.map((option) => option.optionName);
     }
 }

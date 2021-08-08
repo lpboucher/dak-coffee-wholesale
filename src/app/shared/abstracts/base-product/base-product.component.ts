@@ -53,11 +53,6 @@ export abstract class BaseProductComponent implements OnInit {
         });
     }
 
-    extractOptionNames(options: ProductAttributeOption[] | null): string[] {
-        if (options == null) return [];
-        return options.map(o => o.optionName);
-    }
-
     private get formConfig() {
         return this.product
             .attributes

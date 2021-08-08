@@ -10,7 +10,7 @@
                 class="product-card-body-selection-item"
                 *ngFor="let attribute of product.attributes"
                 formControlName="{{ attribute.name }}"
-                [options]="extractOptionNames(attribute.options)">
+                [options]="attribute.optionNames">
             </app-dropdown>
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
