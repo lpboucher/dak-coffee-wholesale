@@ -44,14 +44,9 @@ export abstract class BaseProductComponent implements OnInit {
     }
 
     private get formConfig() {
-        return this.product
-            .attributes
-            .filter(attr => attr.name != null && attr.options != null)
-            .reduce(
-                (obj, attr) => ({
-                        [attr.name!]: [attr.options![0].optionName, Validators.required],
-                        ...obj
-                    }), {}
-            );
+        return this.product.attributes.reduce((obj, attr) => ({
+            [attr.name!]: [attr.options![0].optionName, Validators.required],
+            ...obj
+        }), {});
     }
 }
