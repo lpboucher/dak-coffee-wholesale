@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
-import { EmailExists } from "@app/core/validators/email-exists.validator";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
+import { EmailExists } from "@core/validators/email-exists.validator";
 
 import { SECTORS } from "@utils/constants/sectors";
 
