@@ -16,7 +16,7 @@
         </form>
         <div class="product-card-body-price-container">
             <div class="product-card-body-price">{{ totalPrice | volumeDiscount | formatPrice }}</div>
-            <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="cartModifiers" class="product-card-body-add-to-cart">Add to cart</button>
+            <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>
     <div class="product-card-details-container">

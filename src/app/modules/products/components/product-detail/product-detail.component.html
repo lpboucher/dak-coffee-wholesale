@@ -22,7 +22,7 @@
                 </form>
                 <div class="product-detail-content-order-wrapper">
                     <span class="product-detail-content-order-price">{{ totalPrice | volumeDiscount | formatPrice }}</span>
-                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="cartModifiers">Add to cart</button>
+                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue">Add to cart</button>
                     <form [formGroup]="optionsForm" class="product-detail-content-order-quantity-form">
                         <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
                     </form>

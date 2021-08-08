@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
-import { CartModifier } from "@shared/models/types/cart-modifier.interface";
 import { Product } from "@shared/models/classes/product.class";
-import { ProductAttributeOption } from "@app/shared/models/types/product-attribute-option.interface";
 
 @Component({ template: "" })
 export abstract class BaseProductComponent implements OnInit {
@@ -14,16 +12,8 @@ export abstract class BaseProductComponent implements OnInit {
         return this.optionsForm.get("quantity")!.value;
     }
 
-    get cartModifiers(): CartModifier[] {
-        return this.product
-            .attributes
-            .filter(attr => attr.name != null)
-            .map(
-                attr => ({
-                        attribute: attr,
-                        selection: this.optionsForm.get(attr.name!)!.value,
-                    })
-            );
+    get formValue(): any {
+        return this.optionsForm.value;
     }
 
     get totalPrice(): number {
