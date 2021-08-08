@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { BusinessExists } from "@core/validators/business-exists.validator";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
@@ -29,7 +30,14 @@ export class RequestAccessFormComponent {
             password: ["", [Validators.required, Validators.minLength(8)]],
             passwordConfirm: ["", Validators.required],
             contactName: ["", Validators.required],
-            businessName: ["", Validators.required],
+            businessName: [
+                "",
+                {
+                    validators: [Validators.required],
+                    asyncValidators: [BusinessExists()],
+                    updateOn: "blur",
+                }
+            ],
             sector: ["", Validators.required],
             vatNumber: [""],
         },

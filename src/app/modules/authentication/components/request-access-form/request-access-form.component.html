@@ -24,7 +24,10 @@
                     Business Name
                     <input formControlName="businessName" type="text" placeholder="business name" class="request-access-input" />
                 </label>
-                <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">Please enter a business name.</div>
+                <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">
+                    <p *ngIf="businessNameControl.value == ''">Please enter a business name.</p>
+                    <p *ngIf="businessNameControl.errors?.businessNameInUse">This name is already in use.</p>
+                </div>
 
                 <label class="request-access-input-title">
                     Sector
