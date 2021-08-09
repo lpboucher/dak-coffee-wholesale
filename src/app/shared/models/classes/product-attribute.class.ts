@@ -1,4 +1,4 @@
-import { ProductAttributeOption } from "@shared/models/types/product-attribute-option.interface"
+import { ProductAttributeOption } from "@shared/models/interfaces/product-attribute-option.interface"
 
 export class ProductAttribute {
     name: string | null = null;

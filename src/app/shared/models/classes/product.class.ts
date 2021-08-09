@@ -1,4 +1,4 @@
-import { ProductImages } from "@shared/models/types/product-images.interface";
+import { ProductImages } from "@shared/models/interfaces/product-images.interface";
 import { CollectionType } from "@shared/models/types/collection-type.type";
 import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterableAttribute } from "@shared/models/types/filterable-attribute.type";
