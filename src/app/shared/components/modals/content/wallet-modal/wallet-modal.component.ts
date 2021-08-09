@@ -1,4 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
+import { PricingTierService } from "@app/core/pricing/pricing-tier.service";
 import { ModalBackboneComponent } from "@shared/components/modals";
 
 @Component({
@@ -9,7 +10,11 @@ import { ModalBackboneComponent } from "@shared/components/modals";
 export class WalletModalComponent {
     @ViewChild("modal") modal: ModalBackboneComponent | undefined;
 
-    constructor() { }
+    get walletAmount(): number {
+        return this.pricingTierService.walletAmount;
+    }
+
+    constructor(private pricingTierService: PricingTierService) {}
 
     onOk(): void {
         if (this.modal != null) {

@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
+import { BusinessExists } from "@core/validators/business-exists.validator";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
+import { EmailExists } from "@core/validators/email-exists.validator";
 
 import { SECTORS } from "@utils/constants/sectors";
 
@@ -17,11 +19,25 @@ export class RequestAccessFormComponent {
 
     requestAccessForm = this.fb.group(
         {
-            email: ["", [Validators.required, Validators.email]],
+            email: [
+                "",
+                {
+                    validators: [Validators.required, Validators.email],
+                    asyncValidators: [EmailExists()],
+                    updateOn: "blur",
+                }
+            ],
             password: ["", [Validators.required, Validators.minLength(8)]],
             passwordConfirm: ["", Validators.required],
             contactName: ["", Validators.required],
-            businessName: ["", Validators.required],
+            businessName: [
+                "",
+                {
+                    validators: [Validators.required],
+                    asyncValidators: [BusinessExists()],
+                    updateOn: "blur",
+                }
+            ],
             sector: ["", Validators.required],
             vatNumber: [""],
         },

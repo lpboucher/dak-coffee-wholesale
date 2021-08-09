@@ -3,7 +3,7 @@
         <div class="request-access-card">
             <h1 class="request-access-title">Request Access</h1>
 
-            <form [formGroup]="requestAccessForm" (ngSubmit)="onSubmitRegistration()" class="request-access-form">
+            <form [formGroup]="requestAccessForm" (ngSubmit)="submit.focus(); onSubmitRegistration()" class="request-access-form">
                 <label class="request-access-input-title">
                     E-mail
                     <input formControlName="email" type="text" placeholder="e-mail address" class="request-access-input" />
@@ -11,6 +11,7 @@
                 <div *ngIf="hasErrors(emailControl)" class="request-access-submission-error-message">
                     <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
                     <p *ngIf="emailControl.errors?.email">Please enter a valid email address.</p>
+                    <p *ngIf="emailControl.errors?.emailTaken">This email address is already in use.</p>
                 </div>
 
                 <label class="request-access-input-title">
@@ -23,7 +24,10 @@
                     Business Name
                     <input formControlName="businessName" type="text" placeholder="business name" class="request-access-input" />
                 </label>
-                <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">Please enter a business name.</div>
+                <div *ngIf="hasErrors(businessNameControl)" class="request-access-submission-error-message">
+                    <p *ngIf="businessNameControl.value == ''">Please enter a business name.</p>
+                    <p *ngIf="businessNameControl.errors?.businessNameInUse">This name is already in use.</p>
+                </div>
 
                 <label class="request-access-input-title">
                     Sector
@@ -55,7 +59,7 @@
                 </label>
                 <div *ngIf="hasUnmatchedPasswords" class="request-access-submission-error-message">Passwords do not match.</div>
 
-                <button class="request-access-submit-button">Submit</button>
+                <button #submit class="request-access-submit-button">Submit</button>
             </form>
         </div>
     </div>

@@ -2,8 +2,13 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
+import { AlertService } from "@core/alerts/alert.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
+
+
+const DISCOUNT_CODE = "WALLET-ORDER-121";
+
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +27,19 @@ export class CartService {
 
     constructor(
         private pricingTierService: PricingTierService,
-        private weightPipe: WeightPipe
+        private alertService: AlertService,
+        private weightPipe: WeightPipe,
     ) {}
+
+    applyDiscount(code?: string): void {
+        (window as any).Snipcart.api.cart.applyDiscount(code ?? DISCOUNT_CODE)
+            .then(({result}: any) => {
+                this.alertService.success(`Applied wallet discount of ${result.discount.value} to cart`);
+            })
+            .catch((err: any) => {
+                console.log(err);
+            });
+    }
 
     openCart(): void {
         (window as any).Snipcart.api.theme.cart.open();
