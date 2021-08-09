@@ -4,14 +4,13 @@ import { CartService } from "@app/core/cart/cart.service";
 import { Product } from "@shared/models/classes/product.class";
 import { CustomOption } from "@shared/models/types/custom-option.interface";
 import { SnipcartCustomField } from "@shared/models/types/snipcart-custom-field.type";
-import { CartModifier } from "../models/types/cart-modifier.interface";
 
 @Directive({
     selector: "[snipcartAdd]"
 })
 export class SnipcartAddDirective {
     @Input("snipcartAdd") product!: Product;
-    @Input() modifiers: CartModifier[] = [];
+    @Input() modifiers: CustomOption[] = [];
     @Input() quantity: number = 1;
 
     private get snipcartCustomFields(): SnipcartCustomField[] {
