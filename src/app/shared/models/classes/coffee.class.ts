@@ -20,7 +20,7 @@ export class Coffee extends Product {
                 { key: "process", displayName: "Process" },
                 { key: "varietal", displayName: "Varietal" },
              ];
-          
+
             this.attributes = [
                 new ProductAttribute({
                     name: "weight",
