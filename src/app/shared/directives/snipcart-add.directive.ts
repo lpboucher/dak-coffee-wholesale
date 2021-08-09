@@ -1,28 +1,16 @@
-import { Directive, ElementRef, HostListener, Input, OnChanges, OnInit } from "@angular/core";
+import { Directive, HostListener, Input } from "@angular/core";
 import { CartService } from "@app/core/cart/cart.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { CustomOption } from "@shared/models/types/custom-option.interface";
-import { SnipcartCustomField } from "@shared/models/types/snipcart-custom-field.type";
+import { SelectedProductAttribute } from "@app/shared/models/classes/product-attribute.class";
 
 @Directive({
     selector: "[snipcartAdd]"
 })
 export class SnipcartAddDirective {
     @Input("snipcartAdd") product!: Product;
-    @Input() modifiers: CustomOption[] = [];
+    @Input() modifiers: SelectedProductAttribute[] = [];
     @Input() quantity: number = 1;
-
-    private get snipcartCustomFields(): SnipcartCustomField[] {
-        return this.modifiers
-            .map(mod => ({
-                name: mod.name,
-                options: mod.list.map(element => ({ name: element })),
-                required: false,
-                type: "dropdown",
-                value: mod.selection,
-            }));
-    }
 
     constructor(private cartService: CartService) {}
 
@@ -30,6 +18,6 @@ export class SnipcartAddDirective {
     onClick(event: Event): void {
         event.stopPropagation();
 
-        this.cartService.addToCart(this.product, this.quantity, this.snipcartCustomFields);
+        this.cartService.addToCart(this.product, this.quantity, this.modifiers);
     }
 }

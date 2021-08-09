@@ -6,7 +6,7 @@ import { AlertService } from "@core/alerts/alert.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { Product } from "@shared/models/classes/product.class";
-import { SnipcartCustomField } from "@shared/models/types/snipcart-custom-field.type";
+import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
 
 const DISCOUNT_CODE = "WALLET-ORDER-121";
@@ -47,7 +47,7 @@ export class CartService {
         (window as any).Snipcart.api.theme.cart.open();
     }
 
-    addToCart(product: Product, quantity?: number, customFields?: SnipcartCustomField[]): void {
+    addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
         const { id, productType, slug, name, price } = product;
         const url = `/products/${ productType }/${ slug }`;
 

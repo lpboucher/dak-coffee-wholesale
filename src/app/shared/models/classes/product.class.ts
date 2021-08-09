@@ -72,6 +72,6 @@ export abstract class Product {
     }
 
     get attributesWithModifiers(): ProductAttribute[] {
-        return this.attributes.filter((attribute) => attribute.options?.some(o => o.priceModifier > 0));
+        return this.attributes.filter((attribute) => attribute.options?.some(o => o.priceModifier));
     }
 }
