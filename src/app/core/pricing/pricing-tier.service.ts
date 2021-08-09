@@ -29,13 +29,13 @@ export class PricingTierService {
         return this._walletAmount$.value;
     }
 
+    constructor() {}
+
     calculateWalletAmount(): void {
         const { previousWalletBallance, previousOrderTotal } = DUMMY_ORDER;
         const newWalletAmount = previousWalletBallance + (previousOrderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET);
         this._walletAmount$.next(newWalletAmount);
     }
-
-    constructor() {}
 
     toggleDiscount(value?: boolean): void {
         this.isVolumeDiscountActive$.next(value ?? !this.isVolumeDiscountActive$.value);
