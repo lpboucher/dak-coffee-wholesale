@@ -6,9 +6,9 @@ export class Coffee extends Product {
     productType: ProductType = "coffee";
     attributes: ProductAttribute[] = [];
     origin: string | null = null;
-    tastingNotes: string[] | null = null;
+    tastingNotes: string[] = [];
     process: string | null = null;
-    varietal: string[] | null = null;
+    varietal: string[] = [];
 
     constructor(coffeeShape?: Partial<Coffee>) {
         super(coffeeShape);
