@@ -1,4 +1,4 @@
 export interface ProductAttributeOption {
-    optionName: string,
-    priceModifier: number,
+    name: string;
+    priceModifier?: number;
 }

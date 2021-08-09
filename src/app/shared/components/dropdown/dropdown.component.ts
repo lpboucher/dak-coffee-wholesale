@@ -64,7 +64,8 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
         this.disabled = disabled;
     }
 
-    onClickDropdown(): void {
+    onClickDropdown(event: Event): void {
+        event.stopPropagation();
         this.markAsTouched();
         if (this.disabled) { return; }
 

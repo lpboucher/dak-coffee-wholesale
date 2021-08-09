@@ -20,20 +20,20 @@ export class Coffee extends Product {
                 { key: "process", displayName: "Process" },
                 { key: "varietal", displayName: "Varietal" },
              ];
-          
+
             this.attributes = [
                 new ProductAttribute({
                     name: "weight",
                     options: [
-                        { optionName: "250g", priceModifier: 0 },
-                        { optionName: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
+                        { name: "250g" },
+                        { name: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
                     ]}),
                 new ProductAttribute({
                     name: "roast",
                     options: [
-                        { optionName: "Filter", priceModifier: 0 },
-                        { optionName: "Espresso", priceModifier: 0 },
-                        { optionName: "Both", priceModifier: 0 },
+                        { name: "Filter" },
+                        { name: "Espresso" },
+                        { name: "Both" },
                     ]
                 })
             ];

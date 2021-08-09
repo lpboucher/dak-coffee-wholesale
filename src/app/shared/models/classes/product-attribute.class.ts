@@ -3,6 +3,7 @@ import { ProductAttributeOption } from "@shared/models/types/product-attribute-o
 export class ProductAttribute {
     name: string | null = null;
     options: ProductAttributeOption[] = [];
+    type: string = "dropdown";
 
     constructor(productAttributeShape?: Partial<ProductAttribute>) {
         if (productAttributeShape != null) {
@@ -17,6 +18,20 @@ export class ProductAttribute {
     }
 
     get optionNames(): string[] {
-        return this.options.map((option) => option.optionName);
+        return this.options.map((option) => option.name);
+    }
+}
+
+export class SelectedProductAttribute extends ProductAttribute {
+    value: any;
+
+    constructor(SelectedProductAttributeShape?: Partial<SelectedProductAttribute>) {
+        super(SelectedProductAttributeShape);
+
+        if (SelectedProductAttributeShape != null) {
+            if (SelectedProductAttributeShape.value != null) {
+                this.value = SelectedProductAttributeShape.value;
+            }
+        }
     }
 }
