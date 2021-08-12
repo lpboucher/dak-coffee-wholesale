@@ -11,6 +11,10 @@
     @apply cursor-pointer;
 }
 
+.brand-logo {
+    @apply w-full;
+}
+
 .mobile-close {
     @apply absolute top-0 right-0;
     @apply w-5 h-5 mt-7;
