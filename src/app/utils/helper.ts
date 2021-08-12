@@ -9,3 +9,7 @@ export const simpleDeepEqual = (firstObject: { [key: string]: any }, secondObjec
 
     return haveSameNumberOfKeys && haveSameValues;
 }
+
+export const sentenceToKebab = (sentence: string) => {
+    return sentence.toLowerCase().replace(" ", "-");
+}

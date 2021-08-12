@@ -1,4 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Inject, Input } from "@angular/core";
+
+import { FlavourMap } from "@shared/models/types/flavour.type";
+import { sentenceToKebab } from "@utils/helper";
 
 @Component({
     selector: "app-flavour-icon",
@@ -8,13 +11,9 @@ import { Component, Input } from "@angular/core";
 export class FlavourIconComponent {
     @Input() flavour: string = "";
 
-    get svgSource(): string {
-        return `assets/svgs/flavour-icons/${ this.filename }.svg`;
+    get flavourFilePath(): string {
+        return this.flavours[sentenceToKebab(this.flavour)] || "";
     }
 
-    private get filename(): string {
-        return this.flavour
-            .toLowerCase()
-            .replace(" ", "-");
-    }
+    constructor(@Inject("flavours") private flavours: FlavourMap) {}
 }

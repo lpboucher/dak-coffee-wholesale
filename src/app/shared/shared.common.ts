@@ -26,6 +26,8 @@ import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
 import { WeightPipe } from "@shared/pipes/weight.pipe";
 
+import { FLAVOUR_MAP } from "@utils/constants/flavours";
+
 export const componentDeclarations: any[] = [
     FilterComponent,
     GridListComponent,
@@ -58,4 +60,8 @@ export const providerDeclarations: any[] = [
     ClampPipe,
     VolumeDiscountPipe,
     WeightPipe,
+    {
+        provide: "flavours",
+        useValue: FLAVOUR_MAP,
+    },
 ];
