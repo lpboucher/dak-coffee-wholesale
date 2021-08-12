@@ -29,6 +29,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
         FormsModule,
         ReactiveFormsModule,
         NgxSkeletonLoaderModule,
+        AngularSvgIconModule,
     ],
 })
 export class SharedModule { }

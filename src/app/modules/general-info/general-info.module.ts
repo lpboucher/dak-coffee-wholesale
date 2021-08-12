@@ -6,18 +6,15 @@ import { SharedModule } from "@shared/shared.module";
 
 import { componentDeclarations, pageDeclarations } from "@modules/general-info/general-info.common";
 
-import { AngularSvgIconModule } from "angular-svg-icon";
-
 @NgModule({
-  declarations: [
-      ...pageDeclarations,
-      ...componentDeclarations,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    GeneralInfoRoutingModule,
-    AngularSvgIconModule,
-  ]
+    declarations: [
+        ...pageDeclarations,
+        ...componentDeclarations,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        GeneralInfoRoutingModule,
+    ]
 })
 export class GeneralInfoModule { }

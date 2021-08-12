@@ -6,18 +6,15 @@ import { SharedModule } from "@shared/shared.module";
 
 import { componentDeclarations, pageDeclarations } from "@modules/authentication/authentication.common";
 
-import { AngularSvgIconModule } from "angular-svg-icon";
-
 @NgModule({
-  declarations: [
-      ...pageDeclarations,
-      ...componentDeclarations,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AuthenticationRoutingModule,
-    AngularSvgIconModule,
-  ]
+    declarations: [
+        ...pageDeclarations,
+        ...componentDeclarations,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        AuthenticationRoutingModule,
+    ]
 })
 export class AuthenticationModule { }
