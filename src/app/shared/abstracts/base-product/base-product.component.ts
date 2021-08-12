@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 import { Product } from "@shared/models/classes/product.class";
+import { Coffee } from "@app/shared/models/classes/coffee.class";
 
 @Component({ template: "" })
 export abstract class BaseProductComponent implements OnInit {
@@ -14,6 +15,12 @@ export abstract class BaseProductComponent implements OnInit {
 
     get formValue(): any {
         return this.optionsForm.value;
+    }
+
+    get flavours(): string[] {
+        return this.product.productType === "coffee"
+            ? (this.product as Coffee).tastingNotes ?? []
+            : [];
     }
 
     constructor(protected fb: FormBuilder) {}

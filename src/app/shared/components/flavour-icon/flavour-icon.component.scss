@@ -1,0 +1,8 @@
+.flavour-icon-container {
+    @apply flex flex-col items-center;
+    @apply p-2;
+}
+
+.flavour-icon-text {
+    @apply text-gray-500 text-xs;
+}

@@ -59,7 +59,7 @@ export abstract class Product {
     }
 
     get displayedDetails(): string[] {
-        return [this.description ?? ""];
+        return [];
     }
 
     get priceAsNumber(): number {

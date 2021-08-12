@@ -27,3 +27,7 @@ export const camelToSentence = (text: string) => {
     const result = text.replace(/([A-Z])/g, " $1");
     return result.charAt(0).toUpperCase() + result.slice(1);
 }
+
+export const sentenceToKebab = (sentence: string) => {
+    return sentence.toLowerCase().replace(" ", "-");
+}

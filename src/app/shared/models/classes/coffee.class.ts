@@ -61,7 +61,7 @@ export class Coffee extends Product {
     }
 
     get displayedDetails(): string[] {
-        return [this.origin ?? "", this.tastingNotes?.join(", ") ?? ""];
+        return [this.origin ?? ""];
     }
 
     get kgPriceAsNumber(): number {

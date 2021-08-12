@@ -25,8 +25,18 @@
 }
 
 .product-card-body-title {
+    @apply mt-2;
+}
+
+.product-card-body-title * {
     @apply mt-2 mb-2;
+    @apply inline;
     @apply font-bold;
+}
+
+.product-card-body-details {
+    @apply mr-2;
+    @apply text-xs text-gray-700 italic;
 }
 
 .product-card-body-description {
@@ -35,6 +45,7 @@
 
 .product-card-body-selection-form {
     @apply flex flex-col items-end justify-between;
+    @apply py-4;
 }
 
 .product-card-body-selection-item {
@@ -56,16 +67,7 @@
     @apply bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
 }
 
-.product-card-details-container {
-    @apply p-4;
-    @apply border-t;
-}
-
-.product-card-details {
-    @apply mb-1;
-}
-
-.product-card-details-text {
-    @apply mr-2;
-    @apply text-xs text-gray-700 italic;
+.product-card-details-flavours {
+    @apply flex justify-evenly;
+    @apply py-2 border-t;
 }

@@ -7,6 +7,7 @@ import { NavigationComponent } from "@shared/abstracts/navigation/navigation.com
 import { DropdownComponent } from "@shared/components/dropdown/dropdown.component";
 import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
 import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
+import { FlavourIconComponent } from "@shared/components/flavour-icon/flavour-icon.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -28,6 +29,8 @@ import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 
+import { FLAVOUR_MAP } from "@utils/constants/flavours";
+
 export const componentDeclarations: any[] = [
     FilterComponent,
     GridListComponent,
@@ -43,6 +46,7 @@ export const componentDeclarations: any[] = [
     NavigationComponent,
     QuantityInputComponent,
     BaseProductComponent,
+    FlavourIconComponent,
 
     SnipcartAddDirective,
     BindQueryParamsDirective,
@@ -64,5 +68,9 @@ export const providerDeclarations: any[] = [
     VolumeDiscountPipe,
     CartModifierPipe,
     WeightPipe,
-    ProductsToFiltersPipe,
+   ProductsToFiltersPipe,
+    {
+        provide: "flavours",
+        useValue: FLAVOUR_MAP,
+    },
 ];
