@@ -6,6 +6,8 @@ import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 
 import { componentDeclarations, providerDeclarations } from "@shared/shared.common";
 
+import { AngularSvgIconModule } from "angular-svg-icon";
+
 @NgModule({
     declarations: [
         ...componentDeclarations,
@@ -15,6 +17,7 @@ import { componentDeclarations, providerDeclarations } from "@shared/shared.comm
         FormsModule,
         ReactiveFormsModule,
         NgxSkeletonLoaderModule,
+        AngularSvgIconModule,
     ],
     providers: [
         ...providerDeclarations,
@@ -24,6 +27,7 @@ import { componentDeclarations, providerDeclarations } from "@shared/shared.comm
         FormsModule,
         ReactiveFormsModule,
         NgxSkeletonLoaderModule,
+        AngularSvgIconModule,
     ],
 })
 export class SharedModule { }

@@ -32,7 +32,9 @@
 }
 
 .rotate-arrow {
-    @apply rotate-180;
+    ::ng-deep svg {
+        @apply rotate-180;
+    }
 }
 
 .dropdown-option-list-container {

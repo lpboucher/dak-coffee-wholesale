@@ -6,7 +6,7 @@
 }
 
 ::ng-deep svg {
-    @apply w-8 h-8 inline-block;
+    @apply w-8 h-8 mr-1 inline-block;
     @apply text-indigo-500;
 
     @apply md:mb-1 md:mx-auto md:block;

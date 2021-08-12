@@ -7,14 +7,14 @@ import { SharedModule } from "@shared/shared.module";
 import { componentDeclarations, pageDeclarations } from "@modules/general-info/general-info.common";
 
 @NgModule({
-  declarations: [
-      ...pageDeclarations,
-      ...componentDeclarations,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    GeneralInfoRoutingModule
-  ]
+    declarations: [
+        ...pageDeclarations,
+        ...componentDeclarations,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        GeneralInfoRoutingModule,
+    ]
 })
 export class GeneralInfoModule { }

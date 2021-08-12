@@ -7,14 +7,14 @@ import { SharedModule } from "@shared/shared.module";
 import { componentDeclarations, pageDeclarations } from "@modules/authentication/authentication.common";
 
 @NgModule({
-  declarations: [
-      ...pageDeclarations,
-      ...componentDeclarations,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AuthenticationRoutingModule
-  ]
+    declarations: [
+        ...pageDeclarations,
+        ...componentDeclarations,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        AuthenticationRoutingModule,
+    ]
 })
 export class AuthenticationModule { }

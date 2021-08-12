@@ -14,7 +14,7 @@ import { componentDeclarations, pageDeclarations } from "../backbone/backbone.co
     imports: [
         CommonModule,
         SharedModule,
-        BackboneRoutingModule
+        BackboneRoutingModule,
     ]
 })
 export class BackboneModule { }
