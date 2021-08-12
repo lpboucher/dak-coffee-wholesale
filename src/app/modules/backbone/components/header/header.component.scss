@@ -1,15 +1,7 @@
 .main-nav {
+    @apply flex flex-row justify-between place-items-center;
     @apply p-2;
     @apply bg-white;
-}
-
-.main-nav-container {
-    @apply flex flex-row justify-between place-items-center;
-}
-
-.brand {
-    @apply flex flex-col flex-none items-center justify-between;
-    @apply p-1;
 }
 
 .burger-menu-wrapper {
