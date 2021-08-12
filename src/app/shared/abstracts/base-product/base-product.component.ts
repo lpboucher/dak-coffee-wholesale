@@ -1,48 +1,20 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 import { Product } from "@shared/models/classes/product.class";
-import { Roast } from "@shared/models/types/roast.type";
-import { Weight } from "@shared/models/types/weight.type";
-import { CustomOption } from "@shared/models/types/custom-option.interface";
-
-import { ROAST_OPTIONS, WEIGHT_OPTIONS } from "@utils/constants/form-options";
 import { Coffee } from "@app/shared/models/classes/coffee.class";
 
 @Component({ template: "" })
-export abstract class BaseProductComponent {
+export abstract class BaseProductComponent implements OnInit {
     @Input() product!: Product;
-
-    private readonly _weightOptions = WEIGHT_OPTIONS;
-    readonly defaultWeight: Weight = this._weightOptions[0];
-
-    private readonly _roastOptions = ROAST_OPTIONS;
-    readonly defaultRoast: Roast = this._roastOptions[0];
-
-    optionsForm = this.fb.group({
-        weight: [this.defaultWeight, Validators.required],
-        roast: [this.defaultRoast, Validators.required],
-        quantity: [1, Validators.required],
-    });
-
-    get weight(): string {
-        return this.optionsForm.get("weight")!.value;
-    }
-
-    get roast(): string {
-        return this.optionsForm.get("roast")!.value;
-    }
+    optionsForm = this.fb.group({});
 
     get quantity(): number {
         return this.optionsForm.get("quantity")!.value;
     }
 
-    get roastOptions(): string[] {
-        return this._roastOptions.map(r => r as string);
-    }
-
-    get weightOptions(): string[] {
-        return this._weightOptions.map(w => w as string);
+    get formValue(): any {
+        return this.optionsForm.value;
     }
 
     get flavours(): string[] {
@@ -51,26 +23,19 @@ export abstract class BaseProductComponent {
             : [];
     }
 
-    get snipcartOptions(): CustomOption[] {
-        return [
-            {
-                name: "Weight",
-                list: this.weightOptions,
-                selection: this.weight,
-            },
-            {
-                name: "Roast",
-                list: this.roastOptions,
-                selection: this.roast,
-            },
-        ];
-    }
-
-    get totalPrice(): number {
-        if (isNaN(this.product.priceAsNumber)) { return NaN; }
-
-        return this.product.priceAsNumber * this.quantity;
-    }
-
     constructor(protected fb: FormBuilder) {}
+
+    ngOnInit(): void {
+        this.optionsForm = this.fb.group({
+            ...this.formConfig,
+            quantity: [1, Validators.required],
+        });
+    }
+
+    private get formConfig() {
+        return this.product.attributes.reduce((obj, attr) => ({
+            [attr.name!]: [attr.options![0].name, Validators.required],
+            ...obj
+        }), {});
+    }
 }

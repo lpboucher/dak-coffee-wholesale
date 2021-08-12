@@ -48,8 +48,8 @@
 }
 
 .product-detail-selection-group {
-    @apply flex justify-end;
-    @apply text-sm text-gray-500;
+    @apply flex flex-col;
+    @apply text-sm text-gray-500 capitalize;
 }
 
 .product-detail-selection-label {

@@ -1,8 +1,10 @@
-import { ProductType } from "../types/product-type.type";
-import { Product } from "./product.class";
+import { ProductType } from "@shared/models/types/product-type.type";
+import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
+import { Product } from "@shared/models/classes/product.class";
 
 export class Merchandise extends Product {
     productType: ProductType = "merchandise";
+    attributes: ProductAttribute[] = [];
     dimensions: string | null = null;
     material: string | null = null;
 
@@ -10,6 +12,10 @@ export class Merchandise extends Product {
         super(merchandiseShape);
 
         if (merchandiseShape != null) {
+            this.filterableAttributes = [
+                { key: "dimensions", displayName: "Dimensions" }
+            ];
+
             if (merchandiseShape.dimensions != null) {
                 this.dimensions = merchandiseShape.dimensions;
             }

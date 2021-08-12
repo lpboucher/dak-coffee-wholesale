@@ -1,7 +1,6 @@
 <nav class="main-nav">
     <header class="brand" routerLink="products">
-        <img class="" src="/favicon.ico"/>
-        <span class="">DAK</span>
+        <svg-icon class="brand-logo" [applyClass]="true" src="/assets/icons/dak-logo.svg"></svg-icon>
     </header>
     <div class="mobile-close" (click)="onMobileCloseClicked()">
         <div class="mobile-close-bar-1"></div>
@@ -23,13 +22,13 @@
     <div class="widget-container">
         <app-widget class="widget-item" [content]="'€200'" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg-icon
-                src="assets/svgs/wallet2.svg"
+                src="/assets/icons/wallet.svg"
                 [svgStyle]="{ 'width.px': 20, 'height.px': 20 }">
             </svg-icon>
         </app-widget>
         <app-widget class="widget-item" content="€{{ cartTotal }} ({{ cartWeight }} kg)" (widgetClickEvent)="onCartWidgetClicked()">
             <svg-icon
-                src="assets/svgs/shopping_cart_black_24dp.svg"
+                src="/assets/icons/cart.svg"
                 [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }">
             </svg-icon>
         </app-widget>

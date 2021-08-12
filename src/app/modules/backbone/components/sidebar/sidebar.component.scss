@@ -7,8 +7,12 @@
 
 .brand {
     @apply flex flex-none items-center justify-around place-self-center;
-    @apply mb-10;
+    @apply mb-10 w-3/4;
     @apply cursor-pointer;
+}
+
+.brand-logo {
+    @apply w-full;
 }
 
 .mobile-close {

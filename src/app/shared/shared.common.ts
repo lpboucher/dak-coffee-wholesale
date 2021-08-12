@@ -19,12 +19,15 @@ import {
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
 import { BindQueryParamsDirective } from "@shared/directives/bind-query-params.directive";
 
+import { AdjustedProductPricePipe } from "@shared/pipes/adjusted-product-price.pipe";
+import { CartModifierPipe } from "@shared/pipes/cart-modifier.pipe";
 import { ClampPipe } from "@shared/pipes/clamp.pipe";
 import { FilterPipe } from "@shared/pipes/filter.pipe";
-import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
-import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 import { FormatPricePipe } from "@shared/pipes/format-price.pipe";
+import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WeightPipe } from "@shared/pipes/weight.pipe";
+import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
+import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
 
 import { FLAVOUR_MAP } from "@utils/constants/flavours";
 
@@ -48,18 +51,24 @@ export const componentDeclarations: any[] = [
     SnipcartAddDirective,
     BindQueryParamsDirective,
 
+    AdjustedProductPricePipe,
     ClampPipe,
     FilterPipe,
     VolumeDiscountPipe,
     WithLoaderPipe,
     FormatPricePipe,
     WeightPipe,
+    ProductsToFiltersPipe,
+    CartModifierPipe,
 ];
 
 export const providerDeclarations: any[] = [
+    AdjustedProductPricePipe,
     ClampPipe,
     VolumeDiscountPipe,
+    CartModifierPipe,
     WeightPipe,
+   ProductsToFiltersPipe,
     {
         provide: "flavours",
         useValue: FLAVOUR_MAP,

@@ -1,9 +1,11 @@
-<ng-multiselect-dropdown *ngFor="let filter of dropdownList"
-    [placeholder]="filter.displayName"
-    [settings]="dropdownSettings"
-    [data]="filter.options"
-    [(ngModel)]="filter.selectedItems"
-    (onSelect)="updateFilter()"
-    (onDeSelect)="updateFilter()"
->
-</ng-multiselect-dropdown>
+<div class="filter-container">
+    <div class="filter-name">{{ propertyToFilter.displayName }}:</div>
+    <div class="filter-options-container">
+        <div *ngFor="let option of propertyToFilter.options"
+            class="filter-options-label"
+            [ngClass]="{ 'selected': isSelected(option) }"
+            (click)="onClick(option)">
+                {{ option }}
+        </div>
+    </div>
+</div>

@@ -50,11 +50,13 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
         this.disabled = disabled;
     }
 
-    onIncrement(): void {
+    onIncrement(event: Event): void {
+        event.stopPropagation();
         this.writeValue(this.quantity + 1);
     }
 
-    onDecrement(): void {
+    onDecrement(event: Event): void {
+        event.stopPropagation();
         this.writeValue(this.quantity - 1);
     }
 

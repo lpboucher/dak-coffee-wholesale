@@ -30,6 +30,8 @@
 
 .sidebar-background {
     @apply w-full h-screen;
+
+    @apply md:hidden;
 }
 
 .header {

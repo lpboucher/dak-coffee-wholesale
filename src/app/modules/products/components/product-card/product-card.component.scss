@@ -1,6 +1,8 @@
 .product-card {
     @apply text-left;
     @apply block h-full bg-white shadow-md rounded-lg overflow-hidden;
+    @apply cursor-pointer;
+
     @apply hover:shadow-xl;
 }
 

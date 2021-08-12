@@ -2,13 +2,13 @@
     <div class="modal-body">
         <div class="modal-body-icon-container">
             <svg-icon
-                src="assets/svgs/wallet2.svg"
+                src="/assets/icons/wallet.svg"
                 [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
                 [svgClass]="'modal-body-icon'">
             </svg-icon>
         </div>
         <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Wallet Balance: €200</h3>
+            <h3 class="modal-body-content-header" id="modal-title">Wallet Balance: €{{ walletAmount }}</h3>
             <p class="modal-body-content-message">This balance will automatically be applied as a discount, and will expire on 01/01/2021 if not used.</p>
         </div>
     </div>
