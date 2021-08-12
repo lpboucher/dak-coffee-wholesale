@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { ToastrModule } from "ngx-toastr";
 import { CloudinaryModule } from "@cloudinary/angular";
+import { AngularSvgIconModule } from "angular-svg-icon";
 
 import { HttpTokenInterceptor } from "@core/interceptors/http.token.interceptor";
 import { throwIfAlreadyLoaded } from "@core/guards/module-import.guard";
@@ -17,6 +18,7 @@ import { SharedModule } from "@shared/shared.module";
         HttpClientModule,
         ToastrModule.forRoot(),
         CloudinaryModule,
+        AngularSvgIconModule.forRoot(),
         SharedModule,
     ],
     providers: [
