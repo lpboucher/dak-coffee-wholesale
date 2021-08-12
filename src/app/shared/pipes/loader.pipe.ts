@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { map, startWith, catchError } from "rxjs/operators";
 
-import { StreamStatus } from "../models/types/stream-status.interface";
+import { StreamStatus } from "../models/interfaces/stream-status.interface";
 
 @Pipe({
   name: "withLoader",

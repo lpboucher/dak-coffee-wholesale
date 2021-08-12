@@ -1,88 +1,122 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 
-import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { FilterType } from "@shared/models/types/filter-type.type";
+import { Subscription } from "rxjs";
 
-import { FilterType } from "@shared/models/types/filter-type.interface";
 
-
-type DropdownSubItem = { id: number, text: string }
-type DropdownItem = { displayName: string, key: string, options: DropdownSubItem[], selectedItems: DropdownSubItem[] };
+type Selection = Set<string>;
 
 
 @Component({
     selector: "app-filter",
     templateUrl: "./filter.component.html",
-    styleUrls: ["./filter.component.scss"]
+    styleUrls: ["./filter.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: FilterComponent,
+        },
+    ]
 })
-export class FilterComponent implements OnInit {
-    @Input() filterOptions: FilterType = {};
-    dropdownList: DropdownItem[] = [];
-    dropdownSettings: IDropdownSettings = {};
-    private nameToId: { [key: string]: number } = {};
-    private nextId = new class {
-        private nextId = 0;
-        generate = () => this.nextId++;
-    };
+export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
+    @Input() propertyToFilter!: FilterType;
+    private selection: Selection = new Set();
+    private onChange = (_: Selection) => this.internalOnChange();
+    private onTouched = () => {};
+    private touched = false;
+    private disabled = false;
+    private subscriptions: Subscription = new Subscription();
 
     constructor(
-        private router: Router,
         private activatedRoute: ActivatedRoute,
-    ) { }
+        private router: Router,
+        private controlContainer: ControlContainer,
+    ) {}
 
     ngOnInit(): void {
-        this.dropdownList = this.generateDropdownList();
-        this.dropdownSettings = {
-            singleSelection: false,
-            idField: "id",
-            textField: "text",
-            enableCheckAll: false,
-            allowSearchFilter: true,
+        this.subscriptions.add(
+            this.activatedRoute.queryParams.subscribe(
+                queryParams => this.updateFromQueryParams(queryParams)
+            )
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
+
+    onClick(id: string): void {
+        this.markAsTouched();
+        if (this.disabled) return;
+
+        if (this.selection.has(id)) {
+            this.selection.delete(id);
+        } else {
+            this.selection.add(id);
+        }
+        this.onChange(this.selection);
+    }
+
+    isSelected(id: string): boolean {
+        return this.selection.has(id);
+    }
+
+    writeValue(selection: Selection): void {
+        if (selection == null) return;
+
+        this.selection = selection;
+        this.onChange(this.selection);
+    }
+
+    registerOnChange(onChange: any): void {
+        this.onChange = (selection) => {
+            this.internalOnChange();
+            onChange(selection);
         };
     }
 
-    updateFilter(): void {
-        const filter = this.dropdownList
-            .filter(item => item.selectedItems.length > 0)
-            .reduce((previous, current) => {
-                return {
-                    ...previous,
-                    [current.key]: current.selectedItems.map(selected => selected.text),
-                };
-            }, {});
-
-        this.router.navigate([], { queryParams: filter });
+    registerOnTouched(onTouched: any): void {
+        this.onTouched = onTouched;
     }
 
-    private generateDropdownList(): DropdownItem[] {
-        return Object.values(this.filterOptions)
-            .map(option => {
-                return {
-                    displayName: option.displayName,
-                    key: option.key,
-                    options: option.subOptions.map(o => this.makeDropdownSubItem(o)),
-                    selectedItems: this.setupInitialFilter(option.key),
-                }
-            });
+    setDisabledState(disabled: boolean): void {
+        this.disabled = disabled;
     }
 
-    private makeDropdownSubItem(name: string): DropdownSubItem {
-        let id = this.nameToId[name];
-        if (id == null) {
-            id = this.nextId.generate();
-        }
+    private updateFromQueryParams(queryParams: Params): void {
+        const rawSelection = queryParams[this.propertyToFilter.key];
+        if (rawSelection == null) return;
 
-        return { id: id, text: name };
+        try {
+            const selection = JSON.parse(rawSelection) as string[];
+            this.controlContainer
+                .control
+                ?.get(this.propertyToFilter.key)
+                ?.patchValue(new Set(selection));
+        } catch (_) { return };
     }
 
-    private setupInitialFilter(key: string): DropdownSubItem[] {
-        let params = this.activatedRoute.snapshot.queryParams[key];
-        if (params == null) { return []; }
+    private internalOnChange(): void {
+        const selectionParams = JSON.stringify([...this.selection]);
+        const queryParams = { [this.propertyToFilter.key]: selectionParams };
 
-        if (!Array.isArray(params)) {
-            params = [params];
-        }
+        this.router.navigate(
+            [],
+            {
+                relativeTo: this.activatedRoute,
+                queryParams: queryParams,
+                queryParamsHandling: "merge",
+            }
+        );
+    }
 
-        return params.map((p: any) => this.makeDropdownSubItem(String(p)));
+    private markAsTouched() {
+        if (this.touched) return;
+
+        this.onTouched();
+        this.touched = true;
     }
 }

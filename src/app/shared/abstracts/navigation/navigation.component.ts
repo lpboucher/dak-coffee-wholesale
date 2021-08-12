@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 
 import { AuthService } from "@core/authentication/authentication.service";
 import { CartService } from "@core/cart/cart.service";
@@ -18,6 +18,7 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
     priceTierActive: boolean = false;
     cartTotal: number = 0;
     cartWeight: number = 0;
+    walletAmount: number = 0;
 
     constructor(
         protected pricingTierService: PricingTierService,
@@ -45,6 +46,13 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.cartService.currentCartWeight$
             .subscribe((value) => {
                 this.cartWeight = value;
+                this.changeDetectorRef.detectChanges();
+            })
+        );
+
+        this.subscriptions.add(this.pricingTierService.walletAmount$
+            .subscribe((value) => {
+                this.walletAmount = value;
                 this.changeDetectorRef.detectChanges();
             })
         );
