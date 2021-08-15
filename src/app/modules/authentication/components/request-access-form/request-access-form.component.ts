@@ -1,10 +1,14 @@
 import { Component } from "@angular/core";
 import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
-import { BusinessExists } from "@core/validators/business-exists.validator";
+import { Router } from "@angular/router";
 
+import { AlertService } from "@core/alerts/alert.service";
+import { BusinessExists } from "@core/validators/business-exists.validator";
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
 import { EmailExists } from "@core/validators/email-exists.validator";
+
+import { NewCustomer } from "@shared/models/classes/new-customer.class";
 
 import { SECTORS } from "@utils/constants/sectors";
 
@@ -82,6 +86,8 @@ export class RequestAccessFormComponent {
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
+        private router: Router,
+        private alertService: AlertService,
     ) {}
 
     onSubmitRegistration(): void {
@@ -89,14 +95,11 @@ export class RequestAccessFormComponent {
 
         if (this.requestAccessForm.invalid) { return; }
 
-        this.authService.register({
-            contactName: this.contactNameControl.value,
-            businessName: this.businessNameControl.value,
-            email: this.emailControl.value,
-            password: this.passwordControl.value,
-            sector: this.sectorControl.value,
-            vatNumber: this.vatNumberControl.value,
-        });
+        this.authService.register(new NewCustomer(this.requestAccessForm.value))
+            .subscribe(
+                (_) => this.router.navigate(["auth", "register", "success"]),
+                (_) => this.alertService.error("It looks like we were not able to register you, check with info@dakcoffeeroasters.com"),
+            );
     }
 
     hasErrors(control: AbstractControl): boolean {
