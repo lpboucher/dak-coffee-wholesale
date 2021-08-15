@@ -1,12 +1,12 @@
 import { Sector } from "@shared/models/types/sector-type.type";
 
 export class NewCustomer {
-    contactName: string | null = null;
-    businessName: string | null = null;
-    email: string | null = null;
-    password: string | null = null;
-    sector: Sector | null = null;
-    vatNumber: string | null = null;
+    contactName!: string;
+    businessName!: string;
+    email!: string;
+    password!: string;
+    sector!: Sector;
+    vatNumber?: string;
 
     constructor(newCustomerShape?: Partial<NewCustomer>) {
         if (newCustomerShape != null) {
