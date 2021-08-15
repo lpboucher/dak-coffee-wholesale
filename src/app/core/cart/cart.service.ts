@@ -8,9 +8,7 @@ import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { Product } from "@shared/models/classes/product.class";
 import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
-
 const DISCOUNT_CODE = "WALLET-ORDER-121";
-
 
 @Injectable({
     providedIn: 'root'
