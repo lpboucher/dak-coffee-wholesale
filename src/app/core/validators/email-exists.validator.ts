@@ -12,6 +12,7 @@ export function EmailExists(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         if (control.value == null) return of(null);
 
+        // TODO check both backend and snipcart for existing email
         return dummyCheckEmailRemoteCall(control.value)
             .pipe(
                 map(res => res ? { emailTaken: true } : null)
