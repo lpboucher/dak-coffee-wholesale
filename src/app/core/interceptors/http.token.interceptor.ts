@@ -3,6 +3,8 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/c
 
 import { Observable } from "rxjs";
 
+import { USER_ID_KEY } from "@utils/constants/storage";
+
 @Injectable({
     providedIn: "root"
 })
@@ -10,7 +12,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("intercepted");
-        const idToken = localStorage.getItem("id_token");
+        const idToken = localStorage.getItem(USER_ID_KEY);
 
         if (idToken) {
             /*const cloned = req.clone({
