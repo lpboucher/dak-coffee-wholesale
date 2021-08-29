@@ -11,7 +11,7 @@ import { SelectedProductAttribute } from "@shared/models/classes/product-attribu
 const DISCOUNT_CODE = "WALLET-ORDER-121";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class CartService {
     private cartTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
@@ -46,17 +46,17 @@ export class CartService {
     }
 
     addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
-        const { id, productType, slug, name, price } = product;
-        const url = `/products/${ productType }/${ slug }`;
+        const { id, name, price } = product;
+        const url = `http://9d28-2a02-a210-2504-5c80-9901-9724-fcfd-e502.ngrok.io/snipcartParser`;
 
         (window as any).Snipcart.api.cart.items.add({
-            id: id,
-            name: name,
-            price: price,
-            url: url,
+            id,
+            name,
+            price,
+            url,
             quantity: quantity ?? 1,
             minQuantity: 1,
-            customFields: customFields,
+            customFields,
         });
     }
 
@@ -77,10 +77,18 @@ export class CartService {
     }
 
     orderCompleted(cart: any) {
-        console.log(`Order completed: ${ cart }`);
+        this.pricingTierService.updateCustomerWallet(cart.email, cart.total)
+            .subscribe(({updated}) => {
+                if (updated) {
+                    this.alertService.success(
+                        "Your wallet has been updated, the discount will be applied automatically on your next order!"
+                    );
+                }
+            });
     }
 
     updateCart(total: number, items: any): void {
+        // TODO loop through items and make sure all items include same volume discount
         this.updateCartTotal(total);
         this.updateCartWeight(items);
         this.updatePricingService();
@@ -100,7 +108,7 @@ export class CartService {
     }
 
     private getSnipcartItemWeight(item: any): number {
-        const weightField = item.customFields.find((field: any) => field.name === "Weight");
+        const weightField = item.customFields.find((field: any) => field.name.toLowerCase() === "weight".toLowerCase());
         return weightField ? this.weightPipe.transform(weightField.value) : 0;
     }
 
