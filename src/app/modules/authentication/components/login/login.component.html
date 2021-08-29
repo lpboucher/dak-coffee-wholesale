@@ -27,7 +27,7 @@
 
                 <button class="login-card-submit-button">Login</button>
                 <div *ngIf="submissionAttempted" class="login-card-submission-error-message">
-                    <p>Incorrect e-mail or password.</p>
+                    <p>{{ asyncErrorMessage }}</p>
                 </div>
 
                 <div class="login-card-extras">
