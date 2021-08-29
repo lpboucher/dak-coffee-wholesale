@@ -1,10 +1,11 @@
 import { Component, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { PricingTierService } from "@app/core/pricing/pricing-tier.service";
+
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
 import { ModalBackboneComponent } from "@shared/components/modals";
 
-import { CART_WEIGHT_THRESHOLD } from "@app/utils/constants/discounts";
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Component({
     selector: "app-volume-selection-modal",

@@ -13,7 +13,7 @@ import { PersistenceService } from "@core/storage/persistence.service";
 
 import { NewCustomer } from "@shared/models/classes/new-customer.class";
 import { NewUser } from "@shared/models/classes/new-user.class";
-import { ExistingUser } from "@app/shared/models/classes/existing-customer.class";
+import { ExistingUser } from "@shared/models/classes/existing-customer.class";
 import { CreatedSnipcartCustomer } from "@shared/models/interfaces/created-snipcart-customer.interface";
 
 import { USER_ID_KEY, USER_EXPIRY, WALLET_AMOUNT_KEY } from "@utils/constants/storage";

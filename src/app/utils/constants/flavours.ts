@@ -1,5 +1,5 @@
 // tslint:disable: object-literal-key-quotes
-import { FlavourMap } from "@app/shared/models/types/flavour.type";
+import { FlavourMap } from "@shared/models/types/flavour.type";
 
 const FLAVOUR_FOLDER_PATH = "/assets/icons/flavours/";
 

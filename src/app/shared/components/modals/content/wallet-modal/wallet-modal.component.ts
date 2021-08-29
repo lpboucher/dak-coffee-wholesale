@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { PricingTierService } from "@app/core/pricing/pricing-tier.service";
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { ModalBackboneComponent } from "@shared/components/modals";
 
 @Component({

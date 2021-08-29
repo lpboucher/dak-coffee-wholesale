@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 
 import { environment as config } from "@env";
-import { PersistenceService } from "../storage/persistence.service";
+import { PersistenceService } from "@core/storage/persistence.service";
 
 import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@utils/constants/wallet";

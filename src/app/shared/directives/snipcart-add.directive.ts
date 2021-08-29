@@ -1,8 +1,9 @@
 import { Directive, HostListener, Input } from "@angular/core";
-import { CartService } from "@app/core/cart/cart.service";
+
+import { CartService } from "@core/cart/cart.service";
 
 import { Product } from "@shared/models/classes/product.class";
-import { SelectedProductAttribute } from "@app/shared/models/classes/product-attribute.class";
+import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
 @Directive({
     selector: "[snipcartAdd]"

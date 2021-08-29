@@ -3,7 +3,7 @@ import { ControlContainer } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
-import { simpleDeepEqual } from "@app/utils/helper";
+import { simpleDeepEqual } from "@utils/helper";
 
 @Directive({
     selector: "[bindQueryParams]"

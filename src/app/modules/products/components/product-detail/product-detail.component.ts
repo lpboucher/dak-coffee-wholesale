@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 
 import { ImageService } from "@core/views/image.service";
-import { PricingTierService } from "@app/core/pricing/pricing-tier.service";
+import { PricingTierService } from "@core/pricing/pricing-tier.service";
 
 import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
 
