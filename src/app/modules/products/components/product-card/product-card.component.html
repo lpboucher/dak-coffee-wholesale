@@ -12,14 +12,14 @@
         <form class="product-card-body-selection-form" [formGroup]="optionsForm">
             <app-dropdown
                 class="product-card-body-selection-item"
-                *ngFor="let attribute of product.attributes"
+                *ngFor="let attribute of product.selectableAttributes"
                 formControlName="{{ attribute.name }}"
                 [options]="attribute.optionNames">
             </app-dropdown>
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
         <div class="product-card-body-price-container">
-            <div class="product-card-body-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | volumeDiscount | formatPrice }}</div>
+            <div class="product-card-body-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</div>
             <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue" class="product-card-body-add-to-cart">Add to cart</button>
         </div>
     </div>

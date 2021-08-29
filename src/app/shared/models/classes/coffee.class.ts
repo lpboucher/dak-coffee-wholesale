@@ -22,6 +22,14 @@ export class Coffee extends Product {
              ];
 
             this.attributes = [
+                // TODO add hidden type once snipcart behaviour fixed
+                new ProductAttribute({
+                    name: "volume-discount",
+                    options: [
+                        { name: "30%", priceModifier: -(0.3 * this.priceAsNumber) },
+                        { name: "45%", priceModifier: -(0.45 * this.priceAsNumber) },
+                    ],
+                }),
                 new ProductAttribute({
                     name: "weight",
                     options: [

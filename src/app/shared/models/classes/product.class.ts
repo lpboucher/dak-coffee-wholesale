@@ -74,4 +74,8 @@ export abstract class Product {
     get attributesWithModifiers(): ProductAttribute[] {
         return this.attributes.filter((attribute) => attribute.options?.some(o => o.priceModifier));
     }
+
+    get selectableAttributes(): ProductAttribute[] {
+        return this.attributes.filter((attribute) => attribute.name !== "volume-discount");
+    }
 }

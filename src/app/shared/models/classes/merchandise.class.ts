@@ -16,6 +16,17 @@ export class Merchandise extends Product {
                 { key: "dimensions", displayName: "Dimensions" }
             ];
 
+            this.attributes = [
+                // TODO add hidden type once snipcart behaviour fixed
+                new ProductAttribute({
+                    name: "volume-discount",
+                    options: [
+                        { name: "30%", priceModifier: -(0.3 * this.priceAsNumber) },
+                        { name: "45%", priceModifier: -(0.45 * this.priceAsNumber) },
+                    ],
+                }),
+            ];
+
             if (merchandiseShape.dimensions != null) {
                 this.dimensions = merchandiseShape.dimensions;
             }

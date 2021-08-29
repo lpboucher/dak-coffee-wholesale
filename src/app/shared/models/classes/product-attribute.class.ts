@@ -1,4 +1,4 @@
-import { ProductAttributeOption } from "@shared/models/interfaces/product-attribute-option.interface"
+import { ProductAttributeOption } from "@shared/models/interfaces/product-attribute-option.interface";
 
 export class ProductAttribute {
     name: string | null = null;
@@ -13,6 +13,10 @@ export class ProductAttribute {
 
             if (productAttributeShape.options != null) {
                 this.options = productAttributeShape.options;
+            }
+
+            if (productAttributeShape.type != null) {
+                this.type = productAttributeShape.type;
             }
         }
     }
