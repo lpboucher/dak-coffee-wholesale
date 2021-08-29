@@ -1,5 +1,5 @@
 .modal-container {
-    @apply flex fixed inset-0 z-50 items-center justify-center;
+    @apply flex fixed inset-0 z-10 items-center justify-center;
     @apply opacity-0 bg-gray-500 bg-opacity-75;
 
     @apply transition-opacity duration-200 ease-in;
