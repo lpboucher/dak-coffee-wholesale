@@ -9,7 +9,7 @@ export class CartModifierPipe implements PipeTransform {
     transform(attributes: ProductAttribute[] | null, values: {[key: string]: any}): SelectedProductAttribute[] {
         let nonNullModifiers: SelectedProductAttribute[] = [];
 
-        if (attributes == null || attributes.length === 0) return [];
+        if (attributes == null || attributes.length === 0) { return []; }
 
         attributes.forEach((oneAttribute) => {
             if (oneAttribute.name != null) {
@@ -18,7 +18,7 @@ export class CartModifierPipe implements PipeTransform {
                     value: values[oneAttribute.name]
                 }));
             }
-        })
+        });
 
         return nonNullModifiers;
     }
