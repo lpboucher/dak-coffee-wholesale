@@ -1,20 +1,29 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
+import { Injectable } from "@angular/core";
+import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { Observable, of } from "rxjs";
-import { delay, map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
-const KNOWN_BUSINESSES: string[] = ["business1", "business2", "business3"];
+import { AuthService } from "@core/authentication/authentication.service";
 
-function dummyCheckBusinessRemoteCall(businessName: string): Observable<boolean> {
-    return of(KNOWN_BUSINESSES.includes(businessName)).pipe(delay(2000));
-}
+import { isEmptyInputValue } from "@utils/helper";
 
-export function BusinessExists(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-        if (control.value == null) return of(null);
+@Injectable({
+    providedIn: "root"
+})
+export class BusinessExistsValidator implements AsyncValidator {
+    constructor(private authService: AuthService) {}
 
-        return dummyCheckBusinessRemoteCall(control.value)
+    validate(control: AbstractControl): Observable<ValidationErrors | null> {
+        if (isEmptyInputValue(control.value)) {
+            return of(null);
+        }
+
+        return this.authService.userExists(control.value, "business")
             .pipe(
-                map(res => res ? { businessNameInUse: true } : null)
+                map(({valueTaken}) => {
+                    return valueTaken ? { businessTaken: true} : null;
+                }),
+                catchError(() => of(null))
             );
     }
 }

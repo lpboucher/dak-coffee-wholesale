@@ -1,21 +1,29 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
+import { Injectable } from "@angular/core";
+import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { Observable, of } from "rxjs";
-import { delay, map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 
-const TAKEN_EMAILS: string[] = ["taken1@test.com", "taken2@test.com", "taken3@test.com"];
+import { AuthService } from "@core/authentication/authentication.service";
 
-function dummyCheckEmailRemoteCall(email: string): Observable<boolean> {
-    return of(TAKEN_EMAILS.includes(email)).pipe(delay(2000));
-}
+import { isEmptyInputValue } from "@utils/helper";
 
-export function EmailExists(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-        if (control.value == null) return of(null);
+@Injectable({
+    providedIn: "root"
+})
+export class EmailExistsValidator implements AsyncValidator {
+    constructor(private authService: AuthService) {}
 
-        // TODO check both backend and snipcart for existing email
-        return dummyCheckEmailRemoteCall(control.value)
+    validate(control: AbstractControl): Observable<ValidationErrors | null> {
+        if (isEmptyInputValue(control.value)) {
+            return of(null);
+        }
+
+        return this.authService.userExists(control.value)
             .pipe(
-                map(res => res ? { emailTaken: true } : null)
+                map(({valueTaken}) => {
+                    return valueTaken ? { emailTaken: true} : null;
+                }),
+                catchError(() => of(null))
             );
     }
 }

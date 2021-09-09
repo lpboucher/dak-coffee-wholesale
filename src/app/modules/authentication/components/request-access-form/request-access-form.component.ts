@@ -3,10 +3,10 @@ import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { AlertService } from "@core/alerts/alert.service";
-import { BusinessExists } from "@core/validators/business-exists.validator";
 import { AuthService } from "@core/authentication/authentication.service";
 import { PasswordMatch } from "@core/validators/password-match.validator";
-import { EmailExists } from "@core/validators/email-exists.validator";
+import { EmailExistsValidator } from "@core/validators/email-exists.validator";
+import { BusinessExistsValidator } from "@core/validators/business-exists.validator";
 
 import { NewCustomer } from "@shared/models/classes/new-customer.class";
 
@@ -19,6 +19,7 @@ import { SECTORS } from "@utils/constants/sectors";
 })
 export class RequestAccessFormComponent {
     private submissionAttempted = false;
+    isSubmitting = false;
     sectorOptions = SECTORS;
 
     requestAccessForm = this.fb.group(
@@ -27,7 +28,7 @@ export class RequestAccessFormComponent {
                 "",
                 {
                     validators: [Validators.required, Validators.email],
-                    asyncValidators: [EmailExists()],
+                    asyncValidators: [this.emailValidator.validate.bind(this.emailValidator)],
                     updateOn: "blur",
                 }
             ],
@@ -38,7 +39,7 @@ export class RequestAccessFormComponent {
                 "",
                 {
                     validators: [Validators.required],
-                    asyncValidators: [BusinessExists()],
+                    asyncValidators: [this.businessValidator.validate.bind(this.businessValidator)],
                     updateOn: "blur",
                 }
             ],
@@ -49,6 +50,10 @@ export class RequestAccessFormComponent {
             validators: [PasswordMatch("password", "passwordConfirm")],
         }
     );
+
+    get isSubmissionDisabled(): boolean {
+        return this.requestAccessForm.invalid || this.requestAccessForm.pristine;
+    }
 
     get hasUnmatchedPasswords(): boolean {
         return this.requestAccessForm.errors?.notMatching === true
@@ -88,17 +93,26 @@ export class RequestAccessFormComponent {
         private authService: AuthService,
         private router: Router,
         private alertService: AlertService,
+        private emailValidator: EmailExistsValidator,
+        private businessValidator: BusinessExistsValidator,
     ) {}
 
     onSubmitRegistration(): void {
+        this.isSubmitting = true;
         this.submissionAttempted = true;
 
-        if (this.requestAccessForm.invalid) { return; }
+        if (this.requestAccessForm.invalid) {
+            this.isSubmitting = false;
+            return;
+        }
 
         this.authService.register(new NewCustomer(this.requestAccessForm.value))
             .subscribe(
                 (_) => this.router.navigate(["auth", "register", "success"]),
-                (_) => this.alertService.error("It looks like we were not able to register you, check with info@dakcoffeeroasters.com"),
+                (_) => {
+                    this.isSubmitting = false;
+                    this.alertService.error("It looks like we were not able to register you, check with info@dakcoffeeroasters.com")
+                },
             );
     }
 

@@ -8,8 +8,6 @@ import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { Product } from "@shared/models/classes/product.class";
 import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
-const DISCOUNT_CODE = "WALLET-ORDER-121";
-
 @Injectable({
     providedIn: "root"
 })
@@ -31,10 +29,30 @@ export class CartService {
         private weightPipe: WeightPipe,
     ) {}
 
-    applyDiscount(code?: string): void {
-        (window as any).Snipcart.api.cart.applyDiscount(code ?? DISCOUNT_CODE)
+    applyDiscount(code: string): void {
+        if (this.discountExists(code)) {
+            this.removeDiscount(code, true);
+        } else {
+            this.addDiscount(code);
+        }
+    }
+
+    addDiscount(code: string): void {
+        (window as any).Snipcart.api.cart.applyDiscount(code)
             .then(({result}: any) => {
                 this.alertService.success(`Applied wallet discount of ${result.discount.value} to cart`);
+            })
+            .catch((err: any) => {
+                console.log(err);
+            });
+    }
+
+    removeDiscount(code: string, readd: boolean = false): void {
+        (window as any).Snipcart.api.cart.removeDiscount(code)
+            .then((_: any) => {
+                if (readd) {
+                    this.addDiscount(code);
+                }
             })
             .catch((err: any) => {
                 console.log(err);
@@ -47,7 +65,7 @@ export class CartService {
 
     addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
         const { id, name, price } = product;
-        const url = `http://9d28-2a02-a210-2504-5c80-9901-9724-fcfd-e502.ngrok.io/snipcartParser`;
+        const url = `http://02b3-2a02-a210-2504-5c80-e080-332f-86c9-ba2c.ngrok.io/snipcartParser`;
 
         (window as any).Snipcart.api.cart.items.add({
             id,
@@ -114,5 +132,10 @@ export class CartService {
 
     private updatePricingService(): void {
         this.pricingTierService.updateDiscount(this.cartWeight$.value);
+    }
+
+    private discountExists(code: string): any {
+        const activeDiscounts = (window as any).Snipcart.store.getState().cart.discounts.items;
+        return activeDiscounts.some((oneDiscount: any) => oneDiscount.code === code);
     }
 }

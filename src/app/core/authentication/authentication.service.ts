@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { from, Observable } from "rxjs";
-import { shareReplay, switchMap, tap } from "rxjs/operators";
+import { combineLatest, from, Observable, of } from "rxjs";
+import { concatMap, map, shareReplay, switchMap } from "rxjs/operators";
 
 import { environment as config } from "@env";
 import { DataApiService } from "@core/abstracts/data-api.service";
-import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { ErrorHandlerService } from "@core/errors/error-handler.service";
-import { CartService } from "@core/cart/cart.service";
 import { PersistenceService } from "@core/storage/persistence.service";
 
 import { NewCustomer } from "@shared/models/classes/new-customer.class";
@@ -26,8 +24,6 @@ export class AuthService extends DataApiService<NewUser> {
     constructor(
         protected http: HttpClient,
         private router: Router,
-        private pricingTierService: PricingTierService,
-        private cartService: CartService,
         private errorService: ErrorHandlerService,
         private storageService: PersistenceService,
     ) {
@@ -47,15 +43,18 @@ export class AuthService extends DataApiService<NewUser> {
     login(email: string, password: string ): Observable<Partial<ExistingUser & {loggedIn: boolean}>> {
         return this.http.post<Partial<ExistingUser & {loggedIn: boolean}>>(this.url + "login/", { email, password })
             .pipe(
-                tap(({ loggedIn, walletValue, walletDiscountCode }) => {
-                    if (loggedIn) {
-                        (window as any).Snipcart.api.customer.signin(email, password)
-                            .then((snip: any) => {
-                                this.setSession(snip.sessionToken);
-                                this.pricingTierService.toggleDiscount(walletValue !== 0);
-                                this.pricingTierService.updateWalletAmount(walletValue);
-                                this.cartService.applyDiscount(walletDiscountCode);
-                            });
+                concatMap((res) => {
+                    return combineLatest(
+                        of(res),
+                        this.loginSnipcartCustomer(email, password),
+                    );
+                }),
+                map(([backendRes, frontendRes]) => {
+                    if (backendRes.loggedIn && frontendRes.loggedIn) {
+                        this.setSession(frontendRes.sessionToken);
+                        return { ...backendRes, snipcartSessionToken: frontendRes.sessionToken };
+                    } else {
+                        throw new Error("Error during authentication");
                     }
                 }),
                 shareReplay()
@@ -73,8 +72,13 @@ export class AuthService extends DataApiService<NewUser> {
     isLoggedIn(): boolean {
         // TODO need to also check expiry
         return this.storageService.get(USER_ID_KEY) != null;
-        //const token = this.storageService.get(USER_ID_KEY);
-        //return token === DEV.token;
+        // const token = this.storageService.get(USER_ID_KEY);
+        // return token === DEV.token;
+    }
+
+    userExists(value: string, type: string = "email"): Observable<{valueTaken: boolean}> {
+        const queryParam = type != null ? `?type=${type}` : "";
+        return this.http.get<{valueTaken: boolean}>(`${this.url}validate/${value}${queryParam}`);
     }
 
     private setSession(id: string): void {
@@ -95,5 +99,15 @@ export class AuthService extends DataApiService<NewUser> {
                 this.errorService.processError(err, "Unable to create customer");
             })
         );
+    }
+
+    private loginSnipcartCustomer(email: string, password: string): Observable<any> {
+        return from((window as any).Snipcart.api.customer.signin(email, password)
+            .then((snip: any) => {
+                return { loggedIn: true, sessionToken: snip.sessionToken };
+            })
+            .catch((err: any): void => {
+                this.errorService.processError(err, "Unable to login customer");
+            }));
     }
 }
