@@ -1,10 +1,13 @@
 <div class="filter-container">
-    <div class="filter-name">{{ propertyToFilter.displayName }}:</div>
-    <div class="filter-options-container">
+    <div (click)="onFilterClicked()" class="filter-heading">
+        <p class="filter-name">{{ propertyToFilter.displayName }}</p>
+        <p *ngIf="numberOfActiveFilters > 0">({{ numberOfActiveFilters }}) active</p>
+    </div>
+    <div class="filter-options-container" [ngClass]="{ 'filter-options-container--open': isOpen }">
         <div *ngFor="let option of propertyToFilter.options"
             class="filter-options-label"
             [ngClass]="{ 'selected': isSelected(option) }"
-            (click)="onClick(option)">
+            (click)="onFilterOptionClicked(option)">
                 {{ option }}
         </div>
     </div>

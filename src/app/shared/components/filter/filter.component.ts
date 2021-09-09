@@ -1,13 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-
-import { FilterType } from "@shared/models/types/filter-type.type";
 import { Subscription } from "rxjs";
 
+import { FilterType } from "@shared/models/types/filter-type.type";
 
 type Selection = Set<string>;
-
 
 @Component({
     selector: "app-filter",
@@ -24,11 +22,16 @@ type Selection = Set<string>;
 export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() propertyToFilter!: FilterType;
     private selection: Selection = new Set();
-    private onChange = (_: Selection) => this.internalOnChange();
-    private onTouched = () => {};
     private touched = false;
     private disabled = false;
     private subscriptions: Subscription = new Subscription();
+    isOpen = false;
+    private onChange = (_: Selection) => this.internalOnChange();
+    private onTouched = () => {};
+
+    get numberOfActiveFilters(): number {
+        return this.selection.size;
+    }
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -48,9 +51,13 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
         this.subscriptions.unsubscribe();
     }
 
-    onClick(id: string): void {
+    onFilterClicked(): void {
+        this.toggleAccordion();
+    }
+
+    onFilterOptionClicked(id: string): void {
         this.markAsTouched();
-        if (this.disabled) return;
+        if (this.disabled) { return; }
 
         if (this.selection.has(id)) {
             this.selection.delete(id);
@@ -65,7 +72,7 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
     }
 
     writeValue(selection: Selection): void {
-        if (selection == null) return;
+        if (selection == null) { return; }
 
         this.selection = selection;
         this.onChange(this.selection);
@@ -88,7 +95,7 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
 
     private updateFromQueryParams(queryParams: Params): void {
         const rawSelection = queryParams[this.propertyToFilter.key];
-        if (rawSelection == null) return;
+        if (rawSelection == null) { return; }
 
         try {
             const selection = JSON.parse(rawSelection) as string[];
@@ -96,7 +103,7 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
                 .control
                 ?.get(this.propertyToFilter.key)
                 ?.patchValue(new Set(selection));
-        } catch (_) { return };
+        } catch (_) { return; }
     }
 
     private internalOnChange(): void {
@@ -107,16 +114,20 @@ export class FilterComponent implements OnInit, OnDestroy, ControlValueAccessor 
             [],
             {
                 relativeTo: this.activatedRoute,
-                queryParams: queryParams,
+                queryParams,
                 queryParamsHandling: "merge",
             }
         );
     }
 
-    private markAsTouched() {
-        if (this.touched) return;
+    private markAsTouched(): void {
+        if (this.touched) { return; }
 
         this.onTouched();
         this.touched = true;
+    }
+
+    private toggleAccordion(): void {
+        this.isOpen = !this.isOpen;
     }
 }
