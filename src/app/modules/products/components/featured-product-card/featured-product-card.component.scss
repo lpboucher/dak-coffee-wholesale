@@ -15,12 +15,11 @@
 
 .featured-product-card-body {
     @apply flex flex-col;
-    @apply py-4 w-full;
+    @apply p-4 w-full;
 }
 
 .featured-product-card-body-header {
     @apply flex justify-between;
-    @apply px-4;
 }
 
 .featured-product-card-body-highlight {
@@ -35,12 +34,12 @@
 }
 
 .featured-product-card-body-description {
-    @apply px-4 text-sm;
+    @apply text-sm;
 }
 
 .featured-product-card-body-price-container {
     @apply flex justify-between place-self-end;
-    @apply px-4 mt-auto w-full;
+    @apply mt-auto w-full;
 }
 
 .featured-product-card-body-price {
