@@ -33,3 +33,7 @@ export const sentenceToKebab = (sentence: string, toUppercase: boolean = false) 
     const transformedSentence = sentence.match(kebabRegEx)!.join("-");
     return toUppercase ? transformedSentence.toUpperCase() : transformedSentence.toLowerCase();
 };
+
+export const isEmptyInputValue = (value: any): boolean => {
+    return value === null || value.length === 0;
+};

@@ -50,10 +50,10 @@
 }
 
 .login-card-submit-button {
-    @apply w-full py-3 mt-10 bg-gray-800 rounded-sm;
+    @apply w-full flex items-center justify-center py-3 mt-10 bg-gray-800 rounded-sm;
     @apply font-medium text-white uppercase;
 
-    @apply focus:outline-none hover:bg-gray-700 hover:shadow-none;
+    @apply focus:outline-none hover:bg-gray-700 hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .login-card-submission-error-message {
@@ -68,4 +68,9 @@
 .login-card-forgot-password {
     @apply flex-1;
     @apply underline;
+}
+
+.login-spinner {
+    @apply animate-spin h-8 w-8 ml-3;
+    stroke: white;
 }

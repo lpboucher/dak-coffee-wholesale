@@ -25,7 +25,18 @@
                         characters.</p>
                 </div>
 
-                <button class="login-card-submit-button">Login</button>
+                <button
+                    class="login-card-submit-button"
+                    [disabled]="isSubmissionDisabled"
+                >
+                    Submit
+                    <svg-icon
+                        *ngIf="isSubmitting"
+                        src="/assets/icons/spinner.svg"
+                        [svgClass]="'login-spinner'">
+                    </svg-icon>
+                </button>
+
                 <div *ngIf="submissionAttempted" class="login-card-submission-error-message">
                     <p>{{ asyncErrorMessage }}</p>
                 </div>
