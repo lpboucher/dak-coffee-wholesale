@@ -21,6 +21,11 @@ import { USER_ID_KEY, USER_EXPIRY, WALLET_AMOUNT_KEY } from "@utils/constants/st
 })
 export class AuthService extends DataApiService<NewUser> {
 
+    get userEmail(): string {
+        const snipcartState = (window as any).Snipcart.store.getState();
+        return snipcartState.customer.email;
+    }
+
     constructor(
         protected http: HttpClient,
         private router: Router,

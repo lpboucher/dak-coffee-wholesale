@@ -1,6 +1,10 @@
 import { Component, ViewChild } from "@angular/core";
 import { FormBuilder, Validators  } from "@angular/forms";
 
+import { AlertService } from "@core/alerts/alert.service";
+import { CommunicationApiService } from "@core/communication/communication.service";
+import { AuthService } from "@core/authentication/authentication.service";
+
 import { ModalBackboneComponent } from "@shared/components/modals";
 
 import { SamplesRoast } from "@shared/models/types/roast.type";
@@ -18,7 +22,12 @@ export class SamplesConfirmationModalComponent {
         selection: ["", Validators.required],
     });
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private alertService: AlertService,
+        private messageService: CommunicationApiService,
+        private authService: AuthService,
+    ) {}
 
     onCancel(): void {
         this.close();
@@ -28,7 +37,17 @@ export class SamplesConfirmationModalComponent {
         this.submissionAttempted = true;
 
         if (this.sampleSelectionForm.valid) {
-            this.close();
+            this.messageService.sendMessage(this.authService.userEmail, "sample-request")
+                .subscribe(
+                    (_) => {
+                        this.alertService.success("Thank you! We will process your request");
+                        this.close();
+                    },
+                    (err) => {
+                        console.log(err);
+                        this.alertService.error("Oups, maybe check with info@dakcoffeeroasters.com");
+                    },
+                );
         }
     }
 
