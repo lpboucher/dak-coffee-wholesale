@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { flatten } from "@angular/compiler";
 import { Observable, of, zip } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 
 import { environment as config } from "@env";
 import { DataApiService } from "@core/abstracts/data-api.service";
@@ -27,7 +27,9 @@ export class ProductApiService extends DataApiService<Product> {
 
     getProducts(): Observable<Product[]> {
         return zip(this.coffeeApiService.getCoffees(), this.merchandiseApiService.getMerchandise())
-            .pipe(map((products: Product[][]) => flatten(products)));
+            .pipe(
+                map((products: Product[][]) => flatten(products))
+            );
     }
 
     getProduct(slug: string): Observable<Product | undefined> {
@@ -37,12 +39,10 @@ export class ProductApiService extends DataApiService<Product> {
             );
     }
 
-    getFeaturedProducts(): Observable<Product[]> {
-        return this.getProducts()
+    getFeaturedProducts(collection: string): Observable<Product[]> {
+        return this.getAll("products/" + collection)
             .pipe(
-                map(arr =>
-                    arr.filter(p => p.collection === "featured")
-                        .slice(0, 2)),
+                map((res: any) => res.slice(0, 2))
             );
     }
 
@@ -59,7 +59,7 @@ export class ProductApiService extends DataApiService<Product> {
     getRelatedProducts(slug: string): Observable<Product[]> {
         return this.getProducts()
             .pipe(
-                map(arr => arr.filter(e => e.slug != slug)
+                map(arr => arr.filter(e => e.slug !== slug)
                     .slice(0, 4)),
             );
     }

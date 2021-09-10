@@ -36,7 +36,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.featuredProducts$ = this.productService.getFeaturedProducts();
+        this.featuredProducts$ = this.productService.getFeaturedProducts("upcoming");
 
         this.subscriptions.add(this.route.params
             .pipe(
@@ -73,10 +73,10 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.activeFilters = Object.keys(changes)
             .map(key => {
                 const active = [...(changes[key] ?? [])];
-                return active.length == 0 ? {} : { [key]: active };
+                return active.length === 0 ? {} : { [key]: active };
             })
             .reduce((union, obj) => {
-                return { ...union, ...obj }
+                return { ...union, ...obj };
             }, {});
     }
 }
