@@ -51,7 +51,7 @@
 }
 
 .widget-container {
-    @apply flex flex-wrap items-center justify-evenly;
+    @apply flex flex-wrap items-stretch justify-evenly;
     @apply my-1;
 }
 

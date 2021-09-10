@@ -26,7 +26,7 @@
                 [svgStyle]="{ 'width.px': 20, 'height.px': 20 }">
             </svg-icon>
         </app-widget>
-        <app-widget class="widget-item" content="€{{ cartTotal }} ({{ cartWeight }} kg)" (widgetClickEvent)="onCartWidgetClicked()">
+        <app-widget class="widget-item" content="€{{ cartTotal }}" helperContent="({{ cartWeight }} kg)" (widgetClickEvent)="onCartWidgetClicked()">
             <svg-icon
                 src="/assets/icons/cart.svg"
                 [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }">

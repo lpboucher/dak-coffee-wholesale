@@ -7,6 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class WidgetComponent implements OnInit {
     @Input() content: string = "";
+    @Input() helperContent: string = "";
     @Output() widgetClickEvent: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() { }
