@@ -14,7 +14,9 @@ export class AppComponent implements OnInit, OnDestroy {
     title = "dak-wholesale";
     cartEvents?: SnipcartEvents;
 
-    constructor(private snipcartService: SnipcartService) {
+    constructor(private snipcartService: SnipcartService) { }
+
+    ngOnInit(): void {
         this.subscriptions.add(fromEvent(document, "snipcart.ready")
             .subscribe(_ => {
                 this.cartEvents = {
@@ -28,8 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
             })
         );
     }
-
-    ngOnInit(): void {}
 
     ngOnDestroy(): void {
         if (this.cartEvents == null) { return; }
