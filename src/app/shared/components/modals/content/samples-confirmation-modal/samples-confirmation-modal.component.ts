@@ -3,7 +3,7 @@ import { FormBuilder, Validators  } from "@angular/forms";
 
 import { ModalBackboneComponent } from "@shared/components/modals";
 
-import { Roast } from "@shared/models/types/roast.type";
+import { SamplesRoast } from "@shared/models/types/roast.type";
 
 @Component({
     selector: "app-samples-confirmation-modal",
@@ -12,7 +12,7 @@ import { Roast } from "@shared/models/types/roast.type";
 })
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalBackboneComponent | undefined = undefined;
-    selectionOptions: Roast[] = ["Filter", "Espresso", "Both"];
+    selectionOptions: SamplesRoast[] = ["Filter", "Espresso", "Both"];
     submissionAttempted: boolean = false;
     sampleSelectionForm = this.fb.group({
         selection: ["", Validators.required],

@@ -9,14 +9,14 @@
         </div>
         <div class="modal-body-content">
             <h3 class="modal-body-content-header" id="modal-title">Order samples</h3>
-            <p class="modal-body-content-message">Select blend:</p>
+            <p class="modal-body-content-message">Select roast of samples:</p>
             <form [formGroup]="sampleSelectionForm" (ngSubmit)="onConfirm()">
                 <label class="modal-body-content-selection-label" *ngFor="let option of selectionOptions">
                     <input formControlName="selection" type="radio" value="{{ option }}" class="modal-body-content-selection-input" />
                     {{ option }}
                 </label>
             </form>
-            <div class="modal-body-no-selection" *ngIf="submissionAttempted && sampleSelectionForm.invalid">Please select a blend before submitting, or click "Cancel".</div>
+            <div class="modal-body-no-selection" *ngIf="submissionAttempted && sampleSelectionForm.invalid">Please select a roast before submitting, or click "Cancel".</div>
         </div>
     </div>
     <div class="modal-footer">

@@ -1,6 +1,8 @@
 import { ProductType } from "@shared/models/types/product-type.type";
 import { Product } from "@shared/models/classes/product.class";
-import { ProductAttribute } from "./product-attribute.class";
+import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
+
+import { ROAST_OPTIONS } from "@utils/constants/form-options";
 
 export class Coffee extends Product {
     productType: ProductType = "coffee";
@@ -38,11 +40,7 @@ export class Coffee extends Product {
                     ]}),
                 new ProductAttribute({
                     name: "roast",
-                    options: [
-                        { name: "Filter" },
-                        { name: "Espresso" },
-                        { name: "Both" },
-                    ]
+                    options: ROAST_OPTIONS.map(opt => ({name: opt})),
                 })
             ];
 
