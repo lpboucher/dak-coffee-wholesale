@@ -45,18 +45,21 @@ export class AuthService extends DataApiService<NewUser> {
             );
     }
 
-    login(email: string, password: string ): Observable<Partial<ExistingUser & {loggedIn: boolean}>> {
-        return this.http.post<Partial<ExistingUser & {loggedIn: boolean}>>(this.url + "login/", { email, password })
+    login(email: string, password: string ): Observable<Partial<ExistingUser & {loggedIn: boolean, expires: Date}>> {
+        return this.loginSnipcartCustomer(email, password)
             .pipe(
                 concatMap((res) => {
                     return combineLatest(
+                        this.http.post<Partial<ExistingUser & { loggedIn: boolean, expires: Date }>>(
+                            this.url + "login/",
+                            { email, password, sessionToken: res.sessionToken }
+                        ),
                         of(res),
-                        this.loginSnipcartCustomer(email, password),
                     );
                 }),
                 map(([backendRes, frontendRes]) => {
                     if (backendRes.loggedIn && frontendRes.loggedIn) {
-                        this.setSession(frontendRes.sessionToken);
+                        this.setSession(frontendRes.sessionToken, new Date(backendRes.expires!));
                         return { ...backendRes, snipcartSessionToken: frontendRes.sessionToken };
                     } else {
                         throw new Error("Error during authentication");
@@ -69,16 +72,16 @@ export class AuthService extends DataApiService<NewUser> {
     logout(): void {
         this.storageService.remove(USER_ID_KEY);
         this.storageService.remove(WALLET_AMOUNT_KEY);
-        // TODO need to also remove expiry
-        // localStorage.removeItem(USER_EXPIRY);
+        this.storageService.remove(USER_EXPIRY);
         this.router.navigate(["auth", "login"]);
     }
 
     isLoggedIn(): boolean {
-        // TODO need to also check expiry
-        return this.storageService.get(USER_ID_KEY) != null;
-        // const token = this.storageService.get(USER_ID_KEY);
-        // return token === DEV.token;
+        const now = new Date();
+        const expiry = this.storageService.get(USER_EXPIRY);
+        const sessionIsSet = this.storageService.get(USER_ID_KEY) != null;
+        const isNotExpired = +expiry?.valueOf()! > now.valueOf();
+        return sessionIsSet && isNotExpired;
     }
 
     userExists(value: string, type: string = "email"): Observable<{valueTaken: boolean}> {
@@ -86,10 +89,9 @@ export class AuthService extends DataApiService<NewUser> {
         return this.http.get<{valueTaken: boolean}>(`${this.url}validate/${value}${queryParam}`);
     }
 
-    private setSession(id: string): void {
+    private setSession(id: string, expiresAt: Date): void {
         this.storageService.set(USER_ID_KEY, id);
-        // TODO need to also set expiry
-        // localStorage.setItem(USER_EXPIRY, JSON.stringify(expiresAt.valueOf()) );
+        this.storageService.set(USER_EXPIRY, expiresAt.valueOf());
     }
 
     private createSnipcartCustomer(email: string, password: string): Observable<any> {
