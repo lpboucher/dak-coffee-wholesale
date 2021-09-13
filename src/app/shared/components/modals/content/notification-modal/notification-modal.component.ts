@@ -14,6 +14,10 @@ import { ModalBackboneComponent } from "@shared/components/modals";
 export class NotificationModalComponent {
     @ViewChild("modal") modal: ModalBackboneComponent | undefined;
 
+    get userEmail(): string {
+        return this.authService.userEmail;
+    }
+
     constructor(
         private alertService: AlertService,
         private messageService: CommunicationApiService,
