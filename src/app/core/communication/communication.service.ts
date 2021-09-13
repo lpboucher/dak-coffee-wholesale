@@ -19,7 +19,7 @@ export class CommunicationApiService extends DataApiService<Message> {
         super(config.backendURL + "customers/messages/", http, Message);
     }
 
-    sendMessage(destinationEmail: string, messageType: CommunicationType): Observable<Message> {
+    sendMessage(destinationEmail: string, messageType: CommunicationType, data?: string): Observable<Message> {
         return this.create(new Message({ destinationEmail, messageType }));
     }
 }

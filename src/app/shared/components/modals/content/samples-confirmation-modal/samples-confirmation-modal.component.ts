@@ -37,7 +37,11 @@ export class SamplesConfirmationModalComponent {
         this.submissionAttempted = true;
 
         if (this.sampleSelectionForm.valid) {
-            this.messageService.sendMessage(this.authService.userEmail, "sample-request")
+            this.messageService.sendMessage(
+                this.authService.userEmail,
+                "sample-request",
+                this.sampleSelectionForm.get("selection")?.value
+            )
                 .subscribe(
                     (_) => {
                         this.alertService.success("Thank you! We will process your request");
