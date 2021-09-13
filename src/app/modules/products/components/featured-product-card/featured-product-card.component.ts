@@ -5,7 +5,7 @@ import { ModalService } from "@core/views/modal.service";
 import { NotificationModalComponent } from "@shared/components/modals";
 
 import { Product } from "@shared/models/classes/product.class";
-import { Coffee } from "@app/shared/models/classes/coffee.class";
+import { Coffee } from "@shared/models/classes/coffee.class";
 
 @Component({
     selector: "app-featured-product-card",
