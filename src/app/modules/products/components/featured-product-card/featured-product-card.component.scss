@@ -28,6 +28,12 @@
     @apply bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
 }
 
+
+.featured-product-card-flavours {
+    @apply flex justify-evenly;
+    @apply py-1;
+}
+
 .featured-product-card-body-title {
     @apply mt-2 mb-2;
     @apply font-bold;
