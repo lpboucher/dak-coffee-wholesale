@@ -5,27 +5,33 @@
             <div class="product-detail-content">
                 <h2 class="product-detail-content-brand">{{ product.collection }}</h2>
                 <h1 class="product-detail-content-title">{{ product.name }}</h1>
-                <div *ngFor="let description of product.displayedDescription">
-                    <p class="product-detail-content-body">{{ description }}<p>
-                </div>
+                <p class="product-detail-content-body">{{ product.displayedDescription.join(", ") }}<p>
                 <div *ngFor="let detail of product?.displayedDetails">
                     <p class="product-detail-content-body">{{ detail }}<p>
+                </div>
+                <p class="product-detail-short-description">{{ product.shortDescription }}</p>
+                <div class="product-detail-flavours" *ngIf="flavours.length > 0">
+                    <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
                 </div>
                 <form [formGroup]="optionsForm" class="product-detail-selection-form">
                     <div class="product-detail-selection-group" *ngFor="let attribute of product.selectableAttributes">
                         {{ attribute.name }}:
-                        <label class="product-detail-selection-label" *ngFor="let option of attribute.options">
-                            <input formControlName="{{ attribute.name }}" type="radio" value="{{ option.name }}" class="product-detail-selection-input" />
-                            {{ option.name }}
-                        </label>
+                        <div class="product-detail-selection-options">
+                            <label
+                                *ngFor="let option of attribute.options"
+                                class="product-detail-selection-label"
+                                [ngClass]="{'product-detail-selection-label--selected': optionsForm.get(attribute.name!)?.value === option.name}"
+                            >
+                                <input formControlName="{{ attribute.name }}" type="radio" value="{{ option.name }}" class="product-detail-selection-input" />
+                                {{ option.name }}
+                            </label>
+                        </div>
                     </div>
+                    <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
                 </form>
                 <div class="product-detail-content-order-wrapper">
                     <span class="product-detail-content-order-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</span>
                     <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue">Add to cart</button>
-                    <form [formGroup]="optionsForm" class="product-detail-content-order-quantity-form">
-                        <app-quantity-input formControlName="quantity" [minValue]="1"></app-quantity-input>
-                    </form>
                 </div>
             </div>
         </div>
