@@ -20,8 +20,13 @@
 
 .product-card-body-highlight {
     @apply inline-block;
+    @apply invisible;
     @apply px-2 py-1 leading-none;
     @apply bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
+}
+
+.product-card-body-highlight--visible {
+    @apply visible;
 }
 
 .product-card-body-title {

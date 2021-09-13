@@ -4,6 +4,8 @@ import { ProductType } from "@shared/models/types/product-type.type";
 import { FilterableAttribute } from "@shared/models/types/filterable-attribute.type";
 import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
 
+import { environment as config } from "@env";
+
 export abstract class Product {
     abstract productType: ProductType;
     abstract attributes: ProductAttribute[];
@@ -12,9 +14,11 @@ export abstract class Product {
     price: string | null = null;
     collection: CollectionType | null = null;
     description: string | null = null;
+    shortDescription: string | null = null;
     slug: string | null = null;
     filterableAttributes: FilterableAttribute[] = [];
     images: ProductImages = { main: null, thumb: null };
+    releasedOn: Date | null = null;
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
@@ -38,6 +42,10 @@ export abstract class Product {
                 this.description = productShape.description;
             }
 
+            if (productShape.shortDescription != null) {
+                this.shortDescription = productShape.shortDescription;
+            }
+
             if (productShape.slug != null) {
                 this.slug = productShape.slug;
             }
@@ -50,6 +58,10 @@ export abstract class Product {
                 if (productShape.images.thumb != null) {
                     this.images.thumb = productShape.images.thumb;
                 }
+            }
+
+            if (productShape.releasedOn != null) {
+                this.releasedOn = new Date(productShape.releasedOn);
             }
         }
     }
@@ -77,5 +89,10 @@ export abstract class Product {
 
     get selectableAttributes(): ProductAttribute[] {
         return this.attributes.filter((attribute) => attribute.name !== "volume-discount");
+    }
+
+    get isNewProduct(): boolean {
+        const today = new Date();
+        return this.releasedOn != null && (today.getTime() - config.newProductLapse <= this.releasedOn.getTime());
     }
 }

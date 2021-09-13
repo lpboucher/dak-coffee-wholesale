@@ -3,10 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  backendURL: "http://127.0.0.1:4200/api/",
-  cloudinaryCloudName: "dak-coffee-roasters",
-  businessEmailAddress: "info@dakcoffeeroasters",
+    production: false,
+    backendURL: "http://127.0.0.1:4200/api/",
+    cloudinaryCloudName: "dak-coffee-roasters",
+    businessEmailAddress: "info@dakcoffeeroasters",
+    newProductLapse: 30 * 24 * 60 * 60 * 1000,
 };
 
 /*
