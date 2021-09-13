@@ -40,5 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.cartEvents.updatedItemSubscription();
         this.cartEvents.removedItemSubscription();
         this.cartEvents.orderCompletedSubscription();
+
+        this.subscriptions.unsubscribe();
     }
 }
