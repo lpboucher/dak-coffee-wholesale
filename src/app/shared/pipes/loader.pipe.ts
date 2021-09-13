@@ -10,7 +10,12 @@ import { StreamStatus } from "../models/interfaces/stream-status.interface";
 export class WithLoaderPipe implements PipeTransform {
     transform<T = any>(val: Observable<T>): Observable<StreamStatus<T>> {
         return val.pipe(
-            map((value: any) => ({ loading: false, value })),
+            map((value: any) => {
+                if (Array.isArray(value) && value.length === 0) {
+                    return { loading: true };
+                }
+                return { loading: false, value };
+            }),
             startWith({ loading: true }),
             catchError(error => of({ loading: false, error }))
         );
