@@ -37,3 +37,16 @@ export const sentenceToKebab = (sentence: string, toUppercase: boolean = false) 
 export const isEmptyInputValue = (value: any): boolean => {
     return value === null || value.length === 0;
 };
+
+export const chunks = (arr: any[], numberOfItemsPerChunk: number): any[][] => {
+    let i = 0;
+    const arrayChunks = [];
+    const n = arr.length;
+    const length = Math.ceil(n / numberOfItemsPerChunk);
+
+    while (i < n) {
+        arrayChunks.push(arr.slice(i, i += length));
+    }
+
+    return arrayChunks;
+};
