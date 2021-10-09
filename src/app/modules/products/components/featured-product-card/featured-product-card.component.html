@@ -7,6 +7,9 @@
             <h2 class="featured-product-card-body-title">{{ product.name }}</h2>
             <span class="featured-product-card-body-highlight">{{ product.collection }}</span>
         </div>
+        <div *ngIf="product?.releasedOn" class="featured-product-card-body-date">
+            <p class="featured-product-card-body-description">Expected: {{ product?.releasedOn | date }}</p>
+        </div>
         <div class="featured-product-card-flavours" *ngIf="flavours.length > 0">
             <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
         </div>

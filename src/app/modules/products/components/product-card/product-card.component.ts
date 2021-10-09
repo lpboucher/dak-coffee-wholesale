@@ -12,6 +12,8 @@ import { BaseProductComponent } from "@shared/abstracts/base-product/base-produc
     styleUrls: ["./product-card.component.scss"]
 })
 export class ProductCardComponent extends BaseProductComponent {
+    readonly limitedNumberOfFlavors: number = 3;
+
     get imageUrl(): string {
         if (this.product.images.thumb == null) { return ""; }
         return this.imageService.getProductThumbUrl(this.product.images.thumb);

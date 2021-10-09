@@ -28,6 +28,9 @@
     @apply bg-yellow-200 text-yellow-800 rounded-full font-semibold uppercase tracking-wide text-xs;
 }
 
+.featured-product-card-body-date {
+    @apply py-2 italic
+}
 
 .featured-product-card-flavours {
     @apply flex justify-evenly;

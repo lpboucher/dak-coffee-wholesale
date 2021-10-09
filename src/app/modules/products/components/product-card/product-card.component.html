@@ -24,6 +24,6 @@
         </div>
     </div>
     <div class="product-card-details-flavours" *ngIf="flavours.length > 0">
-        <app-flavour-icon *ngFor="let flavour of flavours" [flavour]="flavour"></app-flavour-icon>
+        <app-flavour-icon *ngFor="let flavour of flavours.slice(0, limitedNumberOfFlavors)" [flavour]="flavour"></app-flavour-icon>
     </div>
 </div>

@@ -13,6 +13,7 @@ import { Coffee } from "@shared/models/classes/coffee.class";
     styleUrls: ["./featured-product-card.component.scss"]
 })
 export class FeaturedProductCardComponent {
+    readonly limitedNumberOfFlavors: number = 4;
     @Input() product!: Product;
 
     get imageUrl(): string {
@@ -22,7 +23,7 @@ export class FeaturedProductCardComponent {
 
     get flavours(): string[] {
         return this.product.productType === "coffee"
-            ? (this.product as Coffee).tastingNotes ?? []
+            ? (this.product as Coffee).tastingNotes.slice(0, this.limitedNumberOfFlavors) ?? []
             : [];
     }
 

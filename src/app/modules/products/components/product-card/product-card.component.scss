@@ -73,6 +73,6 @@
 }
 
 .product-card-details-flavours {
-    @apply flex justify-evenly;
+    @apply flex justify-evenly items-center;
     @apply py-2 border-t;
 }
