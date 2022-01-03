@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json --host",
-    "reload": "cp -r ~/dak-coffee-wholesale/dist/dak-wholesale/. /var/www/wholesale.dakcoffeeroasters.com/html && sudo systemctl reload nginx",
+    "reload": "sudo cp -r ~/dak-coffee-wholesale/dist/dak-wholesale/. /var/www/wholesale.dakcoffeeroasters.com/html && sudo systemctl reload nginx",
     "build": "ng build",
     "postbuild": "npm run reload",
     "test": "ng test",
