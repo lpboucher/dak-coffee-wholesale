@@ -61,13 +61,8 @@
 }
 
 .login-card-extras {
-    @apply mt-8 text-sm text-center;
+    @apply mt-8 text-sm text-center justify-center;
     @apply sm:flex sm:flex-wrap sm:mb-4 ;
-}
-
-.login-card-forgot-password {
-    @apply flex-1;
-    @apply underline;
 }
 
 .login-spinner {
