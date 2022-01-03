@@ -9,7 +9,9 @@
             [propertyToFilter]="property"
         ></app-filter>
     </form>
--->
+    -->
+    <!--
+    TODO readd featured products
     <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
         <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
             <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
@@ -20,6 +22,7 @@
             </ng-template>
         </ng-container>
     </app-grid-list>
+    -->
     <app-grid-list [gridGap]=4>
         <ng-container *ngIf="products$ | withLoader | async as products">
             <ng-template [ngIf]="!products.error && !products.loading">
