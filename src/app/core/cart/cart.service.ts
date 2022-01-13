@@ -70,6 +70,16 @@ export class CartService {
         // const url = `https://cc7f-2a02-a210-2501-f600-4523-4716-e448-3fc5.ngrok.io/snipcartParser`;
         const url = `${config.backendURL}wholesale/snipcartParser`;
 
+        console.log("adding", {
+            id,
+            name,
+            price,
+            url,
+            quantity: quantity ?? 1,
+            minQuantity: 1,
+            customFields,
+        });
+
         (window as any).Snipcart.api.cart.items.add({
             id,
             name,
