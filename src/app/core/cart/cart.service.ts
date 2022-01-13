@@ -68,7 +68,7 @@ export class CartService {
     addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
         const { id, name, price } = product;
         // const url = `https://cc7f-2a02-a210-2501-f600-4523-4716-e448-3fc5.ngrok.io/snipcartParser`;
-        const url = `${config.backendURL}/wholesale/snipcartParser`;
+        const url = `${config.backendURL}wholesale/snipcartParser`;
 
         (window as any).Snipcart.api.cart.items.add({
             id,
