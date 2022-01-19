@@ -23,7 +23,7 @@ export class AuthService extends DataApiService<NewUser> {
 
     get userEmail(): string {
         const snipcartState = (window as any).Snipcart.store.getState();
-        return snipcartState.customer.email;
+        return snipcartState.cart.email;
     }
 
     constructor(

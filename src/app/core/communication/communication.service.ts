@@ -20,6 +20,7 @@ export class CommunicationApiService extends DataApiService<Message> {
     }
 
     sendMessage(destinationEmail: string, messageType: CommunicationType, data?: string): Observable<Message> {
+        console.log("service", destinationEmail, messageType, data);
         return this.create(new Message({ destinationEmail, messageType }));
     }
 }
