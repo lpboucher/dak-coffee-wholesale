@@ -1,4 +1,4 @@
-export const CART_WEIGHT_THRESHOLD: number = 7.5;
+export const CART_WEIGHT_THRESHOLD: number = 5.0;
 
 export const NO_VOLUME_DISCOUNT: number = 0.3;
 export const LARGE_VOLUME_DISCOUNT: number = 0.45;
