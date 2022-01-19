@@ -3,6 +3,7 @@ import { CommunicationType } from "@shared/models/types/communication-type.type"
 export class Message {
     destinationEmail!: string;
     messageType!: CommunicationType;
+    content: string = "";
     isInternal: boolean = false;
 
     constructor(newMessageShape?: Partial<Message>) {
@@ -17,6 +18,10 @@ export class Message {
                 if (this.messageType === "sample-request" || this.messageType === "product-notification") {
                     this.isInternal = true;
                 }
+            }
+
+            if (newMessageShape.content != null) {
+                this.content = newMessageShape.content;
             }
         }
     }

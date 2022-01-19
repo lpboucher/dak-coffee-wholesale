@@ -44,7 +44,7 @@ export class SamplesConfirmationModalComponent {
             this.messageService.sendMessage(
                 this.authService.userEmail,
                 "sample-request",
-                this.sampleSelectionForm.get("selection")?.value
+                this.sampleSelectionForm.get("selection")?.value,
             )
                 .subscribe(
                     (_) => {
