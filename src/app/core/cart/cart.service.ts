@@ -157,6 +157,9 @@ export class CartService {
         const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
         const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);
 
+        console.log("with 30%?", haveSomeItemsNoDiscount);
+        console.log("with 45%?", haveSomeItemsLargeDiscount);
+
         if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
             this.setItemsDiscount(items, this.pricingTierService.isDiscountActive);
         } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
