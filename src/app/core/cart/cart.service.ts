@@ -10,6 +10,8 @@ import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { Product } from "@shared/models/classes/product.class";
 import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
+import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT } from "@utils/constants/discounts";
+
 @Injectable({
     providedIn: "root"
 })
@@ -123,6 +125,7 @@ export class CartService {
         this.updateCartTotal(total);
         this.updateCartWeight(items);
         this.updatePricingService();
+        this.updateItemsPricingDiscount(items);
     }
 
     private updateCartTotal(total: number): void {
@@ -145,6 +148,20 @@ export class CartService {
 
     private updatePricingService(): void {
         this.pricingTierService.updateDiscount(this.cartWeight$.value);
+    }
+
+    private updateItemsPricingDiscount(items: any): void {
+        console.log(items);
+        // const haveSomeItems30Discount
+        // const haveSomeItems45Discount
+        /*if (this.pricingTierService.isDiscountActive === true) {
+
+        }*/
+    }
+
+    private setItemsDiscount(items: any, hasDiscount = false): void {
+        const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
+        console.log("new discount", newDiscount);
     }
 
     private discountExists(code: string): any {
