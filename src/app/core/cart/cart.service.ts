@@ -171,7 +171,7 @@ export class CartService {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
 
         const updatePromises = items.map((oneItem: any) => {
-            const otherCustomFields = oneItem.customField.filter((oneField: any) => oneField.name !== "volume-discount");
+            const otherCustomFields = oneItem.customFields.filter((oneField: any) => oneField.name !== "volume-discount");
             const baseVolumeDiscountField = items[0].customFields.find((oneField: any) => oneField.name === "volume-discount");
             return (window as any).Snipcart.api.cart.items.update({
                 uniqueId: oneItem.uniqueId,
