@@ -175,12 +175,14 @@ export class CartService {
 
     private itemsHaveDisount(items: any, discount: number = NO_VOLUME_DISCOUNT): boolean {
         return items.some((oneItem: any) => {
+            console.log(oneItem.name, this.findItemDiscount(oneItem), this.percentStringPipe.transform(discount));
             return this.findItemDiscount(oneItem) === this.percentStringPipe.transform(discount);
         });
     }
 
     private findItemDiscount(item: any): string {
         const volumeField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
+        console.log("found discount field", volumeField.value);
         return volumeField.value;
     }
 
