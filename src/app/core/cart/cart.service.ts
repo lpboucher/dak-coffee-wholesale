@@ -127,7 +127,7 @@ export class CartService {
         this.updateCartTotal(total);
         this.updateCartWeight(items);
         this.updatePricingService();
-        this.updateItemsPricingDiscount(items);
+        this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
     }
 
     private updateCartTotal(total: number): void {
@@ -152,7 +152,7 @@ export class CartService {
         this.pricingTierService.updateDiscount(this.cartWeight$.value);
     }
 
-    private updateItemsPricingDiscount(items: any): void {
+    private async updateItemsPricingDiscount(items: any): Promise<void> {
         console.log(items);
         const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
         const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);
@@ -161,9 +161,9 @@ export class CartService {
         console.log("with 45%?", haveSomeItemsLargeDiscount);
 
         if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
-            this.setItemsDiscount(items, this.pricingTierService.isDiscountActive);
+            await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("set to 45%"));
         } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
-            this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive);
+            await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
         }
     }
 
@@ -172,7 +172,7 @@ export class CartService {
 
         const updatePromises = items.map((oneItem: any) => {
             const otherCustomFields = oneItem.customFields.filter((oneField: any) => oneField.name !== "volume-discount");
-            const baseVolumeDiscountField = items[0].customFields.find((oneField: any) => oneField.name === "volume-discount");
+            const baseVolumeDiscountField = oneItem.customFields.find((oneField: any) => oneField.name === "volume-discount");
             return (window as any).Snipcart.api.cart.items.update({
                 uniqueId: oneItem.uniqueId,
                 customFields: [
