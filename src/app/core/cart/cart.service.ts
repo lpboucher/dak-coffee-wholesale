@@ -167,8 +167,26 @@ export class CartService {
         }
     }
 
-    private setItemsDiscount(items: any, hasDiscount = false): void {
+    private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
+
+        const updatePromises = items.map((oneItem: any) => {
+            const otherCustomFields = oneItem.customField.filter((oneField: any) => oneField.name !== "volume-discount");
+            const baseVolumeDiscountField = items[0].customFields.find((oneField: any) => oneField.name === "volume-discount");
+            return (window as any).Snipcart.api.cart.items.update({
+                uniqueId: oneItem.uniqueId,
+                customFields: [
+                    ...otherCustomFields,
+                    {
+                        ...baseVolumeDiscountField,
+                        value: this.percentStringPipe.transform(newDiscount),
+                    },
+                ],
+            });
+        });
+
+        await Promise.all(updatePromises);
+        console.log("actual toggle discount active?", this.pricingTierService.isDiscountActive);
         console.log("items have different discounts, setting to:");
         console.log("new discount", this.percentStringPipe.transform(newDiscount));
     }
