@@ -28,6 +28,7 @@ import { VolumeDiscountPipe } from "@shared/pipes/volume-discount.pipe";
 import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
 import { WithLoaderPipe } from "@shared/pipes/loader.pipe";
+import { PercentStringPipe } from "@shared/pipes/percent-string.pipe";
 
 import { FLAVOUR_MAP } from "@utils/constants/flavours";
 
@@ -60,6 +61,7 @@ export const componentDeclarations: any[] = [
     WeightPipe,
     ProductsToFiltersPipe,
     CartModifierPipe,
+    PercentStringPipe,
 ];
 
 export const providerDeclarations: any[] = [
@@ -68,7 +70,8 @@ export const providerDeclarations: any[] = [
     VolumeDiscountPipe,
     CartModifierPipe,
     WeightPipe,
-   ProductsToFiltersPipe,
+    ProductsToFiltersPipe,
+    PercentStringPipe,
     {
         provide: "flavours",
         useValue: FLAVOUR_MAP,

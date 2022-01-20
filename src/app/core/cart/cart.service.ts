@@ -7,6 +7,7 @@ import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { AlertService } from "@core/alerts/alert.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
+import { PercentStringPipe } from "@shared/pipes/percent-string.pipe";
 import { Product } from "@shared/models/classes/product.class";
 import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
@@ -31,6 +32,7 @@ export class CartService {
         private pricingTierService: PricingTierService,
         private alertService: AlertService,
         private weightPipe: WeightPipe,
+        private percentStringPipe: PercentStringPipe,
     ) {}
 
     applyDiscount(code: string): void {
@@ -152,16 +154,31 @@ export class CartService {
 
     private updateItemsPricingDiscount(items: any): void {
         console.log(items);
-        // const haveSomeItems30Discount
-        // const haveSomeItems45Discount
-        /*if (this.pricingTierService.isDiscountActive === true) {
+        const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
+        const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);
 
-        }*/
+        if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
+            this.setItemsDiscount(items, this.pricingTierService.isDiscountActive);
+        } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
+            this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive);
+        }
     }
 
     private setItemsDiscount(items: any, hasDiscount = false): void {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
-        console.log("new discount", newDiscount);
+        console.log("items have different discounts, setting to:");
+        console.log("new discount", this.percentStringPipe.transform(newDiscount));
+    }
+
+    private itemsHaveDisount(items: any, discount: number = NO_VOLUME_DISCOUNT): boolean {
+        return items.some((oneItem: any) => {
+            return this.findItemDiscount(oneItem) === this.percentStringPipe.transform(discount);
+        });
+    }
+
+    private findItemDiscount(item: any): string {
+        const volumeField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
+        return volumeField.value;
     }
 
     private discountExists(code: string): any {
