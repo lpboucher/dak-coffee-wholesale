@@ -11,6 +11,7 @@ export class Coffee extends Product {
     tastingNotes: string[] = [];
     process: string | null = null;
     varietal: string[] = [];
+    roastOptions: {name: "Filter" | "Espresso"}[] = [];
 
     constructor(coffeeShape?: Partial<Coffee>) {
         super(coffeeShape);
@@ -40,7 +41,7 @@ export class Coffee extends Product {
                     ]}),
                 new ProductAttribute({
                     name: "roast",
-                    options: ROAST_OPTIONS.map(opt => ({name: opt})),
+                    options: coffeeShape.roastOptions != null ? coffeeShape.roastOptions : ROAST_OPTIONS.map(opt => ({name: opt})),
                 })
             ];
 
