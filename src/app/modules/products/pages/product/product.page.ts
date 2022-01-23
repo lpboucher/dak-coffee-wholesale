@@ -50,9 +50,15 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             )
         );
 
+        this.subscriptions.add(this.route.queryParamMap
+            .subscribe(
+                (queryParams) => console.log(queryParams)
+            )
+        );
+
         this.subscriptions.add(this.filterForm.valueChanges
             .subscribe(
-                changes => this.updateActiveFilters(changes)
+                (changes) => this.updateActiveFilters(changes)
             )
         );
     }
