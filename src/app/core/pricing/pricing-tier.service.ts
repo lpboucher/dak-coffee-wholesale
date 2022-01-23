@@ -7,7 +7,7 @@ import { PersistenceService } from "@core/storage/persistence.service";
 
 import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@utils/constants/wallet";
-import { WALLET_AMOUNT_KEY } from "@utils/constants/storage";
+import { WALLET_AMOUNT_KEY, DISCOUNT_ACTIVE_KEY } from "@utils/constants/storage";
 
 @Injectable({
     providedIn: "root"
@@ -37,24 +37,29 @@ export class PricingTierService {
         private storageService: PersistenceService,
     ) {
         this.updateWalletAmount(this.retrieveWalletAmount());
-        this.toggleDiscount(this.walletAmount !== 0);
+
+        const activeDiscount = this.storageService.get(DISCOUNT_ACTIVE_KEY);
+
+        if (activeDiscount === "45%" || this.walletAmount !== 0) {
+            this.toggleDiscount(true);
+        }
     }
 
     toggleDiscount(value?: boolean): void {
-        this.isVolumeDiscountActive$.next(value ?? !this.isVolumeDiscountActive$.value);
+        const newValue = value ?? !this.isVolumeDiscountActive$.value;
+        this.isVolumeDiscountActive$.next(newValue);
+
+        this.storageService.set(DISCOUNT_ACTIVE_KEY, newValue ? "45%" : "30%");
     }
 
     updateDiscount(cartWeight: number): void {
-        if (cartWeight > CART_WEIGHT_THRESHOLD) {
+        if (cartWeight > CART_WEIGHT_THRESHOLD && this.storageService.get(DISCOUNT_ACTIVE_KEY) !== "45%") {
             this.toggleDiscount(true);
         }
     }
 
     retrieveWalletAmount(): number {
-        if (this.storageService.get(WALLET_AMOUNT_KEY) == null) {
-            return 0;
-        }
-        return parseFloat(this.storageService.get(WALLET_AMOUNT_KEY)!);
+        return parseFloat(this.storageService.get(WALLET_AMOUNT_KEY) ?? "0");
     }
 
     updateWalletAmount(newAmount: number = 0): void {
