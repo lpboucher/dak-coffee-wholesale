@@ -36,13 +36,23 @@ export const routes: Routes = [
         pathMatch: "full"
     },
     {
-        path: ":productType",
+        path: "coffee/:roast",
         component: ProductPageComponent,
         children: []
     },
     {
-        path: ":productType/:slug",
+        path: "coffee/:roast/:slug",
         component: SingleProductPageComponent,
+        children: []
+    },
+    {
+        path: "merchandise/:slug",
+        component: SingleProductPageComponent,
+        children: []
+    },
+    {
+        path: ":productType",
+        component: ProductPageComponent,
         children: []
     },
 ];

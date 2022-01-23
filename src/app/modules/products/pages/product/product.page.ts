@@ -40,19 +40,16 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
         this.subscriptions.add(this.route.params
             .pipe(
-                switchMap(({ productType }) => this.productService.getProductsByType(productType))
+                switchMap(({ productType }) => {
+                    console.log(productType);
+                    return this.productService.getProductsByType(productType)
+                })
             )
             .subscribe(
                 (products) => {
                     this.products.next(products);
                     this.updateFilterForm(products);
                 }
-            )
-        );
-
-        this.subscriptions.add(this.route.queryParamMap
-            .subscribe(
-                (queryParams) => console.log(queryParams)
             )
         );
 
