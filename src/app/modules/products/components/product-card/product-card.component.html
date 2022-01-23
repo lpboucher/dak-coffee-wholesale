@@ -3,7 +3,8 @@
         <img class="product-card-image" [src]="imageUrl" alt="">
     </div>
     <div class="product-card-body">
-        <span [ngClass]="{'product-card-body-highlight--visible': product.isNewProduct}" class="product-card-body-highlight">New</span>
+        <span [ngClass]="{'product-card-body-highlight--visible': product.isNewProduct}" class="product-card-body-highlight product-card-body-highlight--new">New</span>
+        <span [ngClass]="{'product-card-body-highlight--visible': product.isLowStock}" class="product-card-body-highlight product-card-body-highlight--low-stock">Low Stock</span>
         <div class="product-card-body-title">
             <h2>{{ product.name }}</h2>
             <h2 *ngIf="product.displayedDetails.length > 0"> — {{ product.displayedDetails }}</h2>

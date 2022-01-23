@@ -19,6 +19,7 @@ export abstract class Product {
     filterableAttributes: FilterableAttribute[] = [];
     images: ProductImages = { main: null, thumb: null };
     releasedOn: Date | null = null;
+    isLowStock: boolean = false;
 
     constructor(productShape?: Partial<Product>) {
         if (productShape != null) {
@@ -62,6 +63,10 @@ export abstract class Product {
 
             if (productShape.releasedOn != null) {
                 this.releasedOn = new Date(productShape.releasedOn);
+            }
+
+            if (productShape.isLowStock != null) {
+                this.isLowStock = productShape.isLowStock;
             }
         }
     }
