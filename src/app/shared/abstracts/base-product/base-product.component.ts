@@ -28,11 +28,11 @@ export abstract class BaseProductComponent implements OnInit {
     }
 
     get linkParams(): string[] {
-        if (this.optionsForm.get("roast")?.value != null) {
+        /*if (this.optionsForm.get("roast")?.value != null) {
             return ["/products", this.product.productType, this.optionsForm.get("roast")!.value.toLowerCase(), this.product.slug];
-        }
+        }*/
 
-        return ["/products", this.product.productType, this.product.slug!];
+        return ["/products", this.product.productType, "detail", this.product.slug!];
     }
 
     constructor(

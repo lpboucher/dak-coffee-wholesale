@@ -41,6 +41,11 @@ export const routes: Routes = [
         children: []
     },
     {
+        path: ":productType/detail/:slug",
+        component: ProductPageComponent,
+        children: []
+    },
+    /*{
         path: "coffee/:roast/:slug",
         component: SingleProductPageComponent,
         children: []
@@ -54,5 +59,5 @@ export const routes: Routes = [
         path: ":productType",
         component: ProductPageComponent,
         children: []
-    },
+    },*/
 ];
