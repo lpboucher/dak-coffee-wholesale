@@ -157,6 +157,7 @@ export class CartService {
     }
 
     private async updateItemsPricingDiscount(items: any): Promise<void> {
+        this.isPerformingUpdate = false;
         console.log(items);
         const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
         const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);
@@ -169,8 +170,6 @@ export class CartService {
         } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
             await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
         }
-
-        this.isPerformingUpdate = false;
     }
 
     private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
