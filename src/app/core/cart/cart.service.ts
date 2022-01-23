@@ -17,6 +17,7 @@ import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT } from "@utils/constants/disc
     providedIn: "root"
 })
 export class CartService {
+    private isPerformingUpdate = false;
     private cartTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
     private cartWeight$: BehaviorSubject<number> = new BehaviorSubject(0);
 
@@ -127,7 +128,10 @@ export class CartService {
         this.updateCartTotal(total);
         this.updateCartWeight(items);
         this.updatePricingService();
-        this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
+        if (this.isPerformingUpdate === false) {
+            this.isPerformingUpdate = true;
+            this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
+        }
     }
 
     private updateCartTotal(total: number): void {
@@ -165,6 +169,8 @@ export class CartService {
         } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
             await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
         }
+
+        this.isPerformingUpdate = false;
     }
 
     private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
