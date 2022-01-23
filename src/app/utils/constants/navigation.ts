@@ -13,12 +13,12 @@ export const NAVIGATION: NavigationItemType[] = [
                 children: [
                     {
                         label: "Filter",
-                        link: "/filter",
+                        link: "?roast=filter",
                         children: [],
                     },
                     {
                         label: "Espresso",
-                        link: "/espresso",
+                        link: "?roast=espresso",
                         children: [],
                     },
                 ],
