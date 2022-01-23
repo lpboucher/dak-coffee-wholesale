@@ -40,8 +40,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
         this.subscriptions.add(this.route.params
             .pipe(
-                switchMap(({ productType }) => {
-                    console.log(productType);
+                switchMap(({ productType, roast }) => {
+                    console.log(productType, roast);
                     return this.productService.getProductsByType(productType)
                 })
             )
