@@ -10,7 +10,18 @@ export const NAVIGATION: NavigationItemType[] = [
             {
                 label: "Coffees",
                 link: "/coffee",
-                children: [],
+                children: [
+                    {
+                        label: "Filter",
+                        link: "/filter",
+                        children: [],
+                    },
+                    {
+                        label: "Espresso",
+                        link: "/espresso",
+                        children: [],
+                    },
+                ],
             },
             {
                 label: "Merchandise",
