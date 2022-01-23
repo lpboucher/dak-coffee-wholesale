@@ -56,6 +56,19 @@ export class ProductApiService extends DataApiService<Product> {
         return typeToProducts[productType] || this.getProducts();
     }
 
+    getCoffeesByRoast(roast: "filter" | "espresso"): Observable<Product[]> {
+        return this.coffeeApiService.getCoffees()
+            .pipe(
+                map((arr) =>
+                    arr.filter((coffee) =>
+                        coffee.roastOptions.some((opt) =>
+                            opt.name.toLowerCase() === roast.toLowerCase()
+                        )
+                    )
+                )
+            );
+    }
+
     getRelatedProducts(slug: string): Observable<Product[]> {
         return this.getProducts()
             .pipe(

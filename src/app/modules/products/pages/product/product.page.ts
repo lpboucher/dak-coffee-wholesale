@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { BehaviorSubject, iif, Observable, Subscription } from "rxjs";
 import { switchMap } from "rxjs/operators";
 
 import { ProductApiService } from "@core/products/product-api.service";
@@ -42,7 +42,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             .pipe(
                 switchMap(({ productType, roast }) => {
                     console.log(productType, roast);
-                    return this.productService.getProductsByType(productType)
+                    // return this.productService.getProductsByType(productType)
+                    return iif(
+                        () => roast != null,
+                        this.productService.getCoffeesByRoast(roast),
+                        this.productService.getProductsByType(productType),
+                    );
                 })
             )
             .subscribe(
