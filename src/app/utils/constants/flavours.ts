@@ -49,6 +49,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "ripe-fruits": `${FLAVOUR_FOLDER_PATH}red-berries.svg`,
     "red-currant": `${FLAVOUR_FOLDER_PATH}red-currant.svg`,
     "rhubarb": `${FLAVOUR_FOLDER_PATH}rhubarb.svg`,
+    "rooibos": `${FLAVOUR_FOLDER_PATH}rooibos.svg`,
     "rose": `${FLAVOUR_FOLDER_PATH}rose.svg`,
     "rose-hips": `${FLAVOUR_FOLDER_PATH}rose.svg`,
     "strawberry": `${FLAVOUR_FOLDER_PATH}strawberry.svg`,
