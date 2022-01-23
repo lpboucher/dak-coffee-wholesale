@@ -21,7 +21,7 @@ export class SingleProductPageComponent implements OnInit {
 
     ngOnInit(): void {
         const slug = this.route.snapshot.paramMap.get("slug");
-        if (slug === null) {
+        if (slug == null) {
             return;
         }
 
