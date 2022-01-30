@@ -26,6 +26,7 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
     @Input() label: string = "";
     @Input() maxValue: number = 20;
     @Input() minValue: number = 1;
+    @Input() isLight: boolean = false;
     quantity: number = this.minValue;
 
     constructor(private clampPipe: ClampPipe) {}

@@ -1,17 +1,17 @@
 .product-card {
     @apply text-left;
-    @apply block h-full bg-white shadow-md rounded-lg overflow-hidden;
+    @apply block h-full bg-dak-white rounded-lg overflow-hidden;
     @apply cursor-pointer;
-
-    @apply hover:shadow-xl;
 }
 
 .product-card-image-container {
+    @apply max-h-52;
     @apply overflow-hidden;
 }
 
 .product-card-image {
-    @apply h-full w-full object-cover;
+    @apply max-h-52;
+    @apply h-full w-full object-contain;
 }
 
 .product-card-body {
@@ -22,15 +22,21 @@
     @apply inline-block;
     @apply invisible;
     @apply px-2 py-1 leading-none;
-    @apply rounded-full font-semibold uppercase tracking-wide text-xs;
+    @apply rounded-full uppercase tracking-wide;
+    @apply mr-1;
+    font-size: 0.5rem;
 
     &--new {
-        @apply bg-yellow-200 text-yellow-800;
+        @apply bg-dak-success text-dak-main;
     }
 
     &--low-stock {
-        @apply bg-red-200 text-red-800;
+        @apply bg-dak-warning text-dak-main;
     }
+}
+
+.product-card-body-highlight:last-child {
+    @apply m-0;
 }
 
 .product-card-body-highlight--visible {
@@ -39,6 +45,7 @@
 
 .product-card-body-title {
     @apply mt-2;
+    @apply text-dak-main uppercase text-sm font-bold;
 }
 
 .product-card-body-title * {
@@ -48,8 +55,8 @@
 }
 
 .product-card-body-details {
-    @apply mr-2;
-    @apply text-xs text-gray-700 italic;
+    @apply mr-2 mb-2;
+    @apply text-xs italic;
 }
 
 .product-card-body-description {
@@ -58,7 +65,6 @@
 
 .product-card-body-selection-form {
     @apply flex flex-col items-end justify-between;
-    @apply py-4;
 }
 
 .product-card-body-selection-item {
@@ -67,7 +73,8 @@
 
 .product-card-body-price-container {
     @apply flex justify-between;
-    @apply mt-3;
+    @apply mx-4 py-4;
+    @apply border-t border-dak-secondary;
 }
 
 .product-card-body-price {
@@ -77,10 +84,13 @@
 .product-card-body-add-to-cart {
     @apply inline-block;
     @apply px-3 py-2;
-    @apply bg-gray-200 rounded-full font-bold uppercase tracking-wide text-xs;
+    @apply bg-dak-main  text-dak-white rounded-md font-bold uppercase tracking-wide text-xs;
+
+    @apply focus:outline-none hover:bg-dak-secondary hover:shadow-none;
 }
 
 .product-card-details-flavours {
     @apply flex justify-evenly items-center;
-    @apply py-2 border-t;
+    @apply mx-4 py-1;
+    @apply border-t border-dak-secondary;
 }

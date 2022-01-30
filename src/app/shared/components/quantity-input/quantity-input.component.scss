@@ -13,7 +13,7 @@
 
 .quantity-input-label {
     @apply w-full;
-    @apply text-gray-700 text-sm font-semibold;
+    @apply text-dak-main text-sm font-semibold;
 }
 
 .quantity-input-button-container {
@@ -24,16 +24,31 @@
 
 .quantity-input-button {
     @apply h-full w-20;
-    @apply text-2xl font-thin text-gray-600;
-    @apply bg-gray-300 outline-none;
+    @apply text-2xl font-thin text-dak-main;
+    @apply bg-dak-gray outline-none;
     @apply cursor-pointer;
 
-    @apply hover:text-gray-700;
-    @apply hover:bg-gray-400;
+    @apply hover:text-dak-main;
+    @apply hover:bg-dak-secondary;
+}
+
+.quantity-input-button--light {
+    @apply h-full w-20;
+    @apply text-2xl font-thin text-dak-main;
+    @apply bg-dak-white outline-none;
+    @apply cursor-pointer;
+
+    @apply hover:text-dak-main;
+    @apply hover:bg-dak-secondary;
 }
 
 .quantity-input-left-button {
     @apply quantity-input-button;
+    @apply rounded-l;
+}
+
+.quantity-input-left-button--light {
+    @apply quantity-input-button--light;
     @apply rounded-l;
 }
 
@@ -42,13 +57,27 @@
     @apply rounded-r;
 }
 
+.quantity-input-right-button--light {
+    @apply quantity-input-button--light;
+    @apply rounded-r;
+}
+
 .quantity-input-value {
     @apply flex items-center;
     @apply w-full h-full;
-    @apply outline-none bg-gray-300;
-    @apply text-center font-semibold text-gray-700;
+    @apply outline-none bg-dak-gray;
+    @apply text-center font-semibold text-dak-main;
 
-    @apply hover:text-black focus:text-black;
+    @apply hover:text-dak-main focus:text-dak-main;
+}
+
+.quantity-input-value--light {
+    @apply flex items-center;
+    @apply w-full h-full;
+    @apply outline-none bg-dak-white;
+    @apply text-center font-semibold text-dak-main;
+
+    @apply hover:text-dak-main focus:text-dak-main;
 }
 
 .quantity-input-value::-webkit-inner-spin-button,

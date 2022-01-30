@@ -73,7 +73,7 @@ export class ProductApiService extends DataApiService<Product> {
         return this.getProducts()
             .pipe(
                 map(arr => arr.filter(e => e.slug !== slug)
-                    .slice(0, 4)),
+                    .slice(0, 3)),
             );
     }
 }

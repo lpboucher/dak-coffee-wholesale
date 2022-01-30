@@ -1,8 +1,20 @@
 <div class="request-access-page-container">
-    <div class="request-access-page-element">
-        <app-request-access-form class="flex-grow"></app-request-access-form>
+    <div class="request-access-page-header">
+        <header class="brand">
+            <svg-icon class="brand-logo" [applyClass]="true" src="/assets/icons/dak-logo.svg"></svg-icon>
+        </header>
+        <p class="request-access-log-in">Already registered?
+            <a class="request-access-log-in-link" routerLink="../login">
+                Log in here
+            </a>
+        </p>
     </div>
-    <div class="request-access-page-element">
-        <app-request-access-steps></app-request-access-steps>
+    <div class="request-access-page-content">
+        <div class="request-access-page-element">
+            <app-request-access-form class="flex-grow"></app-request-access-form>
+        </div>
+        <div class="request-access-page-element">
+            <app-request-access-steps></app-request-access-steps>
+        </div>
     </div>
 </div>

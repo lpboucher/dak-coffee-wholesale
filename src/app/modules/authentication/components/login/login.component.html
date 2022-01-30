@@ -6,8 +6,7 @@
 
                 <label class="login-card-email-title">
                     E-mail
-                    <input class="login-card-email-input" formControlName="email" type="text"
-                        placeholder="e-mail address" />
+                    <input class="login-card-email-input" formControlName="email" type="text"/>
                 </label>
                 <div *ngIf="hasErrors('email')" class="login-card-submission-error-message">
                     <p *ngIf="emailControl.errors?.required">Please enter an email address.</p>
@@ -16,8 +15,7 @@
 
                 <label class="login-card-password-title">
                     Password
-                    <input class="login-card-password-input" formControlName="password" type="password"
-                        placeholder="password" />
+                    <input class="login-card-password-input" formControlName="password" type="password"/>
                 </label>
                 <div *ngIf="hasErrors('password')" class="login-card-submission-error-message">
                     <p *ngIf="passwordControl.errors?.required">Please enter a password.</p>

@@ -1,24 +1,24 @@
 .wallet {
     @apply flex flex-col justify-center h-full;
-    @apply border-gray-200 rounded-lg text-center cursor-pointer;
+    @apply border-dak-secondary rounded-lg text-center cursor-pointer;
 
-    @apply md:border-2;
-    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+    @apply md:border md:py-3;
+    @apply hover:text-dak-main hover:bg-dak-gray transition-colors;
 }
 
 ::ng-deep svg {
     @apply w-8 h-8 mr-1 inline-block;
-    @apply text-indigo-500;
+    @apply text-dak-main;
 
     @apply md:mb-1 md:mx-auto md:block;
 }
 
 .wallet-contents {
-    @apply text-gray-900 inline;
+    @apply text-dak-main inline;
 
     @apply md:font-medium md:text-base;
 }
 
 .wallet-helper {
-    @apply text-sm;
+    @apply text-sm text-dak-main;
 }

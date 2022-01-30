@@ -1,41 +1,46 @@
+.request-access-background {
+    @apply bg-dak-gray;
+    @apply h-full;
+}
+
 .request-access-container {
     @apply grid place-items-center;
-    @apply mx-2;
+    @apply h-full;
 }
 
 .request-access-card {
-    @apply w-10/12;
+    @apply w-full h-full;
     @apply p-12 px-6 py-10;
-    @apply bg-white rounded-lg shadow-md;
+    @apply bg-dak-white rounded-lg;
+    @apply flex flex-col;
 
-    @apply md:w-11/12 lg:w-9/12 2xl:w-8/12;
+    // @apply md:w-11/12 lg:w-9/12 2xl:w-8/12;
     @apply sm:px-10 sm:py-6;
-    @apply lg:shadow-lg;
 }
 
 .request-access-title {
-    @apply text-center font-semibold text-3xl text-gray-800;
-
-    @apply lg:text-4xl;
+    @apply text-center uppercase font-semibold text-xl text-dak-main;
 }
 
 .request-access-form {
+    @apply flex flex-col justify-between;
+    @apply h-full;
     @apply mt-10;
 }
 
 .request-access-input-title {
     @apply block mt-6;
-    @apply text-xs font-semibold text-gray-600 uppercase;
+    @apply text-xs font-semibold text-dak-main uppercase;
 }
 
 .request-access-input {
     @apply block;
     @apply w-full py-2 px-1;
-    @apply border-b-2 border-gray-100;
-    @apply text-gray-800;
+    @apply border-b border-dak-secondary;
+    @apply text-dak-main;
 
-    @apply focus:text-gray-500;
-    @apply focus:outline-none focus:border-gray-200;
+    @apply focus:text-dak-main;
+    @apply focus:outline-none focus:border-dak-secondary;
 }
 
 select:invalid {
@@ -43,11 +48,10 @@ select:invalid {
 }
 
 .request-access-submit-button {
-    @apply w-full flex items-center justify-center py-3 mt-10;
-    @apply bg-gray-800 rounded-sm;
-    @apply font-medium text-white uppercase;
+    @apply w-full flex items-center justify-center py-3 mb-3 bg-transparent border-dak-secondary border rounded-md;
+    @apply font-medium text-dak-main uppercase;
 
-    @apply focus:outline-none hover:bg-gray-700 hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply focus:outline-none hover:bg-dak-main hover:border-dak-main hover:text-dak-white hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .request-access-submission-error-message {
@@ -57,5 +61,5 @@ select:invalid {
 
 .request-access-spinner {
     @apply animate-spin h-8 w-8 ml-3;
-    stroke: white;
+    stroke: #fcfcfc;
 }

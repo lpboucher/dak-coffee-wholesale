@@ -1,22 +1,22 @@
 .general-info-section {
-    @apply text-gray-600;
+    @apply text-dak-main bg-dak-gray;
 }
 
 .general-info-container {
-    @apply container mx-auto;
-    @apply px-5 py-24;
+    @apply mx-auto;
+    @apply p-8;
 }
 
 .general-info-block {
     @apply flex items-center flex-col;
-    @apply mx-auto border-b pb-10 mb-10 border-gray-200;
+    @apply mx-auto border-b p-8 mt-10 border-dak-secondary;
 
-    @apply lg:w-3/5 sm:flex-row;
+    @apply lg:w-4/5 sm:flex-row;
 }
 
 .general-info-block-image-container {
     @apply inline-flex items-center justify-center flex-shrink-0;
-    @apply h-20 w-20 rounded-full bg-indigo-100 text-indigo-500;
+    @apply h-20 w-20 rounded-full bg-dak-white;
 
     @apply sm:w-32 sm:h-32;
 }
@@ -48,16 +48,12 @@
 }
 
 .general-info-block-content-header {
-    @apply text-gray-900 text-lg font-medium my-2;
+    @apply my-2;
+    @apply text-dak-main uppercase font-bold;
 }
 
 .general-info-block-content-body {
-    @apply leading-relaxed text-base;
-}
-
-.general-info-block-content-link {
-    @apply inline-flex items-center;
-    @apply mt-3 text-indigo-500;
+    @apply leading-relaxed text-sm font-light;
 }
 
 .general-info-block-content-link-image {
@@ -65,8 +61,13 @@
 }
 
 .general-info-button {
-    @apply flex;
-    @apply mx-auto mt-20 text-white bg-indigo-500 border-0 py-2 px-8 rounded text-lg;
+    /*@apply flex;
+    @apply mx-auto mt-10 text-dak-white bg-dak-main border-0 py-2 px-8 rounded text-lg;
 
-    @apply focus:outline-none hover:bg-indigo-600;
+    @apply focus:outline-none hover:bg-dak-secondary;*/
+
+    @apply flex mx-auto py-3 px-6 mt-10 bg-transparent border-dak-secondary border rounded-md;
+    @apply font-medium text-dak-main uppercase;
+
+    @apply focus:outline-none hover:bg-dak-main hover:border-dak-main hover:text-dak-white hover:shadow-none;
 }

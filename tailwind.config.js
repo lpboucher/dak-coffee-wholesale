@@ -8,19 +8,24 @@ module.exports = {
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
-        /*colors: {
-            transparent: 'transparent',
-            current: 'currentColor',
-            gray: colors.coolGray,
-            red: colors.red,
-            blue: colors.sky,
-            green: colors.green,
-            yellow: colors.amber,
-            indigo: colors.indigo,
-            white: colors.white,
-            black: colors.black
-        },*/
-        extend: {},
+        extend: {
+            colors: {
+                'dak-gray': '#f3f3f3',
+                'dak-white': '#fcfcfc',
+                'dak-main': '#3a3a3a',
+                'dak-secondary': '#c2bfbf',
+                'dak-warning': '#e5b5b5',
+                'dak-success': '#dbe5b5',
+            },
+            maxHeight: {
+                '0': '0',
+                '1/4': '25%',
+                '1/2': '50%',
+                '3/4': '75%',
+                'full': '100%',
+                '50vh': '50vh',
+            },
+        },
     },
     variants: {
         extend: {

@@ -1,8 +1,11 @@
-.modal-body {
-    @apply px-4 pt-5 pb-4;
-    @apply bg-white rounded-t-lg;
+.modal-container {
+    @apply p-8;
+    @apply bg-dak-gray rounded-lg;
+}
 
-    @apply sm:p-6 sm:pb-4 sm:flex sm:items-start;
+.modal-body {
+    @apply mb-5;
+    @apply sm:flex sm:items-start;
 }
 
 .modal-body-content {
@@ -12,7 +15,7 @@
 }
 
 .modal-body-content-header {
-    @apply text-lg leading-6 font-medium text-gray-900 text-center;
+    @apply text-lg leading-6 font-bold text-dak-main text-center mb-5;
 }
 
 .modal-body-text {
@@ -22,7 +25,7 @@
 
 .modal-body-content-message {
     @apply modal-body-text;
-    @apply text-sm text-gray-500 ;
+    @apply text-sm font-light text-dak-main ;
 }
 
 .modal-body-content-footer {
@@ -31,16 +34,13 @@
 }
 
 .modal-footer {
-    @apply px-4 py-3;
-    @apply bg-gray-50 rounded-b-lg;
-
-    @apply sm:px-6 sm:flex sm:flex-row-reverse;
+    @apply sm:flex sm:justify-center;
 }
 
 .modal-footer-confirm {
     @apply inline-flex justify-center;
-    @apply w-full px-4 py-2;
-    @apply rounded-md border border-transparent shadow-sm bg-green-600 text-base font-medium text-white;
+    @apply w-full px-8 py-2;
+    @apply rounded-md border border-transparent shadow-sm bg-dak-secondary text-base font-medium text-dak-main;
 
-    @apply hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm;
+    @apply hover:bg-dak-main hover:text-dak-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm;
 }

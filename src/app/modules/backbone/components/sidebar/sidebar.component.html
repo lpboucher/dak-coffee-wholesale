@@ -23,13 +23,13 @@
         <app-widget class="widget-item" [content]="walletAmount | formatPrice" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg-icon
                 src="/assets/icons/wallet.svg"
-                [svgStyle]="{ 'width.px': 20, 'height.px': 20 }">
+                [svgStyle]="{ 'width.px': 20, 'height.px': 20, 'fill': '#3a3a3a' }">
             </svg-icon>
         </app-widget>
         <app-widget class="widget-item" content="€{{ cartTotal }}" helperContent="({{ cartWeight }} kg)" (widgetClickEvent)="onCartWidgetClicked()">
             <svg-icon
                 src="/assets/icons/cart.svg"
-                [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }">
+                [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': '#3a3a3a' }">
             </svg-icon>
         </app-widget>
     </div>

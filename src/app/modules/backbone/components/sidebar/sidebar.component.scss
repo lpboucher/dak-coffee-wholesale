@@ -1,8 +1,8 @@
 .main-nav {
     @apply relative flex flex-col flex-wrap flex-shrink justify-between;
     @apply w-full h-screen;
-    @apply p-5;
-    @apply bg-white;
+    @apply p-5 pt-10;
+    @apply bg-dak-white;
 }
 
 .brand {
@@ -25,7 +25,7 @@
 .mobile-close-bar {
     @apply absolute top-0 left-0 inline;
     @apply w-0.5 h-4 rounded-lg;
-    @apply bg-gray-800;
+    @apply bg-dak-main;
 }
 
 .mobile-close-bar-1 {
@@ -40,6 +40,8 @@
 
 .nav-item-list-container {
     @apply w-full;
+
+    @apply border-b border-dak-secondary;
 }
 
 .nav-item-list {
@@ -61,13 +63,13 @@
 }
 
 .nav-footer {
-    @apply place-self-center;
+    @apply place-self-center mt-5 border-t border-dak-secondary;
     @apply w-full;
 }
 
 .footer-item {
-    @apply p-2 rounded-lg;
-    @apply text-center no-underline cursor-pointer;
+    @apply py-4 px-2 rounded-lg;
+    @apply text-left no-underline text-dak-main text-xs uppercase cursor-pointer;
 
-    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+    @apply hover:text-dak-main hover:bg-dak-gray transition-colors;
 }

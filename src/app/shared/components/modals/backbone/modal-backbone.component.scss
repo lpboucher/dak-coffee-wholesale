@@ -12,6 +12,8 @@
 .modal {
     @apply bg-white rounded-lg text-left shadow-xl;
     @apply transform transition-all;
+    @apply max-w-lg;
 
-    @apply sm:my-8 sm:align-middle sm:max-w-lg sm:w-full;
+    @apply sm:my-8 sm:align-middle sm:w-full;
+    @apply lg:max-w-2xl;
 }

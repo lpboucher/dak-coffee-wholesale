@@ -1,16 +1,18 @@
 <ng-container *ngIf="product$ | withLoader | async as product">
-    <ng-template [ngIf]="!product.error && !product.loading">
-        <app-product-detail *ngIf="product.value as loadedProduct" [product]="loadedProduct"></app-product-detail>
-        <p class="related-products-title">You may also like</p>
-        <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [gridGap]=2>
-            <app-product-card
-                *ngFor="let relatedProduct of relatedProducts"
-                [product]="relatedProduct"
-                class="related-product-card">
-            </app-product-card>
-        </app-grid-list>
-    </ng-template>
-    <ng-template [ngIf]="product.loading">
-        <app-product-detail-loader></app-product-detail-loader>
-    </ng-template>
+    <div class="single-product-container">
+        <ng-template [ngIf]="!product.error && !product.loading">
+            <app-product-detail *ngIf="product.value as loadedProduct" [product]="loadedProduct"></app-product-detail>
+            <p class="related-products-title">You may also like</p>
+            <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [gridGap]=8>
+                <app-product-card
+                    *ngFor="let relatedProduct of relatedProducts"
+                    [product]="relatedProduct"
+                    class="related-product-card">
+                </app-product-card>
+            </app-grid-list>
+        </ng-template>
+        <ng-template [ngIf]="product.loading">
+            <app-product-detail-loader></app-product-detail-loader>
+        </ng-template>
+    </div>
 </ng-container>

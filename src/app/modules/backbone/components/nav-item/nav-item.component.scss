@@ -1,12 +1,16 @@
 .nav-item {
-    @apply p-2 rounded-lg;
+    @apply flex uppercase text-sm text-dak-main font-light p-2 rounded-lg;
     @apply no-underline cursor-pointer;
 
-    @apply hover:text-gray-800 hover:bg-gray-100 transition-colors;
+    @apply hover:bg-dak-gray transition-colors;
+}
+
+.nav-item > span:first-child {
+    @apply mr-auto;
 }
 
 .nav-item-active {
-    @apply text-gray-800 bg-gray-100 rounded-lg;
+    @apply text-dak-main bg-dak-gray rounded-lg;
 }
 
 .nav-item-arrow {
@@ -23,13 +27,9 @@
     @apply hidden;
 }
 
-.nav-item:hover .nav-item-arrow {
-    @apply rotate-180;
-}
-
 .nav-item-children-container {
     @apply static hidden;
-    @apply bg-white;
+    @apply bg-dak-white;
     @apply transition duration-200 transform;
 }
 

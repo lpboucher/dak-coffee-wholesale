@@ -1,57 +1,58 @@
 <footer class="footer-container">
-    <div class="footer-upper-container">
-        <div class="footer-upper">
-            <div *ngFor="let column of footerColumns" class="footer-upper-nav">
-                <nav class="footer-upper-nav-link-container">
-                    <li *ngFor="let item of column" class="footer-upper-nav-link-item">
-                        <a *ngIf="item.internal else externalLinkTemplate" class="footer-upper-nav-link" [routerLink]="item.link">
-                            {{ item.label }}
-                        </a>
-                        <ng-template #externalLinkTemplate>
-                            <a class="footer-upper-nav-link" [href]="item.link">
+    <div class="footer-content">
+        <div class="footer-upper-container">
+            <div class="footer-upper">
+                <div *ngFor="let column of footerColumns" class="footer-upper-nav">
+                    <nav class="footer-upper-nav-link-container">
+                        <li *ngFor="let item of column" class="footer-upper-nav-link-item">
+                            <a *ngIf="item.internal else externalLinkTemplate" class="footer-upper-nav-link" [routerLink]="item.link">
                                 {{ item.label }}
                             </a>
-                        </ng-template>
-                    </li>
-                </nav>
+                            <ng-template #externalLinkTemplate>
+                                <a class="footer-upper-nav-link" [href]="item.link">
+                                    {{ item.label }}
+                                </a>
+                            </ng-template>
+                        </li>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="footer-lower-container">
+            <p class="footer-lower-text">Dak Coffee Roasters is a coffee roasting company based in Amsterdam. From farm to cup, we take great pride in celebrating quality coffee.</p>
+            <div class="footer-lower-social-container">
+                <a class="footer-lower-social-link" href="https://www.facebook.com/dakcoffeeroasters">
+                    <svg-icon
+                        src="/assets/icons/facebook.svg"
+                        [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': '#3a3a3a' }"
+                        [svgClass]="'footer-lower-social-image'">
+                    </svg-icon>
+                </a>
+                <a class="footer-lower-social-link" href="https://www.instagram.com/dakcoffeeroasters">
+                    <svg-icon
+                        src="/assets/icons/instagram.svg"
+                        [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': '#3a3a3a' }"
+                        [svgClass]="'footer-lower-social-image'">
+                    </svg-icon>
+                </a>
+                <a class="footer-lower-social-link" href="https://www.linkedin.com/company/13062828">
+                    <svg-icon
+                        src="/assets/icons/linkedin.svg"
+                        [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': '#3a3a3a' }"
+                        [svgClass]="'footer-lower-social-image'">
+                    </svg-icon>
+                </a>
+                <a class="footer-lower-social-link" href="https://pinterest.com/dakcoffeeroasters">
+                    <svg-icon
+                        src="/assets/icons/pinterest.svg"
+                        [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': '#3a3a3a' }"
+                        [svgClass]="'footer-lower-social-image'">
+                    </svg-icon>
+                </a>
             </div>
         </div>
     </div>
-    <div class="footer-lower-container">
-        <a class="footer-lower-logo">
-            <img alt="logo" src="/assets/dak-lady.png" />
-        </a>
-        <!-- TODO add social media links -->
-        <p class="footer-lower-text">Dak Coffee Roasters is a coffee roasting company based in Amsterdam. From farm to cup, we take great pride in celebrating quality coffee.</p>
-        <div class="footer-lower-social-container">
-            <a class="footer-lower-social-link" href="https://www.facebook.com/dakcoffeeroasters">
-                <svg-icon
-                    src="/assets/icons/facebook.svg"
-                    [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }"
-                    [svgClass]="'footer-lower-social-image'">
-                </svg-icon>
-            </a>
-            <a class="footer-lower-social-link" href="https://www.instagram.com/dakcoffeeroasters">
-                <svg-icon
-                    src="/assets/icons/instagram.svg"
-                    [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }"
-                    [svgClass]="'footer-lower-social-image'">
-                </svg-icon>
-            </a>
-            <a class="footer-lower-social-link" href="https://www.linkedin.com/company/13062828">
-                <svg-icon
-                    src="/assets/icons/linkedin.svg"
-                    [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }"
-                    [svgClass]="'footer-lower-social-image'">
-                </svg-icon>
-            </a>
-            <a class="footer-lower-social-link" href="https://pinterest.com/dakcoffeeroasters">
-                <svg-icon
-                    src="/assets/icons/pinterest.svg"
-                    [svgStyle]="{ 'width.px': 24, 'height.px': 24, 'fill': 'currentColor' }"
-                    [svgClass]="'footer-lower-social-image'">
-                </svg-icon>
-            </a>
-        </div>
+    <div class="copyright">
+        <p>Dak Coffee Roasters 2021. KvK 73670405. All rights reserved.</p>
     </div>
 </footer>

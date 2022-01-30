@@ -21,4 +21,8 @@ export class ImageService {
     getProductMainUrl(basename: string): string {
         return this.getImageUrl(`/Products/Mains/${ basename }`);
     }
+
+    getOtherImageUrl(basename: string, type: string): string {
+        return this.getImageUrl(`/${type}/${ basename }`);
+    }
 }

@@ -4,7 +4,7 @@
 
 .toggle-header {
     @apply mb-3;
-    @apply text-gray-700 text-center font-medium;
+    @apply text-dak-main text-xs uppercase text-center font-bold;
 }
 
 .toggle-body {
@@ -21,23 +21,26 @@
     @apply sr-only;
 }
 
-.toggle-option {
-    @apply mx-3;
-    @apply text-gray-700;
-}
-
 .toggle-slider {
     @apply relative;
 }
 
 .toggle-slider-background {
-    @apply block w-14 h-8;
-    @apply bg-gray-600 rounded-full;
+    @apply flex justify-between;
+    @apply w-36 h-10;
+    @apply bg-dak-secondary rounded;
+}
+
+.toggle-slider-background-option {
+    @apply w-1/2 flex items-center justify-center;
+    @apply text-dak-gray;
 }
 
 .toggle-slider-dot {
-    @apply absolute left-1 top-1 w-6 h-6;
-    @apply bg-white rounded-full transition;
+    @apply absolute left-1 top-1 h-8;
+    @apply flex items-center justify-center;
+    @apply bg-white rounded transition;
+    width: 4.25rem;
 }
 
 input:checked ~ .toggle-slider > .toggle-slider-dot {

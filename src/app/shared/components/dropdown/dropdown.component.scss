@@ -1,25 +1,24 @@
 .dropdown-container {
     @apply relative flex;
     @apply my-2 p-1;
-    @apply bg-white border border-gray-200 rounded;
+    @apply bg-dak-white border border-dak-secondary rounded;
     @apply cursor-pointer;
 }
 
 .dropdown-selected {
     @apply p-1 px-2 w-full;
-    @apply text-gray-800;
+    @apply text-sm text-dak-main;
 }
 
 .dropdown-arrow-container {
     @apply flex items-center;
-    @apply w-8 pt-2 pl-2 pr-1;
-    @apply border-l border-gray-200;
-    @apply text-gray-300;
+    @apply w-8;
+    @apply text-dak-main;
 }
 
 .dropdown-arrow-button {
     @apply w-6 h-6;
-    @apply text-gray-600;
+    @apply text-dak-main;
     @apply outline-none;
 
     @apply focus:outline-none;
@@ -45,7 +44,7 @@
 
 .dropdown-option-list-item-container {
     @apply flex flex-col;
-    @apply border-gray-100 border-b;
+    @apply border-dak-secondary border-b;
     @apply cursor-pointer;
 }
 
@@ -60,13 +59,14 @@
 .dropdown-option-list-item {
     @apply flex items-center;
     @apply p-2 pl-0;
-    @apply border-transparent bg-white;
+    @apply border-transparent bg-dak-white;
+    @apply text-sm;
 
-    @apply hover:bg-blue-600 hover:text-blue-100;
+    @apply hover:bg-dak-secondary hover:text-dak-main;
 }
 
 .active-item {
-    @apply border-l-2 border-blue-600;
+    @apply border-l-2 border-dak-main;
 }
 
 .dropdown-option-list-item-content {

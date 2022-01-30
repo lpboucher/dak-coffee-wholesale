@@ -3,12 +3,13 @@
     <div class="toggle-body">
         <div class="toggle" (click)="doToggle()">
             <input type="checkbox" class="toggle-input" [checked]="isChecked">
-            <div class="un-checked-option toggle-option">{{ uncheckedOption }}</div>
             <div class="toggle-slider">
-                <div class="toggle-slider-background"></div>
-                <div class="toggle-slider-dot"></div>
+                <div class="toggle-slider-background">
+                    <p class="toggle-slider-background-option">{{ uncheckedOption }}</p>
+                    <p class="toggle-slider-background-option">{{ checkedOption }}</p>
+                </div>
+                <div class="toggle-slider-dot">{{isChecked ? checkedOption : uncheckedOption}}</div>
             </div>
-            <div class="checked-option toggle-option">{{ checkedOption }}</div>
         </div>
     </div>
 </div>

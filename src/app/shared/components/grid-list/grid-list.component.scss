@@ -1,12 +1,12 @@
 $maxColumnSize: 12;
 $columnSmBreakMultiplier: 2;
-$columnXlBreakMultiplier: 4;
+$columnXlBreakMultiplier: 3;
 $maxSpanCount: 12;
 $maxGapSize: 10;
 
 .grid-list-base {
     @apply grid justify-between;
-    @apply p-4;
+    @apply p-5;
 }
 
 @for $size from 1 through $maxColumnSize {

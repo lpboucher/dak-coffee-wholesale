@@ -19,10 +19,10 @@
             </app-dropdown>
             <app-quantity-input formControlName="quantity"></app-quantity-input>
         </form>
-        <div class="product-card-body-price-container">
-            <div class="product-card-body-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</div>
-            <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue" class="product-card-body-add-to-cart">Add to cart</button>
-        </div>
+    </div>
+    <div class="product-card-body-price-container">
+        <div class="product-card-body-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</div>
+        <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue" class="product-card-body-add-to-cart">Add to cart</button>
     </div>
     <div class="product-card-details-flavours" *ngIf="flavours.length > 0">
         <app-flavour-icon *ngFor="let flavour of flavours.slice(0, limitedNumberOfFlavors)" [flavour]="flavour"></app-flavour-icon>

@@ -17,6 +17,10 @@ export class ProductDetailComponent extends BaseProductComponent {
         return this.imageService.getProductMainUrl(this.product?.images.main);
     }
 
+    get productTitle(): string {
+        return `${this.product.name}${this.product.productType === "coffee" ? "- " + this.product.displayedDetails[0] : ""}`;
+    }
+
     constructor(
         private imageService: ImageService,
         protected fb: FormBuilder,
