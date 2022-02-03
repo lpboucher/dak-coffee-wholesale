@@ -1,4 +1,7 @@
 <div class="product-page-container">
+    <div>
+        <p>roasting bar</p>
+    </div>
     <!-- remove filters for now
     TODO readd filters if number of coffees, merch becomes large
     <form [formGroup]="filterForm" *ngIf="filterableProperties" class="filter-container">
@@ -10,9 +13,7 @@
         ></app-filter>
     </form>
     -->
-    <!--
-    TODO readd featured products
-    <app-grid-list [itemColumnSpan]=2 [gridGap]=4>
+    <app-grid-list [itemColumnSpan]=6 [gridGap]=8>
         <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
             <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
                 <app-featured-product-card *ngFor="let product of featuredProducts.value" [product]="product"></app-featured-product-card>
@@ -22,8 +23,7 @@
             </ng-template>
         </ng-container>
     </app-grid-list>
-    -->
-    <app-grid-list [gridGap]=8>
+    <app-grid-list [itemColumnSpan]=4 [gridGap]=8>
         <ng-container *ngIf="products$ | withLoader | async as products">
             <ng-template [ngIf]="!products.error && !products.loading">
                 <app-product-card *ngFor="let product of (products.value | filter: activeFilters)" [product]="product"></app-product-card>

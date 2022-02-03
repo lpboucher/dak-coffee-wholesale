@@ -6,6 +6,7 @@ import { NotificationModalComponent } from "@shared/components/modals";
 
 import { Product } from "@shared/models/classes/product.class";
 import { Coffee } from "@shared/models/classes/coffee.class";
+import { CommunicationApiService } from "@app/core/communication/communication.service";
 
 @Component({
     selector: "app-featured-product-card",
@@ -13,7 +14,7 @@ import { Coffee } from "@shared/models/classes/coffee.class";
     styleUrls: ["./featured-product-card.component.scss"]
 })
 export class FeaturedProductCardComponent {
-    readonly limitedNumberOfFlavors: number = 4;
+    readonly limitedNumberOfFlavors: number = 3;
     @Input() product!: Product;
 
     get imageUrl(): string {
@@ -30,9 +31,11 @@ export class FeaturedProductCardComponent {
     constructor(
         private imageService: ImageService,
         private modalService: ModalService<NotificationModalComponent>,
+        private notificationService: CommunicationApiService,
     ) { }
 
-    async onGetNotifiedClicked(): Promise<void> {
+    async onGetNotifiedClicked(name: string): Promise<void> {
+        this.notificationService.setProductNameForNotification(name);
         this.modalService.open(NotificationModalComponent);
     }
 }

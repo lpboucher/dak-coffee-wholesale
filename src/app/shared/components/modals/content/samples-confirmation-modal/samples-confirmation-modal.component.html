@@ -1,26 +1,37 @@
 <app-modal-backbone #modal>
-    <div class="modal-body">
-        <div class="modal-body-icon-container">
-            <svg-icon
-                src="/assets/icons/coffee.svg"
-                [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
-                [svgClass]="'modal-body-icon'">
-            </svg-icon>
+    <div class="modal-container">
+        <div class="modal-body">
+            <div class="modal-body-icon-container">
+                <svg-icon
+                    src="/assets/icons/coffee.svg"
+                    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+                    [svgClass]="'modal-body-icon'">
+                </svg-icon>
+            </div>
+            <div class="modal-body-content">
+                <h3 class="modal-body-content-header" id="modal-title">Order samples</h3>
+                <p class="modal-body-content-message">Select roast of samples:</p>
+                <form [formGroup]="sampleSelectionForm" (ngSubmit)="onConfirm()" class="sample-selection-form">
+                    <!--<label class="modal-body-content-selection-label" *ngFor="let option of selectionOptions">
+                        <input formControlName="selection" type="radio" value="{{ option }}" class="modal-body-content-selection-input" />
+                        {{ option }}
+                    </label>-->
+
+                    <label
+                        *ngFor="let option of selectionOptions"
+                        class="sample-selection-label"
+                        [ngClass]="{'sample-selection-label--selected': sampleSelectionForm.get('selection')?.value === option}"
+                    >
+                        <input formControlName="selection" type="radio" value="{{ option }}" class="sample-selection-input" />
+                        {{ option }}
+                    </label>
+                </form>
+                <div class="modal-body-no-selection" *ngIf="submissionAttempted && sampleSelectionForm.invalid">Please select a roast before submitting, or click "Cancel".</div>
+            </div>
         </div>
-        <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Order samples</h3>
-            <p class="modal-body-content-message">Select roast of samples:</p>
-            <form [formGroup]="sampleSelectionForm" (ngSubmit)="onConfirm()">
-                <label class="modal-body-content-selection-label" *ngFor="let option of selectionOptions">
-                    <input formControlName="selection" type="radio" value="{{ option }}" class="modal-body-content-selection-input" />
-                    {{ option }}
-                </label>
-            </form>
-            <div class="modal-body-no-selection" *ngIf="submissionAttempted && sampleSelectionForm.invalid">Please select a roast before submitting, or click "Cancel".</div>
+        <div class="modal-footer">
+            <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Order</button>
+            <button type="button" (click)="onCancel()" class="modal-footer-cancel">Cancel</button>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Order</button>
-        <button type="button" (click)="onCancel()" class="modal-footer-cancel">Cancel</button>
     </div>
 </app-modal-backbone>

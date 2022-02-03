@@ -1,40 +1,42 @@
-.modal-body {
-    @apply px-4 pt-5 pb-4;
-    @apply bg-white rounded-t-lg;
+.modal-container {
+    @apply p-8;
+    @apply bg-dak-gray rounded-lg;
+}
 
-    @apply sm:p-6 sm:pb-4 sm:flex sm:items-start;
+.modal-body {
+    @apply mb-5;
+    @apply sm:flex sm:items-start;
 }
 
 .modal-body-icon-container {
     @apply flex items-center justify-center flex-none;
     @apply mx-auto h-12 w-12;
-    @apply rounded-full bg-green-100;
+    @apply rounded-full;
 
     @apply sm:mx-0 sm:h-10 sm:w-10;
 }
 
 .modal-body-icon {
     @apply h-6 w-6 mb-0;
-    @apply text-green-600;
 }
 
 .modal-body-content {
     @apply mt-3;
-    @apply text-center;
 
     @apply sm:mt-0 sm:ml-4 sm:text-left;
 }
 
 .modal-body-content-header {
-    @apply text-lg leading-6 font-medium text-gray-900;
+    @apply text-lg leading-6 font-bold text-dak-main text-center mb-5;
 }
 
 .modal-body-content-text {
-    @apply text-sm text-gray-500;
+    @apply mt-2;
+    @apply text-center;
+    @apply text-sm font-light text-dak-main;
 }
 
 .modal-body-content-message {
-    @apply mt-2 mb-1;
     @apply modal-body-content-text;
 }
 
@@ -68,7 +70,7 @@
 
 .modal-footer {
     @apply px-4 py-3;
-    @apply bg-gray-50 rounded-b-lg;
+    @apply rounded-b-lg;
 
     @apply sm:px-6 sm:flex sm:flex-row-reverse;
 }
@@ -76,15 +78,46 @@
 .modal-footer-confirm {
     @apply inline-flex justify-center;
     @apply w-full px-4 py-2;
-    @apply rounded-md border border-transparent shadow-sm bg-green-600 text-base font-medium text-white;
+    @apply rounded-md border border-transparent bg-dak-main text-base font-medium text-dak-white;
 
-    @apply hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm;
+    @apply hover:bg-dak-secondary hover:text-dak-main focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm;
 }
 
 .modal-footer-cancel {
     @apply inline-flex justify-center;
-    @apply mt-3 w-full px-4 py-2;
-    @apply rounded-md border border-gray-300 shadow-sm bg-white text-base font-medium text-gray-700;
+    @apply mr-1 px-4 py-2;
+    @apply bg-transparent border-dak-secondary border rounded-md text-dak-main;
 
-    @apply hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
+    @apply focus:outline-none hover:bg-dak-main hover:border-dak-main hover:text-dak-white hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.sample-selection-form {
+    @apply flex;
+    @apply mb-5;
+}
+
+.sample-selection-input {
+    @apply hidden;
+}
+
+.sample-selection-label {
+    @apply mx-2 my-1 p-4 w-32;
+    @apply border border-dak-secondary rounded;
+    @apply text-center;
+    @apply cursor-pointer;
+
+    @apply hover:bg-dak-main hover:text-dak-white;
+}
+
+.sample-selection-label:first-child {
+    @apply ml-0;
+}
+
+.sample-selection-label:last-child {
+    @apply mr-0;
+}
+
+.sample-selection-label--selected {
+    @apply bg-dak-main;
+    @apply text-dak-white;
 }

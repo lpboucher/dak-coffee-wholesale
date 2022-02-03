@@ -40,7 +40,7 @@
 .modal-footer-confirm {
     @apply inline-flex justify-center;
     @apply w-full px-8 py-2;
-    @apply rounded-md border border-transparent shadow-sm bg-dak-secondary text-base font-medium text-dak-main;
+    @apply rounded-md border border-transparent bg-dak-main text-base font-medium text-dak-white;
 
-    @apply hover:bg-dak-main hover:text-dak-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm;
+    @apply hover:bg-dak-secondary hover:text-dak-main focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm;
 }

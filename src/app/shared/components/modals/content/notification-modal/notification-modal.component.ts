@@ -22,22 +22,29 @@ export class NotificationModalComponent {
         private alertService: AlertService,
         private messageService: CommunicationApiService,
         private authService: AuthService,
+        private notificationService: CommunicationApiService,
     ) {}
 
     onCancel(): void {
+        this.notificationService.resetProductName();
         this.close();
     }
 
     onConfirm(): void {
-        // TODO pass the product name to the modal, to figure out which product client is interested in
-        this.messageService.sendMessage(this.authService.userEmail, "product-notification")
+        this.messageService.sendMessage(
+            this.authService.userEmail,
+            "product-notification",
+            this.notificationService.productNameForNotification
+        )
             .subscribe(
                 (_) => {
                     this.alertService.success("Thank you! We will notify you when this product is available!");
+                    this.notificationService.resetProductName();
                     this.close();
                 },
                 (err) => {
                     console.log(err);
+                    this.notificationService.resetProductName();
                     this.alertService.error("Oups, maybe check with info@dakcoffeeroasters.com");
                 },
             );
