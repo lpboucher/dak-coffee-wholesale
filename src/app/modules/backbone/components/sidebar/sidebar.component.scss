@@ -54,7 +54,7 @@
 
 .widget-container {
     @apply flex flex-wrap items-stretch justify-evenly;
-    @apply my-1;
+    @apply mt-4;
 }
 
 .widget-item {
@@ -63,7 +63,7 @@
 }
 
 .nav-footer {
-    @apply place-self-center mt-5 border-t border-dak-secondary;
+    @apply place-self-center mt-4 border-t border-dak-secondary;
     @apply w-full;
 }
 

@@ -1,36 +1,36 @@
-<div class="product-page-container">
-    <div>
-        <p>roasting bar</p>
+<div>
+    <app-roasting-message></app-roasting-message>
+    <div class="product-page-container">
+        <!-- remove filters for now
+        TODO readd filters if number of coffees, merch becomes large
+        <form [formGroup]="filterForm" *ngIf="filterableProperties" class="filter-container">
+            <h2>Filter by:</h2>
+            <app-filter
+                *ngFor="let property of filterableProperties"
+                formControlName="{{ property.key }}"
+                [propertyToFilter]="property"
+            ></app-filter>
+        </form>
+        -->
+        <app-grid-list [itemColumnSpan]=6 [gridGap]=8>
+            <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
+                <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
+                    <app-featured-product-card *ngFor="let product of featuredProducts.value" [product]="product"></app-featured-product-card>
+                </ng-template>
+                <ng-template [ngIf]="featuredProducts.loading">
+                    <app-featured-product-card-loader *ngFor="let _ of [].constructor(2)"></app-featured-product-card-loader>
+                </ng-template>
+            </ng-container>
+        </app-grid-list>
+        <app-grid-list [itemColumnSpan]=4 [gridGap]=8>
+            <ng-container *ngIf="products$ | withLoader | async as products">
+                <ng-template [ngIf]="!products.error && !products.loading">
+                    <app-product-card *ngFor="let product of (products.value | filter: activeFilters)" [product]="product"></app-product-card>
+                </ng-template>
+                <ng-template [ngIf]="products.loading">
+                    <app-product-card-loader *ngFor="let _ of [].constructor(12)"></app-product-card-loader>
+                </ng-template>
+            </ng-container>
+        </app-grid-list>
     </div>
-    <!-- remove filters for now
-    TODO readd filters if number of coffees, merch becomes large
-    <form [formGroup]="filterForm" *ngIf="filterableProperties" class="filter-container">
-        <h2>Filter by:</h2>
-        <app-filter
-            *ngFor="let property of filterableProperties"
-            formControlName="{{ property.key }}"
-            [propertyToFilter]="property"
-        ></app-filter>
-    </form>
-    -->
-    <app-grid-list [itemColumnSpan]=6 [gridGap]=8>
-        <ng-container *ngIf="featuredProducts$ | withLoader | async as featuredProducts">
-            <ng-template [ngIf]="!featuredProducts.error && !featuredProducts.loading">
-                <app-featured-product-card *ngFor="let product of featuredProducts.value" [product]="product"></app-featured-product-card>
-            </ng-template>
-            <ng-template [ngIf]="featuredProducts.loading">
-                <app-featured-product-card-loader *ngFor="let _ of [].constructor(2)"></app-featured-product-card-loader>
-            </ng-template>
-        </ng-container>
-    </app-grid-list>
-    <app-grid-list [itemColumnSpan]=4 [gridGap]=8>
-        <ng-container *ngIf="products$ | withLoader | async as products">
-            <ng-template [ngIf]="!products.error && !products.loading">
-                <app-product-card *ngFor="let product of (products.value | filter: activeFilters)" [product]="product"></app-product-card>
-            </ng-template>
-            <ng-template [ngIf]="products.loading">
-                <app-product-card-loader *ngFor="let _ of [].constructor(12)"></app-product-card-loader>
-            </ng-template>
-        </ng-container>
-    </app-grid-list>
 </div>

@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 import { FilterComponent } from "@shared/components/filter/filter.component";
 import { GridListComponent } from "@shared/components/grid-list/grid-list.component";
 import { ToggleWidgetComponent } from "@shared/components/toggle-widget/toggle-widget.component";
@@ -8,6 +10,7 @@ import { DropdownComponent } from "@shared/components/dropdown/dropdown.componen
 import { QuantityInputComponent } from "@shared/components/quantity-input/quantity-input.component";
 import { BaseProductComponent } from "@shared/abstracts/base-product/base-product.component";
 import { FlavourIconComponent } from "@shared/components/flavour-icon/flavour-icon.component";
+import { RoastingMessageComponent } from "@shared/components/roasting-message/roasting-message.component";
 import {
     ModalBackboneComponent,
     WalletModalComponent,
@@ -48,6 +51,7 @@ export const componentDeclarations: any[] = [
     QuantityInputComponent,
     BaseProductComponent,
     FlavourIconComponent,
+    RoastingMessageComponent,
 
     SnipcartAddDirective,
     BindQueryParamsDirective,
@@ -72,6 +76,7 @@ export const providerDeclarations: any[] = [
     WeightPipe,
     ProductsToFiltersPipe,
     PercentStringPipe,
+    DatePipe,
     {
         provide: "flavours",
         useValue: FLAVOUR_MAP,
