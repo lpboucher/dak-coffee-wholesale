@@ -7,6 +7,7 @@ export class Merchandise extends Product {
     attributes: ProductAttribute[] = [];
     dimensions: string | null = null;
     material: string | null = null;
+    type: string | null = null;
 
     constructor(merchandiseShape?: Partial<Merchandise>) {
         super(merchandiseShape);
@@ -33,6 +34,54 @@ export class Merchandise extends Product {
 
             if (merchandiseShape.material != null) {
                 this.material = merchandiseShape.material;
+            }
+
+            if (merchandiseShape.type != null) {
+                this.type = merchandiseShape.type;
+
+                if (merchandiseShape.type === "t-shirt") {
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "size",
+                            options: [
+                                { name: "XS" },
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
+                            ]}),
+                    );
+
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "color",
+                            options: [
+                                { name: "Navy" },
+                            ]}),
+                    );
+                }
+
+                if (merchandiseShape.type === "clothing") {
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "size",
+                            options: [
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL (only in blue)" },
+                            ]}),
+                    );
+
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "color",
+                            options: [
+                                { name: "Navy" },
+                                { name: "Cream Grey" },
+                            ]}),
+                    );
+                }
             }
         }
     }

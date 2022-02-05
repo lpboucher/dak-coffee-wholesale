@@ -6,8 +6,11 @@
 
 .brand {
     @apply flex flex-none items-start;
-    @apply w-1/2;
+    @apply w-full;
     @apply cursor-pointer;
+    @apply mb-5;
+
+    @apply sm:w-1/2 sm:mb-0;
 }
 
 .brand-logo {

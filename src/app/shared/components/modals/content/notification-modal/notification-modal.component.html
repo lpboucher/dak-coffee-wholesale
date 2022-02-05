@@ -1,19 +1,14 @@
 <app-modal-backbone #modal>
-    <div class="modal-body">
-        <div class="modal-body-icon-container">
-            <svg-icon
-                src="/assets/icons/coffee.svg"
-                [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
-                [svgClass]="'modal-body-icon'">
-            </svg-icon>
+    <div class="modal-container">
+        <div class="modal-body">
+            <div class="modal-body-content">
+                <h3 class="modal-body-content-header" id="modal-title">Are you sure?</h3>
+                <p class="modal-body-content-message">When this product is available, you will receive an email notification to: {{ userEmail }}</p>
+            </div>
         </div>
-        <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Are you sure?</h3>
-            <p class="modal-body-content-message">You will receive an email notification to: {{ userEmail }}</p>
+        <div class="modal-footer">
+            <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Confirm</button>
+            <button type="button" (click)="onCancel()" class="modal-footer-cancel">Cancel</button>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" (click)="onConfirm()" class="modal-footer-confirm">Confirm</button>
-        <button type="button" (click)="onCancel()" class="modal-footer-cancel">Cancel</button>
     </div>
 </app-modal-backbone>

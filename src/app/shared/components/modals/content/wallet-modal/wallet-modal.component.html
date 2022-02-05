@@ -1,18 +1,20 @@
 <app-modal-backbone #modal>
-    <div class="modal-body">
-        <div class="modal-body-icon-container">
-            <svg-icon
-                src="/assets/icons/wallet.svg"
-                [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
-                [svgClass]="'modal-body-icon'">
-            </svg-icon>
+    <div class="modal-container">
+        <div class="modal-body">
+            <div class="modal-body-icon-container">
+                <svg-icon
+                    src="/assets/icons/wallet.svg"
+                    [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"
+                    [svgClass]="'modal-body-icon'">
+                </svg-icon>
+            </div>
+            <div class="modal-body-content">
+                <h3 class="modal-body-content-header" id="modal-title">Wallet Balance: €{{ walletAmount }}</h3>
+                <p class="modal-body-content-message">This balance will be applied automatically as a discount.</p>
+            </div>
         </div>
-        <div class="modal-body-content">
-            <h3 class="modal-body-content-header" id="modal-title">Wallet Balance: €{{ walletAmount }}</h3>
-            <p class="modal-body-content-message">This balance will be applied automatically as a discount.</p>
+        <div class="modal-footer">
+            <button type="button" (click)="onOk()" class="modal-footer-confirm">Ok</button>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" (click)="onOk()" class="modal-footer-confirm">Ok</button>
     </div>
 </app-modal-backbone>

@@ -5,7 +5,7 @@
             <ng-template [ngIf]="!product.error && !product.loading">
                 <app-product-detail *ngIf="product.value as loadedProduct" [product]="loadedProduct"></app-product-detail>
                 <p class="related-products-title">You may also like</p>
-                <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [gridGap]=8>
+                <app-grid-list *ngIf="relatedProducts$ | async as relatedProducts" [itemColumnSpan]=4 [gridGap]=8>
                     <app-product-card
                         *ngFor="let relatedProduct of relatedProducts"
                         [product]="relatedProduct"

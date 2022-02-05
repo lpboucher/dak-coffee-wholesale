@@ -18,7 +18,13 @@ export class CoffeeApiService extends DataApiService<Coffee> {
     }
 
     getCoffees(): Observable<Coffee[]> {
-        return this.getAll("coffees?isActive=true");
+        return this.getAll("coffees?isActive=true")
+            .pipe(
+                map((arr) => arr.sort((coffee) => {
+                        return coffee.isNewProduct === true ? -1 : 1;
+                    })
+                )
+            );
     }
 
     getCoffee(slug: string): Observable<Coffee> {
