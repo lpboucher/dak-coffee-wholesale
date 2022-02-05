@@ -31,6 +31,14 @@ export abstract class BaseProductComponent implements OnInit {
         return ["/products", this.product.productType, "detail", this.product.slug!];
     }
 
+    get activePricing(): string {
+        return this.pricingTierService.isDiscountActive === true ? "45%" : "30%";
+    }
+
+    get newDiscountValue(): string {
+        return `${this.optionsForm.get("weight")!.value}/${this.activePricing}`;
+    }
+
     constructor(
         protected fb: FormBuilder,
         protected pricingTierService: PricingTierService,
@@ -43,10 +51,23 @@ export abstract class BaseProductComponent implements OnInit {
         });
 
         this.subscriptions.add(this.pricingTierService.isDiscountActive$
-            .subscribe((isActive) => {
-                const discount = isActive ? "45%" : "30%";
-                this.optionsForm.get("volume-discount")?.setValue(discount);
+            .subscribe((_) => {
+                if (this.product.productType === "coffee") {
+                    this.optionsForm.get("volume-weight-discount")?.setValue(this.newDiscountValue);
+                } else {
+                    this.optionsForm.get("volume-discount")?.setValue(this.activePricing);
+                }
             })
+        );
+
+        this.subscriptions.add(this.optionsForm.get("weight")?.valueChanges
+            .subscribe(
+                (_) => {
+                    if (this.product.productType === "coffee") {
+                        this.optionsForm.get("volume-weight-discount")?.setValue(this.newDiscountValue);
+                    }
+                }
+            )
         );
     }
 

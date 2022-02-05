@@ -1,7 +1,6 @@
 <li class="nav-item-container" [ngClass]="{'nav-item-force-open': label == openLabel}">
     <div class="nav-item" [routerLink]="[link]" routerLinkActive="nav-item-active">
         <span>{{ label }}</span>
-        <span *ngIf="children.length > 0" class="nav-item-arrow">+</span>
     </div>
     <div class="nav-item-children-container">
         <ul *ngFor="let child of children">

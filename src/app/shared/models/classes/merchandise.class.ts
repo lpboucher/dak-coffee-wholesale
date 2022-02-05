@@ -8,6 +8,7 @@ export class Merchandise extends Product {
     dimensions: string | null = null;
     material: string | null = null;
     type: string | null = null;
+    isAvailableWholesale = false;
 
     constructor(merchandiseShape?: Partial<Merchandise>) {
         super(merchandiseShape);
@@ -25,6 +26,7 @@ export class Merchandise extends Product {
                         { name: "30%", priceModifier: -(0.3 * this.priceAsNumber) },
                         { name: "45%", priceModifier: -(0.45 * this.priceAsNumber) },
                     ],
+                    type: "readonly"
                 }),
             ];
 
@@ -82,6 +84,10 @@ export class Merchandise extends Product {
                             ]}),
                     );
                 }
+            }
+
+            if (merchandiseShape.isAvailableWholesale != null) {
+                this.isAvailableWholesale = merchandiseShape.isAvailableWholesale;
             }
         }
     }

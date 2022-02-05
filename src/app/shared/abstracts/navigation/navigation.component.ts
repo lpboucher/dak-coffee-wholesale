@@ -32,7 +32,10 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.pricingTierService.isDiscountActive$
             .subscribe((value) => {
                 this.priceTierActive = value;
-                this.changeDetectorRef.detectChanges();
+                this.cartService.updateItemsPricingDiscount((window as any).Snipcart.store.getState().cart.items.items)
+                    .then(() => {
+                        this.changeDetectorRef.detectChanges();
+                });
             })
         );
 

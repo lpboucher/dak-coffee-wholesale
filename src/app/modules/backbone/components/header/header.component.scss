@@ -1,7 +1,7 @@
 .main-nav {
     @apply flex flex-row justify-between place-items-center;
     @apply p-2;
-    @apply bg-white;
+    @apply bg-dak-white;
 }
 
 .burger-menu-wrapper {
@@ -18,5 +18,5 @@
 }
 
 .widget-item {
-    @apply px-1;
+    @apply mx-2 px-1;
 }

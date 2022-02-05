@@ -13,22 +13,9 @@
     @apply text-dak-main bg-dak-gray rounded-lg;
 }
 
-.nav-item-arrow {
-    @apply inline w-4 h-4 ml-1;
-    @apply transition-all duration-200 transform;
-    @apply rotate-0;
-}
-
-.nav-item-active .nav-item-arrow {
-    @apply hidden;
-}
-
-.nav-item-force-open .nav-item-arrow {
-    @apply hidden;
-}
-
 .nav-item-children-container {
-    @apply static hidden;
+    @apply pl-2;
+    @apply static;
     @apply bg-dak-white;
     @apply transition duration-200 transform;
 }

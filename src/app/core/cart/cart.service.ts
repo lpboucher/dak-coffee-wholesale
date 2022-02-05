@@ -124,22 +124,42 @@ export class CartService {
     }
 
     updateCart(total: number, items: any): void {
+        console.log(`Updating: `);
         // TODO loop through items and make sure all items include same volume discount
-        this.updateCartTotal(total);
-        this.updateCartWeight(items);
+
+        const newCartWeight = this.evaluateCartWeight(items);
+        const oldCartWeight = this.cartWeight$.value;
+
         this.updatePricingService();
-        if (this.isPerformingUpdate === false) {
-            this.isPerformingUpdate = true;
-            this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
+        this.updateCartTotal(total);
+        this.updateCartWeight(items, newCartWeight);
+
+        if (newCartWeight !== oldCartWeight) {
+            if (this.isPerformingUpdate === false) {
+                this.isPerformingUpdate = true;
+                this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
+            }
         }
+    }
+
+    async updateItemsPricingDiscount(items: any): Promise<void> {
+        /*const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
+        const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);*/
+
+        /*if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
+            await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("set to 45%"));
+        } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
+            await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
+        }*/
+        await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("updated"));
     }
 
     private updateCartTotal(total: number): void {
         this.cartTotal$.next(total);
     }
 
-    private updateCartWeight(items: any): void {
-        const newWeight = this.evaluateCartWeight(items);
+    private updateCartWeight(items: any, weight?: number): void {
+        const newWeight = weight ?? this.evaluateCartWeight(items);
         this.cartWeight$.next(newWeight);
     }
 
@@ -156,57 +176,67 @@ export class CartService {
         this.pricingTierService.updateDiscount(this.cartWeight$.value);
     }
 
-    private async updateItemsPricingDiscount(items: any): Promise<void> {
-        this.isPerformingUpdate = false;
-        console.log(items);
-        const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
-        const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);
-
-        console.log("with 30%?", haveSomeItemsNoDiscount);
-        console.log("with 45%?", haveSomeItemsLargeDiscount);
-
-        if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
-            await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("set to 45%"));
-        } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
-            await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
-        }
-    }
-
     private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
 
         const updatePromises = items.map((oneItem: any) => {
-            const otherCustomFields = oneItem.customFields.filter((oneField: any) => oneField.name !== "volume-discount");
-            const baseVolumeDiscountField = oneItem.customFields.find((oneField: any) => oneField.name === "volume-discount");
-            return (window as any).Snipcart.api.cart.items.update({
-                uniqueId: oneItem.uniqueId,
-                customFields: [
-                    ...otherCustomFields,
-                    {
-                        ...baseVolumeDiscountField,
-                        value: this.percentStringPipe.transform(newDiscount),
-                    },
-                ],
-            });
+            return this.setItemDiscount(oneItem, newDiscount);
         });
 
         await Promise.all(updatePromises);
-        console.log("actual toggle discount active?", this.pricingTierService.isDiscountActive);
-        console.log("items have different discounts, setting to:");
-        console.log("new discount", this.percentStringPipe.transform(newDiscount));
+        this.isPerformingUpdate = false;
     }
 
     private itemsHaveDisount(items: any, discount: number = NO_VOLUME_DISCOUNT): boolean {
         return items.some((oneItem: any) => {
-            console.log(oneItem.name, this.findItemDiscount(oneItem), this.percentStringPipe.transform(discount));
             return this.findItemDiscount(oneItem) === this.percentStringPipe.transform(discount);
         });
     }
 
     private findItemDiscount(item: any): string {
-        const volumeField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
-        console.log("found discount field", volumeField.value);
-        return volumeField.value;
+        let discountValue;
+        const volumeWeightField = item.customFields.find((oneField: any) => oneField.name === "volume-weight-discount");
+        const volumeDiscountField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
+        if (volumeWeightField != null) {
+            discountValue =  volumeWeightField.value.split("/")[1];
+        } else {
+            discountValue = volumeDiscountField.value;
+        }
+        return discountValue;
+    }
+
+    private async setItemDiscount(item: any, newDiscount: number): Promise<void> {
+        const volumeWeightField = item.customFields.find((oneField: any) => oneField.name === "volume-weight-discount");
+        const volumeDiscountField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
+
+        if (volumeWeightField != null) {
+            const otherCustomFields = item.customFields.filter((oneField: any) => oneField.name !== "volume-weight-discount");
+            const weightCustomField = item.customFields.find((oneField: any) => oneField.name === "weight");
+
+            return (window as any).Snipcart.api.cart.items.update({
+                uniqueId: item.uniqueId,
+                customFields: [
+                    ...otherCustomFields,
+                    {
+                        ...volumeWeightField,
+                        value: `${weightCustomField.value}/${this.percentStringPipe.transform(newDiscount)}`,
+                    },
+                ],
+            });
+        } else {
+            const otherCustomFields = item.customFields.filter((oneField: any) => oneField.name !== "volume-discount");
+
+            return (window as any).Snipcart.api.cart.items.update({
+                uniqueId: item.uniqueId,
+                customFields: [
+                    ...otherCustomFields,
+                    {
+                        ...volumeDiscountField,
+                        value: this.percentStringPipe.transform(newDiscount),
+                    },
+                ],
+            });
+        }
     }
 
     private discountExists(code: string): any {

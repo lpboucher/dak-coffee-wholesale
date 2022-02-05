@@ -27,7 +27,7 @@
                 </form>
                 <div class="product-detail-content-order-wrapper">
                     <span class="product-detail-content-order-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</span>
-                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue">Add to cart</button>
+                    <button class="product-detail-content-order-button" [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue:activePricing">Add to cart</button>
                 </div>
             </div>
         </div>

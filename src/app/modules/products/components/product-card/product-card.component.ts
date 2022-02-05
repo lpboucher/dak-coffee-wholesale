@@ -19,6 +19,19 @@ export class ProductCardComponent extends BaseProductComponent {
         return this.imageService.getProductThumbUrl(this.product.images.thumb);
     }
 
+    get cardHighlights(): {text: string, class: string}[] {
+        const highlights = [];
+        if (this.product.isNewProduct) {
+            highlights.push({text: "New", class: "product-card-body-highlight--new"});
+        }
+
+        if (this.product.isLowStock) {
+            highlights.push({text: "Low Stock", class: "product-card-body-highlight--low-stock"});
+        }
+
+        return highlights;
+    }
+
     constructor(
         private imageService: ImageService,
         protected fb: FormBuilder,

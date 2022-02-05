@@ -1,6 +1,7 @@
 import { ProductType } from "@shared/models/types/product-type.type";
 import { Product } from "@shared/models/classes/product.class";
 import { ProductAttribute } from "@shared/models/classes/product-attribute.class";
+import { ProductAttributeOption } from "../interfaces/product-attribute-option.interface";
 
 import { ROAST_OPTIONS } from "@utils/constants/form-options";
 
@@ -12,6 +13,7 @@ export class Coffee extends Product {
     process: string | null = null;
     varietal: string[] = [];
     roastOptions: {name: "Filter" | "Espresso"}[] = ROAST_OPTIONS.map(opt => ({name: opt}));
+    modifiers: ProductAttributeOption[] = [];
 
     constructor(coffeeShape?: Partial<Coffee>) {
         super(coffeeShape);
@@ -30,24 +32,36 @@ export class Coffee extends Product {
 
             this.attributes = [
                 // TODO add hidden type once snipcart behaviour fixed
-                new ProductAttribute({
+                /*new ProductAttribute({
                     name: "volume-discount",
                     options: [
                         { name: "30%", priceModifier: -(0.3 * this.priceAsNumber) },
                         { name: "45%", priceModifier: -(0.45 * this.priceAsNumber) },
                     ],
-                }),
+                    type: "readonly"
+                }),*/
                 new ProductAttribute({
                     name: "weight",
                     options: [
                         { name: "250g" },
-                        { name: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
+                        // { name: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
+                        { name: "1kg" },
                     ]}),
                 new ProductAttribute({
                     name: "roast",
                     options: this.roastOptions,
-                })
+                }),
             ];
+
+            if (coffeeShape.modifiers != null && coffeeShape.modifiers.length > 0) {
+                this.modifiers = coffeeShape.modifiers;
+                this.attributes.push(
+                    new ProductAttribute({
+                        name: "volume-weight-discount",
+                        options: coffeeShape.modifiers,
+                    })
+                );
+            }
 
             if (coffeeShape.origin != null) {
                 this.origin = coffeeShape.origin;

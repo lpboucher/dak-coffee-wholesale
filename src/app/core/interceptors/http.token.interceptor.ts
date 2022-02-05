@@ -11,7 +11,7 @@ import { USER_ID_KEY } from "@utils/constants/storage";
 export class HttpTokenInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("intercepted");
+        // console.log("intercepted");
         const idToken = localStorage.getItem(USER_ID_KEY);
 
         if (idToken) {

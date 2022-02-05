@@ -14,10 +14,6 @@ export class Message {
 
             if (newMessageShape.messageType != null) {
                 this.messageType = newMessageShape.messageType;
-
-                if (this.messageType === "sample-request" || this.messageType === "product-notification") {
-                    this.isInternal = true;
-                }
             }
 
             if (newMessageShape.content != null) {

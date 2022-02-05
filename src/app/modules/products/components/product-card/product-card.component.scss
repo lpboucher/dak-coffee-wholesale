@@ -18,9 +18,14 @@
     @apply p-4;
 }
 
+.product-card-body-highlight-container {
+    @apply flex;
+    height: 1rem;
+}
+
 .product-card-body-highlight {
     @apply inline-block;
-    @apply invisible;
+    @apply visible;
     @apply px-2 py-1 leading-none;
     @apply rounded-full uppercase tracking-wide;
     @apply mr-1;
@@ -37,10 +42,6 @@
 
 .product-card-body-highlight:last-child {
     @apply m-0;
-}
-
-.product-card-body-highlight--visible {
-    @apply visible;
 }
 
 .product-card-body-title {

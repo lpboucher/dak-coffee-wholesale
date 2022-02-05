@@ -23,6 +23,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "coconut": `${FLAVOUR_FOLDER_PATH}coconut.svg`,
     "dark-chocolate": `${FLAVOUR_FOLDER_PATH}chocolate.svg`,
     "figs": `${FLAVOUR_FOLDER_PATH}figs.svg`,
+    "floral": `${FLAVOUR_FOLDER_PATH}rose.svg`,
     "grapefruit": `${FLAVOUR_FOLDER_PATH}grapefruit.svg`,
     "grapes": `${FLAVOUR_FOLDER_PATH}grapes.svg`,
     "green-apple": `${FLAVOUR_FOLDER_PATH}green-apple.svg`,

@@ -20,8 +20,23 @@ export class CoffeeApiService extends DataApiService<Coffee> {
     getCoffees(): Observable<Coffee[]> {
         return this.getAll("coffees?isActive=true")
             .pipe(
-                map((arr) => arr.sort((coffee) => {
-                        return coffee.isNewProduct === true ? -1 : 1;
+                map((arr) => arr.sort((coffee1, coffee2) => {
+                        if (coffee1.isNewProduct === true) {
+                            return -200;
+                        }
+
+                        if (coffee2.isNewProduct === true) {
+                            return 200;
+                        }
+
+                        if (coffee1.isLowStock === true) {
+                            return -100;
+                        }
+
+                        if (coffee2.isLowStock === true) {
+                            return 100;
+                        }
+                        return coffee2.priceAsNumber - coffee1.priceAsNumber;
                     })
                 )
             );

@@ -93,7 +93,7 @@ export abstract class Product {
     }
 
     get selectableAttributes(): ProductAttribute[] {
-        return this.attributes.filter((attribute) => attribute.name !== "volume-discount");
+        return this.attributes.filter((attribute) => attribute.name !== "volume-discount" && attribute.name !== "volume-weight-discount");
     }
 
     get isNewProduct(): boolean {
