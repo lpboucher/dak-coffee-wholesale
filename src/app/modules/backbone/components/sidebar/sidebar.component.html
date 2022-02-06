@@ -19,6 +19,9 @@
         [isChecked]="priceTierActive"
         (toggle)="onPricingToggled($event)">
     </app-toggle-widget>-->
+    <div class="sidebar-announcement-container">
+        <p class="sidebar-announcement">Minimum order is {{weightThreshold}}kgs</p>
+    </div>
     <div class="widget-container">
         <app-widget class="widget-item" [content]="walletAmount | formatPrice" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg-icon

@@ -52,6 +52,14 @@
     @apply flex-grow;
 }
 
+.sidebar-announcement-container {
+    @apply mb-3;
+}
+
+.sidebar-announcement {
+    @apply text-dak-main text-xs uppercase text-center font-bold;
+}
+
 .widget-container {
     @apply flex flex-wrap items-stretch justify-evenly;
     @apply mt-4;

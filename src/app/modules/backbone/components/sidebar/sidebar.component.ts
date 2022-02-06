@@ -9,6 +9,7 @@ import { WalletModalComponent } from "@shared/components/modals";
 import { NavigationComponent } from "@shared/abstracts/navigation/navigation.component";
 
 import { NAVIGATION } from "@utils/constants/navigation";
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Component({
   selector: "app-sidebar",
@@ -19,6 +20,10 @@ export class SidebarComponent extends NavigationComponent {
     @Output() hideSidebarEvent: EventEmitter<any> = new EventEmitter();
     navigation = NAVIGATION;
     openLabel = "";
+
+    get weightThreshold(): number {
+        return CART_WEIGHT_THRESHOLD;
+    }
 
     constructor(
         protected authService: AuthService,
