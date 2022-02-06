@@ -17,6 +17,7 @@ import {
     SamplesConfirmationModalComponent,
     NotificationModalComponent,
     VolumeSelectionModalComponent,
+    VolumeRequiredModalComponent,
 } from "@shared/components/modals";
 
 import { SnipcartAddDirective } from "@shared/directives/snipcart-add.directive";
@@ -52,6 +53,7 @@ export const componentDeclarations: any[] = [
     BaseProductComponent,
     FlavourIconComponent,
     RoastingMessageComponent,
+    VolumeRequiredModalComponent,
 
     SnipcartAddDirective,
     BindQueryParamsDirective,

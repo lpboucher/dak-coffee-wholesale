@@ -1,0 +1,13 @@
+<app-modal-backbone #modal>
+    <div class="modal-container">
+        <div class="modal-body">
+            <div class="modal-body-content">
+                <h3 class="modal-body-content-header" id="modal-title">Cart volume: {{ cartWeight }}kgs</h3>
+                <p class="modal-body-content-message">A minimum volume of {{minimumWeight}}kgs is required for wholesale orders.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="onOk()" class="modal-footer-confirm">Ok</button>
+        </div>
+    </div>
+</app-modal-backbone>

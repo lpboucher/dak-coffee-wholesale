@@ -12,12 +12,18 @@ export class CartModifierPipe implements PipeTransform {
         if (attributes == null || attributes.length === 0) { return []; }
 
         attributes.forEach((oneAttribute) => {
-            if (oneAttribute.name === "volume-weight-discount") {
+            /*if (oneAttribute.name === "volume-weight-discount") {
                 nonNullModifiers.push(new SelectedProductAttribute({
                     ...oneAttribute,
                     value: `${values["weight"]}/${discount}`
                 }));
             } else if (oneAttribute.name != null && oneAttribute.name !== "volume-weight-discount") {
+                nonNullModifiers.push(new SelectedProductAttribute({
+                    ...oneAttribute,
+                    value: values[oneAttribute.name]
+                }));
+            }*/
+            if (oneAttribute.name != null) {
                 nonNullModifiers.push(new SelectedProductAttribute({
                     ...oneAttribute,
                     value: values[oneAttribute.name]

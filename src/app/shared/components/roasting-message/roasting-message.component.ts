@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { DatePipe } from "@angular/common";
 
 import { ROASTING_DAYS } from "@utils/constants/roasting";
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Component({
     selector: "app-roasting-message",
@@ -12,7 +13,7 @@ export class RoastingMessageComponent {
 
     get messageDetails(): string {
         const today = new Date();
-        const nextDateString = `Next Roasting Date is ${this.datePipe.transform(this.getNextRoastingDays()[0], "EEEE, MMMM d")}`;
+        const nextDateString = `Minimum order is ${CART_WEIGHT_THRESHOLD}kgs. Next Roasting Date is ${this.datePipe.transform(this.getNextRoastingDays()[0], "EEEE, MMMM d")}`;
 
         if (this.isRoastingDay(today) === true) {
             return `Roasting today, ${nextDateString}`;

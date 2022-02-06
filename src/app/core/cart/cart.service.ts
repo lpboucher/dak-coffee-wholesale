@@ -11,7 +11,7 @@ import { PercentStringPipe } from "@shared/pipes/percent-string.pipe";
 import { Product } from "@shared/models/classes/product.class";
 import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
-import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT } from "@utils/constants/discounts";
+import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT, CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Injectable({
     providedIn: "root"
@@ -45,6 +45,10 @@ export class CartService {
 
     get currentCartWeight$(): Observable<number> {
         return this.cartWeight$.asObservable();
+    }
+
+    get currentCartWeightValue(): number {
+        return this.cartWeight$.value;
     }
 
     constructor(
@@ -93,6 +97,10 @@ export class CartService {
         this.snipcart.api.theme.cart.open();
     }
 
+    closeCart(): void {
+        this.snipcart.api.theme.cart.close();
+    }
+
     addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
         const { id, name, price } = product;
         // const url = `https://cc7f-2a02-a210-2501-f600-4523-4716-e448-3fc5.ngrok.io/snipcartParser`;
@@ -116,6 +124,10 @@ export class CartService {
             quantity: quantity ?? 1,
             minQuantity: 1,
             customFields,
+        }).then(() => {
+            if (this.isCheckoutAllowed() === false) {
+                this.closeCart();
+            }
         });
     }
 
@@ -126,21 +138,21 @@ export class CartService {
     addedItem(item: any) {
         console.log(`Added:`, item);
         this.updateCartMeta();
-        this.updateCartPricing();
+        // this.updateCartPricing();
     }
 
     updatedItem(item: any) {
         console.log(`Updated`, item);
         this.updateCartMeta();
         if (this.isPerformingManualUpdates$.value !== true) {
-            this.updateCartPricing();
+            // this.updateCartPricing();
         }
     }
 
     removedItem(item: any) {
         console.log(`Removed:`, item);
         this.updateCartMeta();
-        this.updateCartPricing();
+        // this.updateCartPricing();
     }
 
     orderCompleted(cart: any) {
@@ -178,6 +190,10 @@ export class CartService {
             this.pricingTierService.updateDiscount(cartWeight);
             this.updateItemsPricingDiscount(this.snipcartCartItems).then(() => console.log("updated discounts"));
         }
+    }
+
+    isCheckoutAllowed(): boolean {
+        return this.evaluateCartWeight(this.snipcartCartItems) >= CART_WEIGHT_THRESHOLD;
     }
 
     async updateItemsPricingDiscount(items: any): Promise<void> {

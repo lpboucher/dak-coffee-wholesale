@@ -19,11 +19,11 @@ export class BackbonePageComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const doCheckPricing = this.route.snapshot.queryParams["checkPricing"];
+        /*const doCheckPricing = this.route.snapshot.queryParams["checkPricing"];
 
         if (doCheckPricing) {
             this.modalService.open(VolumeSelectionModalComponent);
-        }
+        }*/
     }
 
     onShowSidebar(): void {

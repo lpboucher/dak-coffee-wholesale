@@ -47,7 +47,7 @@ export class Coffee extends Product {
                 }),
             ];
 
-            if (coffeeShape.modifiers != null && coffeeShape.modifiers.length > 0) {
+            /*if (coffeeShape.modifiers != null && coffeeShape.modifiers.length > 0) {
                 this.modifiers = coffeeShape.modifiers;
                 this.attributes.push(
                     new ProductAttribute({
@@ -55,7 +55,7 @@ export class Coffee extends Product {
                         options: coffeeShape.modifiers,
                     })
                 );
-            }
+            }*/
 
             if (coffeeShape.volumeOptions != null && coffeeShape.volumeOptions.length > 0) {
                 this.volumeOptions = coffeeShape.volumeOptions;

@@ -11,20 +11,20 @@ export class AdjustedProductPricePipe implements PipeTransform {
         if (basePrice === 0) return 0;
         if (pricedAttributes == null || pricedAttributes.length === 0) return basePrice;
 
-        let pricedAttribute: ProductAttribute;
-
-        const isCoffee = pricedAttributes.find((attr) => attr.name === "volume-weight-discount");
-        const isMerchandise = pricedAttributes.find((attr) => attr.name === "volume-discount");
+        let priceModifier: number;
+        const isCoffee = pricedAttributes.find((attr) => attr.name === "weight");
+        const isMerchandise = pricedAttributes.find((attr) => attr.name === "color");
 
         if (isCoffee != null) {
-            pricedAttribute = isCoffee!;
             const activeOption = isCoffee.options.find((opt) => opt.name === selections[isCoffee.name!]);
-            return basePrice + activeOption?.priceModifier!;
+            priceModifier = activeOption?.priceModifier!;
+        } else if(isMerchandise != null) {
+            const activeOption = isMerchandise.options.find((opt) => opt.name === selections[isMerchandise.name!]);
+            priceModifier = activeOption?.priceModifier!;
         } else {
-            pricedAttribute = isMerchandise!;
+            priceModifier = 0;
         }
 
-        const activeOption = pricedAttribute?.options.find((opt) => opt.name === selections[pricedAttribute.name!]);
-        return basePrice + activeOption?.priceModifier!;
+        return basePrice + priceModifier;
     }
 }

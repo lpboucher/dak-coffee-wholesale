@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
                 ({loggedIn, walletValue, walletDiscountCode}) => {
                     if (loggedIn) {
                         const isFirstOrder = walletValue === 0;
-                        const routeExtension = isFirstOrder ? { queryParams: { checkPricing: true } } : {};
+                        // const routeExtension = isFirstOrder ? { queryParams: { checkPricing: true } } : {};
+                        const routeExtension = {};
                         this.pricingTierService.toggleDiscount(!isFirstOrder);
                         this.pricingTierService.updateWalletAmount(walletValue);
                         this.cartService.applyDiscount(walletDiscountCode!);

@@ -1,0 +1,52 @@
+.modal-container {
+    @apply p-8;
+    @apply bg-dak-gray rounded-lg;
+}
+
+.modal-body {
+    @apply mb-5;
+    @apply justify-center;
+    @apply sm:flex sm:items-start;
+}
+
+.modal-body-icon-container {
+    @apply flex items-center justify-center flex-none;
+    @apply mx-auto h-12 w-12;
+    @apply rounded-full;
+
+    @apply sm:mx-0 sm:h-10 sm:w-10;
+}
+
+.modal-body-icon {
+    @apply h-6 w-6 mb-0;
+    @apply text-dak-main;
+}
+
+.modal-body-content {
+    @apply mt-3;
+    @apply text-center;
+
+    @apply sm:mt-0 sm:ml-4 sm:text-left;
+}
+
+.modal-body-content-header {
+    @apply text-lg leading-6 font-medium text-gray-900;
+}
+
+.modal-body-content-message {
+    @apply mt-2;
+    @apply text-center;
+    @apply text-sm font-light text-dak-main ;
+}
+
+.modal-footer {
+    @apply sm:flex sm:justify-center;
+}
+
+.modal-footer-confirm {
+    @apply inline-flex justify-center;
+    @apply w-full px-8 py-2;
+    @apply rounded-md border border-transparent bg-dak-main text-base font-medium text-dak-white;
+
+    @apply hover:bg-dak-secondary hover:text-dak-main focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm;
+}

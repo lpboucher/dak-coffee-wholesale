@@ -20,14 +20,14 @@ export class Merchandise extends Product {
 
             this.attributes = [
                 // TODO add hidden type once snipcart behaviour fixed
-                new ProductAttribute({
+                /*new ProductAttribute({
                     name: "volume-discount",
                     options: [
                         { name: "30%", priceModifier: -(0.3 * this.priceAsNumber) },
                         { name: "45%", priceModifier: -(0.45 * this.priceAsNumber) },
                     ],
                     type: "readonly"
-                }),
+                }),*/
             ];
 
             if (merchandiseShape.dimensions != null) {
@@ -58,7 +58,7 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "color",
                             options: [
-                                { name: "Navy" },
+                                { name: "Navy", priceModifier: -(0.3 * this.priceAsNumber) },
                             ]}),
                     );
                 }
@@ -79,8 +79,8 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "color",
                             options: [
-                                { name: "Navy" },
-                                { name: "Cream Grey" },
+                                { name: "Navy", priceModifier: -(0.3 * this.priceAsNumber) },
+                                { name: "Cream Grey", priceModifier: -(0.3 * this.priceAsNumber) },
                             ]}),
                     );
                 }

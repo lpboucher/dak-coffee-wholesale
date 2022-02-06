@@ -7,6 +7,7 @@ import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { ModalService } from "@core/views/modal.service";
 
 import { WalletModalComponent } from "@shared/components/modals";
+import { VolumeRequiredModalComponent } from "@shared/components/modals";
 
 @Component({
     selector: "app-navigation",
@@ -24,7 +25,7 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
         protected pricingTierService: PricingTierService,
         protected changeDetectorRef: ChangeDetectorRef,
         protected cartService: CartService,
-        protected modalService: ModalService<WalletModalComponent>,
+        protected modalService: ModalService<WalletModalComponent | VolumeRequiredModalComponent>,
         protected authService: AuthService,
     ) {}
 
@@ -70,7 +71,11 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
     }
 
     onCartWidgetClicked(): void {
-        this.cartService.openCart();
+        if (this.cartService.isCheckoutAllowed() === true) {
+            this.cartService.openCart();
+        } else {
+            this.modalService.open(VolumeRequiredModalComponent);
+        }
     }
 
     onLogoutClicked(): void {

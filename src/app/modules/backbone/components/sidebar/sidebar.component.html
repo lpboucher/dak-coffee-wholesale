@@ -12,13 +12,13 @@
         </ul>
     </div>
     <div class="nav-spacer"></div>
-    <app-toggle-widget
+    <!--<app-toggle-widget
         [header]="'Volume Discount'"
         [uncheckedOption]="'30%'"
         [checkedOption]="'45%'"
         [isChecked]="priceTierActive"
         (toggle)="onPricingToggled($event)">
-    </app-toggle-widget>
+    </app-toggle-widget>-->
     <div class="widget-container">
         <app-widget class="widget-item" [content]="walletAmount | formatPrice" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg-icon
