@@ -35,6 +35,7 @@ export class SidebarComponent extends NavigationComponent {
     }
 
     onPricingToggled(value: boolean): void {
+        this.cartService.toggleManualUpdates(true);
         this.pricingTierService.toggleDiscount(value);
     }
 }

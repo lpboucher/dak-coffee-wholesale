@@ -15,7 +15,7 @@ export class SnipcartService {
 
         return snipcart.store.subscribe(() => {
             const { cart } = snipcart.store.getState();
-            this.cartService.updateCart(cart.total, cart.items.items);
+            this.cartService.updateCartMeta(cart.total, cart.items.items);
         });
     }
 

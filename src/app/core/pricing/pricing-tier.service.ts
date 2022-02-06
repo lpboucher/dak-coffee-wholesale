@@ -93,4 +93,8 @@ export class PricingTierService {
     calculateWalletAmount(orderTotal: number): number {
         return orderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET;
     }
+
+    isPricingUpdateRequired(cartWeight: number): boolean {
+        return cartWeight > CART_WEIGHT_THRESHOLD && this.storageService.get(DISCOUNT_ACTIVE_KEY) !== "45%";
+    }
 }

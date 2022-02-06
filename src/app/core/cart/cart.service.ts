@@ -17,9 +17,27 @@ import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT } from "@utils/constants/disc
     providedIn: "root"
 })
 export class CartService {
-    private isPerformingUpdate = false;
+    private hasPerformedInitialUpdate = false;
+    private isPerformingManualUpdates$ = new BehaviorSubject(false);
     private cartTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
     private cartWeight$: BehaviorSubject<number> = new BehaviorSubject(0);
+
+    get snipcart(): any {
+        return (window as any).Snipcart;
+    }
+
+    get snipcartCart(): any {
+        const { cart } = this.snipcart.store.getState();
+        return cart;
+    }
+
+    get snipcartCartTotal(): any {
+        return this.snipcartCart.total;
+    }
+
+    get snipcartCartItems(): any {
+        return this.snipcartCart.items.items;
+    }
 
     get currentCartTotal$(): Observable<number> {
         return this.cartTotal$.asObservable();
@@ -36,6 +54,11 @@ export class CartService {
         private percentStringPipe: PercentStringPipe,
     ) {}
 
+    toggleManualUpdates(value?: boolean): void {
+        const newValue = value ?? !this.isPerformingManualUpdates$.value;
+        this.isPerformingManualUpdates$.next(newValue);
+    }
+
     applyDiscount(code: string): void {
         if (this.discountExists(code)) {
             this.removeDiscount(code, true);
@@ -45,7 +68,7 @@ export class CartService {
     }
 
     addDiscount(code: string): void {
-        (window as any).Snipcart.api.cart.applyDiscount(code)
+        this.snipcart.api.cart.applyDiscount(code)
             .then(({result}: any) => {
                 // this.alertService.success(`Applied wallet discount of ${result.discount.value} to cart`);
             })
@@ -55,7 +78,7 @@ export class CartService {
     }
 
     removeDiscount(code: string, readd: boolean = false): void {
-        (window as any).Snipcart.api.cart.removeDiscount(code)
+        this.snipcart.api.cart.removeDiscount(code)
             .then((_: any) => {
                 if (readd) {
                     this.addDiscount(code);
@@ -67,7 +90,7 @@ export class CartService {
     }
 
     openCart(): void {
-        (window as any).Snipcart.api.theme.cart.open();
+        this.snipcart.api.theme.cart.open();
     }
 
     addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
@@ -85,7 +108,7 @@ export class CartService {
             customFields,
         });
 
-        (window as any).Snipcart.api.cart.items.add({
+        this.snipcart.api.cart.items.add({
             id,
             name,
             price,
@@ -97,19 +120,27 @@ export class CartService {
     }
 
     addingItem(item: any) {
-        console.log(`Adding: ${ item }`);
+        console.log(`Adding:`, item);
     }
 
     addedItem(item: any) {
-        console.log(`Added: ${ item }`);
+        console.log(`Added:`, item);
+        this.updateCartMeta();
+        this.updateCartPricing();
     }
 
     updatedItem(item: any) {
-        console.log(`Updated: ${ item }`);
+        console.log(`Updated`, item);
+        this.updateCartMeta();
+        if (this.isPerformingManualUpdates$.value !== true) {
+            this.updateCartPricing();
+        }
     }
 
     removedItem(item: any) {
-        console.log(`Removed: ${ item }`);
+        console.log(`Removed:`, item);
+        this.updateCartMeta();
+        this.updateCartPricing();
     }
 
     orderCompleted(cart: any) {
@@ -123,44 +154,44 @@ export class CartService {
             });
     }
 
-    updateCart(total: number, items: any): void {
-        console.log(`Updating: `);
-        // TODO loop through items and make sure all items include same volume discount
+    updateCartMeta(total?: number, items?: any): void {
+        let newCartWeight;
+        let cartTotal;
 
-        const newCartWeight = this.evaluateCartWeight(items);
-        const oldCartWeight = this.cartWeight$.value;
+        if (this.hasPerformedInitialUpdate === false) {
+            newCartWeight = this.evaluateCartWeight(items);
+            cartTotal = total;
+            this.hasPerformedInitialUpdate = true;
+        } else {
+            newCartWeight = this.evaluateCartWeight(this.snipcartCartItems);
+            cartTotal = this.snipcartCartTotal;
+        }
 
-        this.updatePricingService();
-        this.updateCartTotal(total);
-        this.updateCartWeight(items, newCartWeight);
+        this.updateCartTotal(cartTotal);
+        this.updateCartWeight(newCartWeight);
+    }
 
-        if (newCartWeight !== oldCartWeight) {
-            if (this.isPerformingUpdate === false) {
-                this.isPerformingUpdate = true;
-                this.updateItemsPricingDiscount(items).then(() => console.log("updated discounts"));
-            }
+    updateCartPricing(): void {
+        const cartWeight = this.cartWeight$.value;
+
+        if (this.pricingTierService.isPricingUpdateRequired(cartWeight) === true) {
+            this.pricingTierService.updateDiscount(cartWeight);
+            this.updateItemsPricingDiscount(this.snipcartCartItems).then(() => console.log("updated discounts"));
         }
     }
 
     async updateItemsPricingDiscount(items: any): Promise<void> {
-        /*const haveSomeItemsNoDiscount = this.itemsHaveDisount(items, NO_VOLUME_DISCOUNT);
-        const haveSomeItemsLargeDiscount = this.itemsHaveDisount(items, LARGE_VOLUME_DISCOUNT);*/
-
-        /*if (haveSomeItemsNoDiscount && this.pricingTierService.isDiscountActive) {
-            await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("set to 45%"));
-        } else if (haveSomeItemsLargeDiscount && !this.pricingTierService.isDiscountActive) {
-            await this.setItemsDiscount(items, !this.pricingTierService.isDiscountActive).then(() => console.log("set to 30%"));
-        }*/
         await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("updated"));
+        setTimeout(() => this.toggleManualUpdates(false), 1200);
+        console.log("removing block");
     }
 
     private updateCartTotal(total: number): void {
         this.cartTotal$.next(total);
     }
 
-    private updateCartWeight(items: any, weight?: number): void {
-        const newWeight = weight ?? this.evaluateCartWeight(items);
-        this.cartWeight$.next(newWeight);
+    private updateCartWeight(weight: number): void {
+        this.cartWeight$.next(weight);
     }
 
     private evaluateCartWeight(items: any): number {
@@ -172,10 +203,6 @@ export class CartService {
         return weightField ? this.weightPipe.transform(weightField.value) : 0;
     }
 
-    private updatePricingService(): void {
-        this.pricingTierService.updateDiscount(this.cartWeight$.value);
-    }
-
     private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
 
@@ -184,25 +211,6 @@ export class CartService {
         });
 
         await Promise.all(updatePromises);
-        this.isPerformingUpdate = false;
-    }
-
-    private itemsHaveDisount(items: any, discount: number = NO_VOLUME_DISCOUNT): boolean {
-        return items.some((oneItem: any) => {
-            return this.findItemDiscount(oneItem) === this.percentStringPipe.transform(discount);
-        });
-    }
-
-    private findItemDiscount(item: any): string {
-        let discountValue;
-        const volumeWeightField = item.customFields.find((oneField: any) => oneField.name === "volume-weight-discount");
-        const volumeDiscountField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
-        if (volumeWeightField != null) {
-            discountValue =  volumeWeightField.value.split("/")[1];
-        } else {
-            discountValue = volumeDiscountField.value;
-        }
-        return discountValue;
     }
 
     private async setItemDiscount(item: any, newDiscount: number): Promise<void> {
