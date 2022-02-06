@@ -59,6 +59,7 @@ export class AuthService extends DataApiService<NewUser> {
                 }),
                 map(([backendRes, frontendRes]) => {
                     if (backendRes.loggedIn && frontendRes.loggedIn) {
+                        console.log(backendRes);
                         this.setSession(frontendRes.sessionToken, new Date(backendRes.expires!));
                         return { ...backendRes, snipcartSessionToken: frontendRes.sessionToken };
                     } else {
