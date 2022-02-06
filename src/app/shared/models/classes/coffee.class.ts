@@ -14,6 +14,7 @@ export class Coffee extends Product {
     varietal: string[] = [];
     roastOptions: {name: "Filter" | "Espresso"}[] = ROAST_OPTIONS.map(opt => ({name: opt}));
     modifiers: ProductAttributeOption[] = [];
+    volumeOptions: ProductAttributeOption[] = [];
 
     constructor(coffeeShape?: Partial<Coffee>) {
         super(coffeeShape);
@@ -41,13 +42,6 @@ export class Coffee extends Product {
                     type: "readonly"
                 }),*/
                 new ProductAttribute({
-                    name: "weight",
-                    options: [
-                        { name: "250g" },
-                        // { name: "1kg", priceModifier: this.kgPriceAsNumber - this.priceAsNumber },
-                        { name: "1kg" },
-                    ]}),
-                new ProductAttribute({
                     name: "roast",
                     options: this.roastOptions,
                 }),
@@ -60,6 +54,25 @@ export class Coffee extends Product {
                         name: "volume-weight-discount",
                         options: coffeeShape.modifiers,
                     })
+                );
+            }
+
+            if (coffeeShape.volumeOptions != null && coffeeShape.volumeOptions.length > 0) {
+                this.volumeOptions = coffeeShape.volumeOptions;
+                this.attributes.push(
+                    new ProductAttribute({
+                        name: "weight",
+                        options: coffeeShape.volumeOptions,
+                    })
+                );
+            } else {
+                this.attributes.push(
+                    new ProductAttribute({
+                        name: "weight",
+                        options: [
+                            { name: "250g" },
+                            { name: "1kg" },
+                        ]}),
                 );
             }
 
