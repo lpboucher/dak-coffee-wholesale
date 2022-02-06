@@ -129,6 +129,12 @@ export class CartService {
                 this.closeCart();
             }
         });
+
+        if ((window as any).Snipcart.store.getState().cart.discounts.items.length > 0) {
+            (window as any).Snipcart.store.getState().cart.discounts.items.forEach((oneDiscount: any) => {
+                this.removeDiscount(oneDiscount.code);
+            });
+        }
     }
 
     addingItem(item: any) {
