@@ -59,7 +59,7 @@ export class PricingTierService {
     }
 
     retrieveWalletAmount(): number {
-        return parseFloat(this.storageService.get(WALLET_AMOUNT_KEY) ?? "0");
+        return Math.round(parseFloat(this.storageService.get(WALLET_AMOUNT_KEY) ?? "0") * 100) / 100;
     }
 
     updateWalletAmount(newAmount: number = 0): void {
@@ -78,7 +78,7 @@ export class PricingTierService {
     }
 
     updateCustomerWallet(customerEmail: string, orderTotal: number): Observable<{updated: boolean}> {
-        const newWalletAmount = this.calculateWalletAmount(orderTotal);
+        const newWalletAmount = Math.round(this.calculateWalletAmount(orderTotal) * 100) / 100;
         this.updateWalletAmount(newWalletAmount);
         return this.http.put<{updated: boolean}>(
             config.backendURL + "customers/orders/" + customerEmail,
