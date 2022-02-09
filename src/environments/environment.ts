@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    backendURL: "http://127.0.0.1:4200/api/",
+    // backendURL: "http://127.0.0.1:4200/api/",
+    backendURL: "https://1aea-2a02-a210-2501-f600-5c7a-8bd0-911-1142.ngrok.io/",
     cloudinaryCloudName: "dak-coffee-roasters",
     businessEmailAddress: "info@dakcoffeeroasters",
     newProductLapse: 30 * 24 * 60 * 60 * 1000,

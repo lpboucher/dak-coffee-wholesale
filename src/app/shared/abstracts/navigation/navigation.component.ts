@@ -30,7 +30,7 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.subscriptions.add(this.pricingTierService.isDiscountActive$
+        /*this.subscriptions.add(this.pricingTierService.isDiscountActive$
             .subscribe((value) => {
                 this.priceTierActive = value;
                 this.cartService.updateItemsPricingDiscount((window as any).Snipcart.store.getState().cart.items.items)
@@ -38,7 +38,7 @@ export abstract class NavigationComponent implements OnInit, OnDestroy {
                         this.changeDetectorRef.detectChanges();
                 });
             })
-        );
+        );*/
 
         this.subscriptions.add(this.cartService.currentCartTotal$
             .subscribe((value) => {

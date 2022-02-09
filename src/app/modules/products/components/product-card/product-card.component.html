@@ -1,5 +1,5 @@
-<div class="product-card" [routerLink]="linkParams">
-    <div class="product-card-image-container">
+<div class="product-card">
+    <div class="product-card-image-container" [routerLink]="linkParams">
         <img class="product-card-image" [src]="imageUrl" alt="">
     </div>
     <div class="product-card-body">
@@ -23,7 +23,7 @@
     </div>
     <div class="product-card-body-price-container">
         <div class="product-card-body-price">{{ (product.priceAsNumber | adjustedProductPrice:product.attributesWithModifiers:formValue) * this.quantity | formatPrice }}</div>
-        <button [snipcartAdd]="product" [quantity]="quantity" [modifiers]="product.attributes | cartModifier:formValue:activePricing" class="product-card-body-add-to-cart">Add to cart</button>
+        <button [snipcartAdd]="product" [quantity]="quantity" [selection]="formValue" class="product-card-body-add-to-cart">Add to cart</button>
     </div>
     <div class="product-card-details-flavours" *ngIf="flavours.length > 0">
         <app-flavour-icon *ngFor="let flavour of flavours.slice(0, limitedNumberOfFlavors)" [flavour]="flavour"></app-flavour-icon>

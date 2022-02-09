@@ -28,7 +28,7 @@ export class VolumeSelectionModalComponent {
     }
 
     onConfirm(): void {
-        this.pricingTierService.toggleDiscount(this.largeVolumeDiscountSelected);
+        // this.pricingTierService.toggleDiscount(this.largeVolumeDiscountSelected);
 
         if (this.modal != null) {
             const { checkPricing, ...existingParams } = this.route.snapshot.queryParams;

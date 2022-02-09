@@ -50,6 +50,8 @@ export abstract class BaseProductComponent implements OnInit {
             quantity: [1, Validators.required],
         });
 
+        // TODO reactivate discount subscriptions when pricing is fixed
+        /*
         this.subscriptions.add(this.pricingTierService.isDiscountActive$
             .subscribe((_) => {
                 if (this.product.productType === "coffee") {
@@ -59,7 +61,10 @@ export abstract class BaseProductComponent implements OnInit {
                 }
             })
         );
+        */
 
+        // TODO reactivate weight subscriptions when sdk fixed
+        /*
         this.subscriptions.add(this.optionsForm.get("weight")?.valueChanges
             .subscribe(
                 (_) => {
@@ -69,6 +74,7 @@ export abstract class BaseProductComponent implements OnInit {
                 }
             )
         );
+        */
     }
 
     private get formConfig() {

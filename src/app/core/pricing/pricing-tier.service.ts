@@ -5,9 +5,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { environment as config } from "@env";
 import { PersistenceService } from "@core/storage/persistence.service";
 
-import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 import { PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET } from "@utils/constants/wallet";
-import { WALLET_AMOUNT_KEY, DISCOUNT_ACTIVE_KEY } from "@utils/constants/storage";
+import { WALLET_AMOUNT_KEY } from "@utils/constants/storage";
 
 @Injectable({
     providedIn: "root"
@@ -38,25 +37,33 @@ export class PricingTierService {
     ) {
         this.updateWalletAmount(this.retrieveWalletAmount());
 
+        /*
         const activeDiscount = this.storageService.get(DISCOUNT_ACTIVE_KEY);
 
         if (activeDiscount === "45%" || this.walletAmount !== 0) {
             this.toggleDiscount(true);
         }
+        */
     }
 
+    // TODO reactivate when pricing is fixed
+    /*
     toggleDiscount(value?: boolean): void {
         const newValue = value ?? !this.isVolumeDiscountActive$.value;
         this.isVolumeDiscountActive$.next(newValue);
 
         this.storageService.set(DISCOUNT_ACTIVE_KEY, newValue ? "45%" : "30%");
     }
+    */
 
+    // TODO reactivate when pricing is fixed
+    /*
     updateDiscount(cartWeight: number): void {
         if (cartWeight > CART_WEIGHT_THRESHOLD && this.storageService.get(DISCOUNT_ACTIVE_KEY) !== "45%") {
             this.toggleDiscount(true);
         }
     }
+    */
 
     retrieveWalletAmount(): number {
         return Math.round(parseFloat(this.storageService.get(WALLET_AMOUNT_KEY) ?? "0") * 100) / 100;
@@ -94,7 +101,9 @@ export class PricingTierService {
         return orderTotal * PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET;
     }
 
+    /*
     isPricingUpdateRequired(cartWeight: number): boolean {
         return cartWeight > CART_WEIGHT_THRESHOLD && this.storageService.get(DISCOUNT_ACTIVE_KEY) !== "45%";
     }
+    */
 }

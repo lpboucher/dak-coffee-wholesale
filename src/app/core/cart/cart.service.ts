@@ -1,17 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
-import { environment as config } from "@env";
-
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
 import { AlertService } from "@core/alerts/alert.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
 import { PercentStringPipe } from "@shared/pipes/percent-string.pipe";
-import { Product } from "@shared/models/classes/product.class";
-import { SelectedProductAttribute } from "@shared/models/classes/product-attribute.class";
 
-import { NO_VOLUME_DISCOUNT, LARGE_VOLUME_DISCOUNT, CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
+import { CART_WEIGHT_THRESHOLD } from "@utils/constants/discounts";
 
 @Injectable({
     providedIn: "root"
@@ -101,7 +97,7 @@ export class CartService {
         this.snipcart.api.theme.cart.close();
     }
 
-    addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
+    /*addToCart(product: Product, quantity?: number, customFields?: SelectedProductAttribute[]): void {
         const { id, name, price } = product;
         // const url = `https://cc7f-2a02-a210-2501-f600-4523-4716-e448-3fc5.ngrok.io/snipcartParser`;
         const url = `${config.backendURL}wholesale/snipcartParser`;
@@ -135,33 +131,37 @@ export class CartService {
                 this.removeDiscount(oneDiscount.code);
             });
         }
-    }
+    }*/
 
     addingItem(item: any) {
-        console.log(`Adding:`, item);
     }
 
     addedItem(item: any) {
-        console.log(`Added:`, item);
         this.updateCartMeta();
-        // this.updateCartPricing();
+
+        if (this.isCheckoutAllowed() === false) {
+            this.closeCart();
+        }
     }
 
     updatedItem(item: any) {
-        console.log(`Updated`, item);
         this.updateCartMeta();
-        if (this.isPerformingManualUpdates$.value !== true) {
-            // this.updateCartPricing();
+
+        if (this.isCheckoutAllowed() === false) {
+            this.closeCart();
         }
     }
 
     removedItem(item: any) {
-        console.log(`Removed:`, item);
         this.updateCartMeta();
-        // this.updateCartPricing();
+
+        if (this.isCheckoutAllowed() === false) {
+            this.closeCart();
+        }
     }
 
     orderCompleted(cart: any) {
+        console.log("completed?");
         this.pricingTierService.updateCustomerWallet(cart.email, cart.total)
             .subscribe(({updated}) => {
                 if (updated) {
@@ -189,24 +189,24 @@ export class CartService {
         this.updateCartWeight(newCartWeight);
     }
 
-    updateCartPricing(): void {
+    /*updateCartPricing(): void {
         const cartWeight = this.cartWeight$.value;
 
         if (this.pricingTierService.isPricingUpdateRequired(cartWeight) === true) {
             this.pricingTierService.updateDiscount(cartWeight);
             this.updateItemsPricingDiscount(this.snipcartCartItems).then(() => console.log("updated discounts"));
         }
-    }
+    }*/
 
     isCheckoutAllowed(): boolean {
         return this.evaluateCartWeight(this.snipcartCartItems) >= CART_WEIGHT_THRESHOLD;
     }
 
-    async updateItemsPricingDiscount(items: any): Promise<void> {
+    /*async updateItemsPricingDiscount(items: any): Promise<void> {
         await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("updated"));
         setTimeout(() => this.toggleManualUpdates(false), 1200);
         console.log("removing block");
-    }
+    }*/
 
     private updateCartTotal(total: number): void {
         this.cartTotal$.next(total);
@@ -225,7 +225,7 @@ export class CartService {
         return weightField ? this.weightPipe.transform(weightField.value) : 0;
     }
 
-    private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
+    /*private async setItemsDiscount(items: any, hasDiscount = false): Promise<void> {
         const newDiscount = hasDiscount ? LARGE_VOLUME_DISCOUNT : NO_VOLUME_DISCOUNT;
 
         const updatePromises = items.map((oneItem: any) => {
@@ -233,9 +233,9 @@ export class CartService {
         });
 
         await Promise.all(updatePromises);
-    }
+    }*/
 
-    private async setItemDiscount(item: any, newDiscount: number): Promise<void> {
+    /*private async setItemDiscount(item: any, newDiscount: number): Promise<void> {
         const volumeWeightField = item.customFields.find((oneField: any) => oneField.name === "volume-weight-discount");
         const volumeDiscountField = item.customFields.find((oneField: any) => oneField.name === "volume-discount");
 
@@ -267,7 +267,7 @@ export class CartService {
                 ],
             });
         }
-    }
+    }*/
 
     private discountExists(code: string): any {
         const activeDiscounts = (window as any).Snipcart.store.getState().cart.discounts.items;

@@ -1,36 +1,24 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
-import { ProductAttribute, SelectedProductAttribute } from "../models/classes/product-attribute.class";
+import { ProductAttribute } from "../models/classes/product-attribute.class";
 
 @Pipe({
     name: "cartModifier"
 })
 export class CartModifierPipe implements PipeTransform {
-    transform(attributes: ProductAttribute[] | null, values: {[key: string]: any}, discount: string): SelectedProductAttribute[] {
-        let nonNullModifiers: SelectedProductAttribute[] = [];
+    transform(attribute: ProductAttribute | null): string {
+        if (attribute == null) { return ""; }
 
-        if (attributes == null || attributes.length === 0) { return []; }
+        const hasModifier = attribute?.options.some(opt => opt.priceModifier);
 
-        attributes.forEach((oneAttribute) => {
-            /*if (oneAttribute.name === "volume-weight-discount") {
-                nonNullModifiers.push(new SelectedProductAttribute({
-                    ...oneAttribute,
-                    value: `${values["weight"]}/${discount}`
-                }));
-            } else if (oneAttribute.name != null && oneAttribute.name !== "volume-weight-discount") {
-                nonNullModifiers.push(new SelectedProductAttribute({
-                    ...oneAttribute,
-                    value: values[oneAttribute.name]
-                }));
-            }*/
-            if (oneAttribute.name != null) {
-                nonNullModifiers.push(new SelectedProductAttribute({
-                    ...oneAttribute,
-                    value: values[oneAttribute.name]
-                }));
+        const attributesWithPrice = attribute?.options.map(({name, priceModifier}) => {
+            if (hasModifier) {
+                return `${name}[${Math.round(priceModifier! * 100) / 100}]`;
             }
+            return name;
         });
 
-        return nonNullModifiers;
+        return attributesWithPrice.join("|");
     }
 }
+

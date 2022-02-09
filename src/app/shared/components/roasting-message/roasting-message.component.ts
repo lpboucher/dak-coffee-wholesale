@@ -13,13 +13,14 @@ export class RoastingMessageComponent {
 
     get messageDetails(): string {
         const today = new Date();
-        const nextDateString = `Minimum order is ${CART_WEIGHT_THRESHOLD}kgs. Next Roasting Date is ${this.datePipe.transform(this.getNextRoastingDays()[0], "EEEE, MMMM d")}`;
+        const baseString = `Minimum order is ${CART_WEIGHT_THRESHOLD}kgs.`;
+        let nextDateString = `Next Roasting Date is ${this.datePipe.transform(this.getNextRoastingDays()[0], "EEEE, MMMM d")}.`;
 
         if (this.isRoastingDay(today) === true) {
-            return `Roasting today, ${nextDateString}`;
+            nextDateString = `Roasting today.`;
         }
 
-        return nextDateString;
+        return `${baseString} ${nextDateString}`;
     }
 
     constructor(private datePipe: DatePipe) {}

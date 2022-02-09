@@ -39,8 +39,11 @@ export class SidebarComponent extends NavigationComponent {
         this.hideSidebarEvent.emit();
     }
 
+    // TODO reactivate when pricing updated
+    /*
     onPricingToggled(value: boolean): void {
         this.cartService.toggleManualUpdates(true);
         this.pricingTierService.toggleDiscount(value);
     }
+    */
 }

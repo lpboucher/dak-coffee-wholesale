@@ -1,11 +1,11 @@
 .product-card {
     @apply text-left;
     @apply block h-full bg-dak-white rounded-lg overflow-hidden;
-    @apply cursor-pointer;
 }
 
 .product-card-image-container {
     @apply max-h-52;
+    @apply cursor-pointer;
     @apply overflow-hidden;
 }
 
