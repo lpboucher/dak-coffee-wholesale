@@ -32,7 +32,7 @@
 
 .login-card-email-input {
     @apply block w-full py-3 px-1 mt-2;
-    @apply text-dak-main appearance-none border-b border-dak-secondary;
+    @apply text-dak-main appearance-none border-b border-dak-secondary bg-transparent;
 
     @apply focus:text-dak-main focus:outline-none focus:border-dak-secondary;
 }
@@ -44,7 +44,7 @@
 
 .login-card-password-input {
     @apply block w-full py-3 px-1 mt-2;
-    @apply text-dak-main appearance-none border-b border-dak-secondary;
+    @apply text-dak-main appearance-none border-b border-dak-secondary bg-transparent;
 
     @apply focus:text-dak-main focus:outline-none focus:border-dak-secondary;
 }
