@@ -28,6 +28,13 @@ export class FeaturedProductCardComponent {
             : [];
     }
 
+    get productName(): string {
+        if (this.product.productType === "coffee") {
+            return `${this.product.name} - ${(this.product as Coffee).origin}`;
+        }
+        return this.product.name!;
+    }
+
     constructor(
         private imageService: ImageService,
         private modalService: ModalService<NotificationModalComponent>,
