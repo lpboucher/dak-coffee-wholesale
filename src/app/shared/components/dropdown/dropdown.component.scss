@@ -7,7 +7,7 @@
 
 .dropdown-selected {
     @apply p-1 px-2 w-full;
-    @apply text-sm text-dak-main;
+    @apply text-sm text-dak-main capitalize;
 }
 
 .dropdown-arrow-container {
@@ -74,5 +74,5 @@
 }
 
 .dropdown-option-list-item-content {
-    @apply mx-2 leading-6;
+    @apply mx-2 leading-6 capitalize;
 }
