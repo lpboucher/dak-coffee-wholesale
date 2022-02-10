@@ -1,1 +1,1 @@
-export const PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET: number = 0.03;
+export const PREVIOUS_ORDER_PERCENTAGE_FOR_WALLET: number = 0.025;
