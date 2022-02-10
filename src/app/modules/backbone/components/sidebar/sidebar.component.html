@@ -23,7 +23,7 @@
         <p class="sidebar-announcement">Minimum order is {{weightThreshold}}kgs</p>
     </div>
     <div class="widget-container">
-        <app-widget class="widget-item" [content]="walletAmount | formatPrice" (widgetClickEvent)="onWalletWidgetClicked()">
+        <app-widget class="widget-item" [content]="walletAmount | formatPrice" helperContent="Wallet Discount" (widgetClickEvent)="onWalletWidgetClicked()">
             <svg-icon
                 src="/assets/icons/wallet.svg"
                 [svgStyle]="{ 'width.px': 20, 'height.px': 20, 'fill': '#3a3a3a' }">
