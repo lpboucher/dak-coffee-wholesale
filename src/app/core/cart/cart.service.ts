@@ -161,8 +161,7 @@ export class CartService {
     }
 
     orderCompleted(cart: any) {
-        console.log("completed?");
-        this.pricingTierService.updateCustomerWallet(cart.email, cart.total)
+        this.pricingTierService.updateCustomerWallet(cart.email, cart.subtotal)
             .subscribe(({updated}) => {
                 if (updated) {
                     this.alertService.success(
