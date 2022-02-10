@@ -19,6 +19,7 @@ import { ProductsToFiltersPipe } from "@shared/pipes/products-to-filters.pipe";
 export class ProductPageComponent implements OnInit, OnDestroy {
     private subscriptions = new Subscription();
     private products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+    selectedOption?: { [key: string]: string };
     featuredProducts$: Observable<Product[]> = new Observable();
     filterableProperties: FilterType[] = [];
     activeFilters: ActiveFilters = {};
@@ -41,7 +42,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.route.params
             .pipe(
                 switchMap(({ productType, roast }) => {
-                    // return this.productService.getProductsByType(productType)
+                    if (roast != null) {
+                        this.selectedOption = { roast };
+                    }
                     return iif(
                         () => roast != null,
                         this.productService.getCoffeesByRoast(roast),

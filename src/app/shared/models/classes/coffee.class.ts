@@ -12,7 +12,7 @@ export class Coffee extends Product {
     tastingNotes: string[] = [];
     process: string | null = null;
     varietal: string[] = [];
-    roastOptions: {name: "Filter" | "Espresso"}[] = ROAST_OPTIONS.map(opt => ({name: opt}));
+    roastOptions: {name: "filter" | "espresso"}[] = ROAST_OPTIONS.map(opt => ({name: opt}));
     modifiers: ProductAttributeOption[] = [];
     volumeOptions: ProductAttributeOption[] = [];
 

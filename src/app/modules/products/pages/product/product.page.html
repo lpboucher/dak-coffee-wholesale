@@ -25,7 +25,7 @@
         <app-grid-list [itemColumnSpan]=4 [gridGap]=8>
             <ng-container *ngIf="products$ | withLoader | async as products">
                 <ng-template [ngIf]="!products.error && !products.loading">
-                    <app-product-card *ngFor="let product of (products.value | filter: activeFilters)" [product]="product"></app-product-card>
+                    <app-product-card *ngFor="let product of (products.value | filter: activeFilters)" [product]="product" [initialValue]="selectedOption"></app-product-card>
                 </ng-template>
                 <ng-template [ngIf]="products.loading">
                     <app-product-card-loader *ngFor="let _ of [].constructor(12)"></app-product-card-loader>

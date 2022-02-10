@@ -16,7 +16,7 @@ import { SamplesRoast } from "@shared/models/types/roast.type";
 })
 export class SamplesConfirmationModalComponent {
     @ViewChild("modal") modal: ModalBackboneComponent | undefined = undefined;
-    selectionOptions: SamplesRoast[] = ["Filter", "Espresso", "Both"];
+    selectionOptions: SamplesRoast[] = ["filter", "espresso", "Both"];
     submissionAttempted: boolean = false;
     sampleSelectionForm = this.fb.group({
         selection: ["", Validators.required],

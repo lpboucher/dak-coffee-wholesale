@@ -11,6 +11,7 @@ import { Coffee } from "@shared/models/classes/coffee.class";
 export abstract class BaseProductComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     @Input() product!: Product;
+    @Input() initialValue?: { [key: string]: string };
     optionsForm = this.fb.group({});
 
     get quantity(): number {
@@ -78,9 +79,12 @@ export abstract class BaseProductComponent implements OnInit {
     }
 
     private get formConfig() {
-        return this.product.attributes.reduce((obj, attr) => ({
-            [attr.name!]: [attr.options![0].name, Validators.required],
-            ...obj
-        }), {});
+        return this.product.attributes.reduce((obj, attr) => {
+            const initialValue = this.initialValue?.[attr.name!] ?? attr.options![0].name;
+            return {
+                [attr.name!]: [initialValue, Validators.required],
+                ...obj
+            };
+        }, {});
     }
 }
