@@ -36,10 +36,6 @@ export class SamplesConfirmationModalComponent {
     onConfirm(): void {
         this.submissionAttempted = true;
 
-        console.log(this.authService.userEmail,
-            "sample-request",
-            this.sampleSelectionForm.get("selection")?.value);
-
         if (this.sampleSelectionForm.valid) {
             this.messageService.sendMessage(
                 this.authService.userEmail,

@@ -204,7 +204,6 @@ export class CartService {
     /*async updateItemsPricingDiscount(items: any): Promise<void> {
         await this.setItemsDiscount(items, this.pricingTierService.isDiscountActive).then(() => console.log("updated"));
         setTimeout(() => this.toggleManualUpdates(false), 1200);
-        console.log("removing block");
     }*/
 
     private updateCartTotal(total: number): void {
