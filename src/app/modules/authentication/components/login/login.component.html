@@ -25,6 +25,7 @@
 
                 <button
                     class="login-card-submit-button"
+                    [ngClass]="{'login-card-submit-button--busy': isSubmitting}"
                     [disabled]="isSubmissionDisabled"
                 >
                     Submit

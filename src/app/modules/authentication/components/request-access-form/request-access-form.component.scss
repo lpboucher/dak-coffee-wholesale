@@ -54,6 +54,10 @@ select:invalid {
     @apply focus:outline-none hover:bg-dak-main hover:border-dak-main hover:text-dak-white hover:shadow-none disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
+.request-access-submit-button--busy {
+    @apply bg-dak-main border-dak-main text-dak-white;
+}
+
 .request-access-submission-error-message {
     @apply pt-2;
     @apply text-red-600 text-sm italic;

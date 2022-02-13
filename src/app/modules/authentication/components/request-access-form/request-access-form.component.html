@@ -62,6 +62,7 @@
                 <button
                     #submit
                     class="request-access-submit-button"
+                    [ngClass]="{'request-access-submit-button--busy': isSubmitting}"
                     [disabled]="isSubmissionDisabled"
                 >
                     Submit
