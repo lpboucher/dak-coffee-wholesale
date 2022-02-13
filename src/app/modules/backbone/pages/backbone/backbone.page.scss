@@ -6,7 +6,7 @@
 }
 
 .sidebar-container {
-    @apply fixed z-10 flex;
+    @apply fixed z-20 flex;
     @apply w-full;
     @apply transform -translate-x-full;
     @apply transition-all duration-500 ease-in-out;
@@ -35,8 +35,8 @@
 }
 
 .header {
-    @apply fixed;
-    @apply w-full;
+    @apply fixed z-20;
+    @apply w-full h-auto;
 
     @apply md:hidden;
 }
