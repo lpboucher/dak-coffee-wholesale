@@ -10,7 +10,7 @@ export class WeightPipe implements PipeTransform {
         const isKilos = weight.includes("kg");
         const rawWeightValue = weight.split(/kg|g/)[0];
 
-        const weightValue = Number.parseInt(rawWeightValue);
+        const weightValue = Number.parseFloat(rawWeightValue);
         return isKilos ? weightValue : weightValue / 1000;
     }
 }
