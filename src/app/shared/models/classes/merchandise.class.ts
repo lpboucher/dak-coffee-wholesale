@@ -84,6 +84,28 @@ export class Merchandise extends Product {
                             ]}),
                     );
                 }
+
+                if (merchandiseShape.type === "roasting-tee" || merchandiseShape.type === "brewing-tee" ) {
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "size",
+                            options: [
+                                { name: "XS" },
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
+                            ]}),
+                    );
+
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "color",
+                            options: [
+                                { name: "White", priceModifier: -(0.3 * this.priceAsNumber) },
+                            ]}),
+                    );
+                }
             }
 
             if (merchandiseShape.isAvailableWholesale != null) {
