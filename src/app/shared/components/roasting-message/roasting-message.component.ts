@@ -14,13 +14,14 @@ export class RoastingMessageComponent {
     get messageDetails(): string {
         const today = new Date();
         const baseString = `Minimum order is ${CART_WEIGHT_THRESHOLD}kgs.`;
+        const shipString = `Free shipping in Europe with 20kgs+.`;
         let nextDateString = `Next Roasting Date is ${this.datePipe.transform(this.getNextRoastingDays()[0], "EEEE, MMMM d")}.`;
 
         if (this.isRoastingDay(today) === true) {
             nextDateString = `Roasting today.`;
         }
 
-        return `${baseString} ${nextDateString}`;
+        return `${baseString} ${nextDateString} ${shipString}`;
         // return `Roastery closed between July 2-10. Next roasting date July 11.`
     }
 
