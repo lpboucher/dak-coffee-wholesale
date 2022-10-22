@@ -96,7 +96,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "papaya": `${FLAVOUR_FOLDER_PATH}guava.svg`,
     "passion-fruit": `${FLAVOUR_FOLDER_PATH}passion-fruit.svg`,
     "peach": `${FLAVOUR_FOLDER_PATH}peach.svg`,
-    "peach-ice-tea": `${FLAVOUR_FOLDER_PATH}peachicetea.svg`,
+    "peach-ice-tea": `${FLAVOUR_FOLDER_PATH}peach.svg`,
     "pecan": `${FLAVOUR_FOLDER_PATH}pecan.svg`,
     "pear": `${FLAVOUR_FOLDER_PATH}pear.svg`,
     "pear-cider": `${FLAVOUR_FOLDER_PATH}pear.svg`,
