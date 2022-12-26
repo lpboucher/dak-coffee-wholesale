@@ -147,6 +147,6 @@ export const FLAVOUR_MAP: FlavourMap = {
     "white-currant": `${FLAVOUR_FOLDER_PATH}whitecurrant.svg`,
     "white-flower": `${FLAVOUR_FOLDER_PATH}white-flower.svg`,
     "white-flowers": `${FLAVOUR_FOLDER_PATH}white-flower.svg`,
-    "white-tea": `${FLAVOUR_FOLDER_PATH}whites-tea.svg`,
+    "white-tea": `${FLAVOUR_FOLDER_PATH}white-tea.svg`,
     "wild-berries": `${FLAVOUR_FOLDER_PATH}red-berries.svg`,
 };
