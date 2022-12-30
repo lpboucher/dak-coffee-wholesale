@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 (window as any).Snipcart.api.session.setLanguage("en", {
                     payment: {
                         methods: {
-                            deferred_payment: "Pay later (subject to credit approval)"
+                            deferred_payment: "On account (subject to approval)"
                         }
                     }
                 });
