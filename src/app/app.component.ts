@@ -26,6 +26,27 @@ export class AppComponent implements OnInit, OnDestroy {
                     updatedItemSubscription: this.snipcartService.addItemUpdatedListener(),
                     removedItemSubscription: this.snipcartService.addItemRemovedListener(),
                     orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
+                };
+
+                (window as any).Snipcart.api.session.setLanguage("en", {
+                    payment: {
+                        methods: {
+                            deferred_payment: "Pay later (subject to credit approval)"
+                        }
+                    }
+                });
+            })
+        );
+
+        this.subscriptions.add(fromEvent(document, "snipcart.ready")
+            .subscribe(_ => {
+                this.cartEvents = {
+                    cartStateListener: this.snipcartService.cartStateListener(),
+                    addingItemSubscription: this.snipcartService.addItemAddingListener(),
+                    addedItemSubscription: this.snipcartService.addItemAddedListener(),
+                    updatedItemSubscription: this.snipcartService.addItemUpdatedListener(),
+                    removedItemSubscription: this.snipcartService.addItemRemovedListener(),
+                    orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
                 }
             })
         );
