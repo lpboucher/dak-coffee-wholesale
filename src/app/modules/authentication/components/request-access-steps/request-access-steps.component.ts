@@ -9,7 +9,7 @@ import { ImageService } from "@core/views/image.service";
 })
 export class RequestAccessStepsComponent {
     get imageUrl(): string {
-        return this.imageService.getOtherImageUrl("IMGL9938-bewerkt_if4tlk", "Intros");
+        return this.imageService.getOtherImageUrl("wholesalepicture_rjd4ej", "Intros");
     }
     constructor(private imageService: ImageService) {}
 }
