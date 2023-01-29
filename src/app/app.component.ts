@@ -29,6 +29,10 @@ export class AppComponent implements OnInit, OnDestroy {
                 };
 
                 (window as any).Snipcart.api.session.setLanguage("en", {
+                    address_form: {
+                        address1: "Street name, house number",
+                        address2: "Additional address information (Apt, Building)",
+                    },
                     payment: {
                         methods: {
                             deferred_payment: "On account (subject to approval)"
