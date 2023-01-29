@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
 import { PricingTierService } from "@core/pricing/pricing-tier.service";
+import { ShippingApiService } from "../shipping/shipping.service";
 import { AlertService } from "@core/alerts/alert.service";
 
 import { WeightPipe } from "@shared/pipes/weight.pipe";
@@ -49,6 +50,7 @@ export class CartService {
 
     constructor(
         private pricingTierService: PricingTierService,
+        private shippingService: ShippingApiService,
         private alertService: AlertService,
         private weightPipe: WeightPipe,
         private percentStringPipe: PercentStringPipe,
@@ -169,6 +171,8 @@ export class CartService {
                     );
                 }
             });
+
+        this.shippingService.createShippingParcel(cart.shippingAddress, cart.email, cart.invoiceNumber, cart.items.items).subscribe();
     }
 
     updateCartMeta(total?: number, items?: any): void {
