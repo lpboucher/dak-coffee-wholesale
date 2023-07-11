@@ -24,7 +24,7 @@ export class QuantityInputComponent implements ControlValueAccessor, Validator {
     private touched = false;
     private disabled = false;
     @Input() label: string = "";
-    @Input() maxValue: number = 20;
+    @Input() maxValue: number = 100;
     @Input() minValue: number = 1;
     @Input() isLight: boolean = false;
     quantity: number = this.minValue;
