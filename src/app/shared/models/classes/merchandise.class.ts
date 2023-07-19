@@ -46,9 +46,10 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "size",
                             options: [
+                                { name: "XXS" },
                                 { name: "XS" },
                                 { name: "S" },
-                                // { name: "M" },
+                                { name: "M" },
                                 { name: "L" },
                                 { name: "XL" },
                             ]}),
@@ -58,7 +59,8 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "color",
                             options: [
-                                { name: "Navy", priceModifier: -(0.3 * this.priceAsNumber) },
+                                { name: "White", priceModifier: -(0.3 * this.priceAsNumber) },
+                                { name: "Black", priceModifier: -(0.3 * this.priceAsNumber) },
                             ]}),
                     );
                 }
@@ -81,6 +83,53 @@ export class Merchandise extends Product {
                             options: [
                                 { name: "Navy", priceModifier: -(0.3 * this.priceAsNumber) },
                                 { name: "Cream Grey", priceModifier: -(0.3 * this.priceAsNumber) },
+                            ]}),
+                    );
+                }
+
+                if (merchandiseShape.type === "crewneck") {
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "size",
+                            options: [
+                                { name: "XXS" },
+                                { name: "XS" },
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
+                            ]}),
+                    );
+
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "color",
+                            options: [
+                                { name: "White", priceModifier: -(0.25 * this.priceAsNumber) },
+                                { name: "Black", priceModifier: -(0.25 * this.priceAsNumber) },
+                            ]}),
+                    );
+                }
+
+                if (merchandiseShape.type === "nitro-crew") {
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "size",
+                            options: [
+                                { name: "XXS" },
+                                { name: "XS" },
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
+                            ]}),
+                    );
+
+                    this.attributes.push(
+                        new ProductAttribute({
+                            name: "color",
+                            options: [
+                                { name: "Green", priceModifier: -(0.25 * this.priceAsNumber) },
                             ]}),
                     );
                 }
