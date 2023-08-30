@@ -5,6 +5,7 @@ const FLAVOUR_FOLDER_PATH = "/assets/icons/flavours/";
 
 export const FLAVOUR_MAP: FlavourMap = {
     "almond": `${FLAVOUR_FOLDER_PATH}almond.svg`,
+    "amarena-cherry": `${FLAVOUR_FOLDER_PATH}cherry.svg`,
     "apple": `${FLAVOUR_FOLDER_PATH}apple.svg`,
     "apple-jam": `${FLAVOUR_FOLDER_PATH}apple.svg`,
     "apricot": `${FLAVOUR_FOLDER_PATH}peach.svg`,
@@ -34,6 +35,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "chamomile": `${FLAVOUR_FOLDER_PATH}geranium.svg`,
     "cherry": `${FLAVOUR_FOLDER_PATH}cherry.svg`,
     "cherry-blossom": `${FLAVOUR_FOLDER_PATH}cherry.svg`,
+    "cherry-lemonade": `${FLAVOUR_FOLDER_PATH}cherry.svg`,
     "cherry-liquor": `${FLAVOUR_FOLDER_PATH}cherry.svg`,
     "chocolate": `${FLAVOUR_FOLDER_PATH}chocolate.svg`,
     "cinnamon": `${FLAVOUR_FOLDER_PATH}cinnamon.svg`,
@@ -67,6 +69,8 @@ export const FLAVOUR_MAP: FlavourMap = {
     "geranium": `${FLAVOUR_FOLDER_PATH}geranium.svg`,
     "granadilla": `${FLAVOUR_FOLDER_PATH}granadilla.svg`,
     "grapefruit": `${FLAVOUR_FOLDER_PATH}grapefruit.svg`,
+    "grape-soda": `${FLAVOUR_FOLDER_PATH}grapes.svg`,
+    "grape": `${FLAVOUR_FOLDER_PATH}grapes.svg`,
     "grapes": `${FLAVOUR_FOLDER_PATH}grapes.svg`,
     "grand-marnier": `${FLAVOUR_FOLDER_PATH}grandmarnier.svg`,
     "green-apple": `${FLAVOUR_FOLDER_PATH}green-apple.svg`,
@@ -88,6 +92,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "kumquat": `${FLAVOUR_FOLDER_PATH}orange.svg`,
     "lavender": `${FLAVOUR_FOLDER_PATH}lavender.svg`,
     "lemon": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
+    "lemon-blossom": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
     "lemonade": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
     "lemon-gelato": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
     "lemon-ice-tea": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
@@ -157,6 +162,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "rose-hips": `${FLAVOUR_FOLDER_PATH}rose.svg`,
     "rose-water": `${FLAVOUR_FOLDER_PATH}rose.svg`,
     "sparkling": `${FLAVOUR_FOLDER_PATH}bubble.svg`,
+    "star-anise": `${FLAVOUR_FOLDER_PATH}staranise.svg`,
     "strawberry": `${FLAVOUR_FOLDER_PATH}strawberry.svg`,
     "strawberry-gelato": `${FLAVOUR_FOLDER_PATH}strawberry.svg`,
     "strawberry-jam": `${FLAVOUR_FOLDER_PATH}strawberry.svg`,
@@ -182,6 +188,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "white-tea": `${FLAVOUR_FOLDER_PATH}white-tea.svg`,
     "wild-berries": `${FLAVOUR_FOLDER_PATH}red-berries.svg`,
     "wild-strawberry": `${FLAVOUR_FOLDER_PATH}strawberry.svg`,
+    "yellow-passion-fruit": `${FLAVOUR_FOLDER_PATH}passion-fruit.svg`,
     "yellow-plum": `${FLAVOUR_FOLDER_PATH}yellow-plum.svg`,
     "yuzu": `${FLAVOUR_FOLDER_PATH}lemon.svg`,
 };
