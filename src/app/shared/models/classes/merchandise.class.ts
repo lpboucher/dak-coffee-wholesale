@@ -96,7 +96,7 @@ export class Merchandise extends Product {
                                 { name: "S" },
                                 // { name: "M (only in black)" },
                                 // { name: "L" },
-                                { name: "XL" },
+                                { name: "XL (only in white)" },
                             ]}),
                     );
 
