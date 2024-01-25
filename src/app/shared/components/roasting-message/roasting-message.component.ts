@@ -21,8 +21,8 @@ export class RoastingMessageComponent {
             nextDateString = `Roasting today.`;
         }
 
-        // return `${baseString} ${nextDateString} ${shipString}`;
-        return `Roastery is closed for the Holidays. Last roasting day Dec. 21, back roasting Jan. 2`
+        return `${baseString} ${nextDateString} ${shipString}`;
+        // return `Roastery is closed for the Holidays. Last roasting day Dec. 21, back roasting Jan. 2`
     }
 
     constructor(private datePipe: DatePipe) {}
