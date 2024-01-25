@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.subscriptions.add(fromEvent(document, "snipcart.ready")
+        /*this.subscriptions.add(fromEvent(document, "snipcart.ready")
             .subscribe(_ => {
                 this.cartEvents = {
                     cartStateListener: this.snipcartService.cartStateListener(),
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     orderCompletedSubscription: this.snipcartService.addOrderCompletedListener(),
                 }
             })
-        );
+        );*/
     }
 
     ngOnDestroy(): void {
