@@ -1,1 +1,1 @@
-export const ROASTING_DAYS: number[] = [1, 3];
+export const ROASTING_DAYS: number[] = [1, 2, 3, 4];
