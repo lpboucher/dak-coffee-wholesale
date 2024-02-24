@@ -56,8 +56,17 @@ export class Coffee extends Product {
                     })
                 );
             }*/
+            if (coffeeShape.id === '63dbca6ecd8d943c7e8d5e88') {
+                const modifiedOptions = [{ name: '250g', priceModifier: -6.25 }];
+                this.volumeOptions = modifiedOptions;
+                this.attributes.push(
+                    new ProductAttribute({
+                        name: "weight",
+                        options: modifiedOptions,
+                    })
+                );
 
-            if (coffeeShape.volumeOptions != null && coffeeShape.volumeOptions.length > 0) {
+            } else if (coffeeShape.volumeOptions != null && coffeeShape.volumeOptions.length > 0) {
                 this.volumeOptions = coffeeShape.volumeOptions;
                 this.attributes.push(
                     new ProductAttribute({
