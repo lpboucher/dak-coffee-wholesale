@@ -50,7 +50,7 @@ export class Merchandise extends Product {
                                 { name: "XS" },
                                 { name: "S (only in white)" },
                                 // { name: "L (only in white)" },
-                                { name: "XL" },
+                                { name: "XL (only in white)" },
                             ]}),
                     );
 
