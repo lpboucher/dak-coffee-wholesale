@@ -11,6 +11,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "apple": `${FLAVOUR_FOLDER_PATH}apple.svg`,
     "apple-jam": `${FLAVOUR_FOLDER_PATH}apple.svg`,
     "apricot": `${FLAVOUR_FOLDER_PATH}peach.svg`,
+    "baked-peach": `${FLAVOUR_FOLDER_PATH}peach.svg`,
     "banana": `${FLAVOUR_FOLDER_PATH}banana.svg`,
     "banana-milkshake": `${FLAVOUR_FOLDER_PATH}banana.svg`,
     "bergamot": `${FLAVOUR_FOLDER_PATH}bergamot.svg`,
