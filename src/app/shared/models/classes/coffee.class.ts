@@ -86,16 +86,6 @@ export class Coffee extends Product {
                     })
                 );
 
-            } else if (coffeeShape.id === '641b02251e1f7360d696bc8f') {
-                const modifiedOptions = [{ name: '250g', priceModifier: -8.32 }];
-                this.volumeOptions = modifiedOptions;
-                this.attributes.push(
-                    new ProductAttribute({
-                        name: "weight",
-                        options: modifiedOptions,
-                    })
-                );
-
             } else if (coffeeShape.volumeOptions != null && coffeeShape.volumeOptions.length > 0) {
                 this.volumeOptions = coffeeShape.volumeOptions;
                 this.attributes.push(
