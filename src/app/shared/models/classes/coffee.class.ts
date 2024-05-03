@@ -23,7 +23,8 @@ export class Coffee extends Product {
             this.roastOptions = coffeeShape.roastOptions;
         }
 
-        if (coffeeShape != null) {
+        // no mikavas on wholesale
+        if (coffeeShape != null && coffeeShape.id !== '6634ef91956903638597f9c6' && coffeeShape.id !== '6634f0a8956903638597f9e7') {
             this.filterableAttributes = [
                 { key: "origin", displayName: "Origin" },
                 { key: "tastingNotes", displayName: "Tasting Notes" },
