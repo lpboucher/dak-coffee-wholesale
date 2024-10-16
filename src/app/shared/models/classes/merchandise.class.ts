@@ -46,11 +46,11 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "size",
                             options: [
-                                { name: "XXS" },
                                 { name: "XS" },
-                                { name: "S (only in white)" },
-                                // { name: "L (only in white)" },
-                                { name: "XL (only in white)" },
+                                { name: "S" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
                             ]}),
                     );
 
@@ -58,8 +58,7 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "color",
                             options: [
-                                { name: "White", priceModifier: -(0.3 * this.priceAsNumber) },
-                                { name: "Black", priceModifier: -(0.3 * this.priceAsNumber) },
+                                { name: "Vintage White", priceModifier: -(0 * this.priceAsNumber) },
                             ]}),
                     );
                 }
@@ -91,12 +90,10 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "size",
                             options: [
-                                { name: "XXS" },
-                                { name: "XS" },
                                 { name: "S" },
-                                // { name: "M (only in black)" },
-                                // { name: "L" },
-                                { name: "XL (only in white)" },
+                                { name: "M" },
+                                { name: "L" },
+                                { name: "XL" },
                             ]}),
                     );
 
@@ -104,8 +101,7 @@ export class Merchandise extends Product {
                         new ProductAttribute({
                             name: "color",
                             options: [
-                                { name: "White", priceModifier: -(0.25 * this.priceAsNumber) },
-                                { name: "Black", priceModifier: -(0.25 * this.priceAsNumber) },
+                                { name: "Vintage White", priceModifier: -(0 * this.priceAsNumber) },
                             ]}),
                     );
                 }
