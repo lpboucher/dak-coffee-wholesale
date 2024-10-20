@@ -99,6 +99,7 @@ export const FLAVOUR_MAP: FlavourMap = {
     "gummies": `${FLAVOUR_FOLDER_PATH}candy.svg`,
     "hazelnut": `${FLAVOUR_FOLDER_PATH}hazelnut.svg`,
     "hazelnut-paste": `${FLAVOUR_FOLDER_PATH}hazelnut.svg`,
+    "herbal": `${FLAVOUR_FOLDER_PATH}rosemary.svg`,
     "hibiscus": `${FLAVOUR_FOLDER_PATH}hibiscus.svg`,
     "honey": `${FLAVOUR_FOLDER_PATH}honey.svg`,
     "honeycomb": `${FLAVOUR_FOLDER_PATH}honeycomb.svg`,
