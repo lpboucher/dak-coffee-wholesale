@@ -50,7 +50,6 @@ export class Merchandise extends Product {
                                 { name: "S" },
                                 { name: "M" },
                                 { name: "L" },
-                                { name: "XL" },
                             ]}),
                     );
 
