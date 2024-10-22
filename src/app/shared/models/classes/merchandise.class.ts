@@ -49,7 +49,7 @@ export class Merchandise extends Product {
                                 { name: "XS" },
                                 { name: "S" },
                                 { name: "M" },
-                                { name: "L" },
+                                // { name: "L" },
                             ]}),
                     );
 
