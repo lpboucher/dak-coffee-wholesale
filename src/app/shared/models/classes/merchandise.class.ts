@@ -90,7 +90,7 @@ export class Merchandise extends Product {
                             name: "size",
                             options: [
                                 { name: "S" },
-                                { name: "M" },
+                                // { name: "M" },
                                 { name: "L" },
                                 { name: "XL" },
                             ]}),
