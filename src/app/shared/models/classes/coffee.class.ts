@@ -87,7 +87,7 @@ export class Coffee extends Product {
                 );
 
             } else if (coffeeShape.id === '673a0f86b02f3938cbf72679') {
-                const modifiedOptions = [{ name: 'Box of 15 Steeped Bags', priceModifier: -10.50 }];
+                const modifiedOptions = [{ name: '15 x 14g', priceModifier: -10.50 }];
                 this.volumeOptions = modifiedOptions;
                 this.attributes.push(
                     new ProductAttribute({
