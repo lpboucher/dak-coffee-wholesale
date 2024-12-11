@@ -24,7 +24,7 @@ export class Coffee extends Product {
         }
 
         // no mikavas on wholesale
-        if (coffeeShape != null && coffeeShape.id !== '6634ef91956903638597f9c6' && coffeeShape.id !== '6634f0a8956903638597f9e7') {
+        if (coffeeShape != null && coffeeShape.id !== '67499f99b02f3938cbf728ad' && coffeeShape.id !== '6543d19a0289503a77b3512c') {
             this.filterableAttributes = [
                 { key: "origin", displayName: "Origin" },
                 { key: "tastingNotes", displayName: "Tasting Notes" },
