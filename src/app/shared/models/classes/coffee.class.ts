@@ -69,7 +69,7 @@ export class Coffee extends Product {
 
             } else if (coffeeShape.id === '679b989d2df01c28b6351988') {
                 const modifiedOptions = [
-                    { name: '250g', priceModifier: -8.78 },
+                    { name: '250g', priceModifier: -8.39 },
                     { name: '1kg', priceModifier: 9.85 },
                     { name: '3kg', priceModifier: 59.05 },
                 ];
@@ -82,7 +82,7 @@ export class Coffee extends Product {
                 );
             } else if (coffeeShape.id === '65639f1738f64a26fce9d12d') {
                 const modifiedOptions = [
-                    { name: '250g', priceModifier: -8.78 },
+                    { name: '250g', priceModifier: -8.39 },
                     { name: '1kg', priceModifier: 9.85 },
                     { name: '3kg', priceModifier: 59.05 },
                 ];
@@ -95,7 +95,7 @@ export class Coffee extends Product {
                 );
             } else if (coffeeShape.id === '6462067e35223f762cf71c98') {
                 const modifiedOptions = [
-                    { name: '250g', priceModifier: -8.78 },
+                    { name: '250g', priceModifier: -8.39 },
                     { name: '1kg', priceModifier: 9.85 },
                     { name: '3kg', priceModifier: 59.05 },
                 ];
